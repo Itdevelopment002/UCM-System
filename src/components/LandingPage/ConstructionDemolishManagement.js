@@ -1,7 +1,7 @@
 import React from 'react';
 import ConstructionDemolishManagementcss from "../LandingPage/ConstructionDemolishManagement.css"; // Assuming the CSS file is named App.css
 
-
+import logo from "../../images/logo1.png"
 const ConstructionDemolishManagement = () => {
     return (
         <div className="main-box">
@@ -11,6 +11,7 @@ const ConstructionDemolishManagement = () => {
             <div className="header-div">
                     <h1>Unauthorized <br /> <span className="highlight">Construction Demolish</span> <br /> Management System</h1>
                 </div>
+                <hr className="line-blue" />
 
                 <div className="description-div">
                     <p>
@@ -24,7 +25,11 @@ const ConstructionDemolishManagement = () => {
 
                
             </div>
-            <div> <div className="logo-div"></div></div>
+            <div className="logo-div">
+            <img src={logo} alt="Logo" className="logo-img" />
+
+</div>
+
             <div className='right-div-landing-page'>
             <div className="right-image-div"></div>
             </div>

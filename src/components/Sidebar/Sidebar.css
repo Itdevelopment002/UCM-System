@@ -1,63 +1,36 @@
-/* styles.css */
-
-.frame-24 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0px;
-  gap: 4.29px;
-  width: 214px;
-  height: 29px;
-}
-
-.frame-12 {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 4.2945px 8.58901px;
-  gap: 4.29px;
-  width: 111.71px;
-  height: 29px;
-  border-radius: 25.767px;
-}
-
-.arrow-left {
-  width: 20px;
-  height: 20px;
-  transform: rotate(-90deg);
-}
-
-.frame-13 {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 4.2945px 8.58901px;
-  gap: 4.29px;
-  width: 98px;
-  height: 29px;
-  background: #5038ED;
-  border: 0.42945px solid #0039CE;
-  border-radius: 25.767px;
-}
-
-.next-step {
-  width: 56px;
-  height: 14px;
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 14px;
-  color: #FFFFFF;
-}
-
-.arrow-right {
-  width: 10.31px;
-  height: 10.31px;
-  transform: rotate(90deg);
-}
+.next-step-container {
+    display: flex;
+    justify-content: space-between; /* Align back arrow to the left and button to the right */
+    align-items: center; /* Vertically align items */
+    width: 214px; /* Set the container width */
+    height: 29px; /* Set the container height */
+    gap: 4.29px; /* Spacing between elements */
+    opacity: 1; /* Make the container visible */
+  }
+  
+  .back-arrow {
+     /* Set arrow color */
+    cursor: pointer; /* Change cursor to pointer for clickable effect */
+  }
+  
+  .next-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5038ED; /* Button background */
+    color: #FFFFFF; /* Text and icon color */
+    width: 98px; /* Fixed width */
+    height: 29px; /* Fixed height */
+    padding: 4.29px 8.59px; /* Internal padding */
+    gap: 4.29px; /* Gap between text and arrow */
+    border-radius: 25.77px 0px 0px 0px; /* Rounded top-left corner */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor for button */
+    opacity: 1; /* Make button visible */
+    font-family: Raleway, sans-serif; /* Font style */
+    font-size: 14px; /* Font size */
+    font-weight: 600; /* Font weight */
+    line-height: 16px; /* Line height */
+    text-transform: uppercase; /* Make text uppercase */
+  }
+  

@@ -1,5 +1,6 @@
 import React from 'react';
 import sidebar from "../Sidebar/Sidebar.css"
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 const Sidebar = () => {
   const steps = [
     'Information Collection Form',
@@ -111,15 +112,15 @@ const Sidebar = () => {
           </div>
         </div>
       ))}
-      <div className="frame-24">
-      <div className="frame-12">
-       
-      </div>
-      <div className="frame-13">
-       
-        <span className="next-step">Next Step</span>
-        
-      </div>
+       <div className="next-step-container">
+      {/* Left arrow (Back) */}
+      <FaArrowLeft className="back-arrow" size={20} />
+
+      {/* Button with text and right arrow */}
+      <button className="next-step">
+        Next Step
+        <FaArrowRight size={20} />
+      </button>
     </div>
     </div>
   );

@@ -13,7 +13,6 @@ function App() {
     <Sidebar />
     <Form /> */}
     <ConstructionDemolishManagement />
-    
     </div>
      
   );

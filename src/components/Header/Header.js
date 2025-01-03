@@ -5,14 +5,18 @@ import './Header.css'; // Import the CSS file
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Toggle dropdown visibility
   const toggleDropdown = () => {
+    console.log("Dropdown toggled, current state:", isOpen); // Debug state change
     setIsOpen(!isOpen);
   };
 
   return (
     <div className="header-container">
       {/* Logo */}
-      <div className="header-logo">Unauthorized Construction Demolish Management System</div>
+      <div className="header-logo">
+        Unauthorized Construction Demolish Management System
+      </div>
 
       {/* Search Bar */}
       <div className="search-bar">
@@ -24,27 +28,33 @@ const Header = () => {
       </div>
 
       {/* Language Selector */}
-      <div className='language'>
-      <div className="language-selector" onClick={toggleDropdown}>
-        <span>Language</span>
-        <span className="dropdown-arrow">▼</span>
-      </div>
+      <div className="language">
+        <div className="language-selector" onClick={toggleDropdown}>
+          <span>Language</span>
+          <span className="dropdown-arrow">▼</span>
+        </div>
+
+        {/* Language dropdown */}
+        {isOpen && (
+          <div className="dropdown-menu">
+            <ul>
+              <li>English</li>
+              <li>Hindi</li>
+              <li>Marathi</li>
+            </ul>
+          </div>
+        )}
       </div>
 
-      {isOpen && (
-        <div className="dropdown-menu">
-          <ul>
-            <li>English</li>
-            <li>Hindi</li>
-            {/* Add more language options here */}
-          </ul>
-        </div>
-      )}
- <FaBell size={20} className="bell-icon" />
+      {/* Notification Icon */}
+      <FaBell size={20} className="bell-icon" />
+
       {/* User Info */}
       <div className="user-info">
-       
-        <div className="user-name">Nishant Makam <br/><div style={{color:"#333333"}}> Solapur, India</div></div>
+        <div className="user-name">
+          Nishant Makam <br />
+          <div style={{ color: '#333333' }}>Solapur, India</div>
+        </div>
         <FaUserCircle size={30} className="user-icon" />
       </div>
     </div>
