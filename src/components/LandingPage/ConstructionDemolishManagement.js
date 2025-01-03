@@ -1,6 +1,6 @@
 import React from 'react';
 import ConstructionDemolishManagementcss from "../LandingPage/ConstructionDemolishManagement.css"; // Assuming the CSS file is named App.css
-
+import { Link } from 'react-router-dom';
 import logo from "../../images/logo1.png"
 const ConstructionDemolishManagement = () => {
     return (
@@ -19,7 +19,9 @@ const ConstructionDemolishManagement = () => {
                         Follow the steps below to file a complaint and monitor its progress.
                     </p>
                 </div>
-                <button className="register-button">Register Your Complaint</button>
+                <Link to="/register">
+          <button className="register-button">Register Your Complaint</button>
+        </Link>
 
                 
 
