@@ -1,0 +1,63 @@
+/* styles.css */
+
+.frame-24 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 4.29px;
+  width: 214px;
+  height: 29px;
+}
+
+.frame-12 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4.2945px 8.58901px;
+  gap: 4.29px;
+  width: 111.71px;
+  height: 29px;
+  border-radius: 25.767px;
+}
+
+.arrow-left {
+  width: 20px;
+  height: 20px;
+  transform: rotate(-90deg);
+}
+
+.frame-13 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4.2945px 8.58901px;
+  gap: 4.29px;
+  width: 98px;
+  height: 29px;
+  background: #5038ED;
+  border: 0.42945px solid #0039CE;
+  border-radius: 25.767px;
+}
+
+.next-step {
+  width: 56px;
+  height: 14px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  color: #FFFFFF;
+}
+
+.arrow-right {
+  width: 10.31px;
+  height: 10.31px;
+  transform: rotate(90deg);
+}
