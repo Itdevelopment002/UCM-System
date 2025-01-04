@@ -1,10 +1,40 @@
+.App {
+  text-align: center;
+}
 .app-container {
   background-color: #F0F4F8;
-  height: 100vh; /* Take full height of the viewport */
-  margin: 0;
+  height: 100vh; 
+    margin: 0;
+    flex-direction: column;
   padding: 0;
   font-family: "Poppins";
-  display: flex; /* Flex layout for the entire container */
-  justify-content: flex-start; /* Align items at the top */
-  align-items: stretch; /* Stretch child elements to take full height */
+  display: flex; 
+  justify-content: flex-start; 
+  align-items: stretch; 
+}
+  
+  
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 300px; /* Space for sidebar */
+  margin-top: 160px;   /* Adjust according to the height of your wizard bar */
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: auto;    /* Allow vertical scrolling */
+  height: calc(100vh - 160px); /* Ensures content height takes the rest of the viewport minus the fixed wizard bar */
+}
+
+.form-container {
+
+
+  background-color: #f8f9fa;
+}
+
+.form-container form {
+  width: 100%;
+  
+  background-color: #ffffff;
+  border-radius: 5px;
 }

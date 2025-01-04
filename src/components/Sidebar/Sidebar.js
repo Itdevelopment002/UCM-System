@@ -1,127 +1,77 @@
-import React from 'react';
-import sidebar from "../Sidebar/Sidebar.css"
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { StepContext } from '../StepContext';
+import './Sidebar.css';
+import bro from '../../images/bro.png';
+
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const { activeStep, setActiveStep } = useContext(StepContext);
+
   const steps = [
-    'Information Collection Form',
-    'Complaint Details',
-    'Notice Details',
-    'Demolition Details',
-    'Court Order Details',
-    'Submission Details',
+    { name: 'Information Collection Form', path: '/form' },
+    { name: 'Complaint Details', path: '/complain-details' },
+    { name: 'Notice Details', path: '/notice-details' },
+    { name: 'Demolition Details', path: '/demolition-order' },
+    { name: 'Court Order Details', path: '/count-order' },
+    { name: 'Submission Details', path: '/remark' },
   ];
 
+  const handleStepClick = (index) => {
+    setActiveStep(index);
+    navigate(steps[index].path);
+  };
+
+  const handleNextStep = () => {
+    if (activeStep < steps.length - 1) {
+      setActiveStep(activeStep + 1);
+      navigate(steps[activeStep + 1].path);
+    }
+  };
+
+  const handlePreviousStep = () => {
+    if (activeStep > 0) {
+      setActiveStep(activeStep - 1);
+      navigate(steps[activeStep - 1].path);
+    }
+  };
+
   return (
-    <div
-      style={{
-        backgroundColor:"#F0F4F8",
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        padding: 0,
-        gap: '24px',
-        position: 'absolute',
-        width: '214px',
-        height: '298px',
-        left: '63px',
-        top: '139px',
-        isolation: 'isolate',
-      }}
-    >
+    <div className="sidebar-outer-div">
       {steps.map((step, index) => (
         <div
           key={index}
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 0,
-            gap: '12.88px',
-            width: '206px',
-            height: '30px',
-            isolation: 'isolate',
-          }}
+          className="step-container"
+          onClick={() => handleStepClick(index)}
         >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-end',
-              padding: 0,
-              width: '160px',
-              height: '26px',
-            }}
-          >
-            <div
-              style={{
-                width: '30px',
-                height: '12px',
-                fontFamily: 'Raleway',
-                fontStyle: 'normal',
-                fontWeight: 600,
-                fontSize: '10px',
-                lineHeight: '12px',
-                color: '#263238',
-                textAlign:"right", 
-                opacity: 0.6,
-              }}
-            >
-              Step {index + 1}
-            </div>
-            <div
-              style={{
-                width: '160px',
-                height: '14px',
-                fontFamily: 'Raleway',
-                fontStyle: 'normal',
-                fontWeight: 600,
-                fontSize: '12px', textAlign:"right", 
-                lineHeight: '14px',
-                color: '#1E1E1E',
-              }}
-            >
-              {step}
-            </div>
+          <div className="step-text-container">
+            <div className="step-number">Step {index + 1}</div>
+            <div className="step-title">{step.name}</div>
           </div>
-          <div
-            style={{
-              boxSizing: 'border-box',
-              width: '30px',
-              height: '30px',
-              background: index === 0 ? '#5038ED' : '#FFFFFF',
-              border: `0.42945px solid ${index === 0 ? '#5038ED' : '#263238'}`,
-              borderRadius: '50%',
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: 'Raleway',
-                fontStyle: 'normal',
-                fontWeight: 600,
-                fontSize: '16px',
-                lineHeight: '19px',
-                color: index === 0 ? '#FFFFFF' : '#263238',
-              }}
-            >
-              {index + 1}
-            </span>
+          <div className={`circle-button ${index === activeStep ? 'active' : ''}`}>
+            <span>{index + 1}</span>
           </div>
         </div>
       ))}
-       <div className="next-step-container">
-      {/* Left arrow (Back) */}
-      <FaArrowLeft className="back-arrow" size={20} />
 
-      {/* Button with text and right arrow */}
-      <button className="next-step">
-        Next Step
-        <FaArrowRight size={20} />
-      </button>
-    </div>
+      <div className="next-step-container">
+        <button
+          className="prev-step"
+          onClick={handlePreviousStep}
+          disabled={activeStep === 0}
+        >
+          <FaArrowLeft size={20} />
+        </button>
+        <button
+          className="next-step1"
+          onClick={handleNextStep}
+          disabled={activeStep === steps.length - 1}
+        >
+          Next Step
+          <FaArrowRight style={{ padding: '2px' }} size={20} />
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,11 @@
+/* In your CSS file */
+.form-container {
+    margin-top: 20px;
+  }
+  
+  .form-container form {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+  }
+  

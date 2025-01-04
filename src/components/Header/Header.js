@@ -3,6 +3,7 @@ import { FaBell, FaUserCircle } from 'react-icons/fa';
 import './Header.css'; // Import the CSS file
 
 const Header = () => {
+    
   const [isOpen, setIsOpen] = useState(false);
 
   // Toggle dropdown visibility
@@ -30,7 +31,7 @@ const Header = () => {
       {/* Language Selector */}
       <div className="language">
         <div className="language-selector" onClick={toggleDropdown}>
-          <span>Language</span>
+          <span >Language</span>
           <span className="dropdown-arrow">▼</span>
         </div>
 

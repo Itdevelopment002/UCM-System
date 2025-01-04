@@ -11,7 +11,7 @@ import "./Login.css";
 const Login = () => {
   return (
     <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
-      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden">
+      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
       
         {/* Left Side - Login Form */}
         <div className="col-12 col-md-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center">
