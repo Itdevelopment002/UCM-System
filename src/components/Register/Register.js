@@ -1,28 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import worker from "../../images/workman-shouting-white-background-removebg-preview 1.png";
-import overlay from "../../images/overlay.png";
-import texture from "../../images/texture.png";
 import flash from "../../images/flash.png";
+import overlay from "../../images/overlay.png";
+import worker from "../../images/register-man.png";
+import texture from "../../images/texture.png";
 
 import "./Register.css";
 
 const Register = () => {
   return (
-    <div className="container-fluid w-100 vh-100 d-flex align-items-center justify-content-center">
-      <div className="row w-90 w-md-80 shadow-lg rounded overflow-hidden">
+    <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
+      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden">
       
         {/* Left Side - Register Form */}
         <div className="col-12 col-md-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center">
-          {/* <img
-            src={logo}
-            alt="Ward Logo"
-            className="w-auto mb-4"
-            style={{ width: "120px" }}
-          /> */}
           <h2 className="fw-bold mb-3">REGISTER</h2>
           <p className="text-muted mb-4">Let's Create Your Account</p>
-          <form className="w-100 p-5">
+          <form className="w-100">
             <div className="mb-3">
               <input
                 type="text"
@@ -62,6 +57,11 @@ const Register = () => {
               </label>
             </div>
             <button className="btn btn-primary w-100 mb-3">Sign Up</button>
+            
+            {/* Sign-in Link */}
+            <div className="signin-link">
+              <p>Already have an account? <Link to="/login">Sign in!</Link></p>
+            </div>
           </form>
         </div>
 
@@ -82,7 +82,7 @@ const Register = () => {
               <h3 className="w-5 fw-bold justify-content-left align-items-left"
                 style={{
                   position: "absolute",
-                  top: "47%",
+                  top: "46%",
                   left: "40%",
                   transform: "translate(-50%, -50%)",
                   fontWeight: "bold",
@@ -91,8 +91,8 @@ const Register = () => {
                   lineHeight: "1.5",
                 }}
               >
-                Join Us Today! <br/>
-                Opportunities <br/>Await <br/>
+                Join Us Today!<br/>
+                Opportunities<br/>Await<br/>
                 - Register Now!
               </h3>
             </div>

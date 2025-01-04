@@ -6,18 +6,21 @@ import Sidebar from './components/Sidebar/Sidebar';
 import ConstructionDemolishManagement from './components/LandingPage/ConstructionDemolishManagement';
 
 import Register from './components/Register/Register';
+import Form from './components/Form/Form';
+import Login from './components/Login/Login';
 
 function App() {
   return (
     <Router>
       <div className="app-container">
         {/* <Header />
-        <Sidebar /> */}
+        <Sidebar />
+        <Form /> */}
         <Routes>
           {/* Route for RegisterPage */}
           <Route path="/register" element={<Register />} />
-          
-          {/* Landing Page */}
+         <Route path='login' element={<Login />} />
+         
           <Route path="/" element={<ConstructionDemolishManagement />} />
         </Routes>
        
