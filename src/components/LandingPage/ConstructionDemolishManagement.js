@@ -11,7 +11,7 @@ const ConstructionDemolishManagement = () => {
             <div className="header-div">
                     <h1>Unauthorized <br /> <span className="highlight">Construction Demolish</span> <br /> Management System</h1>
                 </div>
-                <hr className="line-blue" />
+                <div className="mb-3 mt-4" style={{ height: "3px", width: "auto", background: "#5038ED" }}></div>
 
                 <div className="description-div">
                     <p>

@@ -14,6 +14,7 @@ const DemolitionOrder = () => {
               Demolition Target
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="text" 
               id="demolitionTarget" 
               placeholder="Enter name" 
@@ -27,6 +28,7 @@ const DemolitionOrder = () => {
               Demolition Date
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="date" 
               id="demolitionDate" 
               placeholder="dd-mm-yyyy" 
@@ -40,6 +42,7 @@ const DemolitionOrder = () => {
               Demolition Time
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="time" 
               id="demolitionTime" 
               className="form-control text-secondary"
@@ -55,6 +58,7 @@ const DemolitionOrder = () => {
               Demolition Document
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="file" 
               id="demolitionDocument" 
               className="form-control text-secondary"
@@ -67,6 +71,7 @@ const DemolitionOrder = () => {
               Demolition Expenditure Details
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="textarea" 
               id="demolitionExpenditure" 
               placeholder="Write a long text here" 
@@ -83,6 +88,7 @@ const DemolitionOrder = () => {
               Police Station Name
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="select" 
               id="policeStationName" 
               className="form-control text-secondary"
@@ -97,6 +103,7 @@ const DemolitionOrder = () => {
               Protection Number
             </Label>
             <Input 
+               style={{fontSize:"12px"}}
               type="text" 
               id="protectionNumber" 
               placeholder="Enter contact number" 

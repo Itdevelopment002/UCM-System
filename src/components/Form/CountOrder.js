@@ -26,6 +26,7 @@ const CourtOrder = () => {
               <div>
                 <FormGroup check inline>
                   <Input
+                     style={{fontSize:"12px"}}
                     type="radio"
                     id="courtInvolvementYes"
                     name="courtInvolvement"
@@ -36,6 +37,7 @@ const CourtOrder = () => {
                 </FormGroup>
                 <FormGroup check inline>
                   <Input
+                     style={{fontSize:"12px"}}
                     type="radio"
                     id="courtInvolvementNo"
                     name="courtInvolvement"
@@ -54,12 +56,14 @@ const CourtOrder = () => {
           <Col xs={12} md={4}>
             <FormGroup>
               <Label
+                 style={{fontSize:"12px"}}
                 htmlFor="courtOrderNumber"
                 className="form-label text-dark fw-bold"
               >
                 Court Order Number
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="text"
                 id="courtOrderNumber"
                 placeholder="Enter court order number"
@@ -73,6 +77,7 @@ const CourtOrder = () => {
                 ED Date
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="date"
                 id="edDate"
                 className="form-control text-secondary"
@@ -85,6 +90,7 @@ const CourtOrder = () => {
                 Court Order
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="file"
                 id="courtOrder"
                 className="form-control text-secondary"
@@ -100,6 +106,7 @@ const CourtOrder = () => {
                 Court Name
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="text"
                 id="courtName"
                 placeholder="Enter court name"
@@ -113,6 +120,7 @@ const CourtOrder = () => {
                 Type of Court
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="select"
                 id="typeOfCourt"
                 className="form-control text-secondary"
@@ -130,6 +138,7 @@ const CourtOrder = () => {
                 Petitioner Name
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="text"
                 id="petitionerName"
                 placeholder="Enter petitioner name"
@@ -149,6 +158,7 @@ const CourtOrder = () => {
                 Petitioner Mobile Number
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="text"
                 id="petitionerMobile"
                 placeholder="Enter mobile number"
@@ -165,6 +175,7 @@ const CourtOrder = () => {
                 Petitioner Address
               </Label>
               <Input
+                 style={{fontSize:"12px"}}
                 type="textarea"
                 id="petitionerAddress"
                 rows="3"

@@ -19,6 +19,7 @@ function ComplaintDetails() {
             <div className="form-group mb-4">
               <label htmlFor="complainantName" className="form-label text-dark">Complaint Received from (Name)</label>
               <input
+              style={{fontSize:"12px"}}
                 type="text"
                 className="form-control text-secondary"
                 id="complainantName"
@@ -29,6 +30,7 @@ function ComplaintDetails() {
             <div className="form-group mb-4">
               <label htmlFor="complaintDescription" className="form-label text-dark">Complaint Description</label>
               <textarea
+              style={{fontSize:"12px"}}
                 className="form-control text-secondary"
                 id="complaintDescription"
                 rows="4"
@@ -39,6 +41,7 @@ function ComplaintDetails() {
             <div className="form-group mb-4">
               <label htmlFor="complainantContact" className="form-label text-dark">Complainant Contact Details</label>
               <input
+                 style={{fontSize:"12px"}}
                 type="text"
                 className="form-control text-secondary"
                 id="complainantContact"
@@ -58,6 +61,7 @@ function ComplaintDetails() {
                   Photos
                 </label>
                 <input
+                   style={{fontSize:"12px"}}
                   type="file"
                   className="form-control text-secondary"
                   id="uploadPhotos"
@@ -69,6 +73,7 @@ function ComplaintDetails() {
                   Videos
                 </label>
                 <input
+                   style={{fontSize:"12px"}}
                   type="file"
                   className="form-control text-secondary"
                   id="uploadVideos"

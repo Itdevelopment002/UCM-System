@@ -10,16 +10,18 @@ const FunctionalRequiremnt = () => {
             <div className="mb-3">
               <label htmlFor="wardGroup" className="form-label ">Ward Group</label>
               <input
+              style={{ fontSize: "12px", height: '40px' }}
                 type="text"
                 className="form-control"
                 id="wardGroup"
                 placeholder="Enter ward group"
-                style={{ height: '40px' }}
+               
               />
             </div>
             <div className="mb-3">
               <label htmlFor="ucNo" className="form-label">Unauthorized Construction Number (UC No.)</label>
               <input
+              style={{ fontSize: "12px" }}
                 type="text"
                 className="form-control"
                 id="ucNo"
@@ -29,6 +31,7 @@ const FunctionalRequiremnt = () => {
             <div className="mb-3">
               <label htmlFor="ownerName" className="form-label">Owner Name</label>
               <input
+              style={{ fontSize: "12px" }}
                 type="text"
                 className="form-control"
                 id="ownerName"
@@ -38,6 +41,7 @@ const FunctionalRequiremnt = () => {
             <div className="mb-3">
               <label htmlFor="contactNumber" className="form-label">Contact Number</label>
               <input
+              style={{ fontSize: "12px" }}
                 type="tel"
                 className="form-control"
                 id="contactNumber"
@@ -55,6 +59,7 @@ const FunctionalRequiremnt = () => {
             <div className="mb-3 mt-2">
               <label htmlFor="detailedAddress" className="form-label">Detailed Address</label>
               <textarea
+              style={{ fontSize: "12px" }}
                 className="form-control"
                 id="detailedAddress"
                 placeholder="Write a long text here"
@@ -68,6 +73,7 @@ const FunctionalRequiremnt = () => {
                 <label htmlFor="pincode" className="form-label">Pincode</label>
                 <input
                   type="number"
+                  style={{ fontSize: "12px" }}
                   className="form-control"
                   id="pincode"
                   placeholder="Enter pincode"
@@ -76,6 +82,7 @@ const FunctionalRequiremnt = () => {
               <div className="col-md-4">
                 <label htmlFor="wardOffice" className="form-label">Ward Office</label>
                 <input
+                style={{ fontSize: "12px" }}
                   type="text"
                   className="form-control"
                   id="wardOffice"
@@ -85,6 +92,7 @@ const FunctionalRequiremnt = () => {
               <div className="col-md-4">
                 <label htmlFor="camp" className="form-label">Camp</label>
                 <input
+                style={{ fontSize: "12px" }}
                   type="text"
                   className="form-control"
                   id="camp"
@@ -100,24 +108,26 @@ const FunctionalRequiremnt = () => {
                 
               {/* Type */}
               <div className="col-md-2">
-                <h6>Type</h6>
+                <h6 style={{fontSize:"12px", fontWeight:"600"}}>Type</h6>
                 <div className="form-check">
-                  <input
+                  <input 
+                  style={{ fontSize: "12px", fontWeight:"0" }}
                     className="form-check-input"
                     type="checkbox"
                     id="residential"
                   />
-                  <label className="form-check-label" htmlFor="residential" style={{fontSize:"12px", fontWeight:"300px"}}>
+                  <label className="form-check-label" htmlFor="residential" style={{fontSize:"12px"}}>
                     Residential
                   </label>
                 </div>
                 <div className="form-check">
                   <input
+                  style={{ fontSize: "12px" }}
                     className="form-check-input"
                     type="checkbox"
                     id="commercial"
                   />
-                  <label className="form-check-label" htmlFor="commercial" style={{fontSize:"12px", fontWeight:"100px"}}>
+                  <label className="form-check-label" htmlFor="commercial" style={{fontSize:"12px"}}>
                     Commercial
                   </label>
                 </div>
@@ -125,9 +135,10 @@ const FunctionalRequiremnt = () => {
 
               {/* Occupation Type */}
               <div className="col-md-6" style={{paddingLeft:"40px"}}>
-  <h6>Occupation Type</h6>
-  <select className="form-select" name="occupationType" id="occupationType">
-    <option value="" disabled selected style={{fontSize:"9px"}}>
+  <h6 style={{fontSize:"12px", fontWeight:"600"}}>Occupation Type</h6>
+  <select className="form-select" name="occupationType" id="occupationType" 
+  style={{ fontSize: "12px" }}>
+    <option value="" disabled selected style={{fontSize:"12px"}}>
       Select Occupation Type
     </option>
     <option value="owner">Owner</option>
@@ -140,8 +151,9 @@ const FunctionalRequiremnt = () => {
 
               {/* Date */}
               <div className="col-md-4">
-                <h6>Created Date</h6>
+                <h6 style={{fontSize:"12px", fontWeight:"600"}}>Created Date</h6>
                 <input
+                style={{ fontSize: "12px" }}
                   type="date"
                   className="form-control"
                   id="datePicker"
