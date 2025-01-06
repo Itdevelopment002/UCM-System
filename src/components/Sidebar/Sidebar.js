@@ -64,6 +64,7 @@ const Sidebar = () => {
           <FaArrowLeft size={20} />
         </button>
         <button
+           style={{fontSize:"12px"}}
           className="next-step1"
           onClick={handleNextStep}
           disabled={activeStep === steps.length - 1}
