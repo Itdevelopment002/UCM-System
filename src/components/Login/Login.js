@@ -5,15 +5,20 @@ import google from "../../images/google.png";
 import worker from "../../images/login-man.png";
 import overlay from "../../images/overlay.png";
 import texture from "../../images/texture.png";
-
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
+  const handleClick = () => {
+    navigate('/dashboard/form'); // Navigate to the dashboard route
+  };
   return (
     <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
       <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
       
-        {/* Left Side - Login Form */}
+      
         <div className="col-12 col-md-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center">
 
         {/* <img
@@ -44,7 +49,12 @@ const Login = () => {
                 />
               </div>
             </div>
-            <button className="btn btn-primary w-40 mb-3">Login Now</button>
+            <button
+      className="btn btn-primary w-40 mb-3"
+      onClick={handleClick} // Call handleClick when the button is clicked
+    >
+      Login Now
+    </button>
             <p className="fw-bold text-center">Login with Others</p>
             <button className="btn btn-outline-light w-100 mb-2">
               <img
@@ -65,7 +75,7 @@ const Login = () => {
           </form>
         </div>
 
-        {/* Right Side - Promotional Section */}
+       
         <div
           className="col-12 col-md-6 position-relative promo-section text-white d-flex flex-column justify-content-center align-items-center"
           style={{
@@ -74,14 +84,14 @@ const Login = () => {
         >
           <div className="justify-content-center align-items-center d-flex flex-column"> 
           <div style={{ position: "relative", width: "80%", padding: "2rem", margin: "0 auto" }}>
-  {/* Overlay Image */}
+
   <img 
     src={overlay} 
     alt="Overlay" 
     style={{ width: "97%", display: "block" }} 
   />
 
-  {/* Content Above Overlay */}
+ 
   <h3 className="col-6 w-5 fw-bold"
     style={{
       position: "absolute",

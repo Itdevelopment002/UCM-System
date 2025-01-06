@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { StepContext } from '../StepContext'; // Import shared context
+import { useStepContext } from '../StepContext'; // Use custom hook to access context
 import './Hwizardbar.css';
 
 const Hwizardbar = () => {
   const navigate = useNavigate();
-  const { activeStep, setActiveStep } = useContext(StepContext); // Use shared state
+  const { activeStep, setActiveStep } = useStepContext(); // Use shared state via hook
 
   const steps = [
-    { name: 'Information Collection Form', path: '/form', tab: 'info' },
-    { name: 'Complaint Details', path: '/complain-details', tab: 'complaint' },
-    { name: 'Notice Details', path: '/notice-details', tab: 'notice' },
-    { name: 'Demolition Details', path: '/demolition-order', tab: 'demolition' },
-    { name: 'Court Order Details', path: '/count-order', tab: 'court' },
-    { name: 'Submission Details', path: '/remark', tab: 'submission' },
+    { name: 'Information Collection Form', path: '/dashboard/form', tab: 'info' },
+    { name: 'Complaint Details', path: '/dashboard/complain-details', tab: 'complaint' },
+    { name: 'Notice Details', path: '/dashboard/notice-details', tab: 'notice' },
+    { name: 'Demolition Details', path: '/dashboard/demolition-order', tab: 'demolition' },
+    { name: 'Court Order Details', path: '/dashboard/count-order', tab: 'court' },
+    { name: 'Submission Details', path: '/dashboard/remark', tab: 'submission' },
   ];
 
   const handleTabClick = (route, index) => {
