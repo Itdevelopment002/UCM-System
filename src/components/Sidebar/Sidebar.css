@@ -1,163 +1,188 @@
 /* Sidebar Outer Container */
-
-
 .sidebar-outer-div {
-    background-color: #F0F4F8;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    gap: 24px;
-    position: absolute;
-    width: 214px;
-    height: 250px;
-    left: 63px;
-    top: 139px;
-    isolation: isolate;
+  background-color: #F0F4F8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 55px;
+  gap: 20px;
+  position: fixed;
+  z-index: 1000; /* Ensure it stays above other elements */
+  width: 214px;
+  height: 250px;
+  left: 63px;
+  top: 66px;
+  isolation: isolate;
+}
+
+/* Step Container */
+.step-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  gap: 12.88px;
+  width: 206px;
+  height: 30px;
+  isolation: isolate;
+  cursor: pointer;
+}
+
+/* Step Text */
+.step-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0;
+  width: 160px;
+  height: 26px;
+}
+
+.step-number {
+  width: 33px;
+  height: 12px;
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  color: #263238;
+  text-align: right;
+  opacity: 0.6;
+}
+
+.step-title {
+  width: 162px;
+  height: 14px;
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: right;
+  line-height: 14px;
+  color: #1E1E1E;
+}
+
+/* Circle Button */
+.circle-button {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 0.42945px solid #263238;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-button.active {
+  background: #5038ED;
+  border-color: #5038ED;
+}
+
+.circle-button span {
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #263238;
+}
+
+.circle-button.active span {
+  color: #FFFFFF;
+}
+
+/* Navigation Buttons */
+.next-step-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+}
+
+.prev-step,
+.next-step1 {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Media Queries */
+
+/* For devices with a max-width of 992px (tablets and smaller) */
+@media (max-width: 992px) {
+  .sidebar-outer-div {
+    display: none; /* Completely remove sidebar from layout */
+    position: absolute; /* Ensure it doesn't take up any space */
   }
-  
-  /* Step Container */
+
   .step-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-    gap: 12.88px;
-    width: 206px;
-    height: 30px;
-    isolation: isolate;
-    cursor: pointer;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    padding: 10px;
   }
-  
-  /* Step Text */
+
   .step-text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0;
-    width: 160px;
-    height: 26px;
+    margin-bottom: 8px; /* Space between text and button */
   }
-  
-  .step-number {
-    width: 33px;
-    height: 12px;
-    font-family: Raleway, sans-serif;
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 12px;
-    color: #263238;
-    text-align: right;
-    opacity: 0.6;
-  }
-  
-  .step-title {
-    width: 160px;
-    height: 14px;
-    font-family: Raleway, sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    text-align: right;
-    line-height: 14px;
-    color: #1E1E1E;
-  }
-  
-  /* Circle Button */
+
   .circle-button {
-    box-sizing: border-box;
-    width: 30px;
-    height: 30px;
-    background: #FFFFFF;
-    border: 0.42945px solid #263238;
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto; /* Center the step button */
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
   }
-  
-  .circle-button.active {
-    background: #5038ED;
-    border-color: #5038ED;
-  }
-  
-  .circle-button span {
-    font-family: Raleway, sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    color: #263238;
-  }
-  
-  .circle-button.active span {
-    color: #FFFFFF;
-  }
-  
-  /* Navigation Buttons */
+
   .next-step-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 10px 16px;
+    flex-direction: column;
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 20px;
+    align-items: center; /* Center buttons */
   }
-  
+
   .prev-step,
   .next-step1 {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px 16px;
+    width: 100%; /* Full-width buttons */
+    font-size: 14px;
+    padding: 10px;
   }
-  
+}
 
- 
-  
-  
+/* For devices with a max-width of 768px (small tablets and phones) */
+@media (max-width: 768px) {
+  .sidebar-outer-div {
+    display: none; /* Remove sidebar on small screens */
+  }
 
-.next-step-container {
-    display: flex;
-    justify-content: space-between; /* Align back arrow to the left and button to the right */
-    align-items: center; /* Vertically align items */
-    width: 214px; /* Set the container width */
-    height: 29px; /* Set the container height */
-    gap: 4.29px; /* Spacing between elements */
-    opacity: 1; /* Make the container visible */
+  .step-title {
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
-  
-  .back-arrow {
-     /* Set arrow color */
-    cursor: pointer; /* Change cursor to pointer for clickable effect */
+
+  .circle-button {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
   }
-  
-  
-  .next-step {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #5038ED; /* Button background */
-    color: #FFFFFF; /* Text and icon color */
-    width: 98px; /* Fixed width */
-    height: 29px; /* Fixed height */
-    padding: 4.29px 8.59px; /* Internal padding */
-    gap: 4.29px; /* Gap between text and arrow */
-    border-radius: 25.77px 0px 0px 0px; /* Rounded top-left corner */
-    border: none; /* Remove border */
-    cursor: pointer; /* Pointer cursor for button */
-    opacity: 1; /* Make button visible */
-    font-family: Raleway, sans-serif; /* Font style */
-    font-size: 14px; /* Font size */
-    font-weight: 600; /* Font weight */
-    line-height: 16px; /* Line height */
-    text-transform: uppercase; /* Make text uppercase */
-  }
-  
+
+  .prev-step,
   .next-step1 {
-    border: none;
-    justify-content: center;
-    background: #5038ED; /* Button background */
-    height: 40px;
-    color: white;
-    border-radius: 12px;
-
+    padding: 8px;
+    font-size: 12px;
   }
-  
+}
+
+/* For devices with a max-width of 576px (phones) */
+@media (max-width: 576px) {
+  .step-container {
+    flex-direction: column;
+    align-items: center; /* Center align for narrow screens */
+  }
+
+  .circle-button {
+    margin: 8px 0; /* Add spacing around the step button */
+  }
+
+  .next-step-container {
+    gap: 8px;
+  }
+}

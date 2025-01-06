@@ -1,11 +1,20 @@
-/* In your CSS file */
+/* Form Container */
 .form-container {
-    margin-top: 20px;
-  }
+  height: 63vh;
+  position: sticky; /* Make the container stick to its scroll position */
+  top: 75px; /* Adjust this to match the height of the top component */
+  z-index: 500; /* Ensure it appears above other content */
+  background-color: #ffffff;
+ margin-top: 65px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
+  max-height: calc(100vh - 65px); /* Ensures the form container doesn't overflow the screen */
+  overflow-y: auto; /* Make the content inside the form container scrollable */
+}
+
   
   .form-container form {
     width: 100%;
     padding: 20px;
     background-color: white;
   }
-  
+  /* Form Container */

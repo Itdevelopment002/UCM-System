@@ -1,21 +1,21 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { StepContext } from '../StepContext';
+import { useStepContext } from '../StepContext'; // Use custom hook to access context
 import './Sidebar.css';
 import bro from '../../images/bro.png';
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { activeStep, setActiveStep } = useContext(StepContext);
+  const { activeStep, setActiveStep } = useStepContext(); // Use shared state via hook
 
   const steps = [
-    { name: 'Information Collection Form', path: '/form' },
-    { name: 'Complaint Details', path: '/complain-details' },
-    { name: 'Notice Details', path: '/notice-details' },
-    { name: 'Demolition Details', path: '/demolition-order' },
-    { name: 'Court Order Details', path: '/count-order' },
-    { name: 'Submission Details', path: '/remark' },
+    { name: 'Information Collection Form', path: '/dashboard/form' },
+    { name: 'Complaint Details', path: '/dashboard/complain-details' },
+    { name: 'Notice Details', path: '/dashboard/notice-details' },
+    { name: 'Demolition Details', path: '/dashboard/demolition-order' },
+    { name: 'Court Order Details', path: '/dashboard/count-order' },
+    { name: 'Submission Details', path: '/dashboard/remark' },
   ];
 
   const handleStepClick = (index) => {
@@ -72,6 +72,7 @@ const Sidebar = () => {
           <FaArrowRight style={{ padding: '2px' }} size={20} />
         </button>
       </div>
+      <img src={bro} style={{height:"130px", width:"250px", padding:"10px", marginTop:"0px"}} alt="bro" />
     </div>
   );
 };
