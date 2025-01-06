@@ -20,30 +20,19 @@ const Remark = () => {
   };
 
   return (
-    <div className="container mt-2">
+    <div
+      className="container mx-auto"
+      style={{
+        padding: "10px",
+        fontFamily: "Poppins",
+        fontWeight: "600",
+        fontSize: "13px",
+        backgroundColor: "white",
+      }}
+    >
       <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
         <div className="col mb-3">
-          <div className="col-md-4">
-            <label htmlFor="natureOfConstruction" className="form-label">
-              Nature of Construction
-            </label>
-            <select
-              id="natureOfConstruction"
-              name="natureOfConstruction"
-              className="form-select"
-              value={formData.natureOfConstruction}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Choose nature of construction</option>
-              <option value="Residential">Residential</option>
-              <option value="Commercial">Commercial</option>
-              <option value="Industrial">Industrial</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div className="col-md-6 mt-3">
+          <div className="col-md-8 mt-3">
             <label htmlFor="remark" className="form-label">
               Remark
             </label>
@@ -61,8 +50,21 @@ const Remark = () => {
         </div>
 
         <div className="row">
-          <div className="col-2 mt-3">
-            <button type="submit" className="btn btn-primary w-100">
+          <div className="col-8 mt-3">
+            <button
+              type="submit"
+              className="btn justify-content-center align-items-center "
+              style={{
+                background: "#5038ED",
+                color: "white",
+                borderRadius: "28px",
+                padding: "10px",
+                border: "none",
+                height:"35px",
+                width:"98px",
+                fontSize:"13px"
+              }}
+            >
               Submit
             </button>
           </div>
