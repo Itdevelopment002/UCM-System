@@ -1,68 +1,107 @@
 import React from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Container, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
 const DemolitionOrder = () => {
   return (
-    <Container className="mt-5">
-   
-      <Row className="mb-3 row">
+    <Container 
+      className=" mx-auto" 
+      style={{ padding: '20px', fontFamily: 'Poppins, sans-serif', fontWeight: '600', fontSize: '13px', backgroundColor: 'white' }}
+    >
+      <Row className="mb-4">
         <Col xs={12} md={4}>
           <FormGroup>
-            <Label for="demolitionTarget">Demolition Target</Label>
-            <Input type="text" id="demolitionTarget" placeholder="Enter name" />
+            <Label htmlFor="demolitionTarget" className="form-label text-dark fw-bold">
+              Demolition Target
+            </Label>
+            <Input 
+              type="text" 
+              id="demolitionTarget" 
+              placeholder="Enter name" 
+              className="form-control text-secondary"
+            />
           </FormGroup>
         </Col>
-        <Col xs={12} md={4}> 
-          <FormGroup>
-            <Label for="demolitionDate">Demolition Date</Label>
-            <Input type="date" id="demolitionDate" placeholder="dd-mm-yyyy" />
-          </FormGroup>
-        </Col>
-
-      
         <Col xs={12} md={4}>
           <FormGroup>
-            <Label for="demolitionTime">Demolition Time</Label>
-            <Input type="time" id="demolitionTime" />
+            <Label htmlFor="demolitionDate" className="form-label text-dark fw-bold">
+              Demolition Date
+            </Label>
+            <Input 
+              type="date" 
+              id="demolitionDate" 
+              placeholder="dd-mm-yyyy" 
+              className="form-control text-secondary"
+            />
+          </FormGroup>
+        </Col>
+        <Col xs={12} md={4}>
+          <FormGroup>
+            <Label htmlFor="demolitionTime" className="form-label text-dark fw-bold">
+              Demolition Time
+            </Label>
+            <Input 
+              type="time" 
+              id="demolitionTime" 
+              className="form-control text-secondary"
+            />
           </FormGroup>
         </Col>
       </Row>
 
-    
-
-    
-      <Row className="mb-3">
+      <Row className="mb-4">
         <Col xs={12} md={4}>
           <FormGroup>
-            <Label for="demolitionDocument">Demolition Document</Label>
-            <Input type="file"  id="demolitionDocument"  placeholder="Upload Document"/>
+            <Label htmlFor="demolitionDocument" className="form-label text-dark fw-bold">
+              Demolition Document
+            </Label>
+            <Input 
+              type="file" 
+              id="demolitionDocument" 
+              className="form-control text-secondary"
+            />
           </FormGroup>
         </Col>
         <Col xs={12} md={8}>
           <FormGroup>
-            <Label for="demolitionExpenditure">Demolition Expenditure Details</Label>
-            <Input type="textarea" id="demolitionExpenditure" placeholder="Write a long text here" />
+            <Label htmlFor="demolitionExpenditure" className="form-label text-dark fw-bold">
+              Demolition Expenditure Details
+            </Label>
+            <Input 
+              type="textarea" 
+              id="demolitionExpenditure" 
+              placeholder="Write a long text here" 
+              className="form-control text-secondary"
+            />
           </FormGroup>
         </Col>
       </Row>
 
-
-      
       <Row>
-        <Col xs={12} md={4}> 
+        <Col xs={12} md={4}>
           <FormGroup>
-            <Label for="policeStationName">Police Station Name</Label>
-            <Input type="select" id="policeStationName">
+            <Label htmlFor="policeStationName" className="form-label text-dark fw-bold">
+              Police Station Name
+            </Label>
+            <Input 
+              type="select" 
+              id="policeStationName" 
+              className="form-control text-secondary"
+            >
               <option>Select the police station name</option>
-             
             </Input>
           </FormGroup>
         </Col>
-
-        <Col xs={12} md={5}>
+        <Col xs={12} md={8}>
           <FormGroup>
-            <Label for="protectionNumber">Protection Number</Label>
-            <Input type="text" id="protectionNumber" placeholder="Enter contact number" />
+            <Label htmlFor="protectionNumber" className="form-label text-dark fw-bold">
+              Protection Number
+            </Label>
+            <Input 
+              type="text" 
+              id="protectionNumber" 
+              placeholder="Enter contact number" 
+              className="form-control text-secondary"
+            />
           </FormGroup>
         </Col>
       </Row>
