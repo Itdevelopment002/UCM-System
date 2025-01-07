@@ -24,7 +24,7 @@
   
   .form-container {
     background-color: #f8f9fa;
-    padding: 20px; /* Adjust padding to create some space for the form */
+    /* padding: 20px; Adjust padding to create some space for the form */
     margin-top: 20px; /* Ensure content does not overlap the wizard bar */
   }
   

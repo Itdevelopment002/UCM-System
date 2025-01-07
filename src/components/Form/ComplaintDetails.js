@@ -4,11 +4,11 @@ import locate from "../../images/location-icon.png";
 import iconbg from "../../images/icon-bg.png";
 
 function ComplaintDetails() {
-  const latitude = -24.123124;
-  const longitude = -24.123124;
+  // const latitude = -24.123124;
+  // const longitude = -24.123124;
 
-  // OpenStreetMap Static Map URL
-  const mapUrl = `https://static-maps.yandex.ru/1.x/?ll=${longitude},${latitude}&z=14&l=map&size=400,200`;
+  // // OpenStreetMap Static Map URL
+  // const mapUrl = `https://static-maps.yandex.ru/1.x/?ll=${longitude},${latitude}&z=14&l=map&size=400,200`;
 
   return (
     <div className="container mx-auto" style={{ padding: '10px', fontFamily: "poppins", fontWeight: "600", fontSize: "13px", backgroundColor: "white" }}>
