@@ -1,5 +1,4 @@
 import React from 'react';
-import FunctionalRequiremnt1 from "../Form/FunctionalRequiremnt.css";
 
 const NoticeDetails = () => {
   return (

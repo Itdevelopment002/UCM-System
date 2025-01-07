@@ -1,5 +1,5 @@
 import React from 'react';
-import FunctionalRequiremnt1 from "../Form/FunctionalRequiremnt.css"
+
 const FunctionalRequiremnt = () => {
   return (
     <div style={{ padding: '10px' , fontFamily:"poppins", fontWeight:"600", fontSize:"13px",backgroundColor:"white" }}>
