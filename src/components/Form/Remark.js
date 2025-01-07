@@ -37,7 +37,6 @@ const Remark = () => {
               Remark
             </label>
             <textarea
-               style={{fontSize:"12px"}}
               id="remark"
               name="remark"
               className="form-control"
