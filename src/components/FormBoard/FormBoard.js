@@ -10,7 +10,7 @@ import ComplaintDetails from '../Form/ComplaintDetails';
 import Remark from '../Form/Remark';
 import DemolitionOrder from '../Form/DemolitionOrder';
 import { StepProvider } from '../StepContext';
-import './Dashboard.css';
+import './FormBoard.css';
 
 const Dashboard = () => {
   return (
