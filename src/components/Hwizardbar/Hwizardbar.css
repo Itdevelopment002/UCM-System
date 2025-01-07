@@ -2,8 +2,7 @@
     width: 75%;
     position: fixed;  /* Keep it fixed at the top */
     top: 112px;       /* Adjust this if you need more spacing */
-    left: 300px;
-  
+    left: 310px;
     padding: 10px;
     box-sizing: border-box;
     z-index: 100000; /* Make sure it stays above other content */
