@@ -1,16 +1,16 @@
-import React from 'react';
-import FunctionalRequiremnt1 from "../Form/FunctionalRequiremnt.css";
+import React from "react";
+import "./FunctionalRequiremnt.css";
 
 const NoticeDetails = () => {
   return (
-    <div style={{ padding: '10px', fontFamily: "poppins", fontWeight: "600", fontSize: "13px", backgroundColor: "white" }}>
+    <div className="form-container">
       <form>
         <div className="row d-flex align-items-center">
           {/* First Column */}
           <div className="col-md-5">
             <div className="mb-3">
-              <label htmlFor="occupationType" className="form-label">Generated Notices</label>
-              <select className="form-select" name="occupationType" id="occupationType" style={{ fontSize: "12px" }}>
+              <label htmlFor="occupationType" className="form-label label-small">Generated Notices</label>
+              <select className="form-select select-style" name="occupationType" id="occupationType">
                 <option value="" disabled selected>
                   Generated Notices
                 </option>
@@ -23,13 +23,11 @@ const NoticeDetails = () => {
 
           {/* Second Column */}
           <div className="col-md-5">
-            {/* Date */}
             <div className="mb-3">
-              <label htmlFor="datePicker" className="form-label">Date</label>
+              <label htmlFor="datePicker" className="form-label label-small">Date</label>
               <input
-                style={{ fontSize: "12px" }}
                 type="date"
-                className="form-control"
+                className="form-control input-small"
                 id="datePicker"
               />
             </div>

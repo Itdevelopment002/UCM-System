@@ -1,205 +1,194 @@
 /* Container for the header */
-/* Container for the header */
 .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    background-color: #ffffff;
-    width: 100%;
-    height: 66px;
-    border-bottom: 1px solid #d9d9d9;
-    position: fixed; /* Fix the header at the top */
-    top: 0; /* Position it at the very top of the viewport */
-    z-index: 1000; /* Ensure it stays above other elements */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background-color: #ffffff;
+  width: 100%;
+  height: 66px;
+  border-bottom: 1px solid #d9d9d9;
+  position: fixed; /* Fix the header at the top */
+  top: 0; /* Position it at the very top of the viewport */
+  z-index: 1000; /* Ensure it stays above other elements */
 }
-
 
 /* Logo style */
 .header-logo {
-    font-weight: bold;
-    font-size: 20px;
-    color: #5038ed;
-    font-family: "Poppins";
-    width: 620px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #5038ed;
+  font-family: "Poppins";
+  text-align: left;
 }
 
 /* Search bar container */
+/* Search bar container */
 .search-bar {
-    width: 268px;
-    height: 44px;
+  position: relative;
+  width: 268px;
+  height: 44px;
 }
 
 .search-bar input {
-    border-radius: 6px;
-    height: 40px;
-    padding-left: 15px;
-    box-shadow: none;
-    border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  height: 40px;
+  padding-left: 40px; /* Space for the icon */
+  box-shadow: none;
+  border: 1px solid #d9d9d9;
 }
 
+/* Position search icon inside the search box */
+.search-icon {
+  position: absolute;
+  left: 10px; /* Position it inside the input field */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center it */
+  color: #5038ed; /* Blue color for the icon */
+}
+
+
 /* Language selector styles */
+/* Language container */
+.language {
+  margin-right: 5px;
+  margin-left: 20px;
+  position: relative; /* For absolute positioning of dropdown */
+}
+
+/* Language selector button */
 .language-selector {
-    color: #333;
-    position: relative;
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 139px;
-    height: 45px;
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: 1px solid #d9d9d9;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  color:#5038ed;
+  position: relative;
+ 
+  width: 139px;
+  
+  height: 40px;
+  z-index: 1500;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .language-selector .dropdown-arrow {
-    font-size: 12px;
-    color: #5038ed;
+  color: #5038ed; /* Blue color for the arrow */
+  margin-left: 8px; /* Add spacing between text and icon */
+  vertical-align: middle;
 }
 
-.language-selector span {
-    font-size: 14px;
-    color: #5038ed;
-}
 
 /* Dropdown menu styles */
 .dropdown-menu {
-    position: absolute;
-    top: 45px; /* Adjust top value to appear below the selector */
-   
-    background-color: #fff;
-    border: 1px solid #d9d9d9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    z-index: 9999;
-    width: 160px;
-    padding: 10px 0;
-    display: block;
+  min-width: 140px;
+  position: absolute;
+  top: 45px; /* Align dropdown just below the selector */
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 2000;
+  width: 100%; /* Ensure the dropdown width is the same as the selector width */
+  padding: 10px 0;
+  display: block;
+
 }
 
 .dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  z-index: 9999;
+  padding: 0;
+  margin: 0;
 }
 
 .dropdown-menu li {
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #333;
-    cursor: pointer;
+  padding: 8px 12px;
+  z-index: 9999;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .dropdown-menu li:hover {
-    background-color:  #5038ed;
-    color: white;
+  background-color: #5038ed;
+  color: white;
 }
+
+/* Media Queries for Mobile responsiveness */
+@media (max-width: 768px) {
+  .language-selector {
+    width: auto; /* Adjust width for mobile */
+  }
+}
+
 
 /* Notification and user info styles */
 .bell-icon {
-    color: #5038ed;
-    cursor: pointer;
-    margin-right: 20px;
+  color: #5038ed;
+  cursor: pointer;
+  margin-right: px;
+  margin-left: 20px;
 }
 
 .user-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  margin-right: 20px;
+  margin-left: 20px;
+  align-items: center;
 }
 
 .user-info .user-name {
-    font-size: 14px;
-    color: #5038ed;
-    margin-right: 10px;
+  font-size: 14px;
+  color: #5038ed;
+  margin-right: 20px;
 }
 
 .user-info .user-icon {
-    color: #000;
-    cursor: pointer;
+  color: #000;
+  cursor: pointer;
 }
-/* Media Queries */
 
-/* For devices with a max-width of 992px (tablets and smaller) */
-@media (max-width: 992px) {
+/* Media Queries for Mobile Responsiveness */
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
   .header-container {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 8px;
+    flex-direction: column; /* Stack elements vertically */
+    height: auto; /* Allow dynamic height based on content */
+    padding: 16px; /* Adjust padding for smaller screens */
   }
+
+  /* First row: Logo */
   .header-logo {
-    flex: 1 1 100%;
+    flex: 1 1 100%; /* Full width on small screens */
     text-align: center;
-    font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Add spacing below the logo */
   }
-  .header-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
+  /* Second row: Search Bar */
+  .search-bar {
+    width: 100%;
+    margin-bottom: 10px; /* Add spacing below the search bar */
+  }
+
+  /* Third row: Other Items (Language, Notification, User Info) */
+  .other-items-container {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
     width: 100%;
   }
-  .search-bar {
-    flex: 1 1 calc(40% - 10px);
-    margin-bottom: 10px;
-  }
-  .language {
-    flex: 1 1 calc(20% - 10px);
-    margin-bottom: 10px;
-  }
-  .bell-icon {
-    flex: 0 0 auto;
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-  .user-info {
-    flex: 1 1 calc(30% - 10px);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-}
 
-/* For devices with a max-width of 768px (small tablets and phones) */
-@media (max-width: 768px) {
-  .header-logo {
-    font-size: 16px;
-  }
-  .header-row {
-    flex-direction: column;
-    align-items: center;
-  }
-  .search-bar,
   .language,
   .bell-icon,
   .user-info {
-    flex: 1 1 100%;
-    margin-bottom: 8px;
+    width: 100%;
     text-align: center;
-  }
-  .user-info {
-    justify-content: center;
-  }
-}
-
-/* For devices with a max-width of 576px (phones) */
-@media (max-width: 576px) {
-  .header-logo {
-    font-size: 14px;
-  }
-  .search-bar,
-  .language,
-  .bell-icon,
-  .user-info {
-    flex: 1 1 100%;
-    margin-bottom: 8px;
-  }
-  .user-info {
-    flex-direction: column;
+    margin-bottom: 10px; /* Spacing between rows */
   }
 }

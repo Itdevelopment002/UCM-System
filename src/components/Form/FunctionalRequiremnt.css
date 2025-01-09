@@ -1,20 +1,69 @@
 /* Form Container */
 .form-container {
-  height: 63vh;
-  position: sticky; /* Make the container stick to its scroll position */
-  top: 75px; /* Adjust this to match the height of the top component */
+  height: 464px;
+  position:fixed;
+  top: 205px; /* Adjust this to match the height of the top component */
   z-index: 500; /* Ensure it appears above other content */
   background-color: #ffffff;
- margin-top: 65px;
+margin-top: 30px;
+ width: 920px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
-  max-height: calc(100vh - 65px); /* Ensures the form container doesn't overflow the screen */
-  overflow-y: auto; /* Make the content inside the form container scrollable */
+ 
+ 
+}
+
+.form-container {
+  height: 464px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  background-color: white;
 }
 
   
   .form-container form {
+     height: 464px;
     width: 100%;
+   
     padding: 20px;
     background-color: white;
   }
   /* Form Container */
+/* General container styling */
+
+
+/* Input placeholder styling */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+  font-size: 12px;
+}
+
+/* Heading styles */
+.heading {
+  font-size: 16px;
+}
+
+.divider {
+  height: 2px;
+  width: auto;
+  background: #5038ed;
+}
+
+.label-small {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.checkbox-label {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.select-style {
+  font-size: 12px;
+}
+
+.input-small {
+  font-size: 12px;
+  height: 40px;
+}
