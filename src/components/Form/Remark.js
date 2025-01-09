@@ -30,7 +30,7 @@ const Remark = () => {
             <textarea
               id="remark"
               name="remark"
-              className="form-control input-small text-box-heightgit "
+              className="form-control input-small  text-box-height "
               rows="4"
               placeholder="Write a long text here"
               value={formData.remark}
