@@ -39,58 +39,47 @@ const Sidebar = () => {
 
   return (
     <>
-    <div className="sidebar-outer-div">
-      {steps.map((step, index) => (
-        <div
-          key={index}
-          className="step-container"
-          onClick={() => handleStepClick(index)}
-        >
-          <div className="step-text-container">
-            <div className="step-number">Step {index + 1}</div>
-            <div className="step-title">{step.name}</div>
+      <div className="sidebar-outer-div">
+        {steps.map((step, index) => (
+          <div
+            key={index}
+            className="step-container"
+            onClick={() => handleStepClick(index)}
+          >
+            <div className="step-text-container">
+              <div className="step-number">Step {index + 1}</div>
+              <div className="step-title">{step.name}</div>
+            </div>
+            <div className={`circle-button ${index === activeStep ? 'active' : ''}`}>
+              <span>{index + 1}</span>
+            </div>
           </div>
-          <div className={`circle-button ${index === activeStep ? 'active' : ''}`}>
-            <span>{index + 1}</span>
-          </div>
+        ))}
+
+        <div className="next-step-container">
+          <button
+            className="prev-step"
+            onClick={handlePreviousStep}
+            disabled={activeStep === 0}
+          >
+            <FaArrowLeft size={20} />
+          </button>
+          <button
+            className="next-step1"
+            onClick={handleNextStep}
+            disabled={activeStep === steps.length - 1}
+          >
+            Next Step
+            <FaArrowRight style={{ padding: '2px' }} size={20} />
+          </button>
         </div>
-      ))}
-
-      <div className="next-step-container">
-        <button
-          className="prev-step"
-          onClick={handlePreviousStep}
-          disabled={activeStep === 0}
-        >
-          <FaArrowLeft size={20} />
-        </button>
-        <button
-           style={{fontSize:"12px"}}
-          className="next-step1"
-          onClick={handleNextStep}
-          disabled={activeStep === steps.length - 1}
-        >
-          Next Step
-          <FaArrowRight style={{ padding: '2px' }} size={20} />
-        </button>
       </div>
-     
-    </div>
-    <img 
-  src={bro} 
-  style={{
-    height: "17%", 
-    width: "17%", 
-    zIndex:"100000",
-    padding: "10px", 
-    marginTop: "0px",
-    position: "absolute",
-    bottom: "0",
-    left: "0"
-  }} 
-  alt="bro" 
-/>
 
+      <img 
+        src={bro} 
+        alt="bro" 
+        className="sidebar-image"
+      />
     </>
   );
 };

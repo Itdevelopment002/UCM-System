@@ -1,29 +1,29 @@
-/* Sidebar Outer Container */
 .sidebar-outer-div {
   background-color: #F0F4F8;
-  display: flex;
+  display: flex
+;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 55px;
-  gap: 20px;
+  padding-top: 40px;
+  gap: 25px;
   position: fixed;
-  z-index: 1000; /* Ensure it stays above other elements */
-  width: 214px;
+  z-index: 1000;
+  width: 230px;
   height: fit-content;
   left: 63px;
-  top: 66px;
+  top: 90px;
   isolation: isolate;
 }
-
 /* Step Container */
 .step-container {
-  display: flex;
+  display: flex
+;
   flex-direction: row;
   align-items: center;
   padding: 0;
-  gap: 12.88px;
-  width: 206px;
-  height: 30px;
+  gap: 14.88px;
+  width: 215px;
+  height: 32px;
   isolation: isolate;
   cursor: pointer;
 }
@@ -39,26 +39,26 @@
 }
 
 .step-number {
-  width: 33px;
+  width: 45px;
   height: 12px;
-  font-family: Raleway, sans-serif;
+  font-family: poppins, sans-serif;
   font-weight: 600;
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 14px;
+  line-height: 8px;
   color: #263238;
   text-align: right;
   opacity: 0.6;
 }
 
 .step-title {
-  width: 162px;
-  height: 14px;
-  font-family: Raleway, sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  text-align: right;
-  line-height: 14px;
-  color: #1E1E1E;
+    width: 200px;
+    height: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: right;
+    line-height: 14px;
+    color: #1E1E1E;
 }
 
 /* Circle Button */
@@ -81,7 +81,7 @@
 }
 
 .circle-button span {
-  font-family: Raleway, sans-serif;
+  font-family: "poppins", sans-serif;
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
@@ -107,8 +107,13 @@
   cursor: pointer;
   color: black;
 }
-
+.next-step1 {
+  height: 40px;
+  width: 120px;
+  font-size: 16px;
+}
 .next-step1{
+  
   color: white;
   background: #5038ED;
   border-radius: 14px;
@@ -201,5 +206,31 @@
 
   .next-step-container {
     gap: 8px;
+  }
+}
+/* General sidebar image styling */
+.sidebar-image {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  margin-top: 0;
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
+  max-width: 20%; /* The image will take up to 20% of the container width */
+  height: auto; /* Maintain the aspect ratio */
+}
+
+/* Media query for tablets and smaller devices (max-width 768px) */
+@media (max-width: 768px) {
+  .sidebar-image {
+    max-width: 30%; /* Increase size a bit on smaller screens */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* Media query for mobile devices (max-width 576px) */
+@media (max-width: 576px) {
+  .sidebar-image {
+    max-width: 40%; /* Increase size further on very small screens */
   }
 }

@@ -279,14 +279,17 @@ html, body {
     padding: 10px; /* Reduced padding for smaller screens */
   }
 
-  .left-div,
-  .right-div {
+  .content-left,
+  .content-right {
     width: 90vh;  /* Reduce width for smaller screens, adjust this as needed */
-    max-width: 60vh; /* Ensure it doesn't overflow */
+    max-width: 40vh; /* Ensure it doesn't overflow */
    
     padding: 10px; /* Adjust padding */
     box-sizing: border-box;
     overflow: hidden;
+  }
+  .content-left{
+
   }
 
   /* Ensure text and description fit well */
@@ -297,7 +300,7 @@ html, body {
 
     /* Adjust width to be responsive based on the viewport width */
     width: 90vh;  /* Reduce width for smaller screens, adjust this as needed */
-    max-width: 60vh; /* Ensure it doesn't overflow */
+    max-width: 40vh; /* Ensure it doesn't overflow */
     height: auto; /* Allow height to adjust based on content */
    
   }
