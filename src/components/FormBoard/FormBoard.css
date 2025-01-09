@@ -26,27 +26,35 @@
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column; /* Adjust layout for mobile */
+  }
+
   .main-content {
     margin-left: 0; /* Remove sidebar space */
-    padding-left: 10px; /* Adjust padding for mobile */
+    margin-top: 120px; /* Adjust for mobile layout */
+    padding-left: 10px; /* Reduce padding for smaller screens */
     padding-right: 10px;
+    height: auto; /* Let content grow naturally */
   }
 
   .form-container {
-    position: relative; /* Ensure it takes relative position */
-  margin-top: 530px;
     width: 100%; /* Full width for mobile */
-    height: auto; /* Let the height adjust based on content */
-    min-height: 100vh; /* Ensure form container occupies full height of mobile screen */
-    overflow-y: auto; /* Allow scrolling inside the form */
-    padding: 10px; /* Add padding to the form container */
+    margin-top: 0; /* Remove unnecessary top margin */
+    min-height: auto; /* Let the container height grow with content */
+    padding: 10px; /* Add padding for better spacing */
+    overflow-y: auto; /* Allow vertical scrolling if needed */
   }
 }
 
 /* For very small devices (phones below 576px) */
 @media (max-width: 576px) {
+  .main-content {
+    margin-top: 100px; /* Further adjust for extremely small screens */
+    padding: 5px;
+  }
+
   .form-container {
-    margin-top: 190px; /* Ensure the form has top margin */
-    padding: 5px; /* Adjust padding */
+    padding: 5px; /* Smaller padding for very small screens */
   }
 }

@@ -38,6 +38,8 @@ const ComplaintDetails = () => {
                 placeholder="Enter contact number"
               />
             </div>
+
+            
           </div>
 
           {/* Right Column - Attachments and Location */}

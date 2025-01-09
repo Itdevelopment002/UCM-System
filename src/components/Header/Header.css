@@ -129,7 +129,11 @@
     width: auto; /* Adjust width for mobile */
   }
 }
-
+@media (max-width: 1200px) {
+  .user-info {
+   width: auto; /* Adjust width for mobile */
+  }
+}
 
 /* Notification and user info styles */
 .bell-icon {
@@ -141,15 +145,16 @@
 
 .user-info {
   display: flex;
-  margin-right: 20px;
+ 
   margin-left: 20px;
   align-items: center;
 }
 
 .user-info .user-name {
+  
   font-size: 14px;
   color: #5038ed;
-  margin-right: 20px;
+
 }
 
 .user-info .user-icon {
@@ -184,6 +189,7 @@
   }
 
   .user-info {
+    width: fit-content;
     flex-direction: column;
   }
 }

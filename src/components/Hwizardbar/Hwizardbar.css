@@ -109,6 +109,15 @@
 }
 
 /* Media Queries */
+@media (max-width: 1200px) {
+  .container-bar {
+    width: 70%;
+    left: 25%;
+    margin-top: 40px;
+    top: 100px;
+  }
+
+}
 
 /* Tablet View (Max Width: 992px) */
 @media (max-width: 992px) {
@@ -117,7 +126,6 @@
     left: 5%;
     margin-top: 125px;
     top: 100px;
-    z-index: 10000;
   }
 
   .first-row {
@@ -136,8 +144,8 @@
   }
 
   .tab {
-    width: 30%; /* Approx. 3 tabs per row */
-    margin-bottom: 10px;
+    width: 30%;
+    margin-bottom: 1rem;
   }
 }
 
@@ -147,8 +155,7 @@
     width: 100%;
     margin-top: 145px;
     left: 0;
-    z-index: 10000;
-    padding: 10px;
+    padding: 1rem;
     top: 90px;
   }
 
@@ -158,8 +165,8 @@
   }
 
   .heading1 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: clamp(1rem, 5vw, 1.25rem); /* Responsive font size for mobile */
+    margin-bottom: 1rem;
   }
 
   .arrow-buttons {
@@ -174,6 +181,6 @@
   .tab {
     width: 100%;
     text-align: left;
-    padding: 12px;
+    padding: 1rem; /* Increased padding for better touch targets */
   }
 }
