@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React from "react";
 import "./FunctionalRequiremnt.css";
->>>>>>> 036621e7bb93d2d4fddd7114cf9a19d6603ed6da
+
 
 const NoticeDetails = () => {
   return (
