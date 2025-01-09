@@ -1,0 +1,17 @@
+#root {
+
+  display: flex;
+  background-color: #f0f4f8;
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font globally */
+  flex-direction: column; /* Adjust layout direction as needed */
+  overflow: hidden; /* Prevent scrolling inside the fixed container */
+}
+input::placeholder {
+  font-size: 12px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

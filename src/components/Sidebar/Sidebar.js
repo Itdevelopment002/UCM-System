@@ -38,6 +38,7 @@ const Sidebar = () => {
   };
 
   return (
+    <>
     <div className="sidebar-outer-div">
       {steps.map((step, index) => (
         <div
@@ -73,8 +74,24 @@ const Sidebar = () => {
           <FaArrowRight style={{ padding: '2px' }} size={20} />
         </button>
       </div>
-      <img src={bro} style={{height:"130px", width:"250px", padding:"10px", marginTop:"0px"}} alt="bro" />
+     
     </div>
+    <img 
+  src={bro} 
+  style={{
+    height: "17%", 
+    width: "17%", 
+    zIndex:"100000",
+    padding: "10px", 
+    marginTop: "0px",
+    position: "absolute",
+    bottom: "0",
+    left: "0"
+  }} 
+  alt="bro" 
+/>
+
+    </>
   );
 };
 

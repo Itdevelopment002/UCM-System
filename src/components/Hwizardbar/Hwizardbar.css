@@ -1,148 +1,174 @@
 .container-bar {
-    width: 75%;
-    position: fixed;  /* Keep it fixed at the top */
-    top: 112px;       /* Adjust this if you need more spacing */
-    left: 310px;
-    padding: 10px;
-    box-sizing: border-box;
-    z-index: 100000; /* Make sure it stays above other content */
+  width: 75%;
+  position: fixed;  /* Keep it fixed at the top */
+  top: 112px;       /* Adjust this if you need more spacing */
+  left: 310px;      /* Space from the left for sidebar */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.line-blue {
+  font-size: 40px;
+  color: #5038ED;
+  font-weight: 600;
+  line-height: 60px;
+  display: inline-block;
+  border-bottom: 5px solid #5038ED;
+  z-index: 10;
+}
+
+.heading1 {
+  font-weight: 600;
+  font-size: 25px;
+  font-family: 'Raleway', sans-serif;
+  color: #263238;
+}
+
+.arrow-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+  max-width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.first-row {
+  z-index: 100000; /* Make sure it stays above other content */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.arrow-button {
+  background-color: #5038ed;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 60%;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-container {
+  z-index: 100000; /* Make sure it stays above other content */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  height: 42px;
+  border-bottom: 0.42945px solid rgba(38, 50, 56, 0.1);
+}
+
+.tab {
+  z-index: 100000; /* Make sure it stays above other content */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4.2945px 6.44176px;
+  gap: 4.29px;
+  opacity: 0.8;
+  border-radius: 4.2945px 4.2945px 0px 0px;
+  cursor: pointer;  /* Add pointer cursor to indicate it is clickable */
+}
+
+.tab.active {
+  color: white !important;
+  background: #5038ED;  /* Active tab background */
+}
+
+.tab:hover {
+  color: #5038ED;
+}
+
+.tab-text {
+  z-index: 100000; /* Make sure it stays above other content */
+  font-family: Raleway, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #263238;
+}
+
+.tab.active .tab-text {
+  color: white;  /* Active text color */
+}
+
+.tab-width-info {
+  width: 221px;
+  height: 45px;
+}
+
+.tab-width-complaint {
+  width: 147px;
+  height: 45px;
+}
+
+.tab-width-notice {
+  width: 124px;
+  height: 45px;
+}
+
+.tab-width-demolition {
+  width: 148px;
+  height: 45px;
+}
+
+.tab-width-court {
+  width: 164px;
+  height: 45px;
+}
+
+.tab-width-submission {
+  width: 153px;
+  height: 45px;
+}
+
+/* Media Queries */
+
+/* For devices with a max-width of 992px (tablets and smaller) */
+@media (max-width: 992px) {
+  .container-bar {
+    left: 0; /* Remove left margin to make the container take the full width */
+    width: 100%; /* Full width for mobile */
+    padding: 10px; /* Add some padding to make it look better */
   }
-  
-  .row {
-    z-index: 100000; /* Make sure it stays above other content */
-   
+
+  .tab-container {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* Allow the tabs to wrap into multiple rows */
     justify-content: space-between;
   }
-  
-  .line-blue {
 
-    font-size: 40px;
-    color: #5038ED;
-    font-weight: 600;
-    line-height: 60px;
-    display: inline-block;
-    border-bottom: 5px solid #5038ED;
-    z-index: 10;
+  .tab {
+    width: 32%; /* Set each tab to occupy 32% of the container, allowing 3 per row */
+    margin-bottom: 15px; /* Space between tabs */
   }
-  
-  .heading {
-    color: #263238;
-  }
-  
+
   .arrow-buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 10px;
-    max-width: 100%;
-    padding: 0 16px;
-    box-sizing: border-box;
-    overflow: hidden;
-    position: relative;
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: center; /* Center buttons vertically on smaller screens */
   }
-  
-  .first-row {    z-index: 100000; /* Make sure it stays above other content */
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 15px;
+  .first-row {
+    margin-bottom: 10px;
+    flex-direction: column; /* Stack items vertically */
   }
-  
-  .arrow-button {
-    background-color: #5038ed;
-    color: white;
-    border: none;
-    padding: 8px;
-    border-radius: 60%;
-    margin-left: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .tab-container {    z-index: 100000; /* Make sure it stays above other content */
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-    height: 42px;
-    border-bottom: 0.42945px solid rgba(38, 50, 56, 0.1);
-  }
-  .tab {    z-index: 100000; /* Make sure it stays above other content */
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 4.2945px 6.44176px;
-    gap: 4.29px;
-    opacity: 0.8;
-    border-radius: 4.2945px 4.2945px 0px 0px;
-    cursor: pointer;  /* Add pointer cursor to indicate it is clickable */
-  }
-  
-  .tab.active {
-    color: white !important;
-    background: #5038ED;  /* Active tab background */
-    
-  }
-  
-  .tab:hover {
-    color: #5038ED;
-       /* Optional: Add hover effect to give feedback on hover */
-  }
-  
-  .tab-text {    z-index: 100000; /* Make sure it stays above other content */
-
-    font-family: Raleway, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    color: #263238;
-  }
-  
-  .tab.active .tab-text {
-    
-    color: white;  /* Active text color */
-  }
-  
-  /* .tab:hover .tab-text {
-    color: #1e1e1f;; 
-  } */
-  .tab-width-info {
-    width: 221px;
-    height: 45px;
-  }
-  
-  
-  .tab-width-complaint {
-    width: 147px;
-    height: 45px;
-  }
-  
-  .tab-width-notice {
-    width: 124px;
-    height: 45px;
-  }
-  
-  .tab-width-demolition {
-    width: 148px;
-    height: 45px;
-  }
-  
-  .tab-width-court {
-    width: 164px;
-    height: 45px;
-  }
-  
-  .tab-width-submission {
-    width: 153px;
-    height: 45px;
-  }
-  
+}
+/* Media Queries */

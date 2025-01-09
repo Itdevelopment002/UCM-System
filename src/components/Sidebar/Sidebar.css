@@ -9,7 +9,7 @@
   position: fixed;
   z-index: 1000; /* Ensure it stays above other elements */
   width: 214px;
-  height: 250px;
+  height: fit-content;
   left: 63px;
   top: 66px;
   isolation: isolate;
@@ -105,6 +105,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: black;
 }
 
 .next-step1{
@@ -113,12 +114,13 @@
   border-radius: 14px;
 }
 /* Media Queries */
-
 /* For devices with a max-width of 992px (tablets and smaller) */
 @media (max-width: 992px) {
   .sidebar-outer-div {
-    display: none; /* Completely remove sidebar from layout */
-    position: absolute; /* Ensure it doesn't take up any space */
+    visibility: hidden; /* Hide the sidebar */
+    position: absolute; /* Remove it from the layout flow */
+    width: 0; /* Set width to 0 so it doesn't occupy space */
+    height: 0; /* Set height to 0 */
   }
 
   .step-container {
@@ -156,7 +158,10 @@
 /* For devices with a max-width of 768px (small tablets and phones) */
 @media (max-width: 768px) {
   .sidebar-outer-div {
-    display: none; /* Remove sidebar on small screens */
+    visibility: hidden; /* Hide the sidebar */
+    position: absolute; /* Ensure it doesn't take up space */
+    width: 0; /* Set width to 0 so it doesn't occupy space */
+    height: 0; /* Set height to 0 */
   }
 
   .step-title {
@@ -178,6 +183,13 @@
 
 /* For devices with a max-width of 576px (phones) */
 @media (max-width: 576px) {
+  .sidebar-outer-div {
+    visibility: hidden; /* Hide the sidebar */
+    position: absolute; /* Ensure it doesn't take up space */
+    width: 0; /* Set width to 0 so it doesn't occupy space */
+    height: 0; /* Set height to 0 */
+  }
+
   .step-container {
     flex-direction: column;
     align-items: center; /* Center align for narrow screens */

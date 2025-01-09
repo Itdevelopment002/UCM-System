@@ -18,7 +18,7 @@ const Dashboard = () => {
       <Header />
       <StepProvider>
         <Sidebar />
-        <Hwizardbar /> {/* Hwizardbar stays at the top */}
+        <Hwizardbar /> {/* Make sure this is fixed at the top */}
         <div className="main-content">
           <div className="form-container">
             <Routes>

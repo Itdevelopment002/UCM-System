@@ -26,7 +26,7 @@ const Hwizardbar = () => {
     <div className="container-bar">
       <div className="first-row">
         <div>
-          <h3 className="heading">Functional Requirements</h3>
+          <h3 className="heading1">Functional Requirements</h3>
         </div>
         <div className="arrow-buttons">
           <button
