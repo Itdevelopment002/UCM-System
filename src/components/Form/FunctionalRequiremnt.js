@@ -4,6 +4,8 @@ import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
 } from "react-icons/hi"; // Dropdown icons
+
+
 const FunctionalRequiremnt = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
@@ -46,7 +48,7 @@ const FunctionalRequiremnt = () => {
               <label htmlFor="ucNo" className="form-label label-small">Unauthorized Construction Number (UC No.)</label>
               <input
                 type="text"
-                className="form-control input-small"
+                className="form-control input-small "
                 id="ucNo"
                 placeholder="YYMMDD-WARD NUM (Auto generated)"
                 style={{backgroundColor:"#fff"}}
@@ -120,7 +122,7 @@ const FunctionalRequiremnt = () => {
             <div className="divider-form"></div>
             <div className="row mb-3 mt-2">
               {/* Type */}
-              <div className="col-md-2">
+              <div className="col-md-2 ms-2">
                 <h6 className="label-small">Type</h6>
                 <div className="form-check">
                   <input
@@ -146,7 +148,7 @@ const FunctionalRequiremnt = () => {
 
               {/* Occupation Type */}
             {/* Occupation Type */}
-<div className="col-md-6 occupation">
+<div className="col-md-6 occupation ms-4" style={{width:"auto" }}>
   <h6 className="label-small">Occupation Type</h6>
   <div className="custom-dropdown">
     <div className="dropdown-header" onClick={toggleDropdown}>
@@ -174,7 +176,7 @@ const FunctionalRequiremnt = () => {
 </div>
 
               {/* Date */}
-              <div className="col-md-4">
+              <div className="col-md-4 ms-3">
                 <h6 className="label-small input-box-size">Created Date</h6>
                 <input
                   type="date"

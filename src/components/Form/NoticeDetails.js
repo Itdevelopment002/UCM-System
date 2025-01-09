@@ -1,6 +1,7 @@
 import React from "react";
 import "./FunctionalRequiremnt.css";
 
+
 const NoticeDetails = () => {
   return (
     <div className="form-container">

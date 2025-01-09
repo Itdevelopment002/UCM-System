@@ -135,7 +135,7 @@ html, body {
 }
 .header-text {
   font-size: clamp(28px, 4vw, 40px); /* Responsive font size */
- 
+  margin-top: 190px;
   font-family: 'Poppins';
   font-weight: 600;
 }
@@ -179,26 +179,20 @@ html, body {
   cursor: pointer;
 }
 
-/* Right Div */
-/* Logo Section */
 .construction-logo {
-  position: absolute;      /* Position the logo relative to the parent */
-  top: 20%;                /* 30% from the top of the parent container */
-  left: 57%;               /* 60% from the left of the parent container */
-  transform: translate(-50%, -50%); /* Center the logo */
-  width: 200px;            /* Set the fixed width */
-  z-index: 9999;           /* Make sure the logo stays on top */
-  pointer-events: none;    /* Avoid interaction with the logo */
-  margin-top: 40px;        /* Any extra margin from the top */
+  position: absolute;      /* Logo ko parent ke andar position karne ke liye */
+          /* Left se thoda gap rakhne ke liye */
+  width: 150px;            /* Logo ka size */
+  z-index: 9999;           /* Logo ko top pe dikhane ke liye */
+  pointer-events: none;    /* Interaction ko disable karne ke liye */
 }
 
 .construction-logo-img {
-  border-radius: 100px;
-  max-width: 100%;
-  height: auto;
-  max-height: 160px;
-  object-fit: contain;
-  border: 8px solid red;
+  border-radius: 50%;      /* Circular logo */
+  max-width: 100%;         /* Responsive size */
+  height: auto;            /* Aspect ratio maintain karega */
+  object-fit: contain;     /* Image ko properly fit karega */
+  border: 4px solid red;   /* Border ke liye styling */
 }
 
 /* Adjust for smaller screens */

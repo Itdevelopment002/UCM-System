@@ -7,13 +7,13 @@ const CourtOrder = () => {
     <div className="form-container">
       <form>
         {/* Court Matter Involvement */}
-        <Row className="mb-4">
+        <Row className="">
           <Col xs={12}>
             <FormGroup>
               <Label className="form-label text-dark fw-bold heading">
                 Court Matter Involvement
               </Label>
-              <div>
+              <div style={{display:"flex", gap:"30px"}}>
                 <FormGroup check inline>
                   <Input type="radio" id="courtInvolvementYes" name="courtInvolvement" />
                   <Label check htmlFor="courtInvolvementYes" className="checkbox-label">Yes</Label>
@@ -28,7 +28,7 @@ const CourtOrder = () => {
         </Row>
 
         {/* Form Fields */}
-        <Row className="mb-4">
+        <Row className="">
           <Col xs={12} md={4}>
             <FormGroup>
               <Label htmlFor="courtOrderNumber" className="form-label text-dark fw-bold label-small">
@@ -55,20 +55,26 @@ const CourtOrder = () => {
             </FormGroup>
           </Col>
           <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="courtOrder" className="form-label text-dark fw-bold label-small">
-                Court Order
-              </Label>
-              <Input
-                type="file"
-                id="courtOrder"
-                className="form-control text-secondary input-small"
-              />
-            </FormGroup>
+          <div className="mb-3">
+              <label htmlFor="hardCopyUpload" className="form-label label-small">
+               Court Order
+              </label>
+              <div className="upload-container">
+                <label htmlFor="hardCopyUpload" className="form-control input-small upload-label" style={{cursor:"pointer"}}>
+                  <i className="fas fa-upload upload-icon input-small  "></i> Upload Documents
+                </label>
+                <input
+                  type="file"
+                  className="form-control input-small d-none "
+                  id="hardCopyUpload"
+                  accept="image/*"
+                />
+              </div>
+            </div>
           </Col>
         </Row>
 
-        <Row className="mb-4">
+        <Row className="">
           <Col xs={12} md={4}>
             <FormGroup>
               <Label htmlFor="courtName" className="form-label text-dark fw-bold label-small">
@@ -87,7 +93,7 @@ const CourtOrder = () => {
               <Label htmlFor="typeOfCourt" className="form-label text-dark fw-bold label-small">
                 Type of Court
               </Label>
-              <Input type="select" id="typeOfCourt" className="form-control text-secondary select-style">
+              <Input type="select" id="typeOfCourt" className="form-control text-secondary select-style " style={{height:"38px"}}>
                 <option>Choose court</option>
                 <option>District Court</option>
                 <option>High Court</option>
@@ -110,17 +116,17 @@ const CourtOrder = () => {
           </Col>
         </Row>
 
-        <Row className="mb-4">
+        <Row className="">
           <Col xs={12} md={4}>
             <FormGroup>
-              <Label htmlFor="petitionerMobile" className="form-label text-dark fw-bold label-small">
+              <Label htmlFor="petitionerMobile" className="form-label text-dark fw-bold label-small ">
                 Petitioner Mobile Number
               </Label>
               <Input
                 type="text"
                 id="petitionerMobile"
                 placeholder="Enter mobile number"
-                className="form-control text-secondary input-small"
+                className="form-control text-secondary input-small "
               />
             </FormGroup>
           </Col>
@@ -134,7 +140,7 @@ const CourtOrder = () => {
                 id="petitionerAddress"
                 rows="3"
                 placeholder="Write a long text here"
-                className="form-control text-secondary input-small"
+                className="form-control text-secondary input-small text-box-height"
               />
             </FormGroup>
           </Col>

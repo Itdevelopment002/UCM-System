@@ -9,9 +9,16 @@ const ConstructionDemolishManagement = () => {
     return (
         <div className="outer-wrapper">
             <div className="content-box">
-                <div className="row ">
+           
+
+                <div className="row  " style={{display:"flex", justifyContent:"space-between"}}>
                     {/* Left Content Section */}
                     <div className="col-md-6 content-left">
+                                        
+            <div className="construction-logo">
+  <img src={logo} alt="Logo" className="construction-logo-img" />
+</div>
+         
                         <h1 className="header-text">
                             Unauthorized <br />
                             <span className="highlight">Construction Demolish</span> <br />
@@ -27,11 +34,7 @@ const ConstructionDemolishManagement = () => {
                         </Link>
                     </div>
 
-{/* 
-                    <div className="construction-logo">
-  <img src={logo} alt="Logo" className="construction-logo-img" />
-</div>
- */}
+
 
                     {/* Right Image Section */}
                     <div className="col-md-5 content-right">
