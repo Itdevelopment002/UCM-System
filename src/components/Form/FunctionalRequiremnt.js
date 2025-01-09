@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-import React from 'react';
-
-=======
 import React, { useState } from "react";
 import './FunctionalRequiremnt.css';
 import {
   HiOutlineChevronDown,
   HiOutlineChevronUp,
 } from "react-icons/hi"; // Dropdown icons
->>>>>>> 036621e7bb93d2d4fddd7114cf9a19d6603ed6da
+
 const FunctionalRequiremnt = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
