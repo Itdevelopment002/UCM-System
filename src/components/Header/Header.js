@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa"; // Keep Fa for other icons
 import { IoCaretDownOutline, IoCaretUpOutline } from "react-icons/io5"; // For dropdown arrows
 import "./Header.css";
-
+import { Link } from "react-router-dom";
 import Notification from "../../images/notification.png";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi"; // Outlined caret icons
 
@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <div className="header-container">
       <div className="col-md-6 header-logo">
-        Unauthorized Construction Demolish Management System
+      <Link to="/" style={{ textDecoration: 'none' , color:"#5038ED"}}>Unauthorized Construction Demolish Management System</Link>
       </div>
       <div className="col-md-6 d-flex justify-content-end align-items-center">
         {/* Search Bar */}
