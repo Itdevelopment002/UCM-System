@@ -45,8 +45,8 @@ const DemolitionOrder = () => {
 
           {/* Second Column */}
           <div className="col-md-8">
-            <h2 className="heading">Additional Information</h2>
-            <div className="divider"></div>
+            <h2 className="label-big">Additional Information</h2>
+            <div className="divider-form"></div>
             <FormGroup>
               <Label htmlFor="demolitionDocument" className="form-label label-small">
                 Demolition Document

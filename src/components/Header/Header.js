@@ -24,6 +24,7 @@ const Header = () => {
             type="text"
             className="form-control"
             placeholder="Search for anything..."
+            
           />
           <FaSearch size={18} className="search-icon" />
         </div>

@@ -10,7 +10,7 @@ const NoticeDetails = () => {
           <div className="col-md-5">
             <div className="mb-3">
               <label htmlFor="occupationType" className="form-label label-small">Generated Notices</label>
-              <select className="form-select select-style" name="occupationType" id="occupationType">
+              <select className="form-select select-style" name="occupationType" id="occupationType"  placeholder="Enter ward group">
                 <option value="" disabled selected>
                   Generated Notices
                 </option>

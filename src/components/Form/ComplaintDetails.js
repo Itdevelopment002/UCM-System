@@ -44,8 +44,8 @@ const ComplaintDetails = () => {
           <div className="col-md-6">
             {/* Complaint Attachments */}
             <div className="mb-3">
-              <label className="form-label label-small">Complaint Attachments</label>
-              <div className="divider"></div>
+              <label className="form-label label-big">Complaint Attachments</label>
+              <div className="divider-form"></div>
               <div className="mb-3">
                 <label htmlFor="uploadPhotos" className="form-label label-small">Photos</label>
                 <input
@@ -68,8 +68,8 @@ const ComplaintDetails = () => {
 
             {/* Location Details */}
             <div className="mt-4">
-              <label className="form-label label-small fw-bold">Location Details</label>
-              <div className="divider"></div>
+              <label className="form-label label-big fw-bold">Location Details</label>
+              <div className="divider-form"></div>
               <div className="border p-3 rounded">
                 <div className="row">
                   <div className="col mt-1">

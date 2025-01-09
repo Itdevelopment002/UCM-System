@@ -1,53 +1,35 @@
+/* Main Container */
 .container-bar {
   width: 75%;
-  position: fixed;  /* Keep it fixed at the top */
-  top: 112px;       /* Adjust this if you need more spacing */
-  left: 310px;      /* Space from the left for sidebar */
+  position: fixed; /* Fixed for desktop */
+  top: 112px; /* Same spacing as original */
+  left: 330px; /* Maintain left alignment for sidebar */
   padding: 10px;
   box-sizing: border-box;
+
+  z-index: 10000;
 }
 
-.row {
+/* First Row: Heading + Arrows */
+.first-row {
   display: flex;
   flex-direction: row;
+  width: auto;
   justify-content: space-between;
-}
-
-.line-blue {
-  font-size: 40px;
-  color: #5038ED;
-  font-weight: 600;
-  line-height: 60px;
-  display: inline-block;
-  border-bottom: 5px solid #5038ED;
-  z-index: 10;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .heading1 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 25px;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'poppins';
   color: #263238;
 }
 
 .arrow-buttons {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 10px;
-  max-width: 100%;
-  padding: 0 16px;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-}
-
-.first-row {
-  z-index: 100000; /* Make sure it stays above other content */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  gap: 10px;
 }
 
 .arrow-button {
@@ -55,120 +37,143 @@
   color: white;
   border: none;
   padding: 8px;
-  border-radius: 60%;
-  margin-left: 10px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
+.arrow-button:hover {
+  background-color: rgba(80, 56, 237, 0.8); /* Slightly lighter shade on hover */
+}
+
+/* Tab Container */
 .tab-container {
-  z-index: 100000; /* Make sure it stays above other content */
   display: flex;
   flex-direction: row;
+ 
+  height: 50px;
   align-items: center;
-  padding: 0;
-  height: 42px;
-  border-bottom: 0.42945px solid rgba(38, 50, 56, 0.1);
+  border-bottom: 1px solid rgba(38, 50, 56, 0.1);
+  gap: 0; /* Remove extra gap */
 }
 
 .tab {
-  z-index: 100000; /* Make sure it stays above other content */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 4.2945px 6.44176px;
-  gap: 4.29px;
-  opacity: 0.8;
-  border-radius: 4.2945px 4.2945px 0px 0px;
-  cursor: pointer;  /* Add pointer cursor to indicate it is clickable */
+  padding: 8px 12px;
+  border-radius: 4px 4px 0 0;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  color: #263238;
+  transition: all 0.3s ease; /* Smooth hover effect */
 }
 
 .tab.active {
-  color: white !important;
-  background: #5038ED;  /* Active tab background */
+  background: #5038ed; /* Original active tab color */
+  color: white;
+  z-index: 100000;
 }
 
 .tab:hover {
-  color: #5038ED;
+  background: rgba(80, 56, 237, 0.1); /* Light purple background on hover */
+  color: #5038ed;
 }
 
-.tab-text {
-  z-index: 100000; /* Make sure it stays above other content */
-  font-family: Raleway, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  color: #263238;
-}
-
-.tab.active .tab-text {
-  color: white;  /* Active text color */
-}
-
+/* Tab Widths */
 .tab-width-info {
   width: 221px;
-  height: 45px;
 }
 
 .tab-width-complaint {
   width: 147px;
-  height: 45px;
 }
 
 .tab-width-notice {
   width: 124px;
-  height: 45px;
 }
 
 .tab-width-demolition {
   width: 148px;
-  height: 45px;
 }
 
 .tab-width-court {
   width: 164px;
-  height: 45px;
 }
 
 .tab-width-submission {
   width: 153px;
-  height: 45px;
 }
 
 /* Media Queries */
 
-/* For devices with a max-width of 992px (tablets and smaller) */
+/* Tablet View (Max Width: 992px) */
 @media (max-width: 992px) {
   .container-bar {
-    left: 0; /* Remove left margin to make the container take the full width */
-    width: 100%; /* Full width for mobile */
-    padding: 10px; /* Add some padding to make it look better */
+    width: 90%;
+    left: 5%;
+    margin-top: 125px;
+    top: 100px;
+    z-index: 10000;
+  }
+
+  .first-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .arrow-buttons {
+    margin-top: 10px;
+    justify-content: flex-start;
   }
 
   .tab-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow the tabs to wrap into multiple rows */
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
   .tab {
-    width: 32%; /* Set each tab to occupy 32% of the container, allowing 3 per row */
-    margin-bottom: 15px; /* Space between tabs */
+    width: 30%; /* Approx. 3 tabs per row */
+    margin-bottom: 10px;
   }
+}
 
-  .arrow-buttons {
-    margin-top: 15px;
-    flex-direction: column;
-    align-items: center; /* Center buttons vertically on smaller screens */
+/* Mobile View (Max Width: 576px) */
+@media (max-width: 576px) {
+  .container-bar {
+    width: 100%;
+    margin-top: 145px;
+    left: 0;
+    z-index: 10000;
+    padding: 10px;
+    top: 90px;
   }
 
   .first-row {
+    align-items: center;
+    text-align: center;
+  }
+
+  .heading1 {
+    font-size: 18px;
     margin-bottom: 10px;
-    flex-direction: column; /* Stack items vertically */
+  }
+
+  .arrow-buttons {
+    justify-content: center;
+  }
+
+  .tab-container {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
   }
 }
-/* Media Queries */
