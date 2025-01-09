@@ -10,9 +10,9 @@ const NoticeDetails = () => {
           <div className="col-md-5">
             <div className="mb-3">
               <label htmlFor="occupationType" className="form-label label-small">Generated Notices</label>
-              <select className="form-select select-style" name="occupationType" id="occupationType"  placeholder="Enter ward group">
+              <select className="form-select select-style" name="occupationType" id="occupationType"  placeholder="Select the notice">
                 <option value="" disabled selected>
-                  Generated Notices
+                Select the notice
                 </option>
                 <option value="owner">Owner</option>
                 <option value="rented">Rented</option>
@@ -24,10 +24,10 @@ const NoticeDetails = () => {
           {/* Second Column */}
           <div className="col-md-5">
             <div className="mb-3">
-              <label htmlFor="datePicker" className="form-label label-small">Date</label>
+              <label htmlFor="datePicker" className="form-label label-small ">Date</label>
               <input
                 type="date"
-                className="form-control input-small"
+                className="form-control input-small input-box-size"
                 id="datePicker"
               />
             </div>

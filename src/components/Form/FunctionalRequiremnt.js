@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useState } from "react";
 import './FunctionalRequiremnt.css';
-
+import {
+  HiOutlineChevronDown,
+  HiOutlineChevronUp,
+} from "react-icons/hi"; // Dropdown icons
 const FunctionalRequiremnt = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
+  
+  const options = [
+    "Owner",
+    "Rented",
+    "Shop",
+    "Company",
+    "ATM",
+    "Hospital",
+    "Rank",
+  ];
+  
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+  
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
+  
   return (
     <div className="form-container">
       <form>
@@ -9,7 +34,7 @@ const FunctionalRequiremnt = () => {
           {/* First Column */}
           <div className="col-md-4">
             <div className="mb-3">
-              <label htmlFor="wardGroup" className="form-label label-small">Ward Group</label>
+              <label htmlFor="wardGroup" className="form-label label-small">Ward Office</label>
               <input
                 type="text"
                 className="form-control input-small"
@@ -51,14 +76,15 @@ const FunctionalRequiremnt = () => {
             <h2 className="label-big">Address Details</h2>
             <div className="divider-form" ></div>
             <div className="mb-3 mt-2">
-              <label htmlFor="detailedAddress" className="form-label label-small">Detailed Address</label>
-              <textarea
-                className="form-control input-small"
-                id="detailedAddress"
-                placeholder="Write a long text here"
-                rows="2"
-              />
-            </div>
+  <label htmlFor="detailedAddress" className="form-label label-small">Detailed Address</label>
+  <textarea
+    className="form-control input-small text-box-height"
+    id="detailedAddress"
+    placeholder="Write a long text here"
+    rows="3"  // This will set the height of the textarea to 3 rows
+  />
+</div>
+
 
             <div className="row mb-3">
               <div className="col-md-4">
@@ -118,26 +144,37 @@ const FunctionalRequiremnt = () => {
               </div>
 
               {/* Occupation Type */}
-              <div className="col-md-6 occupation">
-                <h6 className="label-small">Occupation Type</h6>
-                <select className="form-select select-style" name="occupationType" id="occupationType">
-                  <option value="" disabled selected>
-                    Select Occupation Type
-                  </option>
-                  <option  value="owner">Owner</option>
-                  <option value="rented">Rented</option>
-                  <option value="shop">Shop</option>
-                  <option value="owner">Company</option>
-                  <option value="rented">ATM</option>
-
-                  <option value="shop">Hospital</option>
-                  <option value="shop">Rank</option>
-                </select>
-              </div>
+            {/* Occupation Type */}
+<div className="col-md-6 occupation">
+  <h6 className="label-small">Occupation Type</h6>
+  <div className="custom-dropdown">
+    <div className="dropdown-header" onClick={toggleDropdown}>
+      <span className="option-inside-placeholder">{selectedOption}</span>
+      {isOpen ? (
+        <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+      ) : (
+        <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+      )}
+    </div>
+    {isOpen && (
+      <ul className="dropdown-options">
+        {options.map((option, index) => (
+          <li
+            key={index}
+            className="dropdown-option"
+            onClick={() => handleSelect(option)}
+          >
+            {option}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
 
               {/* Date */}
               <div className="col-md-4">
-                <h6 className="label-small">Created Date</h6>
+                <h6 className="label-small input-box-size">Created Date</h6>
                 <input
                   type="date"
                   className="form-control input-small"

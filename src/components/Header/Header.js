@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa"; // Keep Fa for other icons
 import { IoCaretDownOutline, IoCaretUpOutline } from "react-icons/io5"; // For dropdown arrows
 import "./Header.css";
+
 import Notification from "../../images/notification.png";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi"; // Outlined caret icons
 
@@ -62,9 +63,9 @@ const Header = () => {
         </div>
 
         {/* User Info */}
-        <div className="user-info ml-3">
+        <div className="user-info ">
           <div className="user-name">
-            Nishant Makam <br />
+            XYZ user  <br />
             <div style={{ color: "#333333" }}>Solapur, India</div>
           </div>
           <FaUserCircle size={30} className="user-icon" />
