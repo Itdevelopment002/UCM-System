@@ -48,7 +48,8 @@ const FunctionalRequiremnt = () => {
                 type="text"
                 className="form-control input-small"
                 id="ucNo"
-                placeholder="Enter UC No."
+                placeholder="YYMMDD-WARD NUM (Auto generated)"
+                style={{backgroundColor:"#fff"}}
               />
             </div>
             <div className="mb-3">
