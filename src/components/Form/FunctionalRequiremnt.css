@@ -35,6 +35,12 @@
   }
   /* Form Container */
 /* General container styling */
+.custom-select-no-arrow {
+  -webkit-appearance: none; /* For Chrome, Safari, and Opera */
+  -moz-appearance: none;    /* For Firefox */
+  appearance: none;         /* Standard */
+  background-image: none;   /* Remove the default arrow image */
+}
 
 
 /* Input placeholder styling */
