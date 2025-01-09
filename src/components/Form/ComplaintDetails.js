@@ -2,121 +2,141 @@ import React from "react";
 import map from "../../images/map.png";
 import locate from "../../images/location-icon.png";
 import iconbg from "../../images/icon-bg.png";
+import "./FunctionalRequiremnt.css";
 
-function ComplaintDetails() {
-  // const latitude = -24.123124;
-  // const longitude = -24.123124;
-
-  // // OpenStreetMap Static Map URL
-  // const mapUrl = `https://static-maps.yandex.ru/1.x/?ll=${longitude},${latitude}&z=14&l=map&size=400,200`;
-
+const ComplaintDetails = () => {
   return (
-    <div className="container mx-auto" style={{ padding: '10px', fontFamily: "poppins", fontWeight: "600", fontSize: "13px", backgroundColor: "white" }}>
+    <div className="form-container">
       <form>
         <div className="row">
-          {/* Left Side - Complaint Details */}
+          {/* Left Column - Complaint Details */}
           <div className="col-md-6">
-            <div className="form-group mb-4">
-              <label htmlFor="complainantName" className="form-label text-dark">Complaint Received from (Name)</label>
+            <div className="mb-3">
+              <label htmlFor="complainantName" className="form-label label-small">
+                Complaint Received from (Name)
+              </label>
               <input
-              style={{fontSize:"12px"}}
                 type="text"
-                className="form-control text-secondary"
+                className="form-control input-small"
                 id="complainantName"
                 placeholder="Enter name"
               />
             </div>
-
-            <div className="form-group mb-4">
-              <label htmlFor="complaintDescription" className="form-label text-dark">Complaint Description</label>
+            <div className="mb-3">
+              <label htmlFor="complaintDescription" className="form-label label-small">
+                Complaint Description
+              </label>
               <textarea
-              style={{fontSize:"12px"}}
-                className="form-control text-secondary"
+                className="form-control input-small text-box-height"
                 id="complaintDescription"
                 rows="4"
                 placeholder="Write a long text here"
               ></textarea>
             </div>
-
-            <div className="form-group mb-4">
-              <label htmlFor="complainantContact" className="form-label text-dark">Complainant Contact Details</label>
+            <div className="mb-3">
+              <label htmlFor="complainantContact" className="form-label label-small">
+                Complainant Contact Details
+              </label>
               <input
-                 style={{fontSize:"12px"}}
                 type="text"
-                className="form-control text-secondary"
+                className="form-control input-small"
                 id="complainantContact"
                 placeholder="Enter contact number"
               />
             </div>
-          </div>
-
-          {/* Right Side - Attachments and Location */}
-          <div className="col-md-6">
-            {/* Complaint Attachments */}
-            <div className="form-group">
-              <label className="form-label mb-2 text-dark" style={{ fontSize: "16px" }}>Complaint Attachments</label>
-              <div className="mb-3" style={{ height: "2px", width: "auto", background: "#5038ED" }}></div>
-              <div className="mb-3">
-                <label htmlFor="uploadPhotos" className="form-label text-dark">
-                  Photos
+            <div className="mb-3">
+              <label htmlFor="hardCopyUpload" className="form-label label-small">
+                Hard Copy attachment (Offline Complaint Received)
+              </label>
+              <div className="upload-container">
+                <label htmlFor="hardCopyUpload" className="form-control input-small upload-label" style={{cursor:"pointer"}}>
+                  <i className="fas fa-upload upload-icon input-small  "></i> Upload Documents
                 </label>
                 <input
-                   style={{fontSize:"12px"}}
                   type="file"
-                  className="form-control text-secondary"
-                  id="uploadPhotos"
+                  className="form-control input-small d-none "
+                  id="hardCopyUpload"
                   accept="image/*"
                 />
               </div>
-              <div>
-                <label htmlFor="uploadVideos" className="form-label text-dark">
-                  Videos
-                </label>
-                <input
-                   style={{fontSize:"12px"}}
-                  type="file"
-                  className="form-control text-secondary"
-                  id="uploadVideos"
-                  accept="video/*"
-                />
+            </div>
+          </div>
+
+          {/* Right Column - Attachments and Location */}
+          <div className="col-md-6">
+            {/* Complaint Attachments */}
+            <div className="mb-3">
+              <label className="form-label label-big">Complaint Attachments</label>
+              <div className="divider-form"></div>
+              <div className="mb-3">
+                <label className="form-label label-small">Photos (PDF attachment option for multiple photos)</label>
+                <div className="upload-container">
+                  <label htmlFor="photoUpload" className="form-control input-small upload-label"  style={{cursor:"pointer"}}>
+                    <i className="fas fa-upload upload-icon" ></i> Upload Photos
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control input-small d-none"
+                    id="photoUpload"
+                    accept="image/*"
+                  />
+                </div>
               </div>
+              <label className="form-label label-small">Videos</label>
+              <div className="upload-container">
+                
+                
+                  <label htmlFor="photoUpload" className="form-control input-small upload-label" style={{cursor:"pointer"}}>
+                    <i className="fas fa-upload upload-icon"></i> Upload Video
+                  </label>
+                  <input
+                    type="file"
+                    className="form-control input-small d-none"
+                    id="VideoUpload"
+                    accept="video/*"
+                  />
+                </div>
             </div>
 
             {/* Location Details */}
-            <div className="form-group mt-4">
-              <label className="form-label text-dark fw-bold" style={{ fontSize: "16px" }}>Location Details</label>
-              <div className="mb-3" style={{ height: "2px", width: "auto", background: "#5038ED" }}></div>
-              <div className="border p-3 rounded">
-                <div className="row">
-                  <div className="col mt-1">
+            <div className="mt-4">
+              <label className="form-label label-big fw-bold">Location Details</label>
+              <div className="divider-form"></div>
+              <div className="  rounded">
+                <div className="row " style={{display:"inline-flex", gap:"25px"}}>
+                  <div className="col ">
                     <img
                       src={map}
                       alt="Map location"
                       className="img-fluid rounded"
                     />
                   </div>
-                  <div className="mt-2 col">
-                    <div className="row mb-3">
+                  <div className="col ">
+                    <div className="row ">
                       <div className="col d-flex align-items-center">
                         <img src={locate} alt="location" className="img-fluid rounded" />
                         <div className="col d-flex align-items-center">
                           <span className="me-2">
                             <i className="bi bi-geo-alt-fill text-primary"></i>
                           </span>
-                          <strong className="text-secondary fw-light" style={{ fontSize: "20px" }}>Delhi</strong>
+                          <strong className="text-secondary fw-light">Delhi</strong>
                         </div>
-                        <div className="position-relative"style={{top: "5%"}} >
-                          <img src={iconbg} alt="signup" className="img-fluid rounded"/>
-                          <i className="fas fa-paper-plane text-white position-absolute"
-                            style={{top: "18%",left: "21%", fontSize: "1.4rem"}}></i></div>
+                        <div className="position-relative" style={{ top: "5%" , left:"25%"}}>
+                          <img src={iconbg} alt="signup" className="img-fluid rounded" />
+                          <i
+                            className="fas fa-paper-plane text-white position-absolute"
+                            style={{ top: "18%", left: "21%", fontSize: "1.4rem" }}
+                          ></i>
+                        </div>
                       </div>
                     </div>
-                    <p className="mb-1 text-secondary fw-bold">Latitude
-                      <strong className="text-secondary fw-light" style={{ fontSize: "18px" }}> -28.7041</strong></p>
-                    <p className="text-secondary fw-bold">Longitude
-                      <strong className="text-secondary fw-light" style={{ fontSize: "18px" }}> -77.1025</strong></p>
+                    <p className="mb-1 text-secondary fw-bold">
+                      Latitude <strong className="text-secondary fw-light">-28.7041</strong>
+                    </p>
+                    <p className="text-secondary fw-bold">
+                      Longitude <strong className="text-secondary fw-light">-77.1025</strong>
+                    </p>
                   </div>
-                 
                 </div>
               </div>
             </div>
@@ -125,6 +145,6 @@ function ComplaintDetails() {
       </form>
     </div>
   );
-}
+};
 
 export default ComplaintDetails;

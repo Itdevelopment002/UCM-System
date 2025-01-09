@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './FunctionalRequiremnt.css';
 const Remark = () => {
   const [formData, setFormData] = useState({
     natureOfConstruction: "",
@@ -20,27 +20,17 @@ const Remark = () => {
   };
 
   return (
-    <div
-      className="container mx-auto"
-      style={{
-        padding: "10px",
-        fontFamily: "Poppins",
-        fontWeight: "600",
-        fontSize: "13px",
-        backgroundColor: "white",
-      }}
-    >
-      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="remark-form">
         <div className="col mb-3">
           <div className="col-md-8 mt-3">
-            <label htmlFor="remark" className="form-label">
+            <label htmlFor="remark" className="form-label label-small">
               Remark
             </label>
             <textarea
-               style={{fontSize:"12px"}}
               id="remark"
               name="remark"
-              className="form-control"
+              className="form-control input-small  text-box-height "
               rows="4"
               placeholder="Write a long text here"
               value={formData.remark}
@@ -52,18 +42,18 @@ const Remark = () => {
 
         <div className="row">
           <div className="col-8 mt-3">
-            <button
+          <button
               type="submit"
-              className="btn justify-content-center align-items-center "
+              className="btn submit-btn"
               style={{
                 background: "#5038ED",
                 color: "white",
                 borderRadius: "28px",
                 padding: "10px",
                 border: "none",
-                height:"35px",
-                width:"98px",
-                fontSize:"13px"
+                height: "35px",
+                width: "98px",
+                fontSize: "13px"
               }}
             >
               Submit

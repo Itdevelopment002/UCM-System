@@ -1,0 +1,27 @@
+#root {
+
+  display: flex;
+  background-color: #f0f4f8;
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font globally */
+  flex-direction: column; /* Adjust layout direction as needed */
+  overflow: hidden; /* Prevent scrolling inside the fixed container */
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 100%;
+}
+input::placeholder {
+  font-size: 14px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: auto; /* Allow horizontal scrolling for large content */
+  overflow-y: auto; /* Keep vertical scrolling */
+}

@@ -1,20 +1,192 @@
-/* Form Container */
 .form-container {
-  height: 63vh;
-  position: sticky; /* Make the container stick to its scroll position */
-  top: 75px; /* Adjust this to match the height of the top component */
-  z-index: 500; /* Ensure it appears above other content */
+  font-family: "Poppins", sans-serif;
+  
+  width: 75%; /* Maintain existing width */
+  position: fixed; /* Keep as fixed */
+  top: 205px; /* Unchanged top margin */
+  z-index: 500;
   background-color: #ffffff;
- margin-top: 65px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
-  max-height: calc(100vh - 65px); /* Ensures the form container doesn't overflow the screen */
-  overflow-y: auto; /* Make the content inside the form container scrollable */
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 13px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Add scrolling when content overflows */
+}
+.form-check-input{
+  
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+ .input-box-size {
+    height: 1.1rem;
+    width: 10rem;
 }
 
   
   .form-container form {
+     height: 464px;
     width: 100%;
+   
     padding: 20px;
+    padding-bottom: 40px;
+
     background-color: white;
   }
   /* Form Container */
+/* General container styling */
+
+
+/* Input placeholder styling */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+  font-size: 14px;
+}
+
+/* Heading styles */
+.heading {
+  font-size: 16px;
+}
+
+.divider-form {
+  height: 2px;
+  width: auto;
+  margin: 15px 0;
+  background: #5038ed;
+}
+
+.label-small {
+  font-weight: 600;
+  font-size: 15px;
+}
+.label-big{
+  font-weight: 600;
+  font-size: 18px;
+}
+.option-inside-placeholder {
+  font-weight: 100;
+  font-size: 13px;
+}
+.checkbox-label {
+  font-size: 15px;
+  font-weight: 400;
+  padding: 3px;
+}
+
+.select-style {
+  font-size: 14px;
+}
+
+.input-small {
+
+  font-size: 14px;
+  height: 40px;
+}
+
+
+/* Style for the options */
+.select-style option {
+  
+  color: black;  /* Default text color */
+}
+
+select.select-style option:hover {
+  background-color:#5038ed;
+}
+
+
+/* Mobile-specific adjustments */
+@media (max-width: 1400px) {
+  .form-container {
+    position: relative;
+    top: 10px; /* Ensure the form has a top margin of 400px on mobile */
+   
+   
+    width: 100%; /* Full width for mobile screens */
+  }
+  .form{
+    padding: 0px 10px;
+
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    position: relative;
+    top: 400px; /* Ensure the form has a top margin of 400px on mobile */
+    min-height: 100vh; /* Ensure it fills the entire height of the screen on mobile */
+    padding: 10px; /* Adjust padding for mobile */
+    width: 100%; /* Full width for mobile screens */
+  }
+}
+
+/* For very small devices (phones below 576px) */
+@media (max-width: 576px) {
+  .form-container {
+    margin-top: 190px; /* Adjust top margin on very small devices (phones) */
+    padding: 5px; /* Adjust padding */
+  }
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .custom-dropdown {
+    width: 100%;
+  }
+}/* Dropdown with Icon */
+.custom-dropdown {
+  border-radius: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-header {
+  padding: 10px;
+  border-radius: 8px;
+  
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-options {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  transform: translateY(-10px);
+}
+
+.dropdown-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  color: white;
+  background-color: #5038ed;
+}
+
+.dropdown-arrow {
+  margin-left: 5px;
+}
+.text-box-height{
+  height: 5rem;
+}
+/* Style for textareas with line-height for 3 rows */
+textarea {
+  line-height: 1.6;  /* Adjust line-height to ensure appropriate vertical spacing */
+  height: calc(1.6em * 3);  /* Multiply line-height by the number of rows (3 in this case) */
+  padding: 10px;  /* Optional: Adjust padding for better text visibility */
+}

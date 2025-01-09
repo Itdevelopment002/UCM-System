@@ -1,17 +1,22 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React from "react";
+import "./FunctionalRequiremnt.css";
+>>>>>>> 036621e7bb93d2d4fddd7114cf9a19d6603ed6da
 
 const NoticeDetails = () => {
   return (
-    <div style={{ padding: '10px', fontFamily: "poppins", fontWeight: "600", fontSize: "13px", backgroundColor: "white" }}>
+    <div className="form-container">
       <form>
         <div className="row d-flex align-items-center">
           {/* First Column */}
           <div className="col-md-5">
             <div className="mb-3">
-              <label htmlFor="occupationType" className="form-label">Generated Notices</label>
-              <select className="form-select" name="occupationType" id="occupationType" style={{ fontSize: "12px" }}>
+              <label htmlFor="occupationType" className="form-label label-small">Generated Notices</label>
+              <select className="form-select select-style" name="occupationType" id="occupationType"  placeholder="Select the notice">
                 <option value="" disabled selected>
-                  Generated Notices
+                Select the notice
                 </option>
                 <option value="owner">Owner</option>
                 <option value="rented">Rented</option>
@@ -22,13 +27,11 @@ const NoticeDetails = () => {
 
           {/* Second Column */}
           <div className="col-md-5">
-            {/* Date */}
             <div className="mb-3">
-              <label htmlFor="datePicker" className="form-label">Date</label>
+              <label htmlFor="datePicker" className="form-label label-small ">Date</label>
               <input
-                style={{ fontSize: "12px" }}
                 type="date"
-                className="form-control"
+                className="form-control input-small input-box-size"
                 id="datePicker"
               />
             </div>

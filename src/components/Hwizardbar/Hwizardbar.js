@@ -6,7 +6,7 @@ import './Hwizardbar.css';
 
 const Hwizardbar = () => {
   const navigate = useNavigate();
-  const { activeStep, setActiveStep } = useStepContext(); // Use shared state via hook
+  const { activeStep, setActiveStep } = useStepContext();
 
   const steps = [
     { name: 'Information Collection Form', path: '/dashboard/form', tab: 'info' },
@@ -14,32 +14,30 @@ const Hwizardbar = () => {
     { name: 'Notice Details', path: '/dashboard/notice-details', tab: 'notice' },
     { name: 'Demolition Details', path: '/dashboard/demolition-order', tab: 'demolition' },
     { name: 'Court Order Details', path: '/dashboard/count-order', tab: 'court' },
-    { name: 'Submission Details', path: '/dashboard/remark', tab: 'submission' },
+    { name: 'Remark', path: '/dashboard/remark', tab: 'submission' },
   ];
 
   const handleTabClick = (route, index) => {
-    setActiveStep(index); // Update global active step
-    navigate(route); // Navigate to the desired route
+    setActiveStep(index);
+    navigate(route);
   };
 
   return (
     <div className="container-bar">
       <div className="first-row">
-        <div>
-          <h3 className="heading">Functional Requirements</h3>
-        </div>
+        <h3 className="heading1">Functional Requirements</h3>
         <div className="arrow-buttons">
           <button
             className="arrow-button"
             onClick={() => activeStep > 0 && handleTabClick(steps[activeStep - 1].path, activeStep - 1)}
-            disabled={activeStep === 0} // Disable button on the first tab
+            disabled={activeStep === 0}
           >
             <FaArrowLeft size={20} />
           </button>
           <button
             className="arrow-button"
             onClick={() => activeStep < steps.length - 1 && handleTabClick(steps[activeStep + 1].path, activeStep + 1)}
-            disabled={activeStep === steps.length - 1} // Disable button on the last tab
+            disabled={activeStep === steps.length - 1}
           >
             <FaArrowRight size={20} />
           </button>
@@ -49,7 +47,7 @@ const Hwizardbar = () => {
         {steps.map((step, index) => (
           <div
             key={step.tab}
-            className={`tab tab-width-${step.tab} ${activeStep === index ? 'active' : ''}`}
+            className={`tab ${activeStep === index ? 'active' : ''}`}
             onClick={() => handleTabClick(step.path, index)}
           >
             <div className="tab-text">{step.name}</div>
