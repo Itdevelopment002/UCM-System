@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import { FormGroup, Label, Input } from "reactstrap";
 import "./FunctionalRequiremnt.css"; // Reuse the common styles
 
 const DemolitionOrder = () => {
@@ -13,18 +13,12 @@ const DemolitionOrder = () => {
               <Label htmlFor="demolitionDate" className="form-label">
                 Demolition Date
               </Label>
-              <div className="input-group">
-                <Input
-                  type="text"
-                  id="demolitionDate"
-                  placeholder="dd-mm-yyyy"
-                  className="form-control"
-                />
-                <span className="input-group-text">
-                  <i className="fas fa-calendar " style={{ color: "#5038ed" }}></i>
-                  {/* fa fa-calendar-o */}
-                </span>
-              </div>
+              <Input
+                type="date"
+                id="demolitionDate"
+                placeholder="DD/MM/YYYY"
+                className="form-control"
+              />
             </FormGroup>
           </div>
           <div className="col-md-4">
@@ -32,19 +26,14 @@ const DemolitionOrder = () => {
               <Label htmlFor="demolitionTime" className="form-label">
                 Demolition Time
               </Label>
-              <div className="input-group">
-                <Input
-                  type="text"
-                  id="demolitionTime"
-                  placeholder="--:--"
-                  className="form-control"
-                />
-                <span className="input-group-text">
-                  <i className="fas fa-clock" style={{ color: "#5038ed" }}></i>
-                </span>
-              </div>
+              <Input
+                type="time"
+                id="demolitionTime"
+                className="form-control"
+              />
             </FormGroup>
           </div>
+          
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="demolitionDocument" className="form-label">
@@ -52,7 +41,7 @@ const DemolitionOrder = () => {
               </Label>
               <div className="upload-container">
                 <label htmlFor="hardCopyUpload" className="form-control input-small upload-label" style={{cursor:"pointer"}}>
-                  <i className="fas fa-upload upload-icon input-small "></i>  Upload Document
+                  <i className="fas fa-upload upload-icon input-small  "></i> Upload Documents
                 </label>
                 <input
                   type="file"
@@ -61,16 +50,6 @@ const DemolitionOrder = () => {
                   accept="image/*"
                 />
               </div>
-              {/* <div className="input-group">
-                <Input
-                  type="file"
-                  id="demolitionDocument"
-                  className="form-control"
-                />
-                <span className="input-group-text">
-                  <i className="fas fa-upload" ></i>
-                </span>
-              </div> */}
             </FormGroup>
           </div>
         </div>
@@ -95,41 +74,42 @@ const DemolitionOrder = () => {
         {/* Third Row */}
         <div className="row">
           <div className="col-md-4">
-            <FormGroup>
-              <Label htmlFor="constructionNumber" className="form-label">
-                Construction Number
-              </Label>
-              <div className="input-group">
-                <Input
-                  type="text"
-                  id="constructionNumber"
-                  placeholder="Search Construction Number"
-                  className="form-control"
-                />
-                <span className="input-group-text">
-                  <i className="fas fa-search" style={{ color: "#5038ed" }}></i>
-                </span>
-              </div>
-            </FormGroup>
+          <FormGroup className="position-relative">
+        <Label htmlFor="constructionNumber" className="form-label">
+          Construction Number
+        </Label>
+        <div className="input-group">
+          
+          <Input
+            type="text"
+            id="constructionNumber"
+            placeholder="Search Construction Number"
+            className="form-control">
+              <div className="input-group-prepend">
+            <span className="input-group-text">
+            <i className="fas fa-search search-icon" style={{ color: "#5038ed;" }}></i>
+            </span>
+          </div></Input>
+          
+        </div>
+      </FormGroup>
+
+
           </div>
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="policeStationName" className="form-label">
                 Police Station Name
               </Label>
-              <div className="input-group">
-                <Input
-                  type="select"
-                  id="policeStationName"
-                  className="form-control text-muted custom-select-no-arrow"
-                  style={{fontSize:"14px"}}
-                >
-                  <option>Select the police station name</option>
-                </Input>
-                <span className="input-group-text">
-                  <i className="fa fa-angle-down" aria-hidden="true" style={{ color: "#5038ed" }}></i>
-                </span>
-              </div>
+              <Input
+                type="select"
+                id="policeStationName"
+                className="form-control text-muted"
+                placeholder="Search Construction Number"
+                style={{ fontSize: '15px' }}
+              >
+                <option>Select the police station name</option>
+              </Input>
             </FormGroup>
           </div>
           <div className="col-md-4">
@@ -163,7 +143,7 @@ const DemolitionOrder = () => {
                   style={{backgroundColor:"#EEEEEE"}}
                 />
                 <span className="input-group-text" style={{backgroundColor:"#EEEEEE"}}>
-                  <i className="fas fa-pencil" style={{ color: "#5038ed" }}></i>
+                  <i className="fas fa-pencil" style={{ color: "#010100" }}></i>
                 </span>
               </div>
             </FormGroup>
