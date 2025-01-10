@@ -15,7 +15,7 @@ const Sidebar = () => {
     { name: 'Notice Details', path: '/dashboard/notice-details' },
     { name: 'Demolition Details', path: '/dashboard/demolition-order' },
     { name: 'Court Order Details', path: '/dashboard/count-order' },
-    { name: 'Submission Details', path: '/dashboard/remark' },
+    { name: 'Remarks', path: '/dashboard/remark' },
   ];
 
   const handleStepClick = (index) => {

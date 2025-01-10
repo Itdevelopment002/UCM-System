@@ -46,8 +46,9 @@ const Remark = () => {
               type="submit"
               className="btn submit-btn"
               style={{
-                background: "#5038ED",
+                background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
                 color: "white",
+                fontWeight:"bold",
                 borderRadius: "28px",
                 padding: "10px",
                 border: "none",
