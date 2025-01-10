@@ -10,7 +10,7 @@ const CourtOrder = () => {
         <Row className="">
           <Col xs={12}>
             <FormGroup>
-              <Label className="form-label text-dark fw-bold heading">
+              <Label className=" label-big">
                 Court Matter Involvement
               </Label>
               <div style={{display:"flex", gap:"30px"}}>

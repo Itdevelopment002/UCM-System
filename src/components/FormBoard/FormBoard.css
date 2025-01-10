@@ -24,6 +24,10 @@
   height: calc(100vh - 160px); /* Ensures content height takes the rest of the viewport minus the fixed wizard bar */
 }
 
+@media (min-width: 1800px) {
+  .main-content {
+    margin-left: 380px;
+  }}
 /* Mobile-specific styles */
 @media (max-width: 768px) {
   .dashboard-container {
