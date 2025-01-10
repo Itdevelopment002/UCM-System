@@ -7,7 +7,7 @@
   padding: 10px;
   box-sizing: border-box;
 
-  z-index: 10000;
+  z-index: 1;
 }
 .tab-text{
  
@@ -81,7 +81,7 @@
 .tab.active {
   background: #5038ed; /* Original active tab color */
   color: white;
-  z-index: 100000;
+  z-index: 1;
 }
 
 .tab:hover {
