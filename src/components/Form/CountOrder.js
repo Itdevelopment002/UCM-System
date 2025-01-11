@@ -10,7 +10,7 @@ const CourtOrder = () => {
         <Row className="">
           <Col xs={12}>
             <FormGroup>
-              <Label className="form-label text-dark fw-bold heading">
+              <Label className=" label-big">
                 Court Matter Involvement
               </Label>
               <div style={{display:"flex", gap:"30px"}}>
@@ -146,6 +146,29 @@ const CourtOrder = () => {
           </Col>
         </Row>
       </form>
+      <button
+    type="submit"
+    className="btn submit-btn"
+    style={{
+      background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
+      color: 'white',
+      display: 'flex',
+      justifyContent: 'right',
+      fontWeight: 'bold',
+      fontFamily: 'Poppins',
+      borderRadius: '28px',
+      padding: '10px',
+      border: 'none',
+      height: 'fit-content',
+      width: 'fit-content',
+      fontSize: '13px',
+      position: 'absolute', 
+      bottom: '10px',
+      right: '10px'
+    }}
+  >
+    Save and Submit
+  </button>
     </div>
   );
 };

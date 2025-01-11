@@ -7,17 +7,47 @@
   padding-top: 40px;
   gap: 25px;
   position: fixed;
-  z-index: 1000;
+  z-index: 99;
   width: 230px;
   height: fit-content;
   left: 63px;
   top: 90px;
   isolation: isolate;
 }
+/* Updated Step Number Font Size */
+.step-number {
+  font-size: clamp(12px, 1vw, 14px);
+  line-height: clamp(8px, 0.8vw, 10px);
+}
+
+/* Updated Step Title Font Size */
+.step-title {
+  font-size: clamp(12px, 1.5vw, 18px);
+  line-height: clamp(14px, 2vw, 22px);
+}
+
+/* Sidebar Width Responsive */
+.sidebar-outer-div {
+  width: clamp(200px, 15vw, 230px);
+}
+
+/* Circle Button Size Responsive */
+.circle-button {
+  width: clamp(25px, 3vw, 40px);
+  height: clamp(25px, 3vw, 40px);
+  font-size: clamp(10px, 1.2vw, 16px);
+}
+
+/* Navigation Button Font Size */
+.next-step1 {
+  font-size: clamp(12px, 1.5vw, 16px);
+  padding: clamp(8px, 1vw, 12px);
+}
+
 /* Step Container */
 .step-container {
   display: flex
-;
+;    justify-content: space-between;
   flex-direction: row;
   align-items: center;
   padding: 0;
@@ -30,7 +60,10 @@
 
 /* Step Text */
 .step-text-container {
-  display: flex;
+  display: flex
+;
+
+  gap: 10px;
   flex-direction: column;
   align-items: flex-end;
   padding: 0;
@@ -119,14 +152,101 @@
   border-radius: 14px;
 }
 /* Media Queries */
-@media (max-width: 1300px) {
+
+@media(min-width:1800px){
+  
+  .sidebar-outer-div {
+    background-color: #F0F4F8;
+    display: flex
+;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 40px;
+    gap: 40px;
+    position: fixed;
+    z-index: 99;
+   
+    height: fit-content;
+    left: 112px;
+    top: 90px;
+    isolation: isolate;
+}
+.sidebar-image{
+  width: 230px;
+}
+.step-number {
+  width: 65px;
+  height: 12px;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 8px;
+  color: #263238;
+  text-align: right;
+  opacity: 0.6;
+}
+.step-title{
+  font-size: 17px;
+  width: 250px;
+}
+}
+@media (max-width: 1400px) {
+  
+  .sidebar-outer-div {
+   margin-top: 19px;
+  }
+
+.sidebar-image{
+  visibility: hidden;
+}}
+  
+
+@media (max-width: 1000px) {
   .sidebar-outer-div {
    margin-top: 19px;
   }
 .sidebar-image{
   visibility: hidden;
 }}
-  
+@media (max-width: 1000px) {
+  .sidebar-outer-div {
+    visibility: hidden; /* Hide the sidebar */
+    position: absolute; /* Remove it from the layout flow */
+    width: 0; /* Set width to 0 so it doesn't occupy space */
+    height: 0; /* Set height to 0 */
+  }
+
+  .step-container {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .step-text-container {
+    margin-bottom: 8px; /* Space between text and button */
+  }
+
+  .circle-button {
+    margin: 0 auto; /* Center the step button */
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .next-step-container {
+    flex-direction: column;
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 20px;
+    align-items: center; /* Center buttons */
+  }
+
+  .prev-step,
+  .next-step1 {
+    width: 100%; /* Full-width buttons */
+    font-size: 14px;
+    padding: 10px;
+  }
+}
 /* For devices with a max-width of 992px (tablets and smaller) */
 @media (max-width: 992px) {
   .sidebar-outer-div {
@@ -241,4 +361,9 @@
   .sidebar-image {
     max-width: 40%; /* Increase size further on very small screens */
   }
+}
+.next-step1{
+  display: flex
+;
+  align-items: center;
 }

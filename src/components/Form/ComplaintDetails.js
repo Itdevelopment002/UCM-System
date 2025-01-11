@@ -141,6 +141,29 @@ const ComplaintDetails = () => {
               </div>
             </div>
           </div>
+          <button
+    type="submit"
+    className="btn submit-btn"
+    style={{
+      background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
+      color: 'white',
+      display: 'flex',
+      justifyContent: 'right',
+      fontWeight: 'bold',
+      fontFamily: 'Poppins',
+      borderRadius: '28px',
+      padding: '10px',
+      border: 'none',
+      height: 'fit-content',
+      width: 'fit-content',
+      fontSize: '13px',
+      position: 'absolute', 
+      bottom: '10px',
+      right: '10px'
+    }}
+  >
+    Save and Submit
+  </button>
         </div>
       </form>
     </div>

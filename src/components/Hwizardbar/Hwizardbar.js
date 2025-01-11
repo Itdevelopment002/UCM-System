@@ -22,6 +22,15 @@ const Hwizardbar = () => {
     navigate(route);
   };
 
+  // Inline style for the arrow buttons
+  const arrowButtonStyle = (isDisabled) => ({
+    backgroundColor: isDisabled ? 'grey' : '#5038ed', // default blue background
+   
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+   
+    borderRadius: '50%', // Optional, for a rounded button
+  });
+
   return (
     <div className="container-bar">
       <div className="first-row">
@@ -31,6 +40,7 @@ const Hwizardbar = () => {
             className="arrow-button"
             onClick={() => activeStep > 0 && handleTabClick(steps[activeStep - 1].path, activeStep - 1)}
             disabled={activeStep === 0}
+            style={arrowButtonStyle(activeStep === 0)}
           >
             <FaArrowLeft size={20} />
           </button>
@@ -38,6 +48,7 @@ const Hwizardbar = () => {
             className="arrow-button"
             onClick={() => activeStep < steps.length - 1 && handleTabClick(steps[activeStep + 1].path, activeStep + 1)}
             disabled={activeStep === steps.length - 1}
+            style={arrowButtonStyle(activeStep === steps.length - 1)}
           >
             <FaArrowRight size={20} />
           </button>

@@ -80,36 +80,36 @@ const Login = () => {
           className="col-12 col-md-6 position-relative promo-section text-white d-flex flex-column justify-content-center align-items-center"
           style={{
             background: `url(${texture}) center center / cover no-repeat`,
-          }}
-        >
+          }}  >
           <div className="justify-content-center align-items-center d-flex flex-column"> 
           <div style={{ position: "relative", width: "80%", padding: "2rem", margin: "0 auto" }}>
 
-  <img 
-    src={overlay} 
-    alt="Overlay" 
-    style={{ width: "97%", display: "block" }} 
-  />
+            <img 
+              src={overlay} 
+              alt="Overlay" 
+              style={{ width: "97%", display: "block" }} 
+            />
 
- 
-  <h3 className="col-6 w-5 fw-bold"
-    style={{
-      position: "absolute",
-      top: "47%",
-      left: "35%",
-      transform: "translate(-50%, -50%)",
-      fontWeight: "bold",
-      color: "#fff",
-      textAlign: "center",
-      lineHeight: "1.5",
-    }}
-  >
-    Very good
-    works are 
-    waiting for you. 
-    Login Now!
-  </h3>
-</div>
+          
+             {/* Content Above Overlay */}
+          <h3 className="col-4 w-2 fw-bold"
+          style={{
+            position: "absolute",
+            top: "47%",
+            left: "35%",
+            transform: "translate(-50%, -50%)",
+            fontWeight: "bold",
+            color: "#fff",
+            textAlign: "center",
+            lineHeight: "1.5",
+          }}
+        >
+          Very good
+          works are 
+          waiting for you. <br/>
+          Login Now!
+          </h3>
+          </div>
 
 
           <img
