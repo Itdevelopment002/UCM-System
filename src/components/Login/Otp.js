@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate hook for routing
+import worker from "../../images/building-image.png";
 import facebook from "../../images/facebook.png";
 import flash from "../../images/flash.png";
 import google from "../../images/google.png";
-import worker from "../../images/building-image.png";
+import logo from "../../images/logo.png";
 import overlay from "../../images/overlay.png";
 import texture from "../../images/texture.png";
-import logo from "../../images/logo.png";
 import "./Login.css";
 
 const Otp = () => {
@@ -42,7 +42,7 @@ const Otp = () => {
               <div className="input-group">
                 <input
                   type="text"
-                  className="form-control mx-auto"
+                  className="form-control form-control1 mx-auto"
                   placeholder="Email address or phone number"
                   style={{ maxWidth: "300px", maxHeight: "50px" }}
                   value={emailOrPhone}

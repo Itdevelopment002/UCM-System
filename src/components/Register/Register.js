@@ -21,28 +21,28 @@ const Register = () => {
             <div className="form-group mb-3">
               <input
                 type="text"
-                className="form-control"
+                className="form-control form-control1"
                 placeholder="First Name"
               />
             </div>
             <div className="form-group mb-3">
               <input
                 type="text"
-                className="form-control"
+                className="form-control form-control1"
                 placeholder="Last Name"
               />
             </div>
             <div className="form-group mb-3">
               <input
                 type="email"
-                className="form-control"
+                className="form-control form-control1"
                 placeholder="Email"
               />
             </div>
             <div className="form-group mb-3">
               <input
                 type="password"
-                className="form-control"
+                className="form-control form-control1"
                 placeholder="Password"
               />
             </div>

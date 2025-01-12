@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Use navigate for routing
 import flash from "../../images/flash.png";
-import worker from "../../images/register-man.png";
-import overlay from "../../images/overlay.png";
-import texture from "../../images/texture.png";
 import logo from "../../images/logo.png";
+import overlay from "../../images/overlay.png";
+import worker from "../../images/register-man.png";
+import texture from "../../images/texture.png";
 import "./Login.css";
 
 const Verification = () => {
@@ -12,7 +12,7 @@ const Verification = () => {
 
   const handleConfirmClick = () => {
     
-    navigate("/verify-otp"); // Adjust path as needed
+    navigate("/dashboard"); // Adjust path as needed
   };
 
   return (
@@ -37,7 +37,7 @@ const Verification = () => {
                     key={index}
                     type="text"
                     maxLength="1"
-                    className="form-control text-center otp-input"
+                    className="form-control form-control1 text-center otp-input"
                   />
                 ))}
               </div>

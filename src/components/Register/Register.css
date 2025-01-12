@@ -22,7 +22,7 @@
     position: absolute;
 }
 /* Left Section Styling */
-.form-control {
+.form-control1 {
   border: 1px solid #ddd;
   border-radius: 14px;
   padding: 12px;
@@ -32,7 +32,7 @@
 }
 
 
-.form-control:focus {
+.form-control1:focus {
   outline: none;
   border-color: #5038ed;
   box-shadow: 0px 0px 4px rgba(80, 56, 237, 0.5);

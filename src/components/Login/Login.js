@@ -1,11 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import facebook from "../../images/facebook.png";
 import flash from "../../images/flash.png";
 import google from "../../images/google.png";
 import worker from "../../images/login-man.png";
 import overlay from "../../images/overlay.png";
 import texture from "../../images/texture.png";
-import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -35,7 +35,7 @@ const Login = () => {
               <div className="input-group">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control form-control1"
                   placeholder="Username"
                 />
               </div>
@@ -44,7 +44,7 @@ const Login = () => {
               <div className="input-group">
                 <input
                   type="password"
-                  className="form-control"
+                  className="form-control form-control1 "
                   placeholder="Password"
                 />
               </div>
