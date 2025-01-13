@@ -68,8 +68,9 @@ const ComplaintDetails = () => {
             <div className="mb-3">
               <label className="form-label label-big">Complaint Attachments</label>
               <div className="divider-form"></div>
-              <div className="mb-3">
-                <label className="form-label label-small">Photos (PDF attachment option for multiple photos)</label>
+             <div className="row">
+             <div className="mb-3 col-md-6">
+                <label className="form-label label-small">Photos</label>
                 <div className="upload-container">
                   <label htmlFor="photoUpload" className="form-control input-small upload-label"  style={{cursor:"pointer"}}>
                     <i className="fas fa-upload upload-icon" ></i> Upload Photos
@@ -82,24 +83,27 @@ const ComplaintDetails = () => {
                   />
                 </div>
               </div>
-              <label className="form-label label-small">Videos</label>
-              <div className="upload-container">
-                
-                
-                  <label htmlFor="photoUpload" className="form-control input-small upload-label" style={{cursor:"pointer"}}>
-                    <i className="fas fa-upload upload-icon"></i> Upload Video
+              <div className="mb-3 col-md-4">
+                <label className="form-label label-small">Videos</label>
+                <div className="upload-container">
+                  <label htmlFor="photoUpload" className="form-control input-small upload-label"  style={{cursor:"pointer"}}>
+                    <i className="fas fa-upload upload-icon" ></i> Upload Videos
                   </label>
                   <input
                     type="file"
                     className="form-control input-small d-none"
-                    id="VideoUpload"
-                    accept="video/*"
+                    id="photoUpload"
+                    accept="pdf/*"
                   />
                 </div>
+              </div>
+             </div>
+              
+              
             </div>
 
             {/* Location Details */}
-            <div className="mt-4">
+            <div className="">
               <label className="form-label label-big fw-bold">Location Details</label>
               <div className="divider-form"></div>
               <div className="  rounded">
@@ -141,29 +145,9 @@ const ComplaintDetails = () => {
               </div>
             </div>
           </div>
-          <button
-    type="submit"
-    className="btn submit-btn"
-    style={{
-      background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
-      color: 'white',
-      display: 'flex',
-      justifyContent: 'right',
-      fontWeight: 'bold',
-      fontFamily: 'Poppins',
-      borderRadius: '28px',
-      padding: '15px',
-      border: 'none',
-      height: 'fit-content',
-      width: 'fit-content',
-      fontSize: '13px',
-      position: 'absolute', 
-      bottom: '10px',
-      right: '10px'
-    }}
-  >
-    Save and Submit
-  </button>
+          <button type="submit" className="btn submit-btn-form">
+  Save and Submit
+</button>
         </div>
       </form>
     </div>

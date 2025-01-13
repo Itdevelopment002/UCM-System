@@ -1,61 +1,102 @@
-import React from "react";
-import { Container, Row, Col, FormGroup, Label, Input } from "reactstrap";
-import './FunctionalRequiremnt.css'; // Import the CSS file for styles
+import React, { useState } from "react";
+import "./FunctionalRequiremnt.css";
 
 const CourtOrder = () => {
+  const [formValues, setFormValues] = useState({
+    courtInvolvement: "",
+    courtOrderNumber: "",
+    edDate: "",
+    courtName: "",
+    typeOfCourt: "",
+    petitionerName: "",
+    petitionerMobile: "",
+    petitionerAddress: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleRadioChange = (e) => {
+    setFormValues((prev) => ({
+      ...prev,
+      courtInvolvement: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data: ", formValues);
+  };
+
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* Court Matter Involvement */}
-        <Row className="">
-          <Col xs={12}>
-            <FormGroup>
-              <Label className=" label-big">
-                Court Matter Involvement
-              </Label>
-              <div style={{display:"flex", gap:"30px"}}>
-                <FormGroup check inline>
-                  <Input type="radio" id="courtInvolvementYes" name="courtInvolvement" />
-                  <Label check htmlFor="courtInvolvementYes" className="checkbox-label">Yes</Label>
-                </FormGroup>
-                <FormGroup check inline>
-                  <Input type="radio" id="courtInvolvementNo" name="courtInvolvement" />
-                  <Label check htmlFor="courtInvolvementNo" className="checkbox-label">No</Label>
-                </FormGroup>
+        <div className="row">
+          <div className="col-md-12 mb-3">
+            <label className="label-small">Court Matter Involvement</label>
+            <div style={{ display: "flex", gap: "30px" }}>
+              <div>
+                <input
+                  type="radio"
+                  id="courtInvolvementYes"
+                  name="courtInvolvement"
+                  value="Yes"
+                  onChange={handleRadioChange}
+                />
+                <label htmlFor="courtInvolvementYes" className="checkbox-label">
+                  Yes
+                </label>
               </div>
-            </FormGroup>
-          </Col>
-        </Row>
+              <div>
+                <input
+                  type="radio"
+                  id="courtInvolvementNo"
+                  name="courtInvolvement"
+                  value="No"
+                  onChange={handleRadioChange}
+                />
+                <label htmlFor="courtInvolvementNo" className="checkbox-label">
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Form Fields */}
-        <Row className="">
-          <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="courtOrderNumber" className="form-label text-dark fw-bold label-small">
-                Court Order Number
-              </Label>
-              <Input
-                type="text"
-                id="courtOrderNumber"
-                placeholder="Enter court order number"
-                className="form-control text-secondary input-small"
-              />
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="edDate" className="form-label text-dark fw-bold label-small">
-                ED Date
-              </Label>
-              <Input
-                type="date"
-                id="edDate"
-                className="form-control text-secondary input-small"
-              />
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={4}>
-          <div className="mb-3">
+        <div className="row">
+          <div className="col-md-4 mb-3">
+            <label htmlFor="courtOrderNumber" className="form-label label-small">
+              Court Order Number
+            </label>
+            <input
+              type="text"
+              className="form-control input-small"
+              id="courtOrderNumber"
+              placeholder="Enter court order number"
+              value={formValues.courtOrderNumber}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="col-md-4 mb-3">
+            <label htmlFor="edDate" className="form-label label-small">
+              ED Date
+            </label>
+            <input
+              type="date"
+              className="form-control input-small"
+              id="edDate"
+              value={formValues.edDate}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className=" col-md-4 mb-3">
               <label htmlFor="hardCopyUpload" className="form-label label-small">
                Court Order
               </label>
@@ -71,104 +112,86 @@ const CourtOrder = () => {
                 />
               </div>
             </div>
-          </Col>
-        </Row>
+        </div>
 
-        <Row className="">
-          <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="courtName" className="form-label text-dark fw-bold label-small">
-                Court Name
-              </Label>
-              <Input
-                type="text"
-                id="courtName"
-                placeholder="Enter court name"
-                className="form-control text-secondary input-small"
-              />
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="typeOfCourt" className="form-label text-dark fw-bold label-small">
-                Type of Court
-              </Label>
-              <Input type="select" id="typeOfCourt" className="form-control text-secondary select-style " style={{height:"38px"}}>
-                <option>Choose court</option>
-                <option>District Court</option>
-                <option>High Court</option>
-                <option>Supreme Court</option>
-              </Input>
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="petitionerName" className="form-label text-dark fw-bold label-small">
-                Petitioner Name
-              </Label>
-              <Input
-                type="text"
-                id="petitionerName"
-                placeholder="Enter petitioner name"
-                className="form-control text-secondary input-small"
-              />
-            </FormGroup>
-          </Col>
-        </Row>
+        <div className="row">
+          <div className="col-md-4 mb-3">
+            <label htmlFor="courtName" className="form-label label-small">
+              Court Name
+            </label>
+            <input
+              type="text"
+              className="form-control input-small"
+              id="courtName"
+              placeholder="Enter court name"
+              value={formValues.courtName}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="col-md-4 mb-3">
+            <label htmlFor="typeOfCourt" className="form-label label-small">
+              Type of Court
+            </label>
+            <select
+              id="typeOfCourt"
+              className="form-control input-small"
+              value={formValues.typeOfCourt}
+              onChange={handleInputChange}
+            >
+              <option value="">Choose court</option>
+              <option value="District Court">District Court</option>
+              <option value="High Court">High Court</option>
+              <option value="Supreme Court">Supreme Court</option>
+            </select>
+          </div>
+          <div className="col-md-4 mb-3">
+            <label htmlFor="petitionerName" className="form-label label-small">
+              Petitioner Name
+            </label>
+            <input
+              type="text"
+              className="form-control input-small"
+              id="petitionerName"
+              placeholder="Enter petitioner name"
+              value={formValues.petitionerName}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
 
-        <Row className="">
-          <Col xs={12} md={4}>
-            <FormGroup>
-              <Label htmlFor="petitionerMobile" className="form-label text-dark fw-bold label-small ">
-                Petitioner Mobile Number
-              </Label>
-              <Input
-                type="text"
-                id="petitionerMobile"
-                placeholder="Enter mobile number"
-                className="form-control text-secondary input-small "
-              />
-            </FormGroup>
-          </Col>
-          <Col xs={12} md={8}>
-            <FormGroup>
-              <Label htmlFor="petitionerAddress" className="form-label text-dark fw-bold label-small">
-                Petitioner Address
-              </Label>
-              <Input
-                type="textarea"
-                id="petitionerAddress"
-                rows="3"
-                placeholder="Write a long text here"
-                className="form-control text-secondary input-small text-box-height"
-              />
-            </FormGroup>
-          </Col>
-        </Row>
+        <div className="row">
+          <div className="col-md-4 mb-3">
+            <label htmlFor="petitionerMobile" className="form-label label-small">
+              Petitioner Mobile Number
+            </label>
+            <input
+              type="text"
+              className="form-control input-small"
+              id="petitionerMobile"
+              placeholder="Enter mobile number"
+              value={formValues.petitionerMobile}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="col-md-4 mb-3">
+            <label htmlFor="petitionerAddress" className="form-label label-small">
+              Petitioner Address
+            </label>
+            <textarea
+              id="petitionerAddress"
+              rows="3"
+              className="form-control input-small"
+              placeholder="Enter petitioner address"
+              value={formValues.petitionerAddress}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+        </div>
+
+        <button type="submit" className="btn submit-btn-form">
+          Save and Submit
+        </button>
       </form>
-      <button
-    type="submit"
-    className="btn submit-btn"
-    style={{
-      background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
-      color: 'white',
-      display: 'flex',
-      justifyContent: 'right',
-      fontWeight: 'bold',
-      fontFamily: 'Poppins',
-      borderRadius: '28px',
-      padding: '15px',
-      border: 'none',
-      height: 'fit-content',
-      width: 'fit-content',
-      fontSize: '13px',
-      position: 'absolute', 
-      bottom: '10px',
-      right: '10px'
-    }}
-  >
-    Save and Submit
-  </button>
     </div>
   );
 };

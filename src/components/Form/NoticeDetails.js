@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./FunctionalRequiremnt.css";
+import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi"; // Import these icons
 
 const NoticeDetails = () => {
+  const [isOpenOccupation, setIsOpenOccupation] = useState(false);
+const [selectedOption, setSelectedOption] = useState(""); // Add state for the selected option
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection state
   const [formattedDate, setFormattedDate] = useState(""); // Date formatting state
@@ -10,7 +13,13 @@ const NoticeDetails = () => {
   useEffect(() => {
     setIsModalOpen(true);
   }, []);
-
+  const handleSelect = (option, type) => {
+    if (type === "occupation") {
+      setSelectedOption(option);
+      setIsOpenOccupation(false); // Close the dropdown after selection
+    }
+  };
+  
   // Toggle modal visibility
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -73,11 +82,12 @@ const NoticeDetails = () => {
 
               {/* Options */}
               <div className="modal-options">
-                <label>
+                <label >
                   <input
                     type="radio"
                     name="noticeCount"
                     value="none"
+                    className="radio-btn-size"
                     checked={selectedNoticeCount === "none"}
                     onChange={handleNoticeCountChange}
                   />
@@ -88,6 +98,7 @@ const NoticeDetails = () => {
                     type="radio"
                     name="noticeCount"
                     value="notice1"
+                    className="radio-btn-size"
                     checked={selectedNoticeCount === "notice1"}
                     onChange={handleNoticeCountChange}
                   />
@@ -98,6 +109,7 @@ const NoticeDetails = () => {
                     type="radio"
                     name="noticeCount"
                     value="notice2"
+                    className="radio-btn-size"
                     checked={selectedNoticeCount === "notice2"}
                     onChange={handleNoticeCountChange}
                   />
@@ -108,6 +120,7 @@ const NoticeDetails = () => {
                     type="radio"
                     name="noticeCount"
                     value="notice3"
+                    className="radio-btn-size"
                     checked={selectedNoticeCount === "notice3"}
                     onChange={handleNoticeCountChange}
                   />
@@ -140,27 +153,49 @@ const NoticeDetails = () => {
         <div className="row d-flex align-items-center">
           {/* First Column */}
           <div className="col-md-6 d-flex">
-            <div className="mb-3 col-md-3">
-              <label
-                htmlFor="occupationType"
-                className="form-label label-small"
-              >
-                Generated Notices
-              </label>
-              <select
-                className="form-select select-style"
-                name="occupationType"
-                id="occupationType"
-                placeholder="Select the notice"
-              >
-                <option value="" disabled selected>
-                  Select the notice
-                </option>
-                <option value="owner">Owner</option>
-                <option value="rented">Rented</option>
-                <option value="shop">Shop</option>
-              </select>
-            </div>
+          <div className="mb-3 col-md-4">
+  <label htmlFor="occupationType" className="form-label label-small">
+    Generated Notices
+  </label>
+  <div className="custom-dropdown">
+    <div
+      className="dropdown-header"
+      onClick={() => setIsOpenOccupation(!isOpenOccupation)} // Toggle dropdown
+    >
+      <span className="option-inside-placeholder">
+        {selectedOption || "Select the notice"} {/* Display selected option */}
+      </span>
+      {isOpenOccupation ? (
+        <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+      ) : (
+        <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+      )}
+    </div>
+    {isOpenOccupation && (
+      <ul className="dropdown-options-notice-form">
+        <li
+          className="dropdown-option"
+          onClick={() => handleSelect("Owner", "occupation")} // Handle selection
+        >
+          Owner
+        </li>
+        <li
+          className="dropdown-option"
+          onClick={() => handleSelect("Rented", "occupation")}
+        >
+          Rented
+        </li>
+        <li
+          className="dropdown-option"
+          onClick={() => handleSelect("Shop", "occupation")}
+        >
+          Shop
+        </li>
+      </ul>
+    )}
+  </div>
+</div>
+
             <div className="mb-3 col-md-3 ms-3">
               <label htmlFor="datePicker" className="form-label label-small">
                 Date
@@ -180,29 +215,9 @@ const NoticeDetails = () => {
           </div>
         </div>
         {/* Save and Submit Button */}
-        <button
-          type="submit"
-          className="btn submit-btn"
-          style={{
-            background: "linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)",
-            color: "white",
-            display: "flex",
-            justifyContent: "right",
-            fontWeight: "bold",
-            fontFamily: "Poppins",
-            borderRadius: "28px",
-            padding: "15px",
-            border: "none",
-            height: "fit-content",
-            width: "fit-content",
-            fontSize: "13px",
-            position: "absolute",
-            bottom: "10px",
-            right: "10px",
-          }}
-        >
-          Save and Submit
-        </button>
+         <button type="submit" className="btn submit-btn-form">
+  Save and Submit
+</button>
       </form>
     </div>
   );

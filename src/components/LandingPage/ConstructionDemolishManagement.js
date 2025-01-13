@@ -3,41 +3,35 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ConstructionDemolishManagement.css';
 import logo from "../../images/logo1.png";
-import rightImage from "../../images/engineer-belongings1.png"; // Import right image
+import rightImage from "../../images/engineer-belongings1.png";
 
 const ConstructionDemolishManagement = () => {
     return (
-        <div className="outer-wrapper">
-            <div className="content-box">
-           
-
-                <div className="row  " style={{display:"flex", justifyContent:"space-between"}}>
+        <div className="outer-wrapper-lp">
+            <div className="content-box-lp">
+                <div className="responsive-container-lp">
                     {/* Left Content Section */}
-                    <div className="col-md-6 content-left">
-                                        
-            <div className="construction-logo">
-  <img src={logo} alt="Logo" className="construction-logo-img" />
-</div>
-         
-                        <h1 className="header-text">
+                    <div className="content-left-lp">
+                        <div className="construction-logo">
+                            <img src={logo} alt="Logo" className="construction-logo-img" />
+                        </div>
+                        <h1 className="header-text-lp">
                             Unauthorized <br />
-                            <span className="highlight">Construction Demolish</span> <br />
+                            <span className="highlight-landingp-heading">Construction Demolish</span> <br />
                             Management System
                         </h1>
-                        <div className="divider"></div>
-                        <p className="description">
+                        <div className="divider-landing-page"></div>
+                        <p className="description-lp">
                             This platform enables citizens to report unauthorized constructions and facilitates timely action by the relevant authorities. 
                             Follow the steps below to file a complaint and monitor its progress.
                         </p>
-                        <Link to="/register" className="btn-link mt-5">
-                            <button className="btn btn-primary register-button mt-4">Register Your Complaint</button>
+                        <Link to="/register" className="btn-link mt-1">
+                            <button className="btn btn-primary register-button-landing-page mt-4">Register Your Complaint</button>
                         </Link>
                     </div>
 
-
-
                     {/* Right Image Section */}
-                    <div className="col-md-5 content-right">
+                    <div className="content-right">
                         <img src={rightImage} alt="Engineer" className="right-image" />
                     </div>
                 </div>

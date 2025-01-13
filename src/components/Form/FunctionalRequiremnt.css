@@ -19,6 +19,36 @@
   height: 1.2rem;
   width: 1.2rem;
 }
+.submit-btn-form {
+  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
+  color: white;
+  display: flex;
+  justify-content: right;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 18px;
+  padding: 15px;
+  border: none;
+  height: 3rem;
+  width: fit-content;
+  font-size: 15px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; /* Smooth background and scaling transitions */
+}
+.spacing-bw-checkbox {
+  gap: 12px;
+  display: flex
+;
+  flex-direction: row;
+}
+.submit-btn-form:hover {
+  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%); /* Reverse gradient */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+  color: white;
+}
 
  .input-box-size {
     
@@ -76,6 +106,7 @@
   font-size: 13px;
 }
 .checkbox-label {
+  color: var(--bs-body-color);
   font-size: 15px;
   font-weight: 400;
   padding: 3px;
@@ -108,23 +139,38 @@ select.select-style option:hover {
 .custom-dropdown {
   border-radius: 12px;
   position: relative;
-  width: 100%;
+  width: -webkit-fill-available;
 }
 
 .dropdown-header {
-  padding: 10px;
+  padding: 7px;
   border-radius: 8px;
-  width: fit-content;
+  width: -webkit-fill-available;
   border: 1px solid #ccc;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
+.dropdown-options-notice-form{
+  position: absolute;
+ 
+  font-weight: 100;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  transform: translateY(-10px);
+}
 .dropdown-options {
   position: absolute;
   bottom: 100%;
+  font-weight: 100;
   left: 0;
   width: 100%;
   background-color: white;
@@ -160,7 +206,10 @@ textarea {
   padding: 10px;  /* Optional: Adjust padding for better text visibility */
 }
 
-
+.radio-btn-size {
+  height: 21px;
+  width: 24px;
+}
 
 /* For screen widths of 1000px and below */
 @media (max-width: 1280px) {
@@ -215,7 +264,7 @@ textarea {
 /* Adjust dropdown for small screens */
 @media (max-width: 768px) {
   .custom-dropdown {
-    width: 100%; /* Ensure dropdown takes full width on small screens */
+    width: fit-content; /* Ensure dropdown takes full width on small screens */
   }
 }
 
@@ -277,7 +326,7 @@ textarea {
   justify-content: center;
   background: #128c5414;
   border-radius: 50%;
-  box-shadow: 2px 2px 20px #039855;
+  box-shadow: 2px 2px 20px #03985596;
   width: fit-content;
   height: fit-content;
 }
