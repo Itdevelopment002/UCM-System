@@ -47,7 +47,7 @@ const ComplaintDetails = () => {
               ></textarea>
             </div>
            
-            <div className="mb-3">
+            <div className="mb-3 col-md-6">
               <label htmlFor="hardCopyUpload" className="form-label label-small">
                 Hard Copy attachment (Offline Complaint Received)
               </label>
@@ -72,7 +72,7 @@ const ComplaintDetails = () => {
               <label className="form-label label-big">Complaint Attachments</label>
               <div className="divider-form"></div>
              <div className="row">
-             <div className="mb-3 col-md-6">
+             <div className="mb-3 col-md-4">
                 <label className="form-label label-small">Photos</label>
                 <div className="upload-container">
                   <label htmlFor="photoUpload" className="form-control input-small upload-label"  style={{cursor:"pointer"}}>
