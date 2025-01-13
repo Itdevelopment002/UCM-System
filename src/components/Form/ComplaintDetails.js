@@ -11,7 +11,8 @@ const ComplaintDetails = () => {
         <div className="row">
           {/* Left Column - Complaint Details */}
           <div className="col-md-6">
-            <div className="mb-3">
+            <div className="row">
+            <div className="mb-3 col-md-6">
               <label htmlFor="complainantName" className="form-label label-small">
                 Complaint Received from (Name)
               </label>
@@ -21,6 +22,18 @@ const ComplaintDetails = () => {
                 id="complainantName"
                 placeholder="Enter name"
               />
+            </div>
+            <div className="mb-3 col-md-6">
+              <label htmlFor="complainantContact" className="form-label label-small">
+                Complainant Contact Details
+              </label>
+              <input
+                type="text"
+                className="form-control input-small"
+                id="complainantContact"
+                placeholder="Enter contact number"
+              />
+            </div>
             </div>
             <div className="mb-3">
               <label htmlFor="complaintDescription" className="form-label label-small">
@@ -33,17 +46,7 @@ const ComplaintDetails = () => {
                 placeholder="Write a long text here"
               ></textarea>
             </div>
-            <div className="mb-3">
-              <label htmlFor="complainantContact" className="form-label label-small">
-                Complainant Contact Details
-              </label>
-              <input
-                type="text"
-                className="form-control input-small"
-                id="complainantContact"
-                placeholder="Enter contact number"
-              />
-            </div>
+           
             <div className="mb-3">
               <label htmlFor="hardCopyUpload" className="form-label label-small">
                 Hard Copy attachment (Offline Complaint Received)
