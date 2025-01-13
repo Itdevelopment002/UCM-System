@@ -172,6 +172,7 @@ p {
   border-radius: 14px;
   padding: 10px 12px;
   font-size: 12px;}
+  
 .button-log-page:hover {
   transform: scale(1.05); /* Slightly increase button size */
   background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);

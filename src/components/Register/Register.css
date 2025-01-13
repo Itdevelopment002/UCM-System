@@ -77,7 +77,7 @@
 }
 
 /* Code 2 Priority */
-.register-button-landing-page {
+.register-button {
   height: 2.5rem;
   width: 16rem;
   font-size: 1.1rem;
@@ -90,7 +90,7 @@
   transition: background 0.3s ease, transform 0.3s ease; /* Add smooth transition */
 }
 
-.register-button-landing-page:hover {
+.register-button:hover {
   transform: scale(1.05); /* Slightly increase button size */
   background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
   color: #fff; /* Reversed gradient */ /* Reversed gradient */

@@ -10,7 +10,7 @@ import "./Register.css";
 const Register = () => {
   return (
     <div
-      className="container-fluid vh-90 p-5 d-flex align-items-center justify-content-center"
+      className="container-fluid vh-100 d-flex align-items-center justify-content-center"
       style={{
         background: `url(${bg}) center center / cover no-repeat`, // Set the imported bg as background
         position: "relative",
@@ -85,7 +85,7 @@ const Register = () => {
           </form>
           <button
             type="submit"
-            className="btn custom-btn fw-bold mt-2 register-button-landing-page"
+            className="btn custom-btn fw-bold mt-2 register-button"
           >
             Sign Up
           </button>
