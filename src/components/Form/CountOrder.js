@@ -224,9 +224,6 @@ const CourtOrder = () => {
               onChange={handleInputChange}
             ></textarea>
           </div>
-        </div>
-
-        <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerMobile" className="form-label label-small">
               Petitioner Mobile Number
@@ -240,6 +237,10 @@ const CourtOrder = () => {
               onChange={handleInputChange}
             />
           </div>
+        </div>
+
+        <div className="row">
+       
        
         </div>
 
