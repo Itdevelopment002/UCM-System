@@ -152,7 +152,7 @@ const ComplaintDetails = () => {
       fontWeight: 'bold',
       fontFamily: 'Poppins',
       borderRadius: '28px',
-      padding: '10px',
+      padding: '15px',
       border: 'none',
       height: 'fit-content',
       width: 'fit-content',

@@ -50,7 +50,7 @@ const Remark = () => {
                 color: "white",
                 fontWeight:"bold",
                 borderRadius: "28px",
-                padding: "10px",
+                padding: "15px",
                 border: "none",
                 height: "35px",
                 width: "98px",
