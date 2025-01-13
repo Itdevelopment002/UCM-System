@@ -257,7 +257,7 @@ const FunctionalRequiremnt = () => {
             <div className="divider-form"></div>
 
             <div className="row mb-3 mt-2">
-              <div className="col-md-3 ">
+              <div className="col-md-2 ">
                 <h6 className="label-small">Type</h6>
                 <div className="form-check spacing-bw-checkbox">
                   <input
@@ -285,7 +285,7 @@ const FunctionalRequiremnt = () => {
                 </div>
               </div>
 
-              <div className="col-md-4 occupation ">
+              <div className="col-md-4 ms-3 occupation ">
                 <h6 className="label-small">Occupation Type</h6>
                 <div className="custom-dropdown">
                   <div className="dropdown-header" onClick={toggleOccupationDropdown}>
