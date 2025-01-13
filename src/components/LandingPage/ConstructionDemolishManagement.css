@@ -1,384 +1,132 @@
-/* Root Elements */
-html, body {
-  background-color: white;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
-/* Description */
-.description {
-  width: fit-content;
-  max-width: 60vh; /* Prevent content overflow */
-  margin: 35px 0px;
-  font-family: 'Poppins', sans-serif;
-  color: #666;
-  font-size: clamp(14px, 3.5vw, 18px);
-  margin-bottom: 20px;
-}
-
-/* Divider */
-.divider {
-  max-width: 100%; /* Prevent content overflow */
-  height: 3px;
-  background-color: #5038ED;
-  margin: 35px 0;
-}
-
-/* Register Button */
-.register-button {
-  box-sizing: border-box;
-  max-width: 100%; /* Prevent content overflow */
-  width: 260px;
-  height: 50px;
-  font-size: clamp(14px, 4vw, 16px); /* Responsive font size */
-  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.outer-wrapper {
+/* Base styles */
+.outer-wrapper-lp {
+  font-family: "poppins";
+  height: 100vh; /* Full screen height */
+  overflow-y: hidden; /* Prevent vertical scrollbar */
   display: flex;
-  position: relative;
   align-items: center;
-  overflow: hidden; /* Prevent overflow on small screens */
   justify-content: center;
-  min-height: 100vh; /* Ensures it spans the viewport */
-  width: 100%;
-  padding: 20px; /* Padding for smaller screens */
-  box-sizing: border-box; /* Include padding in width/height calculations */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f4f6f9; /* Optional background color */
 }
-
-/* Inner Content Box */
-.content-box {
-  margin: 100px;
-  width: 65%;
-  overflow: hidden; /* Prevent any child element from overflowing */
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box; /* Include padding in width calculations */
-  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
-  justify-content: center; /* Centers children */
-  align-items: center;
-  max-width: 100%; /* Set to 100% so it doesn't exceed viewport width */
-  
-  background-color: white;
+.register-button-landing-page {
+  height: 3.5rem;
+  width: 16rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; /* Add smooth transition for size and background */
  
-  padding: 10px; /* Reduce padding */
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-button-landing-page:hover {
+  transform: scale(1.05); /* Slightly increase button size */
+  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%); /* Reversed gradient */
 }
 
 
-/* Left Div */
-/* Left Div */
-.left-div {
-  box-sizing: border-box; /* Include padding in width calculations */
-  width: 100%; /* Ensure it doesn't overflow in smaller screens */
-  padding: 15px; /* Reduce padding */
+.content-box-lp {
+  width: 90%;
+  background-color: white;
+  max-width: 1200px;
+  display: flex
+;
+  padding: 30px;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive grid container */
+.responsive-container-lp {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 2rem; /* Gap between columns */
+  align-items: center;
+}
+
+/* Left Content */
+.content-left-lp {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #f8f9fa;
-}
-.left-div,
-.right-div {
-  width: 100%; /* Ensures they take full width on smaller screens */
-  padding: 15px;
-  box-sizing: border-box;
-  overflow: hidden; /* Prevent any content overflow */
-  flex-shrink: 0; /* Prevent shrinking */
-}
-/* Right Div */
-.right-div {
-  width: 100%; /* Ensure it doesn't overflow in smaller screens */
-  max-width: 100%;
-  padding: 0 10px; /* Reduce padding */
-  background: url("../../images/engineer-belongings1.png") no-repeat center center;
-  background-size: cover;
-  position: relative;
-  overflow: hidden; /* Hide any overflowed content */
-}
-
-/* Header Section */
-.header-div h1 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: clamp(24px, 5vw, 36px); /* Responsive font size */
-  color: #5038ED;
-  line-height: 1.4;
-  margin-bottom: 15px;
-}
-
-.content-right {
-  height: inherit;
-  width: inherit;
-}
-.header-div .highlight {
-  font-size: clamp(24px, 5vw, 36px); /* Responsive font size */
-  color: #5038ED; /* Highlight color consistent */
-  font-weight: 600; /* Bold text for highlight */
- 
-}
-.content-left{
-
-    margin-top: 1rem;
-    padding-top: 0px;
-    padding: 30px;
-    position: relative;    /* Position the logo relative to this container */
-   
-
-}
-.header-text {
-  font-size: clamp(28px, 4vw, 40px); /* Responsive font size */
-  padding-top: 14rem;
-  font-family: 'Poppins';
-  font-weight: 600;
-}
-.highlight{
-  font-weight: 700;
-  color: #5038ED;
-}
-.description {
-  box-sizing: border-box;
-  margin: 35px 0px;
-  font-family: 'Poppins', sans-serif;
-  max-width: 100%; /* Prevent image overflow */
-  color: #666;
-  font-size: clamp(14px, 3.5vw, 18px); /* Responsive font size */
-  margin-bottom: 20px;
-}
-
-.divider {
-  max-width: 100%; /* Prevent image overflow */
-  height: 3px;
-  background-color: #5038ED;
-  margin: 35px 0;
-}
-
-/* Button */
-.register-button {
-  box-sizing: border-box;
-  max-width: 100%; /* Prevent image overflow */
-  width: 260px;
-  height: 50px;
-  margin-bottom: 2rem;
-  padding: revert;
-  font-size: clamp(14px, 4vw, 16px); /* Responsive font size */
-  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-.construction-logo {
-  margin-bottom: 10px;
-  
-  position: absolute;      /* Logo ko parent ke andar position karne ke liye */
-          /* Left se thoda gap rakhne ke liye */
-  width: 170px;            /* Logo ka size */
-  z-index: 9999;           /* Logo ko top pe dikhane ke liye */
-  pointer-events: none;    /* Interaction ko disable karne ke liye */
+  align-items: flex-start;
 }
 
 .construction-logo-img {
   box-shadow: 3px 3px 20px #a59cdf;
-  border-radius: 50%;      /* Circular logo */
-  max-width: 100%;         /* Responsive size */
-  height: auto;            /* Aspect ratio maintain karega */
-  object-fit: contain;     /* Image ko properly fit karega */
-  border: 3px 3px 20px ;   /* Border ke liye styling */
-}
-@media (min-width: 768px) {
-  .col-md-6 {
-      flex: 1;
-      /* width: 50%; */
-  }
-}
-@media (max-width: 1800px) {
-  .content-box{
-    margin: 60px;
-    width: 90%;
-  }
-  
-}
-@media (min-width: 1200px) {
-  .col-md-6 {
-    flex: 0 0 auto;
-    width: 49%;
-}
-}
-@media (min-width: 1000px) {
-  .col-md-6 {
-    flex: 1 0 auto;
-    width: 50%;
-}
-}
-@media (min-width: 1249px) {
-  .col-md-6 {
-    flex: 1 ;
-    width: 50%;
-}
-}
-@media (max-width: 1800px) {
-  
-  .construction-logo {
-    top: 8%;            /* Adjust top for smaller screens */
-    left: 4%;     
-   
-  }
-
-  .construction-logo-img {
-    max-height: 180px;   /* Adjust logo size */
-  }
+  width: 150px; /* Adjust as needed */
+  margin-bottom: 1rem;
+  border-radius:76px;
 }
 
-/* Adjust for smaller screens */
-@media (max-width: 1024px) {
-  .content-box{
-    margin: 100px;
-    width: 65%;
-  }
-  .construction-logo {
-    top: 15%;            /* Adjust top for smaller screens */
-    left: 4%;     
-   
-  }
-
-  .construction-logo-img {
-    max-height: 120px;   /* Adjust logo size */
-  }
-}
-
-@media (max-width: 768px) {
-  .construction-logo {
-    top: 5%;            /* Adjust further for small screens */
-    left: 4%;           /* Center horizontally */
-    
-  }
-
-  .construction-logo-img {
-    max-height: 100px;   /* Adjust size for very small screens */
-  }
-  
- 
+.header-text-lp {
+  font-size: 2rem;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
 
-@media (max-width: 480px) {
-  .construction-logo {
-    top: 10%;            /* Move it further down for tiny screens */
-    left: 50%;           /* Center horizontally */
-  }
 
-  .construction-logo-img {
-    max-height: 80px;    /* Resize logo further */
-  }
+.divider-landing-page {
+  width: -webkit-fill-available;
+  height: 4px;
+  background-color: #5038ed;
+  margin: 1rem 0;
 }
 
-/* Media Queries for Responsiveness */
+.description-lp {
+  font-family: 'Poppins';
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.register-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Right Content */
+.content-right {
+  display: flex
+;
+  justify-content: end;
+}
+
+.right-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+.highlight-landingp-heading {
+  color: #5038ED;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
 @media (max-width: 1200px) {
-  /* Ensure left and right divs stay aligned */
   .content-box {
-    flex-direction: row;
-    justify-content: space-between;
+      width: 95%;
   }
 
-  .left-div,
-  .right-div {
-    width: 48%; /* Keep divs side by side with smaller width on medium screens */
+  .responsive-container {
+      grid-template-columns: 1fr; /* Single column for smaller screens */
+      text-align: center;
   }
 
-  .logo-section {
-    top: 20%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .content-box {
-    flex-direction: row; /* Keep side by side layout */
+  .content-left,
+  .content-right {
+      justify-content: center;
+      align-items: center;
   }
 
-  .left-div,
-  .right-div {
-    width: 45%; /* Slightly smaller width on smaller screens */
-  }
-
-  .register-button {
-    width: 220px;
+  .right-image {
+      max-width: 400px;
   }
 }
-
-@media (min-width: 768px) {
-  .col-md-6 {
-      flex: 1 ;
-      width: 50%;
-  }
-  
-}
-/* Media Queries for Mobile (Below 768px) */
-/* Media Queries for Mobile */
-@media (max-width: 768px) {
-  .content-box {
-    flex-direction: column; /* Stack the content vertically */
-    width: 100vh;
-    padding: 10px; /* Reduced padding for smaller screens */
-  }
-
-
-
-  /* Ensure text and description fit well */
-  .description {
-    font-size: clamp(14px, 3.5vw, 18px);
-    box-sizing: border-box;
-    padding: 0px 10px;
-
-    /* Adjust width to be responsive based on the viewport width */
-    width: 90vh;  /* Reduce width for smaller screens, adjust this as needed */
-    max-width: 40vh; /* Ensure it doesn't overflow */
-    height: auto; /* Allow height to adjust based on content */
-   
-  }
-
-  /* Button Styling */
-  .register-button {
-    width: 90vh;  /* Reduce width for smaller screens, adjust this as needed */
-    max-width: 60vh; /* Ensure it doesn't overflow */
-   
-    font-size: clamp(14px, 5vw, 16px); /* Make font size responsive */
-    margin-top: 15px; /* Add margin above the button */
-  }
-  .divider{
-    width: 90vh;  /* Reduce width for smaller screens, adjust this as needed */
-    max-width: 60vh; /* Ensure it doesn't overflow */
-   
-  }
-}
-
-/* Optional for extra small screens */
-@media (max-width: 480px) {
-  .header-div h1 {
-    font-size: 24px; /* Adjust header size */
-  }
-
-  .register-button {
-    font-size: 14px; /* Adjust font size on very small screens */
-    width: 100%; /* Full width for button */
-  }
-
- 
-}
-
-
-
-

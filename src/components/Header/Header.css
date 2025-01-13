@@ -60,9 +60,9 @@
 
 /* Language selector button */
 .language-selector {
-  color:#5038ed;
-  position: relative;
  
+  position: relative;
+  color: #333333;
   width: 139px;
   
   height: 40px;

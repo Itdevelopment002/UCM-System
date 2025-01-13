@@ -1,6 +1,6 @@
 /* Main Container */
 .container-bar {
-  width: 75%;
+  width: 76%;
   position: fixed; /* Fixed for desktop */
   top: 112px; /* Same spacing as original */
   left: 330px; /* Maintain left alignment for sidebar */
@@ -11,11 +11,13 @@
 }
 .tab-text{
  
-    font-weight: 600;
+    font-weight: 500;
     font-family: 'Poppins';
 
 }
-
+.tab-text:hover{
+  font-weight: 600;
+}
 /* First Row: Heading + Arrows */
 .first-row {
   display: flex;
@@ -62,13 +64,14 @@
  
   height: 50px;
   align-items: center;
-  border-bottom: 1px solid rgba(38, 50, 56, 0.1);
+
   gap: 0; /* Remove extra gap */
 }
 
 .tab {
   padding: 8px 12px;
   border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid rgba(38, 50, 56, 0.1);
   justify-content: space-between;
   cursor: pointer;
   font-size: 17px;
@@ -79,14 +82,21 @@
 }
 
 .tab.active {
-  background: #5038ed; /* Original active tab color */
+  background: #5038ed; 
   color: white;
+  
   z-index: 1;
+}
+.tab-text.active {
+ 
+  font-weight: 600;
+ 
 }
 
 .tab:hover {
-  background: rgba(80, 56, 237, 0.1); /* Light purple background on hover */
-  color: #5038ed;
+ 
+  
+  font-weight: 600;
 }
 
 /* Tab Widths */

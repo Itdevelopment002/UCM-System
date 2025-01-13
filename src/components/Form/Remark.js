@@ -23,7 +23,7 @@ const Remark = () => {
     <div className="form-container">
       <form onSubmit={handleSubmit} className="remark-form">
         <div className="col mb-3">
-          <div className="col-md-8 mt-3">
+          <div className="col-md-4 mt-3">
             <label htmlFor="remark" className="form-label label-small">
               Remark
             </label>
@@ -40,27 +40,9 @@ const Remark = () => {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-8 mt-3">
-          <button
-              type="submit"
-              className="btn submit-btn"
-              style={{
-                background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
-                color: "white",
-                fontWeight:"bold",
-                borderRadius: "28px",
-                padding: "15px",
-                border: "none",
-                height: "35px",
-                width: "98px",
-                fontSize: "13px"
-              }}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
+        <button type="submit" className="btn submit-btn-form">
+  Submit Form
+</button>
       </form>
     </div>
   );
