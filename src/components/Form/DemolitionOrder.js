@@ -10,7 +10,7 @@ const DemolitionOrder = () => {
           {/* First Row */}
           <div className="col-md-4">
             <FormGroup>
-              <Label htmlFor="demolitionDate" className="form-label">
+              <Label htmlFor="demolitionDate" className="form-label label-small">
                 Demolition Date
               </Label>
               <Input
@@ -23,7 +23,7 @@ const DemolitionOrder = () => {
           </div>
           <div className="col-md-4">
             <FormGroup>
-              <Label htmlFor="demolitionTime" className="form-label">
+              <Label htmlFor="demolitionTime" className="form-label label-small">
                 Demolition Time
               </Label>
               <Input
@@ -35,7 +35,7 @@ const DemolitionOrder = () => {
           </div>
           <div className="col-md-4">
             <FormGroup>
-              <Label htmlFor="demolitionDocument" className="form-label">
+              <Label htmlFor="demolitionDocument" className="form-label label-small">
                 Demolition Document
               </Label>
               <div className="upload-container">
@@ -61,7 +61,7 @@ const DemolitionOrder = () => {
         <div className="row">
           <div className="col-md-8">
             <FormGroup>
-              <Label htmlFor="demolitionExpenditure" className="form-label">
+              <Label htmlFor="demolitionExpenditure" className="form-label label-small">
                 Demolition Expenditure Details
               </Label>
               <Input
@@ -78,25 +78,26 @@ const DemolitionOrder = () => {
         <div className="row">
           <div className="col-md-4">
             <FormGroup className="position-relative">
-              <Label htmlFor="constructionNumber" className="form-label">
+              <Label htmlFor="constructionNumber" className="form-label label-small">
                 Construction Number
               </Label>
               <div className="input-group">
-              <span className="input-group-text d-flex align-items-center">
-                <i className="fa fa-search"></i>
-              </span>
+              
                 <Input
                   type="search"
                   id="constructionNumber"
                   placeholder="Search Construction Number"
                   className="form-control"
                 />
+                <span className="input-group-text d-flex align-items-center">
+                <i className="fa fa-search"></i>
+              </span>
               </div>
             </FormGroup>
           </div>
           <div className="col-md-4">
             <FormGroup>
-              <Label htmlFor="policeStationName" className="form-label">
+              <Label htmlFor="policeStationName" className="form-label label-small">
                 Police Station Name
               </Label>
               <Input
@@ -111,7 +112,7 @@ const DemolitionOrder = () => {
           </div>
           <div className="col-md-4">
             <FormGroup>
-              <Label htmlFor="policeManpowerDetails" className="form-label">
+              <Label htmlFor="policeManpowerDetails" className="form-label label-small">
                 Police Manpower Details
               </Label>
               <Input
@@ -128,7 +129,7 @@ const DemolitionOrder = () => {
         <div className="row">
           <div className="col-md-4">
             <FormGroup>
-              <Label htmlFor="wardOffice" className="form-label">
+              <Label htmlFor="wardOffice" className="form-label label-small">
                 Ward Office
               </Label>
               <div className="input-group">
@@ -151,29 +152,9 @@ const DemolitionOrder = () => {
               </div>
             </FormGroup>
           </div>
-          <button
-    type="submit"
-    className="btn submit-btn"
-    style={{
-      background: 'linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)',
-      color: 'white',
-      display: 'flex',
-      justifyContent: 'right',
-      fontWeight: 'bold',
-      fontFamily: 'Poppins',
-      borderRadius: '28px',
-      padding: '10px',
-      border: 'none',
-      height: 'fit-content',
-      width: 'fit-content',
-      fontSize: '13px',
-      position: 'absolute', 
-      bottom: '10px',
-      right: '10px'
-    }}
-  >
-    Save and Submit
-  </button>
+          <button type="submit" className="btn submit-btn-form">
+  Save and Submit
+</button>
         </div>
       </form>
     </div>

@@ -46,6 +46,7 @@ p {
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color:#eeeaf7 ;
 }
 
 /* Confirm Button */
@@ -107,7 +108,7 @@ p {
 
 .flash {
   z-index: 2;
-  top: 55%;
+  top: 52%;
   left: 2%;
   position: absolute;
 }
@@ -123,13 +124,13 @@ p {
   padding: 0 20px;
   position: relative;
 }
-.form-control1 {
-  border: 1px solid #ddd;
+.input-check-reg {
+  border: none;
   border-radius: 14px;
   padding: 12px;
   font-size: 12px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #EEEEEE;
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
+  background-color: #eeeaf7;
 }
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -150,4 +151,29 @@ p {
     font-size: 20px;
     padding: 0 10px;
   }
+}
+/* Code 2 Priority */
+.button-log-page {
+  width: 30%;
+  font-size: 12px;
+  color: white;
+  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; 
+  /* Add smooth transition */
+}
+.custom-btn {
+  background: linear-gradient(45deg, #5038ed, #9181f4);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 12px;}
+.button-log-page:hover {
+  transform: scale(1.05); /* Slightly increase button size */
+  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
+  color: #fff; /* Reversed gradient */ /* Reversed gradient */
 }

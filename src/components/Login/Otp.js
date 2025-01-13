@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate hook for routing
+import { useNavigate } from "react-router-dom";
 import worker from "../../images/building-image.png";
 import facebook from "../../images/facebook.png";
 import flash from "../../images/flash.png";
@@ -7,25 +7,31 @@ import google from "../../images/google.png";
 import logo from "../../images/logo.png";
 import overlay from "../../images/overlay.png";
 import texture from "../../images/texture.png";
-import "./Login.css";
+import bg from "../../images/vintage-bg.jpg";
+import "./Login.css"; // Use login.css for styling consistency
+import "../../components/Register/Register.css";
 
 const Otp = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook for navigation
+  const navigate = useNavigate();
   const [emailOrPhone, setEmailOrPhone] = useState("");
 
-  // Handle form submission and redirect to verification page
   const handleContinue = (e) => {
     e.preventDefault();
     if (emailOrPhone) {
-      // Navigate to the verification page
-      navigate("/verification");
+      navigate("/verification"); // Redirect to verification page
     } else {
       alert("Please enter a valid email or phone number.");
     }
   };
 
   return (
-    <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
+    <div
+    className="container-fluid vh-100 d-flex align-items-center justify-content-center"
+    style={{
+      background: `url(${bg}) center center / cover no-repeat`, // Set the background image
+      position: "relative",
+    }}
+    >
       <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
         <div className="col-12 col-md-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center">
           <img
@@ -42,23 +48,23 @@ const Otp = () => {
               <div className="input-group">
                 <input
                   type="text"
-                  className="form-control form-control1 mx-auto"
-                  placeholder="Email address or phone number"
+                  className="form-control input-check-reg mx-auto align-items-center"
+                  placeholder="Phone number"
                   style={{ maxWidth: "300px", maxHeight: "50px" }}
                   value={emailOrPhone}
-                  onChange={(e) => setEmailOrPhone(e.target.value)} // Update state
+                  onChange={(e) => setEmailOrPhone(e.target.value)}
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="btn custom-btn fw-bold mt-3"
+              className="btn custom-btn fw-bold mt-3 mb-3 button-log-page"
             >
               Continue
             </button>
-            <hr />
-            <p className="text-dark">
+           
+            <p className="text-dark mb-2">
               <b>Login</b> with Others
             </p>
             <button
@@ -98,8 +104,8 @@ const Otp = () => {
               className="col-5 w-4 fw-bold"
               style={{
                 position: "absolute",
-                top: "44%",
-                left: "45%",
+                top: "49%",
+                left: "53%",
                 transform: "translate(-50%, -50%)",
                 fontWeight: "bold",
                 color: "#fff",
@@ -110,11 +116,11 @@ const Otp = () => {
               Very good works are waiting for you. Login Now!
             </h3>
           </div>
-          <img
+          {/* <img
             src={worker}
             alt="Worker"
             className="position-absolute bottom-0 end-0 p-5 building-image"
-          />
+          /> */}
           <img
             src={flash}
             alt="Flash"

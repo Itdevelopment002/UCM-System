@@ -1,43 +1,38 @@
-.register-container {
-  display: flex;
-  font-family:" popins", sans-serif;
+/* Set background image and apply opacity */
+
+
+/* Overlay to reduce opacity */
+.container-fluid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(154, 121, 225, 0.3); /* Apply dark overlay with opacity */
+  z-index: 1; /* Ensure it stays behind the content */
 }
 
-.container-fluid {
-  background: #f4f6f9;
+.login {
+  position: relative;
+  z-index: 2; /* Ensure the form content is above the background and overlay */
 }
 
-.form-section {
-  flex: 1;
-  display: flex;
-  padding: 20px;
-}
-
-.man-image-reg{
-    width: 54%;
-    height: 79%;
-    z-index: 2;
-    left: 45%;
-    top: 0.4rem;
-    position: absolute;
-}
 /* Left Section Styling */
-.form-control1 {
-  border: 1px solid #ddd;
+.input-check-reg {
+  border:none;
   border-radius: 14px;
   padding: 12px;
   font-size: 12px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #EEEEEE;
+  box-shadow: 0px 2px 4px rgba(255, 252, 252, 0.1);
+  background-color:#eeeaf7;
 }
 
-
-.form-control1:focus {
+.input-check-reg:focus {
   outline: none;
   border-color: #5038ed;
   box-shadow: 0px 0px 4px rgba(80, 56, 237, 0.5);
 }
-
 
 .custom-btn {
   background: linear-gradient(45deg, #5038ed, #9181f4);
@@ -61,13 +56,42 @@
   font-size: 14px;
   color: #777;
 }
+.signin-link{
+  color: #9181f4;
+}
+.signin-link:hover{
+  color: #9181f4;
+  font-size: large;
+  font-style: bold;
+}
 .flash-reg {
   z-index: 2;
   top: 55%;
-  left: -2%;
+  left: -3%;
   position: absolute;
 }
+
 .login-logo {
   width: 25%;
   overflow: hidden;
+}
+
+/* Code 2 Priority */
+.register-button-landing-page {
+  height: 2.5rem;
+  width: 16rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; /* Add smooth transition */
+}
+
+.register-button-landing-page:hover {
+  transform: scale(1.05); /* Slightly increase button size */
+  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
+  color: #fff; /* Reversed gradient */ /* Reversed gradient */
 }

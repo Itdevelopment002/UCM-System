@@ -18,8 +18,9 @@ function App() {
 
           {/* Routes for Register and Login */}
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Otp />} />
+          <Route path="/Otp" element={<Otp />} />
           <Route path="/verification" element={<Verification/>} />
+
 
           {/* Route to Dashboard */}
           <Route path="/dashboard/*" element={<Dashboard />} />
