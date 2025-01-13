@@ -1,7 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./FunctionalRequiremnt.css";
-
+import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi"; // Import icons
 const CourtOrder = () => {
+  const [isOpenOccupation, setIsOpenOccupation] = useState(false); // State for dropdown
+  const [selectedOption, setSelectedOption] = useState("Select occupation"); // Default selected option
+  const [occupationOptions] = useState([
+    "Owner", "Rented", "Shop" // Options for occupation type
+  ]);
+
+  const dropdownRef = useRef(null);
+
+  // Toggle dropdown
+  const toggleOccupationDropdown = () => {
+    setIsOpenOccupation(!isOpenOccupation);
+  };
+
+  // Handle selection from the dropdown
+  const handleSelect = (option, type) => {
+    if (type === "occupation") {
+      setSelectedOption(option);
+      setIsOpenOccupation(false); // Close the dropdown after selection
+    }
+  };
   const [formValues, setFormValues] = useState({
     courtInvolvement: "",
     courtOrderNumber: "",
@@ -128,6 +148,39 @@ const CourtOrder = () => {
               onChange={handleInputChange}
             />
           </div>
+          <div className="col-md-4  occupation">
+            <h6 className="label-small">Occupation Type</h6>
+            <div className="custom-dropdown" ref={dropdownRef}>
+              <div
+                className="dropdown-header"
+                onClick={toggleOccupationDropdown} // Toggle dropdown
+              >
+                <span className="option-inside-placeholder">
+                  {selectedOption}
+                </span>
+                {isOpenOccupation ? (
+                  <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+                ) : (
+                  <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+                )}
+              </div>
+              {isOpenOccupation && (
+                <ul className="dropdown-options">
+                  {occupationOptions.map((option, index) => (
+                    <li
+                      key={index}
+                      className="dropdown-option"
+                      onClick={() => handleSelect(option, "occupation")}
+                    >
+                      {option}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+
+          {/* Other Form Elements */}
           <div className="col-md-4 mb-3">
             <label htmlFor="typeOfCourt" className="form-label label-small">
               Type of Court
@@ -144,6 +197,7 @@ const CourtOrder = () => {
               <option value="Supreme Court">Supreme Court</option>
             </select>
           </div>
+       
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerName" className="form-label label-small">
               Petitioner Name
@@ -156,6 +210,19 @@ const CourtOrder = () => {
               value={formValues.petitionerName}
               onChange={handleInputChange}
             />
+          </div>
+          <div className="col-md-4 mb-3">
+            <label htmlFor="petitionerAddress" className="form-label label-small">
+              Petitioner Address
+            </label>
+            <textarea
+              id="petitionerAddress"
+              rows="3"
+              className="form-control input-small"
+              placeholder="Enter petitioner address"
+              value={formValues.petitionerAddress}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
         </div>
 
@@ -173,19 +240,7 @@ const CourtOrder = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="col-md-4 mb-3">
-            <label htmlFor="petitionerAddress" className="form-label label-small">
-              Petitioner Address
-            </label>
-            <textarea
-              id="petitionerAddress"
-              rows="3"
-              className="form-control input-small"
-              placeholder="Enter petitioner address"
-              value={formValues.petitionerAddress}
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
+       
         </div>
 
         <button type="submit" className="btn submit-btn-form">

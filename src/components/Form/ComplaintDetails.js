@@ -72,7 +72,7 @@ const ComplaintDetails = () => {
               <label className="form-label label-big">Complaint Attachments</label>
               <div className="divider-form"></div>
              <div className="row">
-             <div className="mb-3 col-md-4">
+             <div className="mb-3 col-md-6">
                 <label className="form-label label-small">Photos</label>
                 <div className="upload-container">
                   <label htmlFor="photoUpload" className="form-control input-small upload-label"  style={{cursor:"pointer"}}>
@@ -86,7 +86,7 @@ const ComplaintDetails = () => {
                   />
                 </div>
               </div>
-              <div className="mb-3 col-md-4">
+              <div className="mb-3 col-md-6">
                 <label className="form-label label-small">Videos</label>
                 <div className="upload-container">
                   <label htmlFor="photoUpload" className="form-control input-small upload-label"  style={{cursor:"pointer"}}>
