@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "./FunctionalRequiremnt.css";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
@@ -11,6 +12,7 @@ const FunctionalRequiremnt = () => {
     ownerName: "",
     detailedAddress: "",
     datePicker: "",
+    camp: "",
     constructionType: {
       residential: false,
       commercial: false,
@@ -96,11 +98,21 @@ const FunctionalRequiremnt = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formValues.contactNumber.length < 10) {
-      alert("Please enter a valid contact number.");
-      return;
+    let isValid = true;
+
+    if (formValues.contactNumber.length !== 10) {
+      alert("Contact number must be 10 digits.");
+      isValid = false;
     }
-    console.log("Form Values:", formValues);
+
+    if (formValues.pincode.length !== 6) {
+      alert("Pincode must be 6 digits.");
+      isValid = false;
+    }
+
+    if (isValid) {
+      console.log("Form submitted successfully with values:", formValues);
+    }
   };
 
   return (
@@ -166,7 +178,7 @@ const FunctionalRequiremnt = () => {
               />
             </div>
 
-            <div className=" occupation">
+            <div className="occupation">
               <h6 className="label-small">Nature of Construction</h6>
               <div className="custom-dropdown">
                 <div className="dropdown-header" onClick={toggleConstructionDropdown}>
@@ -201,63 +213,58 @@ const FunctionalRequiremnt = () => {
             <div className="divider-form"></div>
 
             <div className="row">
-  {/* Detailed Address */}
-  <div className="col-md-6 mb-3 mt-2">
-    <label htmlFor="detailedAddress" className="form-label label-small">
-      Detailed Address
-    </label>
-    <textarea
-      className="form-control input-small text-box-height"
-      id="detailedAddress"
-      placeholder="Write a long text here"
-      rows="3"
-      value={formValues.detailedAddress}
-      onChange={handleInputChange}
-    />
-  </div>
-  
-  {/* Pincode and Camp */}
-  <div className="col-md-6">
-    <div className="row mt-2">
-      {/* Pincode */}
-      <div className="col-md-6 mb-3">
-        <label htmlFor="pincode" className="form-label label-small">
-          Pincode
-        </label>
-        <input
-          type="text"
-          className="form-control input-small"
-          id="pincode"
-          placeholder="Enter pincode"
-          value={formValues.pincode}
-          onChange={(e) => handleNumericInput(e, 999999)}
-        />
-      </div>
-      
-      {/* Camp */}
-      <div className="col-md-6">
-        <label htmlFor="camp" className="form-label label-small">
-          Camp
-        </label>
-        <input
-          type="text"
-          className="form-control input-small"
-          id="camp"
-          placeholder="Enter camp"
-          value={formValues.camp}
-          onChange={handleInputChange}
-        />
-      </div>
-    </div>
-  </div>
-</div>
+              <div className="col-md-6 mb-3 mt-2">
+                <label htmlFor="detailedAddress" className="form-label label-small">
+                  Detailed Address
+                </label>
+                <textarea
+                  className="form-control input-small text-box-height"
+                  id="detailedAddress"
+                  placeholder="Write a long text here"
+                  rows="3"
+                  value={formValues.detailedAddress}
+                  onChange={handleInputChange}
+                />
+              </div>
 
+              <div className="col-md-6">
+                <div className="row mt-2">
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="pincode" className="form-label label-small">
+                      Pincode
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control input-small"
+                      id="pincode"
+                      placeholder="Enter pincode"
+                      value={formValues.pincode}
+                      onChange={(e) => handleNumericInput(e, 999999)}
+                    />
+                  </div>
+
+                  <div className="col-md-6">
+                    <label htmlFor="camp" className="form-label label-small">
+                      Camp
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control input-small"
+                      id="camp"
+                      placeholder="Enter camp"
+                      value={formValues.camp}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <h2 className="label-big">Construction Details</h2>
             <div className="divider-form"></div>
 
             <div className="row mb-3 mt-2">
-              <div className="col-md-2 ">
+              <div className="col-md-2">
                 <h6 className="label-small">Type</h6>
                 <div className="form-check spacing-bw-checkbox">
                   <input
@@ -285,7 +292,7 @@ const FunctionalRequiremnt = () => {
                 </div>
               </div>
 
-              <div className="col-md-4 ms-3 occupation ">
+              <div className="col-md-4 ms-3 occupation">
                 <h6 className="label-small">Occupation Type</h6>
                 <div className="custom-dropdown">
                   <div className="dropdown-header" onClick={toggleOccupationDropdown}>
@@ -320,16 +327,14 @@ const FunctionalRequiremnt = () => {
                   type="date"
                   className="form-control input-small"
                   id="datePicker"
-                  
                   value={formValues.datePicker}
                   onChange={handleInputChange}
                 />
               </div>
-             
             </div>
             <button type="submit" className="btn submit-btn-form">
-  Save and Submit
-</button>
+              Save and Submit
+            </button>
           </div>
         </div>
       </form>
