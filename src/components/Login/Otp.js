@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import worker from "../../images/building-image.png";
 import facebook from "../../images/facebook.png";
 import flash from "../../images/flash.png";
 import google from "../../images/google.png";

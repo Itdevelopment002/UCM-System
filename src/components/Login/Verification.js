@@ -1,7 +1,6 @@
 import React from "react"; 
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import flash from "../../images/flash.png";
-import worker from "../../images/register-man.png";
 import overlay from "../../images/overlay.png";
 import texture from "../../images/texture.png";
 import logo from "../../images/logo.png";

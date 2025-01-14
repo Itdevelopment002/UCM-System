@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import flash from "../../images/flash.png";
 import logo from "../../images/logo.png";
 import overlay from "../../images/overlay.png";
-import worker from "../../images/register-man.png";
 import texture from "../../images/texture.png";
 import bg from "../../images/signup-bg.jpg"; // Imported background image
 import "./Register.css";
