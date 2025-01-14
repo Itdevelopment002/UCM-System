@@ -1,57 +1,80 @@
 import React, { useState, useEffect } from "react";
 import "./FunctionalRequiremnt.css";
-import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi"; // Import these icons
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 
 const NoticeDetails = () => {
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
-const [selectedOption, setSelectedOption] = useState(""); // Add state for the selected option
+  const [selectedOption, setSelectedOption] = useState(""); // For dropdown
+  const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection
+  const [formattedDate, setFormattedDate] = useState(""); // Date formatting
+  const [errors, setErrors] = useState({}); // For form validation
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-  const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection state
-  const [formattedDate, setFormattedDate] = useState(""); // Date formatting state
 
-  // Automatically open the modal when the component mounts
   useEffect(() => {
-    setIsModalOpen(true);
+    setIsModalOpen(true); // Open modal on component mount
   }, []);
-  const handleSelect = (option, type) => {
-    if (type === "occupation") {
-      setSelectedOption(option);
-      setIsOpenOccupation(false); // Close the dropdown after selection
-    }
-  };
-  
-  // Toggle modal visibility
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+
+  const noticeOptions = ["Owner", "Rented", "Shop"]; // Dropdown options
+
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+    setIsOpenOccupation(false); // Close dropdown
   };
 
-  // Handle changes to radio button selection
-  const handleNoticeCountChange = (e) => {
-    setSelectedNoticeCount(e.target.value);
-  };
-
-  // Handle confirmation button click
-  const handleConfirm = () => {
-    console.log("Selected Notice Count:", selectedNoticeCount);
-    toggleModal();
-  };
-
-  // Handle date input changes
   const handleDateChange = (e) => {
     const dateValue = e.target.value; // Native format (yyyy-mm-dd)
     const [year, month, day] = dateValue.split("-");
     if (year && month && day) {
       setFormattedDate(`${day}/${month}/${year.slice(-2)}`); // Convert to dd/mm/yy
+    } else {
+      setFormattedDate("");
+    }
+  };
+
+  const handleNoticeCountChange = (e) => {
+    setSelectedNoticeCount(e.target.value);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!selectedOption) {
+      newErrors.selectedOption = "Please select a notice type.";
+    }
+    if (!formattedDate) {
+      newErrors.date = "Please select a valid date.";
+    }
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      toast.error("Please fill all the mandatory fields correctly.");
+    } else {
+      toast.success("Form submitted successfully!");
+      console.log("Form Data:", {
+        selectedOption,
+        selectedNoticeCount,
+        formattedDate,
+      });
     }
   };
 
   return (
     <div className="form-container">
-      {/* Modal */}
+      <ToastContainer />
+
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            {/* Close Button (Top-Right Corner) */}
             <button
               className="close-button"
               onClick={toggleModal}
@@ -62,73 +85,37 @@ const [selectedOption, setSelectedOption] = useState(""); // Add state for the s
                 background: "transparent",
                 border: "none",
                 fontSize: "26px",
-               color:"#414651",
+                color: "#414651",
                 cursor: "pointer",
               }}
             >
               ×
             </button>
 
-            {/* Left Section: Icon */}
             <div className="modal-icon-container">
               <span className="modal-icon">✔</span>
             </div>
 
-            {/* Right Section */}
             <div className="modal-right-content ms-2">
-              {/* Header */}
               <h5 className="modal-title">Notice</h5>
               <p className="model-text">How many notices have been submitted?</p>
 
-              {/* Options */}
               <div className="modal-options">
-                <label >
-                  <input
-                    type="radio"
-                    name="noticeCount"
-                    value="none"
-                    className="radio-btn-size"
-                    checked={selectedNoticeCount === "none"}
-                    onChange={handleNoticeCountChange}
-                  />
-                  None
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="noticeCount"
-                    value="notice1"
-                    className="radio-btn-size"
-                    checked={selectedNoticeCount === "notice1"}
-                    onChange={handleNoticeCountChange}
-                  />
-                  Notice 1
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="noticeCount"
-                    value="notice2"
-                    className="radio-btn-size"
-                    checked={selectedNoticeCount === "notice2"}
-                    onChange={handleNoticeCountChange}
-                  />
-                  Notice 2
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    name="noticeCount"
-                    value="notice3"
-                    className="radio-btn-size"
-                    checked={selectedNoticeCount === "notice3"}
-                    onChange={handleNoticeCountChange}
-                  />
-                  Notice 3
-                </label>
+                {["none", "notice1", "notice2", "notice3"].map((value) => (
+                  <label key={value}>
+                    <input
+                      type="radio"
+                      name="noticeCount"
+                      value={value}
+                      className="radio-btn-size"
+                      checked={selectedNoticeCount === value}
+                      onChange={handleNoticeCountChange}
+                    />
+                    {value === "none" ? "None" : `Notice ${value.slice(-1)}`}
+                  </label>
+                ))}
               </div>
 
-              {/* Footer */}
               <div className="modal-footer">
                 <label className="checkbox-container">
                   <input type="checkbox" />
@@ -138,7 +125,7 @@ const [selectedOption, setSelectedOption] = useState(""); // Add state for the s
                   <button className="cancel-btn" onClick={toggleModal}>
                     Cancel
                   </button>
-                  <button className="confirm-btn" onClick={handleConfirm}>
+                  <button className="confirm-btn" onClick={toggleModal}>
                     Confirm
                   </button>
                 </div>
@@ -148,61 +135,57 @@ const [selectedOption, setSelectedOption] = useState(""); // Add state for the s
         </div>
       )}
 
-      {/* Form Section */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row d-flex align-items-center">
-          {/* First Column */}
           <div className="col-md-6 d-flex">
-          <div className="mb-3 col-md-4">
-  <label htmlFor="occupationType" className="form-label label-small">
-    Generated Notices
-  </label>
-  <div className="custom-dropdown">
-    <div
-      className="dropdown-header"
-      onClick={() => setIsOpenOccupation(!isOpenOccupation)} // Toggle dropdown
-    >
-      <span className="option-inside-placeholder">
-        {selectedOption || "Select the notice"} {/* Display selected option */}
-      </span>
-      {isOpenOccupation ? (
-        <HiOutlineChevronUp size={18} className="dropdown-arrow" />
-      ) : (
-        <HiOutlineChevronDown size={18} className="dropdown-arrow" />
-      )}
-    </div>
-    {isOpenOccupation && (
-      <ul className="dropdown-options-notice-form">
-        <li
-          className="dropdown-option"
-          onClick={() => handleSelect("Owner", "occupation")} // Handle selection
-        >
-          Owner
-        </li>
-        <li
-          className="dropdown-option"
-          onClick={() => handleSelect("Rented", "occupation")}
-        >
-          Rented
-        </li>
-        <li
-          className="dropdown-option"
-          onClick={() => handleSelect("Shop", "occupation")}
-        >
-          Shop
-        </li>
-      </ul>
-    )}
-  </div>
-</div>
+            <div className="mb-3 col-md-6">
+              <label htmlFor="occupationType" className="form-label label-small">
+                Generated Notices <span className="text-danger">*</span>
+              </label>
+              <div className="custom-dropdown">
+                <div
+                  className={`dropdown-header ${
+                    errors.selectedOption ? "is-invalid" : ""
+                  }`}
+                  onClick={() => setIsOpenOccupation(!isOpenOccupation)}
+                >
+                  <span className="option-inside-placeholder">
+                    {selectedOption || "Select the notice"}
+                  </span>
+                  {isOpenOccupation ? (
+                    <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+                  ) : (
+                    <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+                  )}
+                </div>
+                {isOpenOccupation && (
+                  <ul className="dropdown-options-notice-form">
+                    {noticeOptions.map((option, index) => (
+                      <li
+                        key={index}
+                        className="dropdown-option"
+                        onClick={() => handleSelect(option)}
+                      >
+                        {option}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              {errors.selectedOption && (
+                <span className="text-danger">{errors.selectedOption}</span>
+              )}
+            </div>
 
-            <div className="mb-3 col-md-3 ms-3">
+            <div className="mb-3 col-md-6 ms-3">
               <label htmlFor="datePicker" className="form-label label-small">
-                Date
+                Date <span className="text-danger">*</span>
               </label>
               <input
                 type="date"
-                className="form-control input-small input-box-size"
+                className={`form-control input-small input-box-size ${
+                  errors.date ? "is-invalid" : ""
+                }`}
                 id="datePicker"
                 onChange={handleDateChange}
               />
@@ -211,13 +194,13 @@ const [selectedOption, setSelectedOption] = useState(""); // Add state for the s
                   <small>Selected Date: {formattedDate}</small>
                 </div>
               )}
+              {errors.date && <span className="text-danger">{errors.date}</span>}
             </div>
           </div>
         </div>
-        {/* Save and Submit Button */}
-         <button type="submit" className="btn submit-btn-form">
-  Save and Submit
-</button>
+        <button type="submit" className="btn submit-btn-form">
+          Save and Submit
+        </button>
       </form>
     </div>
   );

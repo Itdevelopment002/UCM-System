@@ -33,7 +33,7 @@ const Header = () => {
         {/* Language Selector */}
         <div className="language">
   <div className="language-selector" onClick={toggleDropdown}>
-    <span>Language</span>
+    <span className="input-small">Language</span>
     {isOpen ? (
       <HiOutlineChevronUp size={18} className="dropdown-arrow" />
     ) : (
