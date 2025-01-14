@@ -57,10 +57,11 @@
   color: #777;
 }
 .signin-link{
-  color: #9181f4;
+  color: #5038ED;
+  /* #9181f4; */
 }
 .signin-link:hover{
-  color: #9181f4;
+  color: #7364d4;
   font-size: large;
   font-style: bold;
 }
@@ -75,11 +76,21 @@
   width: 25%;
   overflow: hidden;
 }
+.is-invalid {
+  border: 1px solid red !important;
+}
 
-/* Code 2 Priority */
+.invalid-feedback {
+  display: block;
+  color: red;
+  font-size: 12px;
+}
+
+
+/* Center the button and adjust width */
 .register-button {
   height: 2.5rem;
-  width: 16rem;
+  width: auto; /* Allow the button width to adjust based on content */
   font-size: 1.1rem;
   font-weight: 600;
   color: white;
@@ -88,10 +99,12 @@
   border: none;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease; /* Add smooth transition */
+  margin: auto; /* This centers the button horizontally */
+  display: block; /* Ensure the button is block-level */
 }
 
 .register-button:hover {
-  transform: scale(1.05); /* Slightly increase button size */
+  transform: scale(1.05); 
   background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
-  color: #fff; /* Reversed gradient */ /* Reversed gradient */
+  color: #fff; 
 }

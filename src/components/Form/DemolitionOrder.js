@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormGroup, Label, Input } from "reactstrap";
 import "./FunctionalRequiremnt.css"; // Reuse the common styles
 
 const DemolitionOrder = () => {
+  const [fileName, setFileName] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
+
   return (
     <div className="form-container">
       <form>
@@ -38,21 +47,52 @@ const DemolitionOrder = () => {
               <Label htmlFor="demolitionDocument" className="form-label label-small">
                 Demolition Document
               </Label>
-              <div className="upload-container">
-                <label
-                  htmlFor="hardCopyUpload"
-                  className="form-control input-small upload-label"
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fas fa-upload upload-icon input-small"></i> Upload Documents
-                </label>
-                <input
+              
+              <div className=" input-group">
+                  {fileName ? (
+                    <div className="upload-container uploaded-file-name form-control ">
+                      <i className="fas fa-upload upload-icon"></i> {fileName}
+                    </div>
+                  ) : (
+                    <Label
+                      htmlFor="hardCopyUpload"
+                      className="form-control input-small upload-label"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="fas fa-upload upload-icon"></i> Upload Documents
+                    </Label>
+                  )}
+                  <Input
+                    type="file"
+                    className="form-control input-small d-none"
+                    id="hardCopyUpload"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+              </div>
+
+              {/* <div className="upload-container input-group">
+                {fileName ? (
+                  <div className="uploaded-file-name form-control input-small upload-label">
+                     <i className="fas fa-upload upload-icon input-small mx-auto"></i>{fileName}
+                  </div>
+                ) : (
+                  <Label
+                    htmlFor="hardCopyUpload"
+                    className="form-control input-small upload-label"
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i className="fas fa-upload upload-icon input-small"></i> Upload Documents
+                  </Label>
+                )}
+                <Input
                   type="file"
                   className="form-control input-small d-none"
                   id="hardCopyUpload"
                   accept="image/*"
+                  onChange={handleFileChange}
                 />
-              </div>
+              </div> */}
             </FormGroup>
           </div>
         </div>
@@ -82,7 +122,6 @@ const DemolitionOrder = () => {
                 Construction Number
               </Label>
               <div className="input-group">
-              
                 <Input
                   type="search"
                   id="constructionNumber"
@@ -90,8 +129,8 @@ const DemolitionOrder = () => {
                   className="form-control"
                 />
                 <span className="input-group-text d-flex align-items-center">
-                <i className="fa fa-search"></i>
-              </span>
+                  <i className="fa fa-search"></i>
+                </span>
               </div>
             </FormGroup>
           </div>
@@ -153,8 +192,8 @@ const DemolitionOrder = () => {
             </FormGroup>
           </div>
           <button type="submit" className="btn submit-btn-form">
-  Save and Submit
-</button>
+            Save and Submit
+          </button>
         </div>
       </form>
     </div>

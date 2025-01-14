@@ -24,7 +24,7 @@ const Verification = () => {
         position: "relative",
       }}
     >
-      <div className="row w-90 w-md-75 shadow-lg rounded overflow-hidden login">
+      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
         <div className="col-12 vh-95 bg-white col-md-6 p-5 mx-auto">
           {/* Left Section */}
           <div className=" mx-auto p-2 d-flex flex-column justify-content-center align-items-center">

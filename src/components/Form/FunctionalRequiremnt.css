@@ -425,3 +425,22 @@ textarea {
   width: auto;
   gap: 20px;
 }
+
+.upload-container-check {
+  display: flex;
+  align-items: center;
+  height: 2.4rem; /* Fixed height */
+  border: 1px dotted #bbb2b2; /* Match the input field border */
+  border-radius: 5px;
+  padding: 0 10px; /* Consistent padding */
+  max-width: 100%; /* Prevent overflow */
+}
+
+.uploaded-file-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px; /* Match other input fields */
+  color: #5038ED; 
+  text-align: center;
+}
