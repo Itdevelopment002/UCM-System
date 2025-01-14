@@ -208,3 +208,10 @@
     left: 382px;
   }
 }
+@media (max-width: 1280px) {
+  .container-bar {
+      overflow-y: auto;
+      width: 70%;
+      max-height: 60vh;
+  }
+}
