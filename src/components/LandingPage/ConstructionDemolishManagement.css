@@ -1,6 +1,6 @@
 /* Base styles */
 .outer-wrapper-lp {
-  font-family: "poppins";
+  font-family: "Poppins", sans-serif;
   height: 100vh; /* Full screen height */
   overflow-y: hidden; /* Prevent vertical scrollbar */
   display: flex;
@@ -8,44 +8,48 @@
   justify-content: center;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #f4f6f9; /* Optional background color */
+  text-align: center; /* Ensure centering on mobile */
 }
+
 .register-button-landing-page {
   height: 3.5rem;
   width: 16rem;
   font-size: 1.1rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
+  background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
   border-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease; /* Add smooth transition for size and background */
- 
+  transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
 }
 
 .register-button-landing-page:hover {
-  transform: scale(1.05); /* Slightly increase button size */
-  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%); /* Reversed gradient */
+  transform: scale(1.05);
+  background: linear-gradient(99.78deg, #5038ed -5.85%, #9181f4 109.55%);
 }
-
 
 .content-box-lp {
   width: 90%;
   background-color: white;
   max-width: 1200px;
-  display: flex
-;
-  padding: 30px;
+  display: flex;
+  padding-left: 30px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   justify-content: space-between;
   flex-direction: column;
   gap: 1rem;
+  border-radius: 10px; /* Rounded corners for better aesthetics */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
 }
 
-/* Responsive grid container */
 .responsive-container-lp {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 2rem; /* Gap between columns */
+  gap: 2rem;
+  height: inherit;
   align-items: center;
 }
 
@@ -59,29 +63,28 @@
 
 .construction-logo-img {
   box-shadow: 3px 3px 20px #a59cdf;
-  width: 150px; /* Adjust as needed */
+  width: 150px;
   margin-bottom: 1rem;
-  border-radius:76px;
+  border-radius: 76px;
 }
 
 .header-text-lp {
   font-size: 2rem;
   line-height: 1.5;
   font-weight: 600;
+  text-align: left;
 }
 
-
-
 .divider-landing-page {
-  width: -webkit-fill-available;
+  width: 100%;
   height: 4px;
   background-color: #5038ed;
   margin: 1rem 0;
 }
 
 .description-lp {
-  font-family: 'Poppins';
-  font-size: 1.3rem;
+  text-align: left;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: #000000;
 }
@@ -93,40 +96,89 @@
 
 /* Right Content */
 .content-right {
-  display: flex
-;
+  display: flex;
   justify-content: end;
+  height: inherit;
 }
 
 .right-image {
+  
   width: 100%;
   max-width: 500px;
   height: auto;
 }
+
 .highlight-landingp-heading {
-  color: #5038ED;
+  color: #5038ed;
   font-size: 2rem;
   font-weight: 600;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .content-box {
-      width: 95%;
+  .content-box-lp {
+    width: 95%;
   }
 
-  .responsive-container {
-      grid-template-columns: 1fr; /* Single column for smaller screens */
-      text-align: center;
+  .responsive-container-lp {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+    gap: 1.5rem;
+    text-align: center; /* Center content on mobile */
   }
 
-  .content-left,
+  .content-left-lp,
   .content-right {
-      justify-content: center;
-      align-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-text-lp {
+    text-align: center;
+    font-size: 1.8rem; /* Slightly smaller heading */
+  }
+
+  .description-lp {
+    text-align: center;
+    font-size: 1rem; /* Adjust description font size */
   }
 
   .right-image {
-      max-width: 400px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-text-lp {
+    font-size: 1.6rem; /* Smaller heading for mobile */
+  }
+
+  .register-button-landing-page {
+    width: 14rem; /* Adjust button size for smaller screens */
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .description-lp {
+    font-size: 0.9rem;
+  }
+
+  .right-image {
+    max-width: 300px; /* Smaller image on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-text-lp {
+    font-size: 1.4rem;
+  }
+
+  .description-lp {
+    font-size: 0.85rem;
+  }
+
+  .register-button-landing-page {
+    width: 12rem;
+    height: 2.8rem;
+    font-size: 0.9rem;
   }
 }
