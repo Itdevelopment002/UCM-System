@@ -4,10 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './ConstructionDemolishManagement.css';
 import logo from "../../images/logo1.png";
 import rightImage from "../../images/engineer-belongings1.png";
-
+import bg from "../../images/signup-bg.jpg";
 const ConstructionDemolishManagement = () => {
     return (
-        <div className="outer-wrapper-lp">
+        <div className="outer-wrapper-lp"  style={{
+                background: `url(${bg}) center center / cover no-repeat`, // Set the background image
+                position: "relative",
+              }}>
+                    <div className="row w-90 w-md-75 shadow-lg rounded overflow-hidden "></div>
             <div className="content-box-lp">
                 <div className="responsive-container-lp">
                     {/* Left Content Section */}

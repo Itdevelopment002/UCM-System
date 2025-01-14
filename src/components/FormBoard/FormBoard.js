@@ -18,8 +18,9 @@ const Dashboard = () => {
       <Header />
       <StepProvider>
         <Sidebar />
-        <Hwizardbar /> {/* Make sure this is fixed at the top */}
+       
         <div className="main-content">
+        <Hwizardbar /> {/* Make sure this is fixed at the top */}
           <div className="form-container">
             <Routes>
               <Route path="/form" element={<FunctionalRequiremnt />} />

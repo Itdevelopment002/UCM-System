@@ -19,6 +19,21 @@
   height: 1.2rem;
   width: 1.2rem;
 }
+.is-invalid {
+  border: 1px solid red !important;
+  background-color: #ffe6e6; /* Optional: light red background */
+}
+.text-danger {
+  font-family: 'Poppins';
+  font-weight: 100;
+}
+.Toastify{
+
+    font-family: 'Poppins';
+    font-size: 1rem;
+    font-weight: 100;
+
+}
 .submit-btn-form {
   background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
   color: white;
