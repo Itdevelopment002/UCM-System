@@ -123,17 +123,7 @@
   color: white;
 }
 
-/* Media Queries for Mobile responsiveness */
-@media (max-width: 768px) {
-  .language-selector {
-    width: auto; /* Adjust width for mobile */
-  }
-}
-@media (max-width: 1200px) {
-  .user-info {
-   width: auto; /* Adjust width for mobile */
-  }
-}
+
 
 /* Notification and user info styles */
 .bell-icon {
@@ -162,8 +152,16 @@
   cursor: pointer;
 }
 
-/* Media Queries for Responsiveness */
+
+@media (max-width: 1200px) {
+  .user-info {
+   width: auto; /* Adjust width for mobile */
+  }
+}
 @media (max-width: 768px) {
+  .language-selector {
+    width: auto; /* Adjust width for mobile */
+  }
   .header-container {
     flex-direction: column;
     align-items: center;

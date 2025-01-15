@@ -1,13 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useStepContext } from '../StepContext'; // Use custom hook to access context
+import { useStepContext } from '../StepContext';
 import './Sidebar.css';
 import bro from '../../images/bro.png';
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { activeStep, setActiveStep } = useStepContext(); // Use shared state via hook
+  const { activeStep, setActiveStep } = useStepContext();
+  const location = useLocation(); // Access current path
 
   const steps = [
     { name: 'Information Collection Form', path: '/dashboard/form' },
@@ -17,6 +18,13 @@ const Sidebar = () => {
     { name: 'Court Order Details', path: '/dashboard/count-order' },
     { name: 'Remarks', path: '/dashboard/remark' },
   ];
+
+  useEffect(() => {
+    const currentStep = steps.findIndex((step) => step.path === location.pathname);
+    if (currentStep !== -1) {
+      setActiveStep(currentStep); // Set the active step based on the current path
+    }
+  }, [location.pathname, steps, setActiveStep]);
 
   const handleStepClick = (index) => {
     setActiveStep(index);
@@ -50,8 +58,49 @@ const Sidebar = () => {
               <div className="step-number">Step {index + 1}</div>
               <div className="step-title">{step.name}</div>
             </div>
-            <div className={`circle-button ${index === activeStep ? 'active' : ''}`}>
+            <div
+              className={`circle-button ${index === activeStep ? 'active' : ''}`}
+              style={{
+                position: 'relative',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: index === activeStep ? '#5038ed' : 'white',
+                border: index === activeStep ? '1px solid #5038ed' : '1px solid gray',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: index === activeStep ? 'white' : 'gray',
+                fontWeight: '600',
+              }}
+            >
               <span>{index + 1}</span>
+              {index > 0 && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '-20px',
+                    left: '50%',
+                    width: '1px',
+                    height: '20px',
+                    backgroundColor: 'lightgray',
+                    transform: 'translateX(-50%)',
+                  }}
+                ></div>
+              )}
+              {index < steps.length - 1 && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '-20px',
+                    left: '50%',
+                    width: '1px',
+                    height: '20px',
+                    backgroundColor: 'lightgray',
+                    transform: 'translateX(-50%)',
+                  }}
+                ></div>
+              )}
             </div>
           </div>
         ))}
@@ -75,9 +124,9 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <img 
-        src={bro} 
-        alt="bro" 
+      <img
+        src={bro}
+        alt="bro"
         className="sidebar-image"
       />
     </>

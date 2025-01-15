@@ -1,7 +1,8 @@
 /* General layout */
 .dashboard-container {
   background-color: #F0F4F8;
-  height: 100vh;
+  min-height: 100vh; /* Allow the container to grow */
+  overflow-y: auto; /* Enable scrolling when content exceeds the viewport */
   margin: 0;
   padding: 0;
   font-family: "Poppins";
@@ -11,54 +12,26 @@
   align-items: stretch;
 }
 
+
 /* Keep desktop layout unchanged (main-content style) */
 .main-content {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex-grow: 1;
   margin-left: 325px; /* Space for sidebar */
   margin-top: 160px;   /* Adjust according to the height of your wizard bar */
   padding-left: 20px;
   padding-right: 20px;
   overflow-y: auto;
-  height: calc(100vh - 160px); /* Ensures content height takes the rest of the viewport minus the fixed wizard bar */
+ 
 }
-
+@media (max-width: 1280px) {
+  .main-content{
+    margin-left: 0px;
+  }
+}
 @media (min-width: 1800px) {
   .main-content {
-    margin-left: 380px;
-  }}
-/* Mobile-specific styles */
-@media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column; /* Adjust layout for mobile */
-  }
-
-  .main-content {
-    margin-left: 0; /* Remove sidebar space */
-    margin-top: 120px; /* Adjust for mobile layout */
-    padding-left: 10px; /* Reduce padding for smaller screens */
-    padding-right: 10px;
-    height: auto; /* Let content grow naturally */
-  }
-
-  .form-container {
-    width: 100%; /* Full width for mobile */
-    margin-top: 0; /* Remove unnecessary top margin */
-    min-height: auto; /* Let the container height grow with content */
-    padding: 10px; /* Add padding for better spacing */
-    overflow-y: auto; /* Allow vertical scrolling if needed */
-  }
-}
-
-/* For very small devices (phones below 576px) */
-@media (max-width: 576px) {
-  .main-content {
-    margin-top: 100px; /* Further adjust for extremely small screens */
-    padding: 5px;
-  }
-
-  .form-container {
-    padding: 5px; /* Smaller padding for very small screens */
+      margin-left: 380px;
   }
 }

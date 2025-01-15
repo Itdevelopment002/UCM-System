@@ -1,7 +1,6 @@
 .sidebar-outer-div {
   background-color: #F0F4F8;
-  display: flex
-;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-top: 40px;
@@ -14,6 +13,7 @@
   top: 90px;
   isolation: isolate;
 }
+
 /* Updated Step Number Font Size */
 .step-number {
   font-size: clamp(12px, 1vw, 14px);
@@ -48,19 +48,22 @@
   border: none;
   cursor: pointer;
   background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
-  display: flex
-;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.next-step1:hover{
-  transform: scale(1.05); /* Slightly increase button size */
-  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%); /* Reversed gradient */
+
+.next-step1:hover {
+  transform: scale(1.05);
+  /* Slightly increase button size */
+  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
+  /* Reversed gradient */
 }
+
 /* Step Container */
 .step-container {
-  display: flex
-;    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
   padding: 0;
@@ -73,8 +76,7 @@
 
 /* Step Text */
 .step-text-container {
-  display: flex
-;
+  display: flex;
 
   gap: 10px;
   flex-direction: column;
@@ -97,14 +99,14 @@
 }
 
 .step-title {
-    width: 200px;
-    height: 14px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    text-align: right;
-    line-height: 14px;
-    color: #1E1E1E;
+  width: 200px;
+  height: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: right;
+  line-height: 14px;
+  color: #1E1E1E;
 }
 
 /* Circle Button */
@@ -146,8 +148,7 @@
   padding: 10px 16px;
 }
 
-.prev-step
-{
+.prev-step {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -156,116 +157,90 @@
 
 /* Media Queries */
 
-@media(min-width:1800px){
-  
+@media(min-width:1800px) {
+
   .sidebar-outer-div {
     background-color: #F0F4F8;
-    display: flex
-;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding-top: 40px;
     gap: 40px;
     position: fixed;
     z-index: 99;
-   
+
     height: fit-content;
     left: 112px;
     top: 90px;
     isolation: isolate;
+  }
+
+  .sidebar-image {
+    width: 230px;
+  }
+
+  .step-number {
+    width: 65px;
+    height: 12px;
+    font-family: poppins, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 8px;
+    color: #263238;
+    text-align: right;
+    opacity: 0.6;
+  }
+
+  .step-title {
+    font-size: 17px;
+    width: 250px;
+  }
 }
-.sidebar-image{
-  width: 230px;
-}
-.step-number {
-  width: 65px;
-  height: 12px;
-  font-family: poppins, sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 8px;
-  color: #263238;
-  text-align: right;
-  opacity: 0.6;
-}
-.step-title{
-  font-size: 17px;
-  width: 250px;
-}
-}
+
 @media (max-width: 1400px) {
-  
+
   .sidebar-outer-div {
-   margin-top: 19px;
+    margin-top: 19px;
   }
 
-.sidebar-image{
-  visibility: hidden;
-}}
-  
-
-@media (max-width: 1000px) {
-  .sidebar-outer-div {
-   margin-top: 19px;
-  }
-.sidebar-image{
-  visibility: hidden;
-}}
-@media (max-width: 1000px) {
-  .sidebar-outer-div {
-    visibility: hidden; /* Hide the sidebar */
-    position: absolute; /* Remove it from the layout flow */
-    width: 0; /* Set width to 0 so it doesn't occupy space */
-    height: 0; /* Set height to 0 */
-  }
-
-  .step-container {
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start;
-    padding: 10px;
-  }
-
-  .step-text-container {
-    margin-bottom: 8px; /* Space between text and button */
-  }
-
-  /* .circle-button {
-    margin: 0 auto; 
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  } */
-
-  .next-step-container {
-    flex-direction: column;
-    gap: 10px; /* Add spacing between buttons */
-    margin-top: 20px;
-    align-items: center; /* Center buttons */
-  }
-
-  .prev-step{
-    width: 100%; /* Full-width buttons */
-    font-size: 14px;
-    padding: 10px;
+  .sidebar-image {
+    visibility: hidden;
   }
 }
-/* For devices with a max-width of 992px (tablets and smaller) */
-@media (max-width: 992px) {
+
+
+@media (max-width: 1000px) {
   .sidebar-outer-div {
-    visibility: hidden; /* Hide the sidebar */
-    position: absolute; /* Remove it from the layout flow */
-    width: 0; /* Set width to 0 so it doesn't occupy space */
-    height: 0; /* Set height to 0 */
+    margin-top: 19px;
+  }
+
+  .sidebar-image {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 1000px) {
+  .sidebar-outer-div {
+    display: none;
+    /* Hide the sidebar */
+    position: absolute;
+    /* Remove it from the layout flow */
+    width: 0;
+    /* Set width to 0 so it doesn't occupy space */
+    height: 0;
+    /* Set height to 0 */
   }
 
   .step-container {
-    flex-direction: column; /* Stack items vertically */
+    flex-direction: column;
+    /* Stack items vertically */
     align-items: flex-start;
     padding: 10px;
   }
 
   .step-text-container {
-    margin-bottom: 8px; /* Space between text and button */
+    margin-bottom: 8px;
+    /* Space between text and button */
   }
 
   /* .circle-button {
@@ -277,13 +252,65 @@
 
   .next-step-container {
     flex-direction: column;
-    gap: 10px; /* Add spacing between buttons */
+    gap: 10px;
+    /* Add spacing between buttons */
     margin-top: 20px;
-    align-items: center; /* Center buttons */
+    align-items: center;
+    /* Center buttons */
   }
 
   .prev-step {
-    width: 100%; /* Full-width buttons */
+    width: 100%;
+    /* Full-width buttons */
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* For devices with a max-width of 992px (tablets and smaller) */
+@media (max-width: 992px) {
+  .sidebar-outer-div {
+    visibility: hidden;
+    /* Hide the sidebar */
+    position: absolute;
+    /* Remove it from the layout flow */
+    width: 0;
+    /* Set width to 0 so it doesn't occupy space */
+    height: 0;
+    /* Set height to 0 */
+  }
+
+  .step-container {
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .step-text-container {
+    margin-bottom: 8px;
+    /* Space between text and button */
+  }
+
+  /* .circle-button {
+    margin: 0 auto; 
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  } */
+
+  .next-step-container {
+    flex-direction: column;
+    gap: 10px;
+    /* Add spacing between buttons */
+    margin-top: 20px;
+    align-items: center;
+    /* Center buttons */
+  }
+
+  .prev-step {
+    width: 100%;
+    /* Full-width buttons */
     font-size: 14px;
     padding: 10px;
   }
@@ -292,14 +319,19 @@
 /* For devices with a max-width of 768px (small tablets and phones) */
 @media (max-width: 768px) {
   .sidebar-outer-div {
-    visibility: hidden; /* Hide the sidebar */
-    position: absolute; /* Ensure it doesn't take up space */
-    width: 0; /* Set width to 0 so it doesn't occupy space */
-    height: 0; /* Set height to 0 */
+    visibility: hidden;
+    /* Hide the sidebar */
+    position: absolute;
+    /* Ensure it doesn't take up space */
+    width: 0;
+    /* Set width to 0 so it doesn't occupy space */
+    height: 0;
+    /* Set height to 0 */
   }
 
   .step-title {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    font-size: 14px;
+    /* Adjust font size for smaller screens */
   }
 
   /* .circle-button {
@@ -318,25 +350,32 @@
 /* For devices with a max-width of 576px (phones) */
 @media (max-width: 576px) {
   .sidebar-outer-div {
-    visibility: hidden; /* Hide the sidebar */
-    position: absolute; /* Ensure it doesn't take up space */
-    width: 0; /* Set width to 0 so it doesn't occupy space */
-    height: 0; /* Set height to 0 */
+    visibility: hidden;
+    /* Hide the sidebar */
+    position: absolute;
+    /* Ensure it doesn't take up space */
+    width: 0;
+    /* Set width to 0 so it doesn't occupy space */
+    height: 0;
+    /* Set height to 0 */
   }
 
   .step-container {
     flex-direction: column;
-    align-items: center; /* Center align for narrow screens */
+    align-items: center;
+    /* Center align for narrow screens */
   }
 
   .circle-button {
-    margin: 8px 0; /* Add spacing around the step button */
+    margin: 8px 0;
+    /* Add spacing around the step button */
   }
 
   .next-step-container {
     gap: 8px;
   }
 }
+
 /* General sidebar image styling */
 .sidebar-image {
   position: fixed;
@@ -344,27 +383,33 @@
   left: 0;
   padding: 10px;
   margin-top: 0;
-  object-fit: contain; /* Ensures the image maintains its aspect ratio */
-  max-width: 20%; /* The image will take up to 20% of the container width */
-  height: auto; /* Maintain the aspect ratio */
+  object-fit: contain;
+  /* Ensures the image maintains its aspect ratio */
+  max-width: 20%;
+  /* The image will take up to 20% of the container width */
+  height: auto;
+  /* Maintain the aspect ratio */
 }
 
 /* Media query for tablets and smaller devices (max-width 768px) */
 @media (max-width: 768px) {
   .sidebar-image {
-    max-width: 30%; /* Increase size a bit on smaller screens */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 30%;
+    /* Increase size a bit on smaller screens */
+    height: auto;
+    /* Maintain aspect ratio */
   }
 }
 
 /* Media query for mobile devices (max-width 576px) */
 @media (max-width: 576px) {
   .sidebar-image {
-    max-width: 40%; /* Increase size further on very small screens */
+    max-width: 40%;
+    
   }
 }
-.next-step1{
-  display: flex
-;
+
+.next-step1 {
+  display: flex;
   align-items: center;
 }
