@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import facebook from "../../images/facebook.png";
@@ -94,6 +95,7 @@ const Otp = () => {
             >
               Continue
             </button>
+
             <p className="text-dark mb-2">
               <b>Login</b> with Others
             </p>
