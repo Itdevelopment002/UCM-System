@@ -221,7 +221,7 @@
 
 @media (max-width: 1000px) {
   .sidebar-outer-div {
-    visibility: hidden;
+    display: none;
     /* Hide the sidebar */
     position: absolute;
     /* Remove it from the layout flow */

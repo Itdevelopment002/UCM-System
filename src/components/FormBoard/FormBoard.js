@@ -21,7 +21,7 @@ const Dashboard = () => {
        
         <div className="main-content">
            <Hwizardbar /> {/* Make sure this is fixed at the top */}
-          <div className="form-container">
+          
             <Routes>
               <Route path="/form" element={<FunctionalRequiremnt />} />
               <Route path="/complain-details" element={<ComplaintDetails />} />
@@ -30,7 +30,7 @@ const Dashboard = () => {
               <Route path="/remark" element={<Remark />} />
               <Route path="/demolition-order" element={<DemolitionOrder />} />
             </Routes>
-          </div>
+         
         </div>
       </StepProvider>
     </div>
