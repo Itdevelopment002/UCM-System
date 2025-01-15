@@ -442,3 +442,76 @@ textarea {
   width: auto;
   gap: 20px;
 }
+
+@media (max-width: 768px) {
+  .modal-content {
+      width: 90%; /* Adjust modal width for smaller screens */
+      flex-direction: column; /* Stack content vertically */
+      padding: 15px; /* Slightly increased padding */
+      background: #ffffff; /* Explicitly set background color */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25); /* Retain shadow */
+      border-radius: 12px; /* Retain rounded corners */
+  }
+
+  .modal-icon-container {
+      margin-bottom: 20px; /* Increase spacing below the icon container */
+  }
+
+  .modal-icon {
+      font-size: 1.5rem; /* Smaller tick/arrow size */
+      width: 50px; /* Ensure the circle is proportional */
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #039855; /* Keep the border consistent */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #128c5414; /* Retain the circle background */
+      box-shadow: 2px 2px 20px #03985596; /* Retain the glowing effect */
+  }
+
+  .modal-title {
+      font-size: 16px; /* Smaller font for the title */
+      margin-bottom: 10px; /* Add spacing below the title */
+  }
+
+  .model-text {
+      font-size: 14px; /* Smaller font for the body text */
+      margin-bottom: 15px; /* Add spacing below the descriptive text */
+  }
+
+  .modal-options {
+      gap: 12px; /* Space between options */
+      margin-bottom: 20px; /* Add spacing below the options */
+  }
+
+  .modal-options label {
+      font-size: 12px; /* Smaller font for the options */
+      gap: 5px; /* Adjust gap between labels */
+  }
+
+  .modal-footer {
+      margin-top: 20px; /* Add spacing above the footer */
+      font-size: 12px; /* Smaller footer text */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap; /* Ensure proper wrapping on smaller screens */
+      row-gap: 10px; /* Add spacing for wrapped elements */
+  }
+
+  .checkbox-container {
+      gap: 10px; /* Add spacing between checkbox and label */
+  }
+
+  .cancel-btn,
+  .confirm-btn {
+      font-size: 12px; /* Smaller font size for buttons */
+      padding: 6px 12px; /* Smaller button padding */
+  }
+
+  .btn-at-footer {
+      display: flex;
+      gap: 15px; /* Increase gap between buttons */
+  }
+}
