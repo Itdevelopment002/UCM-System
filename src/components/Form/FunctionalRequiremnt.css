@@ -459,3 +459,6 @@ textarea {
   color: #5038ED; 
   text-align: center;
 }
+.filename-gap {
+  margin-left: 8px; /* Adjust the value as needed for the desired gap */
+}

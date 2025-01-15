@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { FormGroup, Label, Input } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./FunctionalRequiremnt.css";
+import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
+import "./FunctionalRequiremnt.css"; // Ensure your updated CSS is here
 
 const DemolitionOrder = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const DemolitionOrder = () => {
   });
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -33,7 +35,6 @@ const DemolitionOrder = () => {
 
   const validateForm = () => {
     const newErrors = {};
-
     if (!formData.demolitionDate) {
       newErrors.demolitionDate = "Demolition Date is required.";
     }
@@ -49,7 +50,6 @@ const DemolitionOrder = () => {
     if (!formData.policeStationName) {
       newErrors.policeStationName = "Please select a police station.";
     }
-
     return newErrors;
   };
 
@@ -66,12 +66,19 @@ const DemolitionOrder = () => {
     }
   };
 
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+
+  const selectPoliceStation = (station) => {
+    setFormData((prevData) => ({ ...prevData, policeStationName: station }));
+    setDropdownOpen(false);
+  };
+
   return (
     <div className="form-container">
       <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="row">
-          {/* First Row */}
+          {/* Demolition Date, Time and Document */}
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="demolitionDate" className="form-label label-small">
@@ -113,8 +120,7 @@ const DemolitionOrder = () => {
                   className={`form-control input-small upload-label ${errors.demolitionDocument ? "is-invalid" : ""}`}
                   style={{ cursor: "pointer" }}
                 >
-                  <i className="fas fa-upload upload-icon input-small"></i>{" "}
-                  {fileName || "Upload Documents"}
+                  <i className="fas fa-upload upload-icon input-small"></i> {fileName || "Upload Documents"}
                 </label>
                 <input
                   type="file"
@@ -129,8 +135,8 @@ const DemolitionOrder = () => {
           </div>
         </div>
 
-        {/* Second Row */}
         <div className="row">
+          {/* Demolition Expenditure */}
           <div className="col-md-8">
             <FormGroup>
               <Label htmlFor="demolitionExpenditure" className="form-label label-small">
@@ -148,8 +154,8 @@ const DemolitionOrder = () => {
           </div>
         </div>
 
-        {/* Third Row */}
         <div className="row">
+          {/* Construction Number */}
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="constructionNumber" className="form-label label-small">
@@ -171,26 +177,76 @@ const DemolitionOrder = () => {
               {errors.constructionNumber && <div className="text-danger">{errors.constructionNumber}</div>}
             </FormGroup>
           </div>
+
+          {/* Police Station Dropdown */}
+          <div className="col-md-4 mb-3">
+            <label htmlFor="policeStationName" className="form-label label-small">
+              Police Station Name <span className="text-danger">*</span>
+            </label>
+            <div className="custom-dropdown">
+              <div
+                className="dropdown-header"
+                onClick={toggleDropdown}
+                aria-role="button"
+              >
+                <span className="option-inside-placeholder">
+                  {formData.policeStationName || "Select Police Station"}
+                </span>
+                {dropdownOpen ? (
+                  <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+                ) : (
+                  <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+                )}
+              </div>
+              {dropdownOpen && (
+                <ul className="dropdown-options">
+                  {["Station A", "Station B", "Station C"].map((station) => (
+                    <li
+                      key={station}
+                      className="dropdown-option"
+                      onClick={() => selectPoliceStation(station)}
+                    >
+                      {station}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            {errors.policeStationName && (
+              <div className="text-danger">{errors.policeStationName}</div>
+            )}
+          </div>
+
+          {/* Police Station Dropdown
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="policeStationName" className="form-label label-small">
                 Police Station Name <span className="text-danger">*</span>
               </Label>
-              <Input
-                type="select"
-                id="policeStationName"
-                value={formData.policeStationName}
-                onChange={handleInputChange}
-                className={`form-control ${errors.policeStationName ? "is-invalid" : ""}`}
-              >
-                <option value="">Select the police station name</option>
-                <option value="Station A">Station A</option>
-                <option value="Station B">Station B</option>
-                <option value="Station C">Station C</option>
-              </Input>
+              <div className={`dropdown ${dropdownOpen ? "open" : ""}`}>
+                <div
+                  className={`form-control dropdown-toggle ${errors.policeStationName ? "is-invalid" : ""}`}
+                  onClick={toggleDropdown}
+                >
+                  {formData.policeStationName || "Select Police Station"}
+                </div>
+                <div className="dropdown-menu">
+                  {["Station A", "Station B", "Station C"].map((station) => (
+                    <div
+                      key={station}
+                      className="dropdown-item"
+                      onClick={() => selectPoliceStation(station)}
+                    >
+                      {station}
+                    </div>
+                  ))}
+                </div>
+              </div>
               {errors.policeStationName && <div className="text-danger">{errors.policeStationName}</div>}
             </FormGroup>
-          </div>
+          </div> */}
+
+          {/* Police Manpower Details */}
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="policeManpowerDetails" className="form-label label-small">
@@ -208,8 +264,8 @@ const DemolitionOrder = () => {
           </div>
         </div>
 
-        {/* Fourth Row */}
         <div className="row">
+          {/* Ward Office */}
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="wardOffice" className="form-label label-small">
@@ -233,7 +289,6 @@ const DemolitionOrder = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
         <button type="submit" className="btn submit-btn-form">
           Save and Submit
         </button>
