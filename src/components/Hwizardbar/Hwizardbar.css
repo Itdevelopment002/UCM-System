@@ -201,3 +201,18 @@
       left: 0%;
   }
 }
+@media (max-width: 380px) {
+  .container-bar {
+      top: 17%;
+      width: 100%;
+      left: 0%;
+  }
+}
+
+@media (max-width: 420px) {
+  .container-bar {
+      top: 15%;
+      width: 100%;
+      left: 0%;
+  }
+}

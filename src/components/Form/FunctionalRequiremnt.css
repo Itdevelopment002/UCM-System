@@ -551,3 +551,16 @@ textarea {
       left: 0%;
   }
 }
+@media (max-width: 380px) {
+  .form-container {
+      top: 60%;
+      width: 100%;
+      left: 0%;
+  }
+}@media (max-width: 420px) {
+  .form-container {
+      top: 40%;
+      width: 100%;
+      left: 0%;
+  }
+}
