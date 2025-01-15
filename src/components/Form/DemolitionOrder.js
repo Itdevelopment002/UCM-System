@@ -75,18 +75,7 @@ const DemolitionOrder = () => {
 
   return (
     <div className="form-container">
-    <ToastContainer 
-      style={{marginTop:"5rem"}}
-     position="top-right" // Change to "top-center", "bottom-center", etc.
-     autoClose={5000} // Duration in milliseconds
-     hideProgressBar={false}
-     newestOnTop={false}
-     closeOnClick
-     rtl={false}
-     pauseOnFocusLoss
-     draggable
-     pauseOnHover
-   />
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="row">
           {/* Demolition Date, Time and Document */}

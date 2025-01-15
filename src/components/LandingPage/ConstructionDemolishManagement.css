@@ -115,48 +115,7 @@
 }
 
 /* Responsive adjustments */
-@media (min-width: 1600px) {
-  .content-box-lp {
-    width: 85%; /* Adjust width for larger screens */
-    max-width: 1400px; /* Increase the max-width */
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  .responsive-container-lp {
-    grid-template-columns: 1fr 1fr; /* Maintain two equal columns */
-    gap: 3rem; /* Increase gap for spacious layout */
-  }
-
-  .header-text-lp {
-    font-size: 2.2rem; /* Slightly larger font size */
-    line-height: 1.6; /* Adjust line height */
-  }
-
-  .description-lp {
-    font-size: 1.2rem; /* Increase description font size */
-    line-height: 1.7; /* Adjust line height for readability */
-  }
-
-  .register-button-landing-page {
-    height: 4rem; /* Increase button size */
-    width: 18rem;
-    font-size: 1.2rem; /* Slightly larger text */
-  }
-
-  .right-image {
-    max-width: 600px; /* Increase image size */
-  }
-
-  .construction-logo-img {
-    width: 180px; /* Increase logo size */
-  }
-}
-
 @media (max-width: 1200px) {
- 
   .content-box-lp {
     width: 95%;
   }
