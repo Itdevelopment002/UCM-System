@@ -67,9 +67,7 @@ const ComplaintDetails = () => {
 
     if (validateForm()) {
       toast.success("Form submitted successfully!");
-    } else {
-      toast.error("Please fill in all required fields.");
-    }
+    } 
   };
 
   return (

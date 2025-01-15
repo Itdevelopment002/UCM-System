@@ -30,7 +30,7 @@ const Dashboard = () => {
               <Route path="/remark" element={<Remark />} />
               <Route path="/demolition-order" element={<DemolitionOrder />} />
             </Routes>
-          </div>
+         </div>
         </div>
       </StepProvider>
     </div>

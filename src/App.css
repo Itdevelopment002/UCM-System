@@ -21,7 +21,18 @@ input::placeholder {
 .app-container {
   display: flex;
   flex-direction: column;
+  /* min-height: 100%; */
+ 
+}
+@media (max-width: 576px) {
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100%; */
+    overflow-x: auto; /* Allow horizontal scrolling for large content */
+    overflow-y: auto; /* Keep vertical scrolling */
   min-height: 100vh;
   overflow-x: auto; /* Allow horizontal scrolling for large content */
   overflow-y: auto; /* Keep vertical scrolling */
+  }
 }

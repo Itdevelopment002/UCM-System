@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import { useStepContext } from '../StepContext'; // Use custom hook to access context
+import { useStepContext } from '../StepContext';
 import './Hwizardbar.css';
 
 const Hwizardbar = () => {
   const navigate = useNavigate();
   const { activeStep, setActiveStep } = useStepContext();
+  const location = useLocation(); // Access current path
 
   const steps = [
     { name: 'Information Collection Form', path: '/dashboard/form', tab: 'info' },
@@ -17,18 +18,22 @@ const Hwizardbar = () => {
     { name: 'Remark', path: '/dashboard/remark', tab: 'submission' },
   ];
 
+  useEffect(() => {
+    const currentStep = steps.findIndex((step) => step.path === location.pathname);
+    if (currentStep !== -1) {
+      setActiveStep(currentStep); // Set the active step based on the current path
+    }
+  }, [location.pathname, steps, setActiveStep]);
+
   const handleTabClick = (route, index) => {
     setActiveStep(index);
     navigate(route);
   };
 
-  // Inline style for the arrow buttons
   const arrowButtonStyle = (isDisabled) => ({
-    backgroundColor: isDisabled ? 'grey' : '#5038ed', // default blue background
-   
+    backgroundColor: isDisabled ? 'grey' : '#5038ed',
     cursor: isDisabled ? 'not-allowed' : 'pointer',
-   
-    borderRadius: '50%', // Optional, for a rounded button
+    borderRadius: '50%',
   });
 
   return (
