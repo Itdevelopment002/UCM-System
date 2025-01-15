@@ -1,12 +1,11 @@
+
 import React, { useState } from "react";
 import "./FunctionalRequiremnt.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
+
 const FunctionalRequiremnt = () => {
- 
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const [formValues, setFormValues] = useState({
     wardGroup: "",
     contactNumber: "",
@@ -21,7 +20,11 @@ const FunctionalRequiremnt = () => {
       commercial: false,
     },
   });
-
+  const [errors, setErrors] = useState({
+    contactNumber: "",
+    pincode: "",
+  });
+  
   const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
   const [selecteddOption, setSelecteddOption] = useState("Choose nature of construction");
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
@@ -60,24 +63,15 @@ const FunctionalRequiremnt = () => {
 
   const handleNumericInput = (e, limit = 999999) => {
     const { id, value } = e.target;
-    let sanitizedValue = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
-  
-    // Prevent the value from starting with '0' unless the value is '0' itself
-    if (sanitizedValue.startsWith("0") && sanitizedValue.length > 1) {
-      sanitizedValue = sanitizedValue.slice(1); // Remove leading '0'
-    }
-  
-    // If the value exceeds the limit, set it to the limit
+    let sanitizedValue = value.replace(/[^0-9]/g, "");
     if (parseInt(sanitizedValue) > limit) {
       sanitizedValue = limit.toString();
     }
-  
     setFormValues((prev) => ({
       ...prev,
       [id]: sanitizedValue,
     }));
   };
-  
 
   const handleCheckboxToggle = (e) => {
     const { id, checked } = e.target;
@@ -108,60 +102,68 @@ const FunctionalRequiremnt = () => {
     setIsOpenConstruction(false);
   };
 
-
-  const [errors, setErrors] = useState({});
-
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formValues.contactNumber || formValues.contactNumber.length !== 10) {
-      newErrors.contactNumber = "Please enter a valid 10-digit contact number.";
-    }
-    if (!formValues.pincode || formValues.pincode.length !== 6) {
-      newErrors.pincode = "Please enter a valid 6-digit pincode.";
-    }
-    if (!formValues.wardGroup) {
-      newErrors.wardGroup = "Ward Office Name is required.";
-    }
-    if (!formValues.ownerName) {
-      newErrors.ownerName = "UC Owner Name is required.";
-    }
-    return newErrors;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      toast.error("Please fill in all mandatory fields.");
+    let isValid = true;
+    const newErrors = { ...errors };
+  
+    // Mobile number validation
+    const contactNumber = formValues.contactNumber;
+    if (!/^\d{10}$/.test(contactNumber)) {
+      newErrors.contactNumber = "Contact number must be exactly 10 digits.";
+      isValid = false;
     } else {
-      console.log("Form Values:", formValues);
-      toast.success("Form submitted successfully!");
+      newErrors.contactNumber = ""; // Clear error if valid
+    }
+  
+    // Pincode validation
+    const pincode = formValues.pincode;
+    if (!/^\d{6}$/.test(pincode)) {
+      newErrors.pincode = "Pincode must be exactly 6 digits.";
+      isValid = false;
+    } else {
+      newErrors.pincode = ""; // Clear error if valid
+    }
+  
+    setErrors(newErrors);
+  
+    if (isValid) {
+      // Set success message and reset form after successful submit
+      setSubmitSuccess(true);
+      console.log("Form submitted successfully with values:", formValues);
+  
+      // Optionally, you can reset the form or set a timeout to hide the success message after a few seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+        // Optional: Reset form values if needed
+        // setFormValues({
+        //   contactNumber: "",
+        //   pincode: "",
+        // });
+      }, 3000); // Hide success message after 3 seconds
     }
   };
+  
+
 
   return (
     <div className="form-container">
-      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-md-4">
-          <div className="mb-3">
-  <label htmlFor="wardGroup" className="form-label label-small">
-    Ward Office Name <span className="text-danger">*</span>
-  </label>
-  <input
-    type="text"
-    className={`form-control input-small ${errors.wardGroup ? "is-invalid" : ""}`}
-    id="wardGroup"
-    placeholder="Enter ward officer name"
-    value={formValues.wardGroup}
-    onChange={handleInputChange}
-  />
-  {errors.wardGroup && <span className="text-danger">{errors.wardGroup}</span>}
-</div>
-
+            <div className="mb-3">
+              <label htmlFor="wardGroup" className="form-label label-small">
+                Ward Office
+              </label>
+              <input
+                type="text"
+                className="form-control input-small"
+                id="wardGroup"
+                placeholder="Enter ward officer"
+                value={formValues.wardGroup}
+                onChange={handleInputChange}
+              />
+            </div>
 
             <div className="mb-3">
               <label htmlFor="ucNo" className="form-label label-small">
@@ -180,39 +182,36 @@ const FunctionalRequiremnt = () => {
             </div>
 
             <div className="mb-3">
-  <label htmlFor="ownerName" className="form-label label-small">
-    UC Owner Name <span className="text-danger">*</span>
-  </label>
-  <input
-    type="text"
-    className={`form-control input-small ${errors.ownerName ? "is-invalid" : ""}`}
-    id="ownerName"
-    placeholder="Enter owner name"
-    value={formValues.ownerName}
-    onChange={handleInputChange}
-  />
-  {errors.ownerName && <span className="text-danger">{errors.ownerName}</span>}
-</div>
-
-
-            <div className="mb-3">
-              <label htmlFor="contactNumber" className="form-label label-small">
-                Contact Number <span className="text-danger">*</span>
+              <label htmlFor="ownerName" className="form-label label-small">
+                UC Owner Name
               </label>
               <input
                 type="text"
-                className={`form-control input-small ${
-                  errors.contactNumber ? "is-invalid" : ""
-                }`}
-                id="contactNumber"
-                placeholder="Enter contact number"
-                value={formValues.contactNumber}
+                className="form-control input-small"
+                id="ownerName"
+                placeholder="Enter owner name"
+                value={formValues.ownerName}
                 onChange={handleInputChange}
               />
-              {errors.contactNumber && (
-                <span className="text-danger">{errors.contactNumber}</span>
-              )}
             </div>
+
+            <div className="mb-3">
+  <label htmlFor="contactNumber" className="form-label label-small">
+    Contact Number  <span className="text-danger">*</span>
+  </label>
+  <input
+    type="text"
+    className={`form-control input-small ${errors.contactNumber ? "is-invalid" : ""}`}
+    id="contactNumber"
+    placeholder="Enter contact number"
+    value={formValues.contactNumber}
+    onChange={(e) => handleNumericInput(e, 9999999999)}
+  />
+  {errors.contactNumber && (
+    <div className="text-danger">{errors.contactNumber}</div>
+  )}
+</div>
+
             <div className="occupation">
               <h6 className="label-small">Nature of Construction</h6>
               <div className="custom-dropdown">
@@ -241,9 +240,6 @@ const FunctionalRequiremnt = () => {
                 )}
               </div>
             </div>
-          
-
-           
           </div>
 
           <div className="col-md-8">
@@ -265,43 +261,38 @@ const FunctionalRequiremnt = () => {
                 />
               </div>
 
-              <div className="col-md-6">
-                <div className="row mt-2">
-                <div className=" col-md-6">
-              <label htmlFor="pincode" className="form-label label-small">
-                Pincode <span className="text-danger">*</span>
-              </label>
-              <input
-                type="text"
-                className={`form-control input-small ${
-                  errors.pincode ? "is-invalid" : ""
-                }`}
-                id="pincode"
-                placeholder="Enter pincode"
-                value={formValues.pincode}
-                onChange={handleInputChange}
-              />
-              {errors.pincode && (
-                <span className="text-danger">{errors.pincode}</span>
-              )}
+              <div className="mb-3 col-md-3 mt-2">
+  <label htmlFor="pincode" className="form-label label-small">
+    Pincode  <span className="text-danger">*</span>
+  </label>
+  <input
+    type="text"
+    className={`form-control input-small ${errors.pincode ? "is-invalid" : ""}`}
+    id="pincode"
+    placeholder="Enter pincode"
+    value={formValues.pincode}
+    onChange={(e) => handleNumericInput(e, 999999)}
+  />
+  {errors.pincode && (
+    <div className="text-danger">{errors.pincode}</div>
+  )}
+</div>
+  <div className="mb-3 col-md-3 mt-2">
+  <label htmlFor="pincode" className="form-label label-small">
+    Camp  
+  </label>
+  <input
+    type="text"
+    className={`form-control input-small `}
+    id="pincode"
+    placeholder="Enter Camp"
+    
+   
+  />
+  
+</div>
             </div>
-                <div className="col-md-6">
-                    <label htmlFor="camp" className="form-label label-small">
-                      Camp
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control input-small"
-                      id="camp"
-                      placeholder="Enter camp"
-                      value={formValues.camp}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
+            
 
             <h2 className="label-big">Construction Details</h2>
             <div className="divider-form"></div>
@@ -374,12 +365,12 @@ const FunctionalRequiremnt = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              </div>
+            </div>
+            <button type="submit" className="btn submit-btn-form">
+              Save and Submit
+            </button>
           </div>
         </div>
-        <button type="submit" className="btn submit-btn-form">
-          Save and Submit
-        </button>
       </form>
     </div>
   );

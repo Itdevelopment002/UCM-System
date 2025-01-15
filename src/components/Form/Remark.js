@@ -38,9 +38,7 @@ const Remark = () => {
       console.log("Form Data Submitted:", formData);
       toast.success("Form submitted successfully!"); // Success toast
       // Add your form submission logic here
-    } else {
-      toast.error("Please fill in all required fields."); // Error toast
-    }
+    } 
   };
 
   return (

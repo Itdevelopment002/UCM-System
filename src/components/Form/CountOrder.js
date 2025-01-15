@@ -83,13 +83,7 @@ const CourtOrder = () => {
     setErrors(formErrors); // Update errors in the state
     
     // Only submit if there are no errors
-    if (Object.keys(formErrors).length === 0) {
-      console.log("Form submitted successfully!", formValues);
-      toast.success("Form submitted successfully!"); // Success toast
-      // Handle actual form submission logic here
-    } else {
-      toast.error("Please fill in all required fields."); // Error toast
-    }
+   
   };
 
   return (
@@ -240,18 +234,31 @@ const CourtOrder = () => {
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerName" className="form-label label-small">
-              Petitioner Name <span className="text-danger">*</span>
+              Petitioner Name 
             </label>
             <input
               type="text"
-              className={`form-control input-small ${errors.petitionerName ? "is-invalid" : ""}`}
+              className={`form-control input-small`}
               id="petitionerName"
               placeholder="Enter petitioner name"
               value={formValues.petitionerName}
               onChange={handleInputChange}
             />
-            {errors.petitionerName && <div className="text-danger">{errors.petitionerName}</div>}
+          
           </div>
+          <div className="col-md-4 mb-3 mt-2">
+                <label htmlFor="detailedAddress" className="form-label label-small">
+                 Petitioner Address
+                </label>
+                <textarea
+                  className="form-control input-small text-box-height"
+                  id="detailedAddress"
+                  placeholder="Write a long text here"
+                  rows="3"
+                  value={formValues.detailedAddress}
+                  onChange={handleInputChange}
+                />
+              </div>
         </div>
 
         <button type="submit" className="btn submit-btn-form">
