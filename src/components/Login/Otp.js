@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import worker from "../../images/building-image.png";
 import facebook from "../../images/facebook.png";
 import flash from "../../images/flash.png";
 import google from "../../images/google.png";
@@ -11,26 +10,44 @@ import bg from "../../images/vintage-bg.jpg";
 import "./Login.css"; // Use login.css for styling consistency
 import "../../components/Register/Register.css";
 
+const phoneRegex = /^[0-9]{10}$/;
+
 const Otp = () => {
   const navigate = useNavigate();
-  const [emailOrPhone, setEmailOrPhone] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [warning, setWarning] = useState(""); // State for warning message
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    // Allow only numeric values
+    if (/^\d*$/.test(value)) {
+      setPhone(value);
+      setWarning(""); // Clear the warning if input is valid
+    } else {
+      setWarning("Only numeric values are allowed."); // Set warning for invalid input
+    }
+  };
 
   const handleContinue = (e) => {
     e.preventDefault();
-    if (emailOrPhone) {
-      navigate("/verification"); // Redirect to verification page
+
+    if (!phoneRegex.test(phone)) {
+      setIsError(true); // Show red border if invalid
     } else {
-      alert("Please enter a valid email or phone number.");
+      setIsError(false); // Clear error
+      setWarning(""); // Clear warning
+      navigate("/verification"); // Redirect to verification page
     }
   };
 
   return (
     <div
-    className="container-fluid vh-100 d-flex align-items-center justify-content-center"
-    style={{
-      background: `url(${bg}) center center / cover no-repeat`, // Set the background image
-      position: "relative",
-    }}
+      className="container-fluid vh-100 d-flex align-items-center justify-content-center"
+      style={{
+        background: `url(${bg}) center center / cover no-repeat`, // Set the background image
+        position: "relative",
+      }}
     >
       <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
         <div className="col-12 col-md-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center">
@@ -41,20 +58,34 @@ const Otp = () => {
           />
           <h2 className="fw-bold mb-3">OTP VERIFICATION</h2>
           <p className="text-dark text-center mb-4">
-            Enter Credentials to get One Time Password
+            Enter your phone number to receive a One-Time Password
           </p>
           <form className="w-75 text-center" onSubmit={handleContinue}>
             <div className="mb-3">
               <div className="input-group">
                 <input
                   type="text"
-                  className="form-control input-check-reg mx-auto align-items-center"
+                  className={`form-control input-check-reg mx-auto align-items-center ${
+                    isError ? "border-danger" : ""
+                  }`}
                   placeholder="Phone number"
-                  style={{ maxWidth: "300px", maxHeight: "50px" }}
-                  value={emailOrPhone}
-                  onChange={(e) => setEmailOrPhone(e.target.value)}
+                  style={{
+                    maxWidth: "300px",
+                    maxHeight: "50px",
+                    borderWidth: isError ? "2px" : "1px",
+                  }}
+                  value={phone}
+                  onChange={handleChange}
                 />
               </div>
+              {warning && (
+                <p className="text-warning mt-2">{warning}</p> // Display warning for invalid input
+              )}
+              {isError && !warning && (
+                <p className="text-danger mt-2">
+                  Please enter a valid 10-digit phone number.
+                </p>
+              )}
             </div>
 
             <button
@@ -63,7 +94,7 @@ const Otp = () => {
             >
               Continue
             </button>
-           
+
             <p className="text-dark mb-2">
               <b>Login</b> with Others
             </p>
@@ -111,16 +142,12 @@ const Otp = () => {
                 color: "#fff",
                 textAlign: "left",
                 lineHeight: "1.5",
+                fontSize:"32px",
               }}
             >
-              Very good works are waiting for you. Login Now!
+              Very good works are waiting for you. Login Now!!!
             </h3>
           </div>
-          {/* <img
-            src={worker}
-            alt="Worker"
-            className="position-absolute bottom-0 end-0 p-5 building-image"
-          /> */}
           <img
             src={flash}
             alt="Flash"

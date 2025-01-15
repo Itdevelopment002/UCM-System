@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import map from "../../images/map.png";
 import locate from "../../images/location-icon.png";
 import iconbg from "../../images/icon-bg.png";
-import "./FunctionalRequiremnt.css";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import "react-toastify/dist/ReactToastify.css";
+import "./FunctionalRequiremnt.css";
+
 const ComplaintDetails = () => {
   const [formValues, setFormValues] = useState({
     complainantName: "",
     complainantContact: "",
     complaintDescription: "",
     hardCopyUpload: null,
+    photoUpload: null,
+    videoUpload: null,
   });
 
   const [errors, setErrors] = useState({});
@@ -23,25 +26,34 @@ const ComplaintDetails = () => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    const { id, files } = e.target;
+    if (files.length > 0) {
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        [id]: files[0],
+      }));
+    }
+  };
+
   const validateForm = () => {
     const newErrors = {};
 
-    // Validate Complainant Name
     if (!formValues.complainantName.trim()) {
       newErrors.complainantName = "Complainant Name is required.";
     }
 
-    // Validate Complainant Contact
-    if (!formValues.complainantContact.trim() || !/^\d{10}$/.test(formValues.complainantContact)) {
+    if (
+      !formValues.complainantContact.trim() ||
+      !/^\d{10}$/.test(formValues.complainantContact)
+    ) {
       newErrors.complainantContact = "Please enter a valid 10-digit contact number.";
     }
 
-    // Validate Complaint Description
     if (!formValues.complaintDescription.trim()) {
       newErrors.complaintDescription = "Complaint Description is required.";
     }
 
-    // Validate Hard Copy Upload
     if (!formValues.hardCopyUpload) {
       newErrors.hardCopyUpload = "Please upload a hard copy document.";
     }
@@ -54,72 +66,76 @@ const ComplaintDetails = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Form submitted successfully!", formValues);
-        toast.success("Form submitted successfully!"); // Success toast
-      // Handle actual form submission logic here
+      toast.success("Form submitted successfully!");
+    } else {
+      toast.error("Please fill in all required fields.");
     }
-    else {
-          toast.error("Please fill in all required fields."); // Error toast
-        }
   };
 
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div className="row">
-          {/* Left Column - Complaint Details */}
           <div className="col-md-6">
             <div className="row">
-              {/* Complainant Name */}
               <div className="mb-3 col-md-6">
                 <label htmlFor="complainantName" className="form-label label-small">
                   Complaint Received from <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
-                  className={`form-control input-small ${errors.complainantName ? "is-invalid" : ""}`}
                   id="complainantName"
                   value={formValues.complainantName}
                   onChange={handleInputChange}
+                  className={`form-control input-small ${
+                    errors.complainantName ? "is-invalid" : ""
+                  }`}
                   placeholder="Enter name"
                 />
-                {errors.complainantName && <small className="text-danger">{errors.complainantName}</small>}
+                {errors.complainantName && (
+                  <small className="text-danger">{errors.complainantName}</small>
+                )}
               </div>
 
-              {/* Complainant Contact */}
               <div className="mb-3 col-md-6">
                 <label htmlFor="complainantContact" className="form-label label-small">
                   Complainant Contact Details <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
-                  className={`form-control input-small ${errors.complainantContact ? "is-invalid" : ""}`}
                   id="complainantContact"
                   value={formValues.complainantContact}
                   onChange={handleInputChange}
+                  className={`form-control input-small ${
+                    errors.complainantContact ? "is-invalid" : ""
+                  }`}
                   placeholder="Enter contact number"
                 />
-                {errors.complainantContact && <small className="text-danger">{errors.complainantContact}</small>}
+                {errors.complainantContact && (
+                  <small className="text-danger">{errors.complainantContact}</small>
+                )}
               </div>
             </div>
 
-            {/* Complaint Description */}
             <div className="mb-3">
               <label htmlFor="complaintDescription" className="form-label label-small">
                 Complaint Description <span className="text-danger">*</span>
               </label>
               <textarea
-                className={`form-control input-small text-box-height ${errors.complaintDescription ? "is-invalid" : ""}`}
                 id="complaintDescription"
-                rows="4"
                 value={formValues.complaintDescription}
                 onChange={handleInputChange}
+                className={`form-control input-small ${
+                  errors.complaintDescription ? "is-invalid" : ""
+                }`}
+                rows="4"
                 placeholder="Write a long text here"
               ></textarea>
-              {errors.complaintDescription && <small className="text-danger">{errors.complaintDescription}</small>}
+              {errors.complaintDescription && (
+                <small className="text-danger">{errors.complaintDescription}</small>
+              )}
             </div>
 
-            {/* Hard Copy Upload */}
             <div className="mb-3 col-md-12">
               <label htmlFor="hardCopyUpload" className="form-label label-small">
                 Hard Copy Attachment (Offline Complaint Received) <span className="text-danger">*</span>
@@ -130,24 +146,28 @@ const ComplaintDetails = () => {
                   className="form-control input-small upload-label"
                   style={{ cursor: "pointer" }}
                 >
-                  <i className="fas fa-upload upload-icon input-small"></i> Upload Documents
+                  <i className="fas fa-upload upload-icon"></i>
+                  <span className="filename-gap">
+                    {formValues.hardCopyUpload
+                      ? formValues.hardCopyUpload.name
+                      : "Upload Documents"}
+                  </span>
                 </label>
                 <input
                   type="file"
-                  className="form-control input-small d-none"
                   id="hardCopyUpload"
-                  accept="image/*"
-                  onChange={handleInputChange}
+                  onChange={handleFileChange}
+                  className="form-control input-small d-none"
+                  accept=".doc, .pdf"
                 />
               </div>
-              {errors.hardCopyUpload && <small className="text-danger">{errors.hardCopyUpload}</small>}
+              {errors.hardCopyUpload && (
+                <small className="text-danger">{errors.hardCopyUpload}</small>
+              )}
             </div>
           </div>
 
-          {/* Right Column - Attachments and Location */}
-          {/* Reused existing logic */}
           <div className="col-md-6">
-            {/* Attachments */}
             <div className="mb-3">
               <label className="form-label label-big">Complaint Attachments</label>
               <div className="divider-form"></div>
@@ -160,9 +180,20 @@ const ComplaintDetails = () => {
                       className="form-control input-small upload-label"
                       style={{ cursor: "pointer" }}
                     >
-                      <i className="fas fa-upload upload-icon"></i> Upload Photos
+                      <i className="fas fa-upload upload-icon"></i>
+                      <span className="filename-gap">
+                        {formValues.photoUpload
+                          ? formValues.photoUpload.name
+                          : "Upload Photos"}
+                      </span>
                     </label>
-                    <input type="file" className="form-control input-small d-none" id="photoUpload" accept="image/*" />
+                    <input
+                      type="file"
+                      id="photoUpload"
+                      onChange={handleFileChange}
+                      className="form-control input-small d-none"
+                      accept=".jpeg, .jpg, .png"
+                    />
                   </div>
                 </div>
                 <div className="mb-3 col-md-6">
@@ -173,15 +204,25 @@ const ComplaintDetails = () => {
                       className="form-control input-small upload-label"
                       style={{ cursor: "pointer" }}
                     >
-                      <i className="fas fa-upload upload-icon"></i> Upload Videos
+                      <i className="fas fa-upload upload-icon"></i>
+                      <span className="filename-gap">
+                        {formValues.videoUpload
+                          ? formValues.videoUpload.name
+                          : "Upload Videos"}
+                      </span>
                     </label>
-                    <input type="file" className="form-control input-small d-none" id="videoUpload" accept="video/*" />
+                    <input
+                      type="file"
+                      id="videoUpload"
+                      onChange={handleFileChange}
+                      className="form-control input-small d-none"
+                      accept="video/*"
+                    />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Location Details */}
             <div>
               <label className="form-label label-big fw-bold">Location Details</label>
               <div className="divider-form"></div>
@@ -191,6 +232,24 @@ const ComplaintDetails = () => {
                     <img src={map} alt="Map location" className="img-fluid rounded" />
                   </div>
                   <div className="col">
+                  <div className="row ">
+                      <div className="col d-flex align-items-center mb-2" style={{fontSize:"xx-large"}}>
+                        <img src={locate} alt="location" className="img-fluid rounded" style={{width:"1.5rem"}} />
+                        <div className="col d-flex align-items-center" style={{height:"1.5rem"}}>
+                          <span className="me-2">
+                            <i className="bi bi-geo-alt-fill text-primary"></i>
+                          </span>
+                          <strong className="text-secondary fw-light">Delhi</strong>
+                        </div>
+                        <div className="position-relative" style={{ top: "9%" , left:"105%"}}>
+                          <img src={iconbg} alt="signup" className="img-fluid rounded" />
+                          <i
+                            className="fas fa-paper-plane text-white position-absolute"
+                            style={{ top: "22%", left: "25%", fontSize: "1.2rem" }}
+                          ></i>
+                        </div>
+                      </div>
+                    </div>
                     <p className="mb-1 text-secondary fw-bold">
                       Latitude <strong className="text-secondary fw-light">-28.7041</strong>
                     </p>
@@ -203,10 +262,12 @@ const ComplaintDetails = () => {
             </div>
           </div>
         </div>
+
         <button type="submit" className="btn submit-btn-form">
           Save and Submit
         </button>
       </form>
+
       <ToastContainer />
     </div>
   );
