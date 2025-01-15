@@ -1,6 +1,125 @@
 import React from 'react';
 import FunctionalRequiremnt1 from "../Form/FunctionalRequiremnt.css"
 const FunctionalRequiremnt = () => {
+<<<<<<< Updated upstream
+=======
+ 
+  const [formValues, setFormValues] = useState({
+    wardGroup: "",
+    contactNumber: "",
+    pincode: "",
+    ucNo: "",
+    ownerName: "",
+    detailedAddress: "",
+    datePicker: "",
+    camp: "",
+    constructionType: {
+      residential: false,
+      commercial: false,
+    },
+  });
+
+  const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
+  const [selecteddOption, setSelecteddOption] = useState("Choose nature of construction");
+  const [isOpenOccupation, setIsOpenOccupation] = useState(false);
+  const [isOpenConstruction, setIsOpenConstruction] = useState(false);
+
+  const occupationOptions = [
+    "Owner",
+    "Rented",
+    "Shop",
+    "Company",
+    "ATM",
+    "Hospital",
+    "Rank",
+  ];
+
+  const constructionOptions = [
+    "Residential",
+    "Commercial",
+    "Industrial",
+    "Mixed-Use",
+    "Public",
+    "Institutional",
+    "Recreational",
+    "Agricultural",
+    "Retail",
+    "Hospitality",
+  ];
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  
+
+  const handleCheckboxToggle = (e) => {
+    const { id, checked } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      constructionType: {
+        ...prev.constructionType,
+        [id]: checked,
+      },
+    }));
+  };
+
+  const toggleOccupationDropdown = () => {
+    setIsOpenOccupation(!isOpenOccupation);
+  };
+
+  const toggleConstructionDropdown = () => {
+    setIsOpenConstruction(!isOpenConstruction);
+  };
+
+  const handleSelect = (option, type) => {
+    if (type === "occupation") {
+      setSelectedOption(option);
+    } else {
+      setSelecteddOption(option);
+    }
+    setIsOpenOccupation(false);
+    setIsOpenConstruction(false);
+  };
+
+
+  const [errors, setErrors] = useState({});
+
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formValues.contactNumber || formValues.contactNumber.length !== 10) {
+      newErrors.contactNumber = "Please enter a valid 10-digit contact number.";
+    }
+    if (!formValues.pincode || formValues.pincode.length !== 6) {
+      newErrors.pincode = "Please enter a valid 6-digit pincode.";
+    }
+    if (!formValues.wardGroup) {
+      newErrors.wardGroup = "Ward Office Name is required.";
+    }
+    if (!formValues.ownerName) {
+      newErrors.ownerName = "UC Owner Name is required.";
+    }
+    return newErrors;
+  };
+
+ const handleSubmit = (e) => {
+     e.preventDefault();
+ 
+     if (validateForm()) {
+       console.log("Form Data Submitted:", formValues);
+       toast.success("Form submitted successfully!"); // Success toast
+       // Add your form submission logic here
+     } else {
+       toast.error("Please fill in all required fields."); // Error toast
+     }
+   };
+
+>>>>>>> Stashed changes
   return (
     <div style={{ padding: '10px' , fontFamily:"poppins", fontWeight:"600", fontSize:"13px",backgroundColor:"white" }}>
       <form>
