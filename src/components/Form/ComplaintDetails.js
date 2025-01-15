@@ -1,215 +1,193 @@
 import React, { useState } from "react";
-import map from "../../images/map.png";
-import locate from "../../images/location-icon.png";
-import iconbg from "../../images/icon-bg.png";
-import "./FunctionalRequiremnt.css";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
-const ComplaintDetails = () => {
-  const [formValues, setFormValues] = useState({
-    complainantName: "",
-    complainantContact: "",
-    complaintDescription: "",
-    hardCopyUpload: null,
-  });
-
-  const [errors, setErrors] = useState({});
-
-  const handleInputChange = (e) => {
-    const { id, value, files } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [id]: files ? files[0] : value,
-    }));
+import './FunctionalRequiremnt.css';
+import {
+  HiOutlineChevronDown,
+  HiOutlineChevronUp,
+} from "react-icons/hi"; // Dropdown icons
+const FunctionalRequiremnt = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
+  
+  const options = [
+    "Owner",
+    "Rented",
+    "Shop",
+    "Company",
+    "ATM",
+    "Hospital",
+    "Rank",
+  ];
+  
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
   };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    // Validate Complainant Name
-    if (!formValues.complainantName.trim()) {
-      newErrors.complainantName = "Complainant Name is required.";
-    }
-
-    // Validate Complainant Contact
-    if (!formValues.complainantContact.trim() || !/^\d{10}$/.test(formValues.complainantContact)) {
-      newErrors.complainantContact = "Please enter a valid 10-digit contact number.";
-    }
-
-    // Validate Complaint Description
-    if (!formValues.complaintDescription.trim()) {
-      newErrors.complaintDescription = "Complaint Description is required.";
-    }
-
-    // Validate Hard Copy Upload
-    if (!formValues.hardCopyUpload) {
-      newErrors.hardCopyUpload = "Please upload a hard copy document.";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      console.log("Form submitted successfully!", formValues);
-        toast.success("Form submitted successfully!"); // Success toast
-      // Handle actual form submission logic here
-    }
-    else {
-          toast.error("Please fill in all required fields."); // Error toast
-        }
-  };
-
+  
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="row">
-          {/* Left Column - Complaint Details */}
-          <div className="col-md-6">
-            <div className="row">
-              {/* Complainant Name */}
-              <div className="mb-3 col-md-6">
-                <label htmlFor="complainantName" className="form-label label-small">
-                  Complaint Received from <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  className={`form-control input-small ${errors.complainantName ? "is-invalid" : ""}`}
-                  id="complainantName"
-                  value={formValues.complainantName}
-                  onChange={handleInputChange}
-                  placeholder="Enter name"
-                />
-                {errors.complainantName && <small className="text-danger">{errors.complainantName}</small>}
-              </div>
-
-              {/* Complainant Contact */}
-              <div className="mb-3 col-md-6">
-                <label htmlFor="complainantContact" className="form-label label-small">
-                  Complainant Contact Details <span className="text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  className={`form-control input-small ${errors.complainantContact ? "is-invalid" : ""}`}
-                  id="complainantContact"
-                  value={formValues.complainantContact}
-                  onChange={handleInputChange}
-                  placeholder="Enter contact number"
-                />
-                {errors.complainantContact && <small className="text-danger">{errors.complainantContact}</small>}
-              </div>
-            </div>
-
-            {/* Complaint Description */}
+          {/ First Column /}
+          <div className="col-md-4">
             <div className="mb-3">
-              <label htmlFor="complaintDescription" className="form-label label-small">
-                Complaint Description <span className="text-danger">*</span>
-              </label>
-              <textarea
-                className={`form-control input-small text-box-height ${errors.complaintDescription ? "is-invalid" : ""}`}
-                id="complaintDescription"
-                rows="4"
-                value={formValues.complaintDescription}
-                onChange={handleInputChange}
-                placeholder="Write a long text here"
-              ></textarea>
-              {errors.complaintDescription && <small className="text-danger">{errors.complaintDescription}</small>}
+              <label htmlFor="wardGroup" className="form-label label-small">Ward Office</label>
+              <input
+                type="text"
+                className="form-control input-small"
+                id="wardGroup"
+                placeholder="Enter ward group"
+              />
             </div>
-
-            {/* Hard Copy Upload */}
-            <div className="mb-3 col-md-12">
-              <label htmlFor="hardCopyUpload" className="form-label label-small">
-                Hard Copy Attachment (Offline Complaint Received) <span className="text-danger">*</span>
-              </label>
-              <div className="upload-container">
-                <label
-                  htmlFor="hardCopyUpload"
-                  className="form-control input-small upload-label"
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fas fa-upload upload-icon input-small"></i> Upload Documents
-                </label>
-                <input
-                  type="file"
-                  className="form-control input-small d-none"
-                  id="hardCopyUpload"
-                  accept="image/*"
-                  onChange={handleInputChange}
-                />
-              </div>
-              {errors.hardCopyUpload && <small className="text-danger">{errors.hardCopyUpload}</small>}
+            <div className="mb-3">
+              <label htmlFor="ucNo" className="form-label label-small">Unauthorized Construction Number (UC No.)</label>
+              <input
+                type="text"
+                className="form-control input-small "
+                id="ucNo"
+                placeholder="YYMMDD-WARD NUM (Auto generated)"
+                style={{backgroundColor:"#fff"}}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="ownerName" className="form-label label-small">Owner Name</label>
+              <input
+                type="text"
+                className="form-control input-small"
+                id="ownerName"
+                placeholder="Enter owner name"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="contactNumber" className="form-label label-small">Contact Number</label>
+              <input
+                type="tel"
+                className="form-control input-small"
+                id="contactNumber"
+                placeholder="Enter contact number"
+              />
             </div>
           </div>
 
-          {/* Right Column - Attachments and Location */}
-          {/* Reused existing logic */}
-          <div className="col-md-6">
-            {/* Attachments */}
-            <div className="mb-3">
-              <label className="form-label label-big">Complaint Attachments</label>
-              <div className="divider-form"></div>
-              <div className="row">
-                <div className="mb-3 col-md-6">
-                  <label className="form-label label-small">Photos</label>
-                  <div className="upload-container">
-                    <label
-                      htmlFor="photoUpload"
-                      className="form-control input-small upload-label"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <i className="fas fa-upload upload-icon"></i> Upload Photos
-                    </label>
-                    <input type="file" className="form-control input-small d-none" id="photoUpload" accept="image/*" />
-                  </div>
-                </div>
-                <div className="mb-3 col-md-6">
-                  <label className="form-label label-small">Videos</label>
-                  <div className="upload-container">
-                    <label
-                      htmlFor="videoUpload"
-                      className="form-control input-small upload-label"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <i className="fas fa-upload upload-icon"></i> Upload Videos
-                    </label>
-                    <input type="file" className="form-control input-small d-none" id="videoUpload" accept="video/*" />
-                  </div>
-                </div>
+          {/ Second Column /}
+          <div className="col-md-8">
+            <h2 className="label-big">Address Details</h2>
+            <div className="divider-form" ></div>
+            <div className="mb-3 mt-2">
+  <label htmlFor="detailedAddress" className="form-label label-small">Detailed Address</label>
+  <textarea
+    className="form-control input-small text-box-height"
+    id="detailedAddress"
+    placeholder="Write a long text here"
+    rows="3"  // This will set the height of the textarea to 3 rows
+  />
+</div>
+
+
+            <div className="row mb-3">
+              <div className="col-md-4">
+                <label htmlFor="pincode" className="form-label label-small">Pincode</label>
+                <input
+                  type="number"
+                  className="form-control input-small"
+                  id="pincode"
+                  placeholder="Enter pincode"
+                />
+              </div>
+              <div className="col-md-4">
+                <label htmlFor="wardOffice" className="form-label label-small">Ward Office</label>
+                <input
+                  type="text"
+                  className="form-control input-small"
+                  id="wardOffice"
+                  placeholder="Enter ward office"
+                />
+              </div>
+              <div className="col-md-4">
+                <label htmlFor="camp" className="form-label label-small">Camp</label>
+                <input
+                  type="text"
+                  className="form-control input-small"
+                  id="camp"
+                  placeholder="Enter camp"
+                />
               </div>
             </div>
-
-            {/* Location Details */}
-            <div>
-              <label className="form-label label-big fw-bold">Location Details</label>
-              <div className="divider-form"></div>
-              <div className="rounded">
-                <div className="row" style={{ display: "inline-flex", gap: "25px" }}>
-                  <div className="col">
-                    <img src={map} alt="Map location" className="img-fluid rounded" />
-                  </div>
-                  <div className="col">
-                    <p className="mb-1 text-secondary fw-bold">
-                      Latitude <strong className="text-secondary fw-light">-28.7041</strong>
-                    </p>
-                    <p className="text-secondary fw-bold">
-                      Longitude <strong className="text-secondary fw-light">-77.1025</strong>
-                    </p>
-                  </div>
+            <h2 className="label-big">Construction Details</h2>
+            <div className="divider-form"></div>
+            <div className="row mb-3 mt-2">
+              {/ Type /}
+              <div className="col-md-2 ms-2">
+                <h6 className="label-small">Type</h6>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="residential"
+                  />
+                  <label className="form-check-label checkbox-label" htmlFor="residential">
+                    Residential
+                  </label>
                 </div>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="commercial"
+                  />
+                  <label className="form-check-label checkbox-label" htmlFor="commercial">
+                    Commercial
+                  </label>
+                </div>
+              </div>
+
+              {/ Occupation Type /}
+            {/ Occupation Type /}
+<div className="col-md-6 occupation ms-4" style={{width:"auto" }}>
+  <h6 className="label-small">Occupation Type</h6>
+  <div className="custom-dropdown">
+    <div className="dropdown-header" onClick={toggleDropdown}>
+      <span className="option-inside-placeholder">{selectedOption}</span>
+      {isOpen ? (
+        <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+      ) : (
+        <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+      )}
+    </div>
+    {isOpen && (
+      <ul className="dropdown-options">
+        {options.map((option, index) => (
+          <li
+            key={index}
+            className="dropdown-option"
+            onClick={() => handleSelect(option)}
+          >
+            {option}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
+              {/ Date /}
+              <div className="col-md-4 ms-3">
+                <h6 className="label-small input-box-size">Created Date</h6>
+                <input
+                  type="date"
+                  className="form-control input-small"
+                  id="datePicker"
+                />
               </div>
             </div>
           </div>
         </div>
-        <button type="submit" className="btn submit-btn-form">
-          Save and Submit
-        </button>
       </form>
-      <ToastContainer />
     </div>
   );
 };
 
-export default ComplaintDetails;
+export default FunctionalRequiremnt;

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from "react"; 
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 import "./FunctionalRequiremnt.css";
 import { toast, ToastContainer } from "react-toastify";
@@ -29,6 +29,7 @@ const CourtOrder = () => {
     "Supreme Court"
   ];
   const [errors, setErrors] = useState({});
+  const [fileName, setFileName] = useState(""); // State to store the file name
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -39,11 +40,14 @@ const CourtOrder = () => {
   };
 
   const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFileName(file ? file.name : ""); // Set the file name or clear it
     setFormValues((prev) => ({
       ...prev,
-      courtOrderDocument: e.target.files[0],
+      courtOrderDocument: file,
     }));
   };
+
   const [isOpenCourt, setIsOpenCourt] = useState(false);
   const toggleCourtDropdown = () => {
     setIsOpenCourt(!isOpenCourt);
@@ -87,7 +91,6 @@ const CourtOrder = () => {
       toast.error("Please fill in all required fields."); // Error toast
     }
   };
-  
 
   return (
     <div className="form-container">
@@ -152,21 +155,34 @@ const CourtOrder = () => {
             {errors.edDate && <div className="text-danger">{errors.edDate}</div>}
           </div>
 
+          {/* File Upload Field */}
           <div className="col-md-4 mb-3">
-            <label htmlFor="hardCopyUpload" className="form-label label-small">
+            <label htmlFor="courtOrderUpload" className="form-label label-small">
               Court Order <span className="text-danger">*</span>
             </label>
-            <input
-              type="file"
-              className={`form-control input-small ${errors.courtOrderDocument ? "is-invalid" : ""}`}
-              id="hardCopyUpload"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
+            <div className="upload-container">
+              <label
+                htmlFor="courtOrderUpload"
+                className={`form-control input-small upload-label ${errors.courtOrderDocument ? "is-invalid" : ""}`}
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fas fa-upload upload-icon input-small"></i>{" "}
+                {fileName || "Upload Document"}
+              </label>
+              <input
+                type="file"
+                id="courtOrderUpload"
+                onChange={handleFileChange}
+                className="d-none"
+                accept="image/*"
+              />
+            </div>
             {errors.courtOrderDocument && <div className="text-danger">{errors.courtOrderDocument}</div>}
           </div>
+
         </div>
 
+        {/* Court Name */}
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtName" className="form-label label-small">
@@ -183,43 +199,45 @@ const CourtOrder = () => {
             {errors.courtName && <div className="text-danger">{errors.courtName}</div>}
           </div>
 
+          {/* Court Type Dropdown */}
           <div className="col-md-4 mb-3">
-          <label htmlFor="typeOfCourt" className="form-label label-small">
-            Type of Court 
-          </label>
-          <div className="custom-dropdown">
-            <div
-              className="dropdown-header"
-              onClick={toggleCourtDropdown}
-              aria-role="button"
-            >
-              <span className="option-inside-placeholder">
-                {selectedCourt || "Choose court"}
-              </span>
-              {isOpenCourt ? (
-                <HiOutlineChevronUp size={18} className="dropdown-arrow" />
-              ) : (
-                <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+            <label htmlFor="typeOfCourt" className="form-label label-small">
+              Type of Court 
+            </label>
+            <div className="custom-dropdown">
+              <div
+                className="dropdown-header"
+                onClick={toggleCourtDropdown}
+                aria-role="button"
+              >
+                <span className="option-inside-placeholder">
+                  {selectedCourt || "Choose court"}
+                </span>
+                {isOpenCourt ? (
+                  <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+                ) : (
+                  <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+                )}
+              </div>
+              {isOpenCourt && (
+                <ul className="dropdown-options">
+                  {courtOptions.map((option, index) => (
+                    <li
+                      key={index}
+                      className="dropdown-option"
+                      onClick={() => handleSelectCourt(option)}
+                    >
+                      {option}
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
-            {isOpenCourt && (
-              <ul className="dropdown-options">
-                {courtOptions.map((option, index) => (
-                  <li
-                    key={index}
-                    className="dropdown-option"
-                    onClick={() => handleSelectCourt(option)}
-                  >
-                    {option}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
-         
         </div>
 
-
+        {/* Petitioner Details */}
+        <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerName" className="form-label label-small">
               Petitioner Name <span className="text-danger">*</span>
@@ -233,33 +251,6 @@ const CourtOrder = () => {
               onChange={handleInputChange}
             />
             {errors.petitionerName && <div className="text-danger">{errors.petitionerName}</div>}
-          </div>
-          <div className="col-md-4 mb-3">
-            <label htmlFor="petitionerAddress" className="form-label label-small">
-              Petitioner Address
-            </label>
-            <textarea
-              id="petitionerAddress"
-              rows="3"
-              className="form-control input-small"
-              placeholder="Enter petitioner address"
-              value={formValues.petitionerAddress}
-              onChange={handleInputChange}
-            ></textarea>
-          </div>
-          <div className="col-md-4 mb-3">
-            <label htmlFor="petitionerMobile" className="form-label label-small">
-              Petitioner Mobile Number <span className="text-danger"> *</span>
-            </label>
-            <input
-              type="text"
-              className={`form-control input-small ${errors.petitionerMobile ? "is-invalid" : ""}`}
-              id="petitionerMobile"
-              placeholder="Enter mobile number"
-              value={formValues.petitionerMobile}
-              onChange={handleInputChange}
-            />
-            {errors.petitionerMobile && <div className="text-danger">{errors.petitionerMobile}</div>}
           </div>
         </div>
 
