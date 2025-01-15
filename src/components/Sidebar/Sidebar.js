@@ -50,9 +50,55 @@ const Sidebar = () => {
               <div className="step-number">Step {index + 1}</div>
               <div className="step-title">{step.name}</div>
             </div>
-            <div className={`circle-button ${index === activeStep ? 'active' : ''}`}>
-              <span>{index + 1}</span>
-            </div>
+            <div
+  className={`circle-button ${index === activeStep ? 'active' : ''}`}
+  style={{
+    position: 'relative',
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    backgroundColor: index === activeStep ? '#6a5acd' : 'white',
+    border: index === activeStep ? '1px solid #6a5acd' : '1px solid gray',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: index === activeStep ? 'white' : 'gray',
+    fontWeight: 'bold',
+  }}
+>
+  <span>{index + 1}</span>
+
+  {/* Vertical Line Above */}
+  {index > 0 && (
+    <div
+      style={{
+        position: 'absolute',
+        top: '-20px',
+        left: '50%',
+        width: '1px',
+        height: '20px',
+        backgroundColor: 'lightgray',
+        transform: 'translateX(-50%)',
+      }}
+    ></div>
+  )}
+
+  {/* Vertical Line Below */}
+  {index < steps.length - 1 && (
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '-20px',
+        left: '50%',
+        width: '1px',
+        height: '20px',
+        backgroundColor: 'lightgray',
+        transform: 'translateX(-50%)',
+      }}
+    ></div>
+  )}
+</div>
+
           </div>
         ))}
 

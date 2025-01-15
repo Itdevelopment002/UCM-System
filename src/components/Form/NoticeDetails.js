@@ -70,7 +70,19 @@ const NoticeDetails = () => {
 
   return (
     <div className="form-container">
-      <ToastContainer />
+   <ToastContainer 
+   style={{marginTop:"5rem"}}
+  position="top-right" // Change to "top-center", "bottom-center", etc.
+  autoClose={5000} // Duration in milliseconds
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+/>
+
 
       {isModalOpen && (
         <div className="modal-overlay">
@@ -201,7 +213,9 @@ const NoticeDetails = () => {
         <button type="submit" className="btn submit-btn-form">
           Save and Submit
         </button>
+     
       </form>
+    
     </div>
   );
 };

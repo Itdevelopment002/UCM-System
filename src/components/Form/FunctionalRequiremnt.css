@@ -253,25 +253,27 @@ textarea {
   .form-container {
     position: relative;
     top: 40px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 10px;
     width: 100%; /* Full width for mobile */
-    max-height: 90vh; /* Allow scroll when content exceeds viewport height */
+    /* max-height: 90vh; */
   }
   .form-container form {
     padding: 10px;
   }
 }
 
-/* For very small devices (below 576px) */
+
 @media (max-width: 576px) {
   .form-container {
-    margin-top: 190px; /* Adjust top margin for very small devices */
+    /* margin-top: 190px;  */
     padding: 5px;
+    margin-top: auto;
     width: 100%; /* Ensure full width on very small screens */
-    max-height: 90vh; /* Ensure height is scrollable on small screens */
+    /* max-height: 90vh;  */
   }
   .form-container form {
+    height: max-content;
     padding: 5px;
   }
 }

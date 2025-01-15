@@ -143,7 +143,7 @@
     width: 90%;
     left: 5%;
     margin-top: 125px;
-    top: 100px;
+  
   }
 
   .first-row {
@@ -171,10 +171,9 @@
 @media (max-width: 576px) {
   .container-bar {
     width: 100%;
-    margin-top: 145px;
+   height: 100%;
     left: 0;
-    padding: 1rem;
-    top: 90px;
+   
   }
 
   .first-row {
@@ -206,12 +205,5 @@
 @media (min-width: 1800px) {
   .container-bar{
     left: 382px;
-  }
-}
-@media (max-width: 1280px) {
-  .container-bar {
-      overflow-y: auto;
-      width: 70%;
-      max-height: 60vh;
   }
 }
