@@ -58,10 +58,10 @@ const DemolitionOrder = () => {
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      toast.error("Please fill all the mandatory fields correctly.");
+      
     } else {
       setErrors({});
-      toast.success("Form submitted successfully!");
+    
       console.log("Form Data Submitted:", formData);
     }
   };

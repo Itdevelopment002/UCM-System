@@ -26,12 +26,16 @@ const NoticeDetails = () => {
   const handleDateChange = (e) => {
     const dateValue = e.target.value; // Native format (yyyy-mm-dd)
     const [year, month, day] = dateValue.split("-");
+  
     if (year && month && day) {
       setFormattedDate(`${day}/${month}/${year.slice(-2)}`); // Convert to dd/mm/yy
+      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); // Clear the error
     } else {
       setFormattedDate("");
+      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); // Set error if date is empty
     }
   };
+  
 
   const handleNoticeCountChange = (e) => {
     setSelectedNoticeCount(e.target.value);
@@ -47,26 +51,28 @@ const NoticeDetails = () => {
       newErrors.selectedOption = "Please select a notice type.";
     }
     if (!formattedDate) {
-      newErrors.date = "Please select a valid date.";
+      newErrors.date = "Please select a valid date."; // Error if date is empty
     }
     return newErrors;
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      toast.error("Please fill all the mandatory fields correctly.");
-    } else {
+  
+    if (Object.keys(newErrors).length === 0) {
       toast.success("Form submitted successfully!");
       console.log("Form Data:", {
         selectedOption,
         selectedNoticeCount,
         formattedDate,
       });
+    } else {
+      setErrors(newErrors); // Set errors to show validation messages
     }
   };
+  
 
   return (
     <div className="form-container">
@@ -140,13 +146,11 @@ const NoticeDetails = () => {
           <div className="col-md-6 d-flex">
             <div className="mb-3 col-md-6">
               <label htmlFor="occupationType" className="form-label label-small">
-                Generated Notices <span className="text-danger">*</span>
+                Generated Notices 
               </label>
               <div className="custom-dropdown">
                 <div
-                  className={`dropdown-header ${
-                    errors.selectedOption ? "is-invalid" : ""
-                  }`}
+                  className={`dropdown-header `}
                   onClick={() => setIsOpenOccupation(!isOpenOccupation)}
                 >
                   <span className="option-inside-placeholder">
@@ -172,9 +176,7 @@ const NoticeDetails = () => {
                   </ul>
                 )}
               </div>
-              {errors.selectedOption && (
-                <span className="text-danger">{errors.selectedOption}</span>
-              )}
+             
             </div>
 
             <div className="mb-3 col-md-6 ms-3">
@@ -182,19 +184,15 @@ const NoticeDetails = () => {
                 Date <span className="text-danger">*</span>
               </label>
               <input
-                type="date"
-                className={`form-control input-small input-box-size ${
-                  errors.date ? "is-invalid" : ""
-                }`}
-                id="datePicker"
-                onChange={handleDateChange}
-              />
-              {formattedDate && (
-                <div className="mt-2">
-                  <small>Selected Date: {formattedDate}</small>
-                </div>
-              )}
-              {errors.date && <span className="text-danger">{errors.date}</span>}
+  type="date"
+  className={`form-control input-small input-box-size ${
+    errors.date ? "is-invalid" : ""
+  }`}
+  id="datePicker"
+  onChange={handleDateChange}
+/>
+{errors.date && <span className="text-danger">{errors.date}</span>}
+
             </div>
           </div>
         </div>
