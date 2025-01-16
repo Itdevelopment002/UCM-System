@@ -67,7 +67,7 @@ const Remark = () => {
 
         {/* Submit Button */}
         <button type="submit" className="btn submit-btn-form">
-          Submit Form
+          Submit 
         </button>
       </form>
 

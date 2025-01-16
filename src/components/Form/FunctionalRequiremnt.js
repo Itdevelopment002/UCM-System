@@ -61,17 +61,33 @@ const FunctionalRequiremnt = () => {
     }));
   };
 
-  const handleNumericInput = (e, limit = 999999) => {
+  const handleNumericInput = (e, maxLength) => {
     const { id, value } = e.target;
-    let sanitizedValue = value.replace(/[^0-9]/g, "");
-    if (parseInt(sanitizedValue) > limit) {
-      sanitizedValue = limit.toString();
+    const sanitizedValue = value.replace(/[^0-9]/g, ""); // Sirf numbers allow karein
+  
+    if (sanitizedValue.length > maxLength) {
+      // Agar maxLength se zyada ho, toh error set karein
+      setErrors((prev) => ({
+        ...prev,
+        [id]: `Please enter a ${maxLength}-digit number only.`,
+      }));
+      return;
     }
+  
+    // Agar length valid ho toh error remove karein
+    setErrors((prev) => ({
+      ...prev,
+      [id]: "",
+    }));
+  
+    // Form value update karein
     setFormValues((prev) => ({
       ...prev,
       [id]: sanitizedValue,
     }));
   };
+  
+  
 
   const handleCheckboxToggle = (e) => {
     const { id, checked } = e.target;
@@ -197,15 +213,17 @@ const FunctionalRequiremnt = () => {
 
             <div className="mb-3">
   <label htmlFor="contactNumber" className="form-label label-small">
-    Contact Number  <span className="text-danger">*</span>
+    Contact Number <span className="text-danger">*</span>
   </label>
   <input
     type="text"
-    className={`form-control input-small ${errors.contactNumber ? "is-invalid" : ""}`}
+    className={`form-control input-small ${
+      errors.contactNumber ? "is-invalid" : ""
+    }`}
     id="contactNumber"
     placeholder="Enter contact number"
-    value={formValues.contactNumber}
-    onChange={(e) => handleNumericInput(e, 9999999999)}
+    value={formValues.contactNumber || ""}
+    onChange={(e) => handleNumericInput(e, 10)} // Max length set to 10
   />
   {errors.contactNumber && (
     <div className="text-danger">{errors.contactNumber}</div>
@@ -263,20 +281,23 @@ const FunctionalRequiremnt = () => {
 
               <div className="mb-3 col-md-3 mt-2">
   <label htmlFor="pincode" className="form-label label-small">
-    Pincode  <span className="text-danger">*</span>
+    Pincode <span className="text-danger">*</span>
   </label>
   <input
     type="text"
-    className={`form-control input-small ${errors.pincode ? "is-invalid" : ""}`}
+    className={`form-control input-small ${
+      errors.pincode ? "is-invalid" : ""
+    }`}
     id="pincode"
     placeholder="Enter pincode"
-    value={formValues.pincode}
-    onChange={(e) => handleNumericInput(e, 999999)}
+    value={formValues.pincode || ""}
+    onChange={(e) => handleNumericInput(e, 6)} // Max length set to 6
   />
   {errors.pincode && (
     <div className="text-danger">{errors.pincode}</div>
   )}
 </div>
+
   <div className="mb-3 col-md-3 mt-2">
   <label htmlFor="pincode" className="form-label label-small">
     Camp  
@@ -367,7 +388,7 @@ const FunctionalRequiremnt = () => {
               </div>
             </div>
             <button type="submit" className="btn submit-btn-form">
-              Save and Submit
+              Save and Next
             </button>
           </div>
         </div>

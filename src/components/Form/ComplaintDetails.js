@@ -20,11 +20,40 @@ const ComplaintDetails = () => {
 
   const handleInputChange = (e) => {
     const { id, value, files } = e.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [id]: files ? files[0] : value,
-    }));
+  
+    if (id === "complainantContact") {
+      // Sirf numeric input allow karein
+      const sanitizedValue = value.replace(/[^0-9]/g, "");
+  
+      // Agar length 10 se zyada ho, toh error set karein
+      if (sanitizedValue.length > 10) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          [id]: "Please enter a 10-digit number only.",
+        }));
+        return; // Invalid input, form value update na karein
+      }
+  
+      // Agar valid hai, error hata dein
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [id]: "",
+      }));
+  
+      // Form value update karein
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        [id]: sanitizedValue,
+      }));
+    } else {
+      // Baaki fields ke liye default behavior
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        [id]: files ? files[0] : value,
+      }));
+    }
   };
+  
 
   const handleFileChange = (e) => {
     const { id, files } = e.target;
@@ -64,11 +93,15 @@ const ComplaintDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     if (validateForm()) {
-      toast.success("Form submitted successfully!");
-    } 
+      console.log("Submitted successfully",formValues);
+      
+    } else {
+      console.log("Validation failed. Please check the fields.");
+    }
   };
+  
 
   return (
     <div className="form-container">
@@ -262,7 +295,7 @@ const ComplaintDetails = () => {
         </div>
 
         <button type="submit" className="btn submit-btn-form">
-          Save and Submit
+          Save and Next
         </button>
       </form>
 

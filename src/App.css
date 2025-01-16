@@ -32,7 +32,22 @@ input::placeholder {
     overflow-x: auto; /* Allow horizontal scrolling for large content */
     overflow-y: auto; /* Keep vertical scrolling */
   min-height: 100vh;
-  overflow-x: auto; /* Allow horizontal scrolling for large content */
-  overflow-y: auto; /* Keep vertical scrolling */
+
   }
+}
+/* Disable text selection globally for all non-input elements */
+* {
+  user-select: none; /* Prevent text selection */
+}
+
+/* Enable text selection only for form inputs and text areas */
+input, textarea {
+  user-select: text; /* Allow selection in form elements */
+}
+
+/* Prevent editable behavior for all elements globally */
+[contenteditable] {
+  pointer-events: none; /* Disable pointer events for contenteditable */
+  user-select: none;    /* Disable selection */
+  outline: none;        /* Remove focus outline */
 }
