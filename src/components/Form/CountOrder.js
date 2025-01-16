@@ -1,10 +1,13 @@
 import React, { useState, useRef } from "react"; 
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
 import "./FunctionalRequiremnt.css";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
 const CourtOrder = () => {
+  const navigate = useNavigate(); // Hook for navigation
+
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select occupation");
   const [selectedCourt, setSelectedCourt] = useState("");
@@ -52,10 +55,12 @@ const CourtOrder = () => {
   const toggleCourtDropdown = () => {
     setIsOpenCourt(!isOpenCourt);
   };
+
   const handleSelect = (option) => {
     setSelectedOption(option);
     setIsOpenOccupation(false);
   };
+
   const handleSelectCourt = (option) => {
     setSelectedCourt(option);
     setIsOpenCourt(false);
@@ -66,27 +71,32 @@ const CourtOrder = () => {
     if (!formValues.courtOrderNumber) newErrors.courtOrderNumber = "Court Order Number is required.";
     if (!formValues.edDate) newErrors.edDate = "ED Date is required.";
     if (!formValues.courtName) newErrors.courtName = "Court Name is required.";
-    if (selectedOption === "Select occupation") newErrors.occupation = "Please select an occupation type.";
-    if (!formValues.typeOfCourt) newErrors.typeOfCourt = "Please select the type of court.";
-    if (!formValues.petitionerName) newErrors.petitionerName = "Petitioner Name is required.";
-    if (!formValues.petitionerMobile || !/^\d{10}$/.test(formValues.petitionerMobile)) {
-      newErrors.petitionerMobile = "Enter a valid 10-digit mobile number.";
-    }
+  
+   
+  
+   
     if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = "Please upload the court order document.";
     return newErrors;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
   
-    const formErrors = validateForm(); // Validate the form
+    const newErrors = validateForm(); // Validate the form fields
+    console.log("Validation Errors:", newErrors); // Debug: check validation errors
   
-    if (validateForm) {
-      // If no errors exist, submit the form successfully
-      console.log("Submitted successfully", formValues);
-     
-    } 
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors); // Set errors if validation fails
+    } else {
+      setErrors({}); // Clear any previous errors if validation is successful
+  
+      // Print success message if all validations are passed
+      console.log("Submitted Successfully:", formValues); 
+  
+      // Navigate to the next page
+      navigate("/dashboard/remark");
+    }
   };
-  
   
   
 

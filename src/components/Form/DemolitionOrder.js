@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
 import { FormGroup, Label, Input } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,6 +7,7 @@ import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 import "./FunctionalRequiremnt.css"; // Ensure your updated CSS is here
 
 const DemolitionOrder = () => {
+  const navigate = useNavigate(); // Hook for navigation
   const [formData, setFormData] = useState({
     demolitionDate: "",
     demolitionTime: "",
@@ -57,12 +59,13 @@ const DemolitionOrder = () => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      
+      setErrors(newErrors); // Set errors if validation fails
     } else {
-      setErrors({});
-    
+      setErrors({}); // Clear errors if validation is successful
+
       console.log("Submitted Successfully:", formData);
+      // Navigate to /dashboard/count-order if form is valid
+      navigate("/dashboard/count-order");
     }
   };
 
@@ -216,35 +219,6 @@ const DemolitionOrder = () => {
               <div className="text-danger">{errors.policeStationName}</div>
             )}
           </div>
-
-          {/* Police Station Dropdown
-          <div className="col-md-4">
-            <FormGroup>
-              <Label htmlFor="policeStationName" className="form-label label-small">
-                Police Station Name <span className="text-danger">*</span>
-              </Label>
-              <div className={`dropdown ${dropdownOpen ? "open" : ""}`}>
-                <div
-                  className={`form-control dropdown-toggle ${errors.policeStationName ? "is-invalid" : ""}`}
-                  onClick={toggleDropdown}
-                >
-                  {formData.policeStationName || "Select Police Station"}
-                </div>
-                <div className="dropdown-menu">
-                  {["Station A", "Station B", "Station C"].map((station) => (
-                    <div
-                      key={station}
-                      className="dropdown-item"
-                      onClick={() => selectPoliceStation(station)}
-                    >
-                      {station}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {errors.policeStationName && <div className="text-danger">{errors.policeStationName}</div>}
-            </FormGroup>
-          </div> */}
 
           {/* Police Manpower Details */}
           <div className="col-md-4">

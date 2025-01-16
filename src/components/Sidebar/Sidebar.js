@@ -106,21 +106,21 @@ const Sidebar = () => {
         ))}
 
         <div className="next-step-container">
-          <button
+          {/* <button
             className="prev-step"
             onClick={handlePreviousStep}
             disabled={activeStep === 0}
           >
             <FaArrowLeft size={20} />
-          </button>
-          <button
+          </button> */}
+          {/* <button
             className="next-step1"
             onClick={handleNextStep}
             disabled={activeStep === steps.length - 1}
           >
             Next Step
             <FaArrowRight style={{ padding: '2px' }} size={20} />
-          </button>
+          </button> */}
         </div>
       </div>
 

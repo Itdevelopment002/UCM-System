@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./FunctionalRequiremnt.css";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
-
+import { useNavigate } from "react-router-dom"; // for navigation
 const FunctionalRequiremnt = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -24,6 +24,7 @@ const FunctionalRequiremnt = () => {
     contactNumber: "",
     pincode: "",
   });
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
   
   const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
   const [selecteddOption, setSelecteddOption] = useState("Choose nature of construction");
@@ -63,30 +64,27 @@ const FunctionalRequiremnt = () => {
 
   const handleNumericInput = (e, maxLength) => {
     const { id, value } = e.target;
-    const sanitizedValue = value.replace(/[^0-9]/g, ""); // Sirf numbers allow karein
-  
+    const sanitizedValue = value.replace(/[^0-9]/g, "");
+
     if (sanitizedValue.length > maxLength) {
-      // Agar maxLength se zyada ho, toh error set karein
       setErrors((prev) => ({
         ...prev,
         [id]: `Please enter a ${maxLength}-digit number only.`,
       }));
       return;
     }
-  
-    // Agar length valid ho toh error remove karein
+
     setErrors((prev) => ({
       ...prev,
       [id]: "",
     }));
-  
-    // Form value update karein
+
     setFormValues((prev) => ({
       ...prev,
       [id]: sanitizedValue,
     }));
   };
-  
+
   
 
   const handleCheckboxToggle = (e) => {
@@ -122,41 +120,31 @@ const FunctionalRequiremnt = () => {
     e.preventDefault();
     let isValid = true;
     const newErrors = { ...errors };
-  
-    // Mobile number validation
-    const contactNumber = formValues.contactNumber;
-    if (!/^\d{10}$/.test(contactNumber)) {
+
+    // Validate Mobile number
+    if (!/^\d{10}$/.test(formValues.contactNumber)) {
       newErrors.contactNumber = "Contact number must be exactly 10 digits.";
       isValid = false;
     } else {
-      newErrors.contactNumber = ""; // Clear error if valid
+      newErrors.contactNumber = "";
     }
-  
-    // Pincode validation
-    const pincode = formValues.pincode;
-    if (!/^\d{6}$/.test(pincode)) {
+
+    // Validate Pincode
+    if (!/^\d{6}$/.test(formValues.pincode)) {
       newErrors.pincode = "Pincode must be exactly 6 digits.";
       isValid = false;
     } else {
-      newErrors.pincode = ""; // Clear error if valid
+      newErrors.pincode = "";
     }
-  
+
     setErrors(newErrors);
-  
+
     if (isValid) {
-      // Set success message and reset form after successful submit
-      setSubmitSuccess(true);
-      console.log("Form submitted successfully with values:", formValues);
-  
-      // Optionally, you can reset the form or set a timeout to hide the success message after a few seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-        // Optional: Reset form values if needed
-        // setFormValues({
-        //   contactNumber: "",
-        //   pincode: "",
-        // });
-      }, 3000); // Hide success message after 3 seconds
+      console.log("Form is valid"); // For debugging
+      // Navigate to next form if the form is valid
+      navigate("/dashboard/complain-details");
+    } else {
+      console.log("Form is invalid"); // For debugging
     }
   };
   
@@ -212,23 +200,19 @@ const FunctionalRequiremnt = () => {
             </div>
 
             <div className="mb-3">
-  <label htmlFor="contactNumber" className="form-label label-small">
-    Contact Number <span className="text-danger">*</span>
-  </label>
-  <input
-    type="text"
-    className={`form-control input-small ${
-      errors.contactNumber ? "is-invalid" : ""
-    }`}
-    id="contactNumber"
-    placeholder="Enter contact number"
-    value={formValues.contactNumber || ""}
-    onChange={(e) => handleNumericInput(e, 10)} // Max length set to 10
-  />
-  {errors.contactNumber && (
-    <div className="text-danger">{errors.contactNumber}</div>
-  )}
-</div>
+              <label htmlFor="contactNumber" className="form-label label-small">
+                Contact Number <span className="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                className={`form-control input-small ${errors.contactNumber ? "is-invalid" : ""}`}
+                id="contactNumber"
+                placeholder="Enter contact number"
+                value={formValues.contactNumber}
+                onChange={(e) => handleNumericInput(e, 10)}  // Max length set to 10
+              />
+              {errors.contactNumber && <div className="text-danger">{errors.contactNumber}</div>}
+            </div>
 
             <div className="occupation">
               <h6 className="label-small">Nature of Construction</h6>
@@ -278,25 +262,22 @@ const FunctionalRequiremnt = () => {
                   onChange={handleInputChange}
                 />
               </div>
-
               <div className="mb-3 col-md-3 mt-2">
-  <label htmlFor="pincode" className="form-label label-small">
-    Pincode <span className="text-danger">*</span>
-  </label>
-  <input
-    type="text"
-    className={`form-control input-small ${
-      errors.pincode ? "is-invalid" : ""
-    }`}
-    id="pincode"
-    placeholder="Enter pincode"
-    value={formValues.pincode || ""}
-    onChange={(e) => handleNumericInput(e, 6)} // Max length set to 6
-  />
-  {errors.pincode && (
-    <div className="text-danger">{errors.pincode}</div>
-  )}
-</div>
+              <label htmlFor="pincode" className="form-label label-small">
+                Pincode <span className="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                className={`form-control input-small ${errors.pincode ? "is-invalid" : ""}`}
+                id="pincode"
+                placeholder="Enter pincode"
+                value={formValues.pincode}
+                onChange={(e) => handleNumericInput(e, 6)}  // Max length set to 6
+              />
+              {errors.pincode && <div className="text-danger">{errors.pincode}</div>}
+            </div>
+
+
 
   <div className="mb-3 col-md-3 mt-2">
   <label htmlFor="pincode" className="form-label label-small">
