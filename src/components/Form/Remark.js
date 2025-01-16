@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import Modal from "react-modal";
+import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
+
+// For accessibility
+Modal.setAppElement("#root");
 
 const Remark = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +14,7 @@ const Remark = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,8 +42,12 @@ const Remark = () => {
     if (validateForm()) {
       console.log("Form Data Submitted:", formData);
       toast.success("Form submitted successfully!"); // Success toast
-      // Add your form submission logic here
-    } 
+      setIsModalOpen(true); // Open modal on successful submission
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal
   };
 
   return (
@@ -67,12 +76,32 @@ const Remark = () => {
 
         {/* Submit Button */}
         <button type="submit" className="btn submit-btn-form">
-          Submit 
+          Submit
         </button>
       </form>
 
       {/* Toast Container to display the notifications */}
       <ToastContainer />
+
+      {/* Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Form Submission Success"
+        className="modal-content-final d-flex flex-md-column"
+        overlayClassName="modal-overlay"
+        
+      >
+        <h2 style={{fontWeight:"100"}}>Form Submitted Successfully!<br/> (this is dummy modal) </h2>
+       <div style={{display:"flex", flexDirection:"row", gap:"10px"}}>
+       <button onClick={closeModal} className="" style={{backgroundColor:"#0080008f", color:"black", height:"50px", width:"100px", fontSize:"24px", fontWeight:"bold" , border:"1px solid grey"}}>
+          OK
+        </button>
+        <button onClick={closeModal} className="" style={{backgroundColor:"#ff0000b5", color:"black" , height:"50px", width:"100px", fontSize:"24px", fontWeight:"bold"  , border:"1px solid grey"}}>
+          Close
+        </button>
+       </div>
+      </Modal>
     </div>
   );
 };
