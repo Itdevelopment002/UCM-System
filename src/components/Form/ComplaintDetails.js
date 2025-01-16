@@ -274,11 +274,11 @@ const ComplaintDetails = () => {
                           </span>
                           <strong className="text-secondary fw-light">Delhi</strong>
                         </div>
-                        <div className="position-relative" style={{ top: "9%" , left:"105%"}}>
+                        <div className="position-relative" style={{ top: "10%" , left:"90%"}}>
                           <img src={iconbg} alt="signup" className="img-fluid rounded" />
                           <i
                             className="fas fa-paper-plane text-white position-absolute"
-                            style={{ top: "22%", left: "25%", fontSize: "1.2rem" }}
+                            style={{ top: "22%", left: "25%", fontSize: "1.4rem" }}
                           ></i>
                         </div>
                       </div>

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import facebook from "../../images/facebook.png";
@@ -8,8 +7,7 @@ import logo from "../../images/logo.png";
 import overlay from "../../images/overlay.png";
 import texture from "../../images/texture.png";
 import bg from "../../images/vintage-bg.jpg";
-import "./Login.css"; // Use login.css for styling consistency
-import "../../components/Register/Register.css";
+import "./Login.css"; 
 
 const phoneRegex = /^[0-9]{10}$/;
 
@@ -17,16 +15,15 @@ const Otp = () => {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [isError, setIsError] = useState(false);
-  const [warning, setWarning] = useState(""); // State for warning message
+  const [warning, setWarning] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
-    // Allow only numeric values
     if (/^\d*$/.test(value)) {
       setPhone(value);
-      setWarning(""); // Clear the warning if input is valid
+      setWarning(""); 
     } else {
-      setWarning("Only numeric values are allowed."); // Set warning for invalid input
+      setWarning("Only numeric values are allowed.");
     }
   };
 
@@ -34,11 +31,11 @@ const Otp = () => {
     e.preventDefault();
 
     if (!phoneRegex.test(phone)) {
-      setIsError(true); // Show red border if invalid
+      setIsError(true); 
     } else {
-      setIsError(false); // Clear error
-      setWarning(""); // Clear warning
-      navigate("/verification"); // Redirect to verification page
+      setIsError(false);
+      setWarning(""); 
+      navigate("/verification");
     }
   };
 
@@ -46,7 +43,7 @@ const Otp = () => {
     <div
       className="container-fluid vh-100 d-flex align-items-center justify-content-center"
       style={{
-        background: `url(${bg}) center center / cover no-repeat`, // Set the background image
+        background: `url(${bg}) center center / cover no-repeat`,
         position: "relative",
       }}
     >
@@ -80,7 +77,7 @@ const Otp = () => {
                 />
               </div>
               {warning && (
-                <p className="text-warning mt-2">{warning}</p> // Display warning for invalid input
+                <p className="text-warning mt-2">{warning}</p>
               )}
               {isError && !warning && (
                 <p className="text-danger mt-2">
@@ -143,7 +140,7 @@ const Otp = () => {
                 color: "#fff",
                 textAlign: "left",
                 lineHeight: "1.5",
-                fontSize:"32px",
+                fontSize: "32px",
               }}
             >
               Very good works are waiting for you. Login Now!!!
