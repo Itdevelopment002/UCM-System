@@ -75,16 +75,20 @@ const CourtOrder = () => {
     if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = "Please upload the court order document.";
     return newErrors;
   };
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const formErrors = validateForm(); // Validate form
-    setErrors(formErrors); // Update errors in the state
-    
-    // Only submit if there are no errors
-   
+    e.preventDefault(); // Prevent default form submission behavior
+  
+    const formErrors = validateForm(); // Validate the form
+  
+    if (validateForm) {
+      // If no errors exist, submit the form successfully
+      console.log("Submitted successfully", formValues);
+     
+    } 
   };
+  
+  
+  
 
   return (
     <div className="form-container">
@@ -262,7 +266,7 @@ const CourtOrder = () => {
         </div>
 
         <button type="submit" className="btn submit-btn-form">
-          Save and Submit
+          Save and Next
         </button>
       </form>
       <ToastContainer />

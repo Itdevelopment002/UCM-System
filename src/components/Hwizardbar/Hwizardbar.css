@@ -120,7 +120,11 @@
 .tab-width-submission {
   width: 153px;
 }
-
+.tab, .heading1, .tab-text {
+  user-select: none; /* Prevent text selection */
+  outline: none;     /* Remove focus outline */
+  pointer-events: auto; /* Ensure normal pointer behavior */
+}
 /* Media Queries */
 @media (max-width: 1400px) {
   

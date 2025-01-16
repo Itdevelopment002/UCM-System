@@ -62,7 +62,7 @@ const DemolitionOrder = () => {
     } else {
       setErrors({});
     
-      console.log("Form Data Submitted:", formData);
+      console.log("Submitted Successfully:", formData);
     }
   };
 
@@ -290,7 +290,7 @@ const DemolitionOrder = () => {
         </div>
 
         <button type="submit" className="btn submit-btn-form">
-          Save and Submit
+          Save and Next
         </button>
       </form>
     </div>

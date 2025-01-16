@@ -59,19 +59,24 @@ const NoticeDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
+  
+    const newErrors = validateForm(); // Validate form and get errors object
   
     if (Object.keys(newErrors).length === 0) {
-      toast.success("Form submitted successfully!");
+      // Form is valid
+      console.log("Submitted successfully");
       console.log("Form Data:", {
         selectedOption,
         selectedNoticeCount,
         formattedDate,
       });
     } else {
+      // Form is invalid
+      console.log("Validation failed. Errors:", newErrors);
       setErrors(newErrors); // Set errors to show validation messages
     }
   };
+  
   
 
   return (
@@ -197,7 +202,7 @@ const NoticeDetails = () => {
           </div>
         </div>
         <button type="submit" className="btn submit-btn-form">
-          Save and Submit
+          Save and Next
         </button>
       </form>
     </div>
