@@ -20,7 +20,7 @@ const Header = () => {
       </div>
       <div className="col-md-6 d-flex justify-content-end align-items-center">
         {/* Search Bar */}
-        <div className="search-bar">
+        {/* <div className="search-bar">
           <input
             type="text"
             className="form-control"
@@ -28,7 +28,7 @@ const Header = () => {
             
           />
           <FaSearch size={18} className="search-icon" />
-        </div>
+        </div> */}
 
         {/* Language Selector */}
         <div className="language">

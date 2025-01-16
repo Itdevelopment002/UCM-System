@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./FunctionalRequiremnt.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 
 const NoticeDetails = () => {
+  const navigate = useNavigate(); // Hook for navigation
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
   const [selectedOption, setSelectedOption] = useState(""); // For dropdown
   const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection
@@ -47,21 +49,21 @@ const NoticeDetails = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!selectedOption) {
-      newErrors.selectedOption = "Please select a notice type.";
-    }
+    
     if (!formattedDate) {
       newErrors.date = "Please select a valid date."; // Error if date is empty
     }
+    
     return newErrors;
   };
+  
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+    
     const newErrors = validateForm(); // Validate form and get errors object
-  
+    
     if (Object.keys(newErrors).length === 0) {
       // Form is valid
       console.log("Submitted successfully");
@@ -70,13 +72,16 @@ const NoticeDetails = () => {
         selectedNoticeCount,
         formattedDate,
       });
+  
+      // Navigate to the next form ("/dashboard/demolition-order")
+      navigate("/dashboard/demolition-order");
+  
     } else {
       // Form is invalid
       console.log("Validation failed. Errors:", newErrors);
       setErrors(newErrors); // Set errors to show validation messages
     }
   };
-  
   
 
   return (
@@ -181,7 +186,6 @@ const NoticeDetails = () => {
                   </ul>
                 )}
               </div>
-             
             </div>
 
             <div className="mb-3 col-md-6 ms-3">
@@ -189,15 +193,14 @@ const NoticeDetails = () => {
                 Date <span className="text-danger">*</span>
               </label>
               <input
-  type="date"
-  className={`form-control input-small input-box-size ${
-    errors.date ? "is-invalid" : ""
-  }`}
-  id="datePicker"
-  onChange={handleDateChange}
-/>
-{errors.date && <span className="text-danger">{errors.date}</span>}
-
+                type="date"
+                className={`form-control input-small input-box-size ${
+                  errors.date ? "is-invalid" : ""
+                }`}
+                id="datePicker"
+                onChange={handleDateChange}
+              />
+              {errors.date && <span className="text-danger">{errors.date}</span>}
             </div>
           </div>
         </div>

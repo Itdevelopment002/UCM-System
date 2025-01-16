@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import map from "../../images/map.png";
 import locate from "../../images/location-icon.png";
 import iconbg from "../../images/icon-bg.png";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 
 const ComplaintDetails = () => {
+  const navigate = useNavigate(); // To navigate to the next form
   const [formValues, setFormValues] = useState({
     complainantName: "",
     complainantContact: "",
@@ -53,7 +55,6 @@ const ComplaintDetails = () => {
       }));
     }
   };
-  
 
   const handleFileChange = (e) => {
     const { id, files } = e.target;
@@ -88,20 +89,21 @@ const ComplaintDetails = () => {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(newErrors).length === 0; // If no errors, return true
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     if (validateForm()) {
-      console.log("Submitted successfully",formValues);
-      
+      console.log("Form submitted successfully", formValues);
+
+      // Navigate to the next form ("/dashboard/notice-details")
+      navigate("/dashboard/notice-details");
     } else {
       console.log("Validation failed. Please check the fields.");
     }
   };
-  
 
   return (
     <div className="form-container">
@@ -263,7 +265,7 @@ const ComplaintDetails = () => {
                     <img src={map} alt="Map location" className="img-fluid rounded" />
                   </div>
                   <div className="col">
-                  <div className="row ">
+                    <div className="row ">
                       <div className="col d-flex align-items-center mb-2" style={{fontSize:"xx-large"}}>
                         <img src={locate} alt="location" className="img-fluid rounded" style={{width:"1.5rem"}} />
                         <div className="col d-flex align-items-center" style={{height:"1.5rem"}}>
