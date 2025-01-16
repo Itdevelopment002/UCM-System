@@ -60,17 +60,16 @@ const Hwizardbar = () => {
         </div>
       </div>
       <div className="tab-container">
-        {steps.map((step, index) => (
-          <div
-           role="button"
-            key={step.tab}
-            className={`tab ${activeStep === index ? 'active' : ''}`}
-            onClick={() => handleTabClick(step.path, index)}
-          >
-            <div className="tab-text">{step.name}</div>
-          </div>
-        ))}
-      </div>
+  {steps.map((step, index) => (
+    <div
+      key={step.tab}
+      className={`tab ${activeStep === index ? 'active' : ''}`}
+    >
+      <div className="tab-text">{step.name}</div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
