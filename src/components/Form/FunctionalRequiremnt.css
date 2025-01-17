@@ -544,14 +544,21 @@ textarea {
 
 @media (max-width: 992px) {
   .form-container {
-    top: 25%;
+    top: 30%;
       width: 100%;
       left: 0%;
   }
 }
 @media (max-width: 768px) {
   .form-container {
-      top: 35%;
+    top: 44%;
+      width: 100%;
+      left: 0%;
+  }
+}
+@media (max-width: 768px) {
+  .form-container {
+    top: 46%;
       width: 100%;
       left: 0%;
   }
