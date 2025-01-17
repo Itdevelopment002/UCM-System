@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useStepContext } from "../StepContext";
 import "./Sidebar.css";
 import bro from "../../images/bro.png";
@@ -92,6 +93,32 @@ const Sidebar = () => {
               }}
             >
               <span>{index + 1}</span>
+              {index > 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-20px",
+                    left: "50%",
+                    width: "1px",
+                    height: "20px",
+                    backgroundColor: "lightgray",
+                    transform: "translateX(-50%)",
+                  }}
+                ></div>
+              )}
+              {index < steps.length - 1 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "-20px",
+                    left: "50%",
+                    width: "1px",
+                    height: "20px",
+                    backgroundColor: "lightgray",
+                    transform: "translateX(-50%)",
+                  }}
+                ></div>
+              )}
             </div>
           </div>
         ))}
