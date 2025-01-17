@@ -10,6 +10,7 @@ const Hwizardbar = () => {
   const location = useLocation(); // Access current path
 
   const [isAllFormsFilled, setIsAllFormsFilled] = useState(false); // Track if all forms are filled
+  const [hasReachedLastStep, setHasReachedLastStep] = useState(false); // Track if user has reached the last step once
 
   const steps = [
     { name: "Information Collection Form", path: "/dashboard/form", tab: "info" },
@@ -24,6 +25,11 @@ const Hwizardbar = () => {
     const currentStep = steps.findIndex((step) => step.path === location.pathname);
     if (currentStep !== -1) {
       setActiveStep(currentStep); // Set the active step based on the current path
+    }
+
+    // Update the state if the user reaches the 6th step
+    if (currentStep === 5) {
+      setHasReachedLastStep(true);
     }
   }, [location.pathname, steps, setActiveStep]);
 
@@ -72,8 +78,13 @@ const Hwizardbar = () => {
                 handleFormCompletion(activeStep + 1); // Check form completion after forward navigation
               }
             }}
-            disabled={activeStep === steps.length - 1 || !isAllFormsFilled}
-            style={arrowButtonStyle(activeStep === steps.length - 1 || !isAllFormsFilled)}
+            disabled={
+              activeStep === steps.length - 1 || // Always disable on 6th step
+              (!isAllFormsFilled && !hasReachedLastStep) // Disable only if not filled and hasn't reached the last step
+            }
+            style={arrowButtonStyle(
+              activeStep === steps.length - 1 || (!isAllFormsFilled && !hasReachedLastStep)
+            )}
           >
             <FaArrowRight size={20} />
           </button>
@@ -85,8 +96,6 @@ const Hwizardbar = () => {
           <div
             key={step.tab}
             className={`tab ${activeStep === index ? "active" : ""}`}
-
-
           >
             <div className="tab-text">{step.name}</div>
           </div>
