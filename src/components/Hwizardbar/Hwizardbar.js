@@ -7,7 +7,7 @@ import "./Hwizardbar.css";
 const Hwizardbar = () => {
   const navigate = useNavigate();
   const { activeStep, setActiveStep } = useStepContext();
-  const location = useLocation();
+  const location = useLocation(); // Access current path
 
   const [isAllFormsFilled, setIsAllFormsFilled] = useState(false); // Track if all forms are filled
 
@@ -23,18 +23,23 @@ const Hwizardbar = () => {
   useEffect(() => {
     const currentStep = steps.findIndex((step) => step.path === location.pathname);
     if (currentStep !== -1) {
-      setActiveStep(currentStep);
-    }
-
-    // Check if all forms are filled (when reaching step 6)
-    if (currentStep === 5) {
-      setIsAllFormsFilled(true); // Mark forms as completed when reaching Remarks
+      setActiveStep(currentStep); // Set the active step based on the current path
     }
   }, [location.pathname, steps, setActiveStep]);
 
   const handleTabClick = (route, index) => {
     setActiveStep(index);
     navigate(route);
+  };
+
+  // Disable/Enable Forward Arrow Logic
+  const handleFormCompletion = (stepIndex) => {
+    // Check if all forms (1-5) are filled
+    if (stepIndex === 5) {
+      setIsAllFormsFilled(true); // All forms filled
+    } else {
+      setIsAllFormsFilled(false); // Reset if not all forms are filled
+    }
   };
 
   const arrowButtonStyle = (isDisabled) => ({
@@ -64,16 +69,11 @@ const Hwizardbar = () => {
             onClick={() => {
               if (activeStep < steps.length - 1) {
                 handleTabClick(steps[activeStep + 1].path, activeStep + 1);
+                handleFormCompletion(activeStep + 1); // Check form completion after forward navigation
               }
             }}
-            disabled={
-              (activeStep === 5 && isAllFormsFilled) || // Disable forward on Remarks if all forms are filled
-              (!isAllFormsFilled && activeStep === steps.length - 1) // Prevent forward navigation if forms aren't complete
-            }
-            style={arrowButtonStyle(
-              (activeStep === 5 && isAllFormsFilled) || 
-              (!isAllFormsFilled && activeStep === steps.length - 1)
-            )}
+            disabled={activeStep === steps.length - 1 || !isAllFormsFilled}
+            style={arrowButtonStyle(activeStep === steps.length - 1 || !isAllFormsFilled)}
           >
             <FaArrowRight size={20} />
           </button>
@@ -85,6 +85,8 @@ const Hwizardbar = () => {
           <div
             key={step.tab}
             className={`tab ${activeStep === index ? "active" : ""}`}
+
+
           >
             <div className="tab-text">{step.name}</div>
           </div>
