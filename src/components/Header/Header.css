@@ -167,10 +167,14 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .header-container {
+    
     flex-direction: column;
     align-items: center;
     padding: 10px;
+
   }
+/* Container for the header */
+
 
   .header-logo {
     text-align: center;

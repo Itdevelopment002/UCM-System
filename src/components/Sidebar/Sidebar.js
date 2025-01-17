@@ -123,7 +123,7 @@ const Sidebar = () => {
           </div>
         ))}
 
-        <div className="next-step-container">
+        {/* <div className="next-step-container">
           <button
             className="next-step1"
             onClick={handleCompleteStep}
@@ -131,7 +131,7 @@ const Sidebar = () => {
           >
             {activeStep === steps.length - 1 ? "Finish" : "Next Step"}
           </button>
-        </div>
+        </div> */}
       </div>
 
       <img src={bro} alt="bro" className="sidebar-image" />
