@@ -3,7 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
-
+import { Link } from "react-router-dom";
 // For accessibility
 Modal.setAppElement("#root");
 
@@ -92,15 +92,21 @@ const Remark = () => {
         overlayClassName="modal-overlay"
         
       >
-        <h2 style={{fontWeight:"100"}}>Form Submitted Successfully!<br/> (this is dummy modal) </h2>
-       <div style={{display:"flex", flexDirection:"row", gap:"10px"}}>
-       <button onClick={closeModal} className="" style={{backgroundColor:"#0080008f", color:"black", height:"50px", width:"100px", fontSize:"24px", fontWeight:"bold" , border:"1px solid grey"}}>
-          OK
+        <h5 className="modal-title ">Form Submitted Successfully!</h5>
+       <p className="model-text">
+       Thank you for completing the process. Your application has been successfully submitted.
+       </p>
+       <div className="modal-footer mt-0 " style={{justifyContent:"center"}}>
+       <div className="btn-at-footer">
+       <button onClick={closeModal} className="cancel-btn" >
+          Cancel
         </button>
-        <button onClick={closeModal} className="" style={{backgroundColor:"#ff0000b5", color:"black" , height:"50px", width:"100px", fontSize:"24px", fontWeight:"bold"  , border:"1px solid grey"}}>
-          Close
-        </button>
+        <Link to="/dashboard/form">
+        <button className="confirm-btn">Confirm</button>
+      </Link>
        </div>
+       </div>
+    
       </Modal>
     </div>
   );
