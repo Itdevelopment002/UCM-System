@@ -1,57 +1,64 @@
-import React, { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useStepContext } from '../StepContext';
-import './Sidebar.css';
-import bro from '../../images/bro.png';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useStepContext } from "../StepContext";
+import "./Sidebar.css";
+import bro from "../../images/bro.png";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const { activeStep, setActiveStep } = useStepContext();
-  const location = useLocation(); // Access current path
+  const location = useLocation();
 
   const steps = [
-    { name: 'Information Collection Form', path: '/dashboard/form' },
-    { name: 'Complaint Details', path: '/dashboard/complain-details' },
-    { name: 'Notice Details', path: '/dashboard/notice-details' },
-    { name: 'Demolition Details', path: '/dashboard/demolition-order' },
-    { name: 'Court Order Details', path: '/dashboard/count-order' },
-    { name: 'Remarks', path: '/dashboard/remark' },
+    { name: "Information Collection Form", path: "/dashboard/form", completed: false },
+    { name: "Complaint Details", path: "/dashboard/complain-details", completed: false },
+    { name: "Notice Details", path: "/dashboard/notice-details", completed: false },
+    { name: "Demolition Details", path: "/dashboard/demolition-order", completed: false },
+    { name: "Court Order Details", path: "/dashboard/count-order", completed: false },
+    { name: "Remarks", path: "/dashboard/remark", completed: false },
   ];
 
+  const [stepStatus, setStepStatus] = useState(steps);
+
   useEffect(() => {
-    const currentStep = steps.findIndex((step) => step.path === location.pathname);
+    const currentStep = stepStatus.findIndex((step) => step.path === location.pathname);
     if (currentStep !== -1) {
-      setActiveStep(currentStep); // Set the active step based on the current path
+      setActiveStep(currentStep); // Set active step based on the current path
     }
-  }, [location.pathname, steps, setActiveStep]);
+  }, [location.pathname, stepStatus, setActiveStep]);
 
   const handleStepClick = (index) => {
-    setActiveStep(index);
-    navigate(steps[index].path);
+    // Allow navigation only to the current or previous steps
+    if (index <= activeStep) {
+      setActiveStep(index);
+      navigate(stepStatus[index].path);
+    }
   };
 
-  const handleNextStep = () => {
+  const handleCompleteStep = () => {
+    // Mark the current step as completed and allow navigation to the next step
+    setStepStatus((prevStatus) =>
+      prevStatus.map((step, index) =>
+        index === activeStep ? { ...step, completed: true } : step
+      )
+    );
+
+    // Move to the next step if not at the last step
     if (activeStep < steps.length - 1) {
       setActiveStep(activeStep + 1);
-      navigate(steps[activeStep + 1].path);
+      navigate(stepStatus[activeStep + 1].path);
     }
   };
 
-  const handlePreviousStep = () => {
-    if (activeStep > 0) {
-      setActiveStep(activeStep - 1);
-      navigate(steps[activeStep - 1].path);
-    }
-  };
+  const isStepClickable = (index) => index <= activeStep;
 
   return (
     <>
       <div className="sidebar-outer-div">
-        {steps.map((step, index) => (
+        {stepStatus.map((step, index) => (
           <div
             key={index}
-            className="step-container"
+            className={`step-container ${isStepClickable(index) ? "clickable" : "disabled"}`}
             onClick={() => handleStepClick(index)}
           >
             <div className="step-text-container">
@@ -59,76 +66,48 @@ const Sidebar = () => {
               <div className="step-title">{step.name}</div>
             </div>
             <div
-              className={`circle-button ${index === activeStep ? 'active' : ''}`}
+              className={`circle-button ${index === activeStep ? "active" : ""} ${
+                step.completed ? "completed" : ""
+              }`}
               style={{
-                position: 'relative',
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: index === activeStep ? '#5038ed' : 'white',
-                border: index === activeStep ? '1px solid #5038ed' : '1px solid gray',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: index === activeStep ? 'white' : 'gray',
-                fontWeight: '600',
+                position: "relative",
+                width: "40px",
+                height: "40px",
+                borderRadius: "50%",
+                backgroundColor: step.completed
+                  ? "#28a745"
+                  : index === activeStep
+                  ? "#5038ed"
+                  : "white",
+                border: step.completed
+                  ? "1px solid #28a745"
+                  : index === activeStep
+                  ? "1px solid #5038ed"
+                  : "1px solid gray",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: step.completed ? "white" : index === activeStep ? "white" : "gray",
+                fontWeight: "600",
               }}
             >
               <span>{index + 1}</span>
-              {index > 0 && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '-20px',
-                    left: '50%',
-                    width: '1px',
-                    height: '20px',
-                    backgroundColor: 'lightgray',
-                    transform: 'translateX(-50%)',
-                  }}
-                ></div>
-              )}
-              {index < steps.length - 1 && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '-20px',
-                    left: '50%',
-                    width: '1px',
-                    height: '20px',
-                    backgroundColor: 'lightgray',
-                    transform: 'translateX(-50%)',
-                  }}
-                ></div>
-              )}
             </div>
           </div>
         ))}
 
         <div className="next-step-container">
-          {/* <button
-            className="prev-step"
-            onClick={handlePreviousStep}
-            disabled={activeStep === 0}
-          >
-            <FaArrowLeft size={20} />
-          </button> */}
-          {/* <button
+          <button
             className="next-step1"
-            onClick={handleNextStep}
+            onClick={handleCompleteStep}
             disabled={activeStep === steps.length - 1}
           >
-            Next Step
-            <FaArrowRight style={{ padding: '2px' }} size={20} />
-          </button> */}
+            {activeStep === steps.length - 1 ? "Finish" : "Next Step"}
+          </button>
         </div>
       </div>
 
-      <img
-        src={bro}
-        alt="bro"
-        className="sidebar-image"
-      />
+      <img src={bro} alt="bro" className="sidebar-image" />
     </>
   );
 };
