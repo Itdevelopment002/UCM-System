@@ -9,15 +9,15 @@ import "./Register.css";
 const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    phoneNumber: "",
     password: "",
     agreeTerms: "",
   });
@@ -40,11 +40,11 @@ const Register = () => {
       newErrors.lastName = "";
     }
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!email || !emailRegex.test(email)) {
-      newErrors.email = "Please enter a valid email address.";
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
+      newErrors.phoneNumber = "Please enter a valid 10-digit phone number.";
     } else {
-      newErrors.email = "";
+      newErrors.phoneNumber = "";
     }
 
     if (!password || password.length < 6) {
@@ -64,11 +64,11 @@ const Register = () => {
     if (
       !newErrors.firstName &&
       !newErrors.lastName &&
-      !newErrors.email &&
+      !newErrors.phoneNumber &&
       !newErrors.password &&
       !newErrors.agreeTerms
     ) {
-      setSuccessMessage("Registration successful! Please proceed to ");
+      setSuccessMessage("Registration successful! Please proceed to SignIn.");
     }
   };
 
@@ -96,9 +96,18 @@ const Register = () => {
         <div className="w-85 w-md-75 col-12 col-md-6 mx-auto p-5 bg-white d-flex flex-column align-items-center">
           <img src={logo} alt="Logo" className="login-logo img-fluid mb-4" />
           <h2 className="fw-bold text-center">REGISTER</h2>
-          <p className="text-muted text-center mb-4 w-100">
-            Let's Create Your Account
-          </p>
+
+          {/* Success message or tagline */}
+          {successMessage ? (
+            <div className="alert alert-success mb-3 w-100 signin-alert">
+              {successMessage} 
+            </div>
+          ) : (
+            <p className="text-muted text-center mb-4 w-100">
+              Let's Create Your Account
+            </p>
+          )}
+
           <form className="w-100 p-2 d-block align-items-center" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
               <input
@@ -124,13 +133,13 @@ const Register = () => {
 
             <div className="form-group mb-3">
               <input
-                type="Phone"
-                className={`form-control input-check-reg ${errors.email ? "is-invalid" : ""}`}
+                type="text"
+                className={`form-control input-check-reg ${errors.phoneNumber ? "is-invalid" : ""}`}
                 placeholder="Phone Number"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
-              {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+              {errors.phoneNumber && <div className="invalid-feedback">{errors.phoneNumber}</div>}
             </div>
 
             <div className="form-group mb-3">
@@ -170,23 +179,13 @@ const Register = () => {
             </button>
           </form>
 
-          {/* Success Message */}
-          {successMessage && (
-            <div className="alert alert-success mt-2 mb-2 signin-alert" role="alert">
-              {successMessage} <a href="/Otp" className="signin-link">Sign In</a>
-            </div>
-          )}
-          
-
-          {/* Conditionally hide the "Already have an account" line */}
-          {!successMessage && (
-            <p className="mt-2">
-              Already have an account?{" "}
-              <a href="/Otp" className="signin-link">
-                Sign In
-              </a>
-            </p>
-          )}
+          {/* "Already have an account" tagline */}
+          <p className="mt-2">
+            Already have an account?{" "}
+            <a href="/Otp" className="signin-link">
+              Sign In
+            </a>
+          </p>
         </div>
         <div
           className="col-12 col-md-6 position-relative promo-section text-white d-flex flex-column justify-content-center align-items-center"

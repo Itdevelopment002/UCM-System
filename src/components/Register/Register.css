@@ -109,12 +109,12 @@
   color: #fff; 
 }
 .signin-alert {
-  color: #777;
+  color: #5038ED;
   background: white;
   background-color: #fff; 
   border-color:  #fff ;
   border-radius: 12px;
   padding: 10px 15px;
-  font-size: 15px;
+  font-size: 16px;
   text-align: center;
 }
