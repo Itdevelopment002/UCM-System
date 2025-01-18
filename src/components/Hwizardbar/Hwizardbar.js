@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -8,10 +7,9 @@ import "./Hwizardbar.css";
 const Hwizardbar = () => {
   const navigate = useNavigate();
   const { activeStep, setActiveStep } = useStepContext();
-  const location = useLocation(); // Access current path
+  const location = useLocation();
 
-  const [isAllFormsFilled, setIsAllFormsFilled] = useState(false); // Track if all forms are filled
-  const [hasReachedLastStep, setHasReachedLastStep] = useState(false); // Track if user has reached the last step once
+  const [filledSteps, setFilledSteps] = useState([]); // Track filled forms
 
   const steps = [
     { name: "Information Collection Form", path: "/dashboard/form", tab: "info" },
@@ -25,27 +23,21 @@ const Hwizardbar = () => {
   useEffect(() => {
     const currentStep = steps.findIndex((step) => step.path === location.pathname);
     if (currentStep !== -1) {
-      setActiveStep(currentStep); // Set the active step based on the current path
-    }
-
-    // Update the state if the user reaches the 6th step
-    if (currentStep === 5) {
-      setHasReachedLastStep(true);
+      setActiveStep(currentStep);
     }
   }, [location.pathname, steps, setActiveStep]);
 
   const handleTabClick = (route, index) => {
-    setActiveStep(index);
-    navigate(route);
+    if (index <= activeStep || filledSteps.includes(index)) {
+      // Allow navigation to the current or previously filled steps
+      setActiveStep(index);
+      navigate(route);
+    }
   };
 
-  // Disable/Enable Forward Arrow Logic
-  const handleFormCompletion = (stepIndex) => {
-    // Check if all forms (1-5) are filled
-    if (stepIndex === 5) {
-      setIsAllFormsFilled(true); // All forms filled
-    } else {
-      setIsAllFormsFilled(false); // Reset if not all forms are filled
+  const markStepAsFilled = (stepIndex) => {
+    if (!filledSteps.includes(stepIndex)) {
+      setFilledSteps((prev) => [...prev, stepIndex]); // Mark step as filled
     }
   };
 
@@ -63,8 +55,10 @@ const Hwizardbar = () => {
           {/* Backward Arrow */}
           <button
             className="arrow-button"
-            onClick={() => activeStep > 0 && handleTabClick(steps[activeStep - 1].path, activeStep - 1)}
-            disabled={activeStep === 0}
+            onClick={() =>
+              activeStep > 0 && handleTabClick(steps[activeStep - 1].path, activeStep - 1)
+            }
+            disabled={activeStep === 0} // Backward always enabled after the first step
             style={arrowButtonStyle(activeStep === 0)}
           >
             <FaArrowLeft size={20} />
@@ -75,16 +69,16 @@ const Hwizardbar = () => {
             className="arrow-button"
             onClick={() => {
               if (activeStep < steps.length - 1) {
+                markStepAsFilled(activeStep); // Mark the current step as filled
                 handleTabClick(steps[activeStep + 1].path, activeStep + 1);
-                handleFormCompletion(activeStep + 1); // Check form completion after forward navigation
               }
             }}
             disabled={
-              activeStep === steps.length - 1 || // Always disable on 6th step
-              (!isAllFormsFilled && !hasReachedLastStep) // Disable only if not filled and hasn't reached the last step
+              activeStep === steps.length - 1 || // Disable forward arrow on the last step
+              !filledSteps.includes(activeStep) // Disable if the current step is not filled
             }
             style={arrowButtonStyle(
-              activeStep === steps.length - 1 || (!isAllFormsFilled && !hasReachedLastStep)
+              activeStep === steps.length - 1 || !filledSteps.includes(activeStep)
             )}
           >
             <FaArrowRight size={20} />
@@ -96,7 +90,10 @@ const Hwizardbar = () => {
         {steps.map((step, index) => (
           <div
             key={step.tab}
-            className={`tab ${activeStep === index ? "active" : ""}`}
+            className={`tab ${activeStep === index ? "active" : ""} ${
+              filledSteps.includes(index) ? "filled" : ""
+            }`}
+            onClick={() => handleTabClick(step.path, index)}
           >
             <div className="tab-text">{step.name}</div>
           </div>
