@@ -55,10 +55,13 @@ p {
   font-size: 18px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
   background-color:#eeeaf7 ;
 }
-
+.otp-input:focus {
+  border-color: #5038ed;
+  outline: none; 
+}
 /* Confirm Button */
 .custom-btn {
   background: linear-gradient(45deg, #5038ed, #9181f4);
