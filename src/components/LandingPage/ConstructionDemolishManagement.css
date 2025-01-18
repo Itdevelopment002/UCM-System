@@ -179,7 +179,7 @@
 
   .register-button-landing-page {
     width: 14rem; /* Adjust button size for smaller screens */
-    height: 3rem;
+    height: 4rem;
     font-size: 1rem;
   }
 
@@ -203,7 +203,7 @@
 
   .register-button-landing-page {
     width: 12rem;
-    height: 2.8rem;
+    height: 3.8rem;
     font-size: 0.9rem;
   }
 }
