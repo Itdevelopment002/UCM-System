@@ -42,14 +42,86 @@ const CourtOrder = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFileName(file ? file.name : ""); // Set the file name or clear it
-    setFormValues((prev) => ({
-      ...prev,
-      courtOrderDocument: file,
+  const handleFileChange = (event, field) => {
+    const file = event.target.files[0]; // Get the uploaded file
+  
+    if (!file) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      return;
+    }
+  
+    // Validation rules for different fields
+    const validationRules = {
+      hardCopyUpload: {
+        validTypes: ["application/pdf", "application/msword"],
+        maxSize: 2 * 1024 * 1024, // 2 MB
+        errorMessage: {
+          type: "Only .doc and .pdf files are allowed.",
+          size: "The file size exceeds 2 MB. Please upload a smaller document.",
+        },
+      },
+      photoUpload: {
+        validTypes: ["image/jpeg", "image/jpg", "image/png"],
+        maxSize: 1 * 1024 * 1024, // 1 MB
+        errorMessage: {
+          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
+          size: "The file size exceeds 1 MB. Please upload a smaller image.",
+        },
+      },
+      videoUpload: {
+        validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
+        maxSize: 10 * 1024 * 1024, // 10 MB
+        errorMessage: {
+          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
+          size: "The file size exceeds 10 MB. Please upload a smaller video.",
+        },
+      },
+    };
+  
+    const validation = validationRules[field];
+  
+    if (!validation) {
+      console.error(`No validation rules found for field: ${field}`);
+      return;
+    }
+  
+    // Validate file type
+    if (!validation.validTypes.includes(file.type)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: validation.errorMessage.type,
+      }));
+      event.target.value = ""; // Clear the file input
+      return;
+    }
+  
+    // Validate file size
+    if (file.size > validation.maxSize) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: validation.errorMessage.size,
+      }));
+      event.target.value = ""; // Clear the file input
+      return;
+    }
+  
+    // Clear errors and update state if validation passes
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: "",
     }));
+  
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [field]: file,
+    }));
+  
+    console.log(`${field} upload successful:`, file.name);
   };
+  
 
   const [isOpenCourt, setIsOpenCourt] = useState(false);
   const toggleCourtDropdown = () => {
@@ -75,7 +147,7 @@ const CourtOrder = () => {
    
   
    
-    if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = "Please upload the court order document.";
+    // if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = "Please upload the court order document.";
     return newErrors;
   };
 
@@ -164,29 +236,38 @@ const CourtOrder = () => {
           </div>
 
           {/* File Upload Field */}
-          <div className="col-md-4 mb-3">
-            <label htmlFor="courtOrderUpload" className="form-label label-small">
-              Court Order <span className="text-danger">*</span>
-            </label>
-            <div className="upload-container">
-              <label
-                htmlFor="courtOrderUpload"
-                className={`form-control input-small upload-label ${errors.courtOrderDocument ? "is-invalid" : ""}`}
-                style={{ cursor: "pointer" }}
-              >
-                <i className="fas fa-upload upload-icon input-small"></i>{" "}
-                {fileName || "Upload Document"}
-              </label>
-              <input
-                type="file"
-                id="courtOrderUpload"
-                onChange={handleFileChange}
-                className="d-none"
-                accept="image/*"
-              />
-            </div>
-            {errors.courtOrderDocument && <div className="text-danger">{errors.courtOrderDocument}</div>}
-          </div>
+         
+          <div className="mb-3 col-md-4">
+  <label htmlFor="hardCopyUpload" className="form-label label-small">
+   Court Order 
+  </label>
+  <div className="upload-container">
+    <label
+      htmlFor="hardCopyUpload"
+      className={`form-control input-small upload-label ${
+        errors.hardCopyUpload ? "is-invalid" : ""
+      }`}
+      style={{ cursor: "pointer" }}
+    >
+      <i className="fas fa-upload upload-icon"></i>
+      <span className="filename-gap">
+        {formValues.hardCopyUpload
+          ? formValues.hardCopyUpload.name
+          : "Upload Documents"}
+      </span>
+    </label>
+    <input
+      type="file"
+      id="hardCopyUpload"
+      onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+      className="form-control input-small d-none"
+      accept=".doc, .pdf"
+    />
+  </div>
+  {errors.hardCopyUpload && (
+    <small className="text-danger">{errors.hardCopyUpload}</small>
+  )}
+</div>
 
         </div>
 
