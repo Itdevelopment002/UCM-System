@@ -108,3 +108,13 @@
   background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
   color: #fff; 
 }
+.signin-alert {
+  color: #5038ED;
+  background: white;
+  background-color: #fff; 
+  border-color:  #fff ;
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-size: 16px;
+  text-align: center;
+}
