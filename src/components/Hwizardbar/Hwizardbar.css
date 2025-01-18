@@ -192,7 +192,12 @@
 }
 @media (max-width: 1000px) {
   .container-bar {
-   
+    
+    position: absolute;
+        width: 100%;
+        left: 0%;
+        top: 200px;
+        height: 40%;
       width: 100%;
       left: 0%;
   }
@@ -200,24 +205,24 @@
 
 
 @media (max-width: 768px) {
-  .container-bar {
+  /* .container-bar {
     top: 12%;
       width: 100%;
       left: 0%;
-  }
+  } */
 }
 @media (max-width: 380px) {
-  .container-bar {
+  /* .container-bar {
       top: 17%;
       width: 100%;
       left: 0%;
-  }
+  } */
 }
 
 @media (max-width: 420px) {
-  .container-bar {
+  /* .container-bar {
       top: 15%;
       width: 100%;
       left: 0%;
-  }
+  } */
 }
