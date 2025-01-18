@@ -18,6 +18,18 @@ const DemolitionOrder = () => {
     policeManpowerDetails: "",
     wardOffice: "",
   });
+
+
+// Inside your component function
+const [formValues, setFormValues] = useState({
+  complainantName: "",
+  complainantContact: "",
+  complaintDescription: "",
+  hardCopyUpload: null,
+  photoUpload: null,
+  videoUpload: null,
+});
+
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -27,13 +39,86 @@ const DemolitionOrder = () => {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleFileChange = (e) => {
-    const { files } = e.target;
-    if (files[0]) {
-      setFileName(files[0].name);
-      setFormData((prevData) => ({ ...prevData, demolitionDocument: files[0].name }));
+  const handleFileChange = (event, field) => {
+    const file = event.target.files[0]; // Get the uploaded file
+  
+    if (!file) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      return;
     }
+  
+    // Validation rules for different fields
+    const validationRules = {
+      hardCopyUpload: {
+        validTypes: ["application/pdf", "application/msword"],
+        maxSize: 2 * 1024 * 1024, // 2 MB
+        errorMessage: {
+          type: "Only .doc and .pdf files are allowed.",
+          size: "The file size exceeds 2 MB. Please upload a smaller document.",
+        },
+      },
+      photoUpload: {
+        validTypes: ["image/jpeg", "image/jpg", "image/png"],
+        maxSize: 1 * 1024 * 1024, // 1 MB
+        errorMessage: {
+          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
+          size: "The file size exceeds 1 MB. Please upload a smaller image.",
+        },
+      },
+      videoUpload: {
+        validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
+        maxSize: 10 * 1024 * 1024, // 10 MB
+        errorMessage: {
+          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
+          size: "The file size exceeds 10 MB. Please upload a smaller video.",
+        },
+      },
+    };
+  
+    const validation = validationRules[field];
+  
+    if (!validation) {
+      console.error(`No validation rules found for field: ${field}`);
+      return;
+    }
+  
+    // Validate file type
+    if (!validation.validTypes.includes(file.type)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: validation.errorMessage.type,
+      }));
+      event.target.value = ""; // Clear the file input
+      return;
+    }
+  
+    // Validate file size
+    if (file.size > validation.maxSize) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: validation.errorMessage.size,
+      }));
+      event.target.value = ""; // Clear the file input
+      return;
+    }
+  
+    // Clear errors and update state if validation passes
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: "",
+    }));
+  
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [field]: file,
+    }));
+  
+    console.log(`${field} upload successful:`, file.name);
   };
+  
 
   const validateForm = () => {
     const newErrors = {};
@@ -43,9 +128,7 @@ const DemolitionOrder = () => {
     if (!formData.demolitionTime) {
       newErrors.demolitionTime = "Demolition Time is required.";
     }
-    if (!formData.demolitionDocument) {
-      newErrors.demolitionDocument = "Please upload a demolition document.";
-    }
+   
     if (!formData.constructionNumber) {
       newErrors.constructionNumber = "Construction Number is required.";
     }
@@ -112,30 +195,38 @@ const DemolitionOrder = () => {
               {errors.demolitionTime && <div className="text-danger">{errors.demolitionTime}</div>}
             </FormGroup>
           </div>
-          <div className="col-md-4">
-            <FormGroup>
-              <Label htmlFor="demolitionDocument" className="form-label label-small">
-                Demolition Document <span className="text-danger">*</span>
-              </Label>
-              <div className="upload-container">
-                <label
-                  htmlFor="demolitionDocument"
-                  className={`form-control input-small upload-label ${errors.demolitionDocument ? "is-invalid" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fas fa-upload upload-icon input-small"></i> {fileName || "Upload Documents"}
-                </label>
-                <input
-                  type="file"
-                  id="demolitionDocument"
-                  onChange={handleFileChange}
-                  className="d-none"
-                  accept="image/*"
-                />
-              </div>
-              {errors.demolitionDocument && <div className="text-danger">{errors.demolitionDocument}</div>}
-            </FormGroup>
-          </div>
+         
+          <div className="mb-3 col-md-4">
+  <label htmlFor="hardCopyUpload" className="form-label label-small">
+   Demolition Document
+  </label>
+  <div className="upload-container">
+    <label
+      htmlFor="hardCopyUpload"
+      className={`form-control input-small upload-label ${
+        errors.hardCopyUpload ? "is-invalid" : ""
+      }`}
+      style={{ cursor: "pointer" }}
+    >
+      <i className="fas fa-upload upload-icon"></i>
+      <span className="filename-gap">
+        {formValues.hardCopyUpload
+          ? formValues.hardCopyUpload.name
+          : "Upload Documents"}
+      </span>
+    </label>
+    <input
+      type="file"
+      id="hardCopyUpload"
+      onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+      className="form-control input-small d-none"
+      accept=".doc, .pdf"
+    />
+  </div>
+  {errors.hardCopyUpload && (
+    <small className="text-danger">{errors.hardCopyUpload}</small>
+  )}
+</div>
         </div>
 
         <div className="row">
