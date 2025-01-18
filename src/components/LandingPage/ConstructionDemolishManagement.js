@@ -11,7 +11,7 @@ const ConstructionDemolishManagement = () => {
                 background: `url(${bg}) center center / cover no-repeat`, // Set the background image
                 position: "relative",
               }}>
-                    <div className="row w-90 w-md-75 shadow-lg rounded overflow-hidden "></div>
+                    <div className="w-90 w-md-75 shadow-lg rounded overflow-hidden "></div>
             <div className="content-box-lp">
                 <div className="responsive-container-lp">
                     {/* Left Content Section */}
