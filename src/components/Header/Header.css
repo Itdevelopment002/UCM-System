@@ -167,7 +167,7 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .header-container {
-    
+    position: absolute;
     flex-direction: column;
     align-items: center;
     padding: 10px;

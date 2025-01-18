@@ -253,7 +253,7 @@ textarea {
 /* For screen widths of 768px and below */
 @media (max-width: 768px) {
   .form-container {
-    position: fixed;
+    position: absolute;
     top: 434px;
     left: 0;
     min-height: 100vh;
@@ -262,7 +262,7 @@ textarea {
     /* max-height: 90vh; */
 }
 .form-container form {
-  position: fixed;
+  position: absolute;
   height: inherit;
   padding: 10px;
 }
@@ -278,7 +278,7 @@ textarea {
     /* max-height: 90vh;  */
   }
   .form-container form {
-    height: max-content;
+    /* height: max-content; */
     padding: 5px;
   }
 }
@@ -292,7 +292,7 @@ textarea {
     /* max-height: 90vh;  */
   }
   .form-container form {
-    height: max-content;
+    /* height: 100%; */
     padding: 5px;
   }
 }
@@ -537,7 +537,7 @@ textarea {
 }
 @media (max-width: 1000px) {
   .form-container {
-    top: 200px;
+    top: 60%;
       width: 100%;
       left: 0%;
   }
@@ -550,20 +550,20 @@ textarea {
       left: 0%;
   }
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .form-container {
     top: 44%;
       width: 100%;
       left: 0%;
   }
-}
-@media (max-width: 768px) {
+} */
+/* @media (max-width: 768px) {
   .form-container {
     top: 46%;
       width: 100%;
       left: 0%;
   }
-}
+} */
 @media (max-width: 380px) {
   .form-container {
       top: 60%;
@@ -572,9 +572,12 @@ textarea {
   }
 }@media (max-width: 420px) {
   .form-container {
-      top: 40%;
+      /* top: 40%; */
       width: 100%;
       left: 0%;
+      position: absolute;
+      overflow-y: scroll;
+     
   }
 }
 
