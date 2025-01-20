@@ -537,7 +537,9 @@ textarea {
 }
 @media (max-width: 1000px) {
   .form-container {
-    top: 60%;
+    margin-top: 5rem;
+
+    /* top: 60%; */
       width: 100%;
       left: 0%;
   }
@@ -545,7 +547,7 @@ textarea {
 
 @media (max-width: 992px) {
   .form-container {
-    top: 30%;
+    /* top: 30%; */
       width: 100%;
       left: 0%;
   }

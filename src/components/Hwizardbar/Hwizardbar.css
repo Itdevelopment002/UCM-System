@@ -192,11 +192,12 @@
 }
 @media (max-width: 1000px) {
   .container-bar {
+    top: 8rem;
     
     position: absolute;
         width: 100%;
         left: 0%;
-        top: 200px;
+      
         height: 40%;
       width: 100%;
       left: 0%;
