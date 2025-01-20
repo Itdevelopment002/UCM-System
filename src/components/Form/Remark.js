@@ -101,7 +101,7 @@ const Remark = () => {
        <button onClick={closeModal} className="cancel-btn" >
           Cancel
         </button>
-        <Link to="/dashboard/form">
+        <Link to="/">
         <button className="confirm-btn">Confirm</button>
       </Link>
        </div>

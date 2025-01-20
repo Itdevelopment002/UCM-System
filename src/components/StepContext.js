@@ -1,4 +1,3 @@
-// StepContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const StepContext = createContext();
@@ -8,11 +7,10 @@ export const useStepContext = () => {
 };
 
 export const StepProvider = ({ children }) => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [activeStep, setActiveStep] = useState(0); // Initially, step 0 is active
 
   return (
-    <StepContext.Provider value={{ activeStep, setActiveStep, isFormValid, setIsFormValid }}>
+    <StepContext.Provider value={{ activeStep, setActiveStep }}>
       {children}
     </StepContext.Provider>
   );
