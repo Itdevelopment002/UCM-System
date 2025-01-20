@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./FunctionalRequiremnt.css";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
-import { useNavigate } from "react-router-dom"; // for navigation
+import { useNavigate } from "react-router-dom"; 
 const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -24,7 +24,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
     contactNumber: "",
     pincode: "",
   });
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const navigate = useNavigate(); 
   
   const [selectedOption, setSelectedOption] = useState("Select Occupation Type");
   const [selecteddOption, setSelecteddOption] = useState("Choose nature of construction");
@@ -121,7 +121,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
     let isValid = true;
     const newErrors = { ...errors };
 
-    // Validate Mobile number
+    
     if (!/^\d{10}$/.test(formValues.contactNumber)) {
       newErrors.contactNumber = "Contact number must be exactly 10 digits.";
       isValid = false;
@@ -129,7 +129,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
       newErrors.contactNumber = "";
     }
 
-    // Validate Pincode
+    
     if (!/^\d{6}$/.test(formValues.pincode)) {
       newErrors.pincode = "Pincode must be exactly 6 digits.";
       isValid = false;
@@ -140,12 +140,12 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
     setErrors(newErrors);
 
     if (isValid) {
-      console.log("Form is valid"); // For debugging
-      // Navigate to next form if the form is valid
-      // navigate("/dashboard/complain-details");
-      onNext(); // Call the onNext function to navigate to the next form
+      console.log("Form is valid"); 
+      
+      
+      onNext(); 
     } else {
-      console.log("Form is invalid"); // For debugging
+      console.log("Form is invalid"); 
     }
   };
   
@@ -210,7 +210,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 id="contactNumber"
                 placeholder="Enter contact number"
                 value={formValues.contactNumber}
-                onChange={(e) => handleNumericInput(e, 10)}  // Max length set to 10
+                onChange={(e) => handleNumericInput(e, 10)}  
               />
               {errors.contactNumber && <div className="text-danger">{errors.contactNumber}</div>}
             </div>
@@ -273,7 +273,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 id="pincode"
                 placeholder="Enter pincode"
                 value={formValues.pincode}
-                onChange={(e) => handleNumericInput(e, 6)}  // Max length set to 6
+                onChange={(e) => handleNumericInput(e, 6)}  
               />
               {errors.pincode && <div className="text-danger">{errors.pincode}</div>}
             </div>

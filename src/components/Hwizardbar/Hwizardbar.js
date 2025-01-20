@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useStepContext } from "../StepContext"; // Import the context
+import { useStepContext } from "../StepContext"; 
 import "./Hwizardbar.css";
 
 const Hwizardbar = ({ activeForm, onStepChange }) => {
-  const { setActiveStep } = useStepContext(); // Get the context function to update the active step in Sidebar
+  const { setActiveStep } = useStepContext(); 
 
   const loadFormState = () => {
     const savedState = localStorage.getItem("formFilled");
@@ -39,7 +39,7 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
   const canGoToPrev = () => activeForm > 0 || formFilled[activeForm];
 
   useEffect(() => {
-    setActiveStep(activeForm); // Synchronize the active step with Sidebar
+    setActiveStep(activeForm); 
   }, [activeForm, setActiveStep]);
 
   return (

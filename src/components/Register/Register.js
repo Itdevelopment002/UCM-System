@@ -27,7 +27,7 @@ const Register = () => {
 
     const newErrors = { ...errors };
 
-    // Validate all fields
+    
     if (!firstName || !/^[A-Za-z]+$/.test(firstName)) {
       newErrors.firstName = "First name is required and should only contain alphabets.";
     } else {

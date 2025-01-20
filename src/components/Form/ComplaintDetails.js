@@ -8,8 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 
 const ComplaintDetails = ({ onNext, onPrevious }) => {
-  const [error, setError] = useState(""); // Error state for validations
-  const navigate = useNavigate(); // To navigate to the next form
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     complainantName: "",
     complainantContact: "",
@@ -23,33 +23,33 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
   const handleInputChange = (e) => {
     const { id, value, files } = e.target;
-  
+
     if (id === "complainantContact") {
-      // Sirf numeric input allow karein
+
       const sanitizedValue = value.replace(/[^0-9]/g, "");
-  
-      // Agar length 10 se zyada ho, toh error set karein
+
+
       if (sanitizedValue.length > 10) {
         setErrors((prevErrors) => ({
           ...prevErrors,
           [id]: "Please enter a 10-digit number only.",
         }));
-        return; // Invalid input, form value update na karein
+        return;
       }
-  
-      // Agar valid hai, error hata dein
+
+
       setErrors((prevErrors) => ({
         ...prevErrors,
         [id]: "",
       }));
-  
-      // Form value update karein
+
+
       setFormValues((prevValues) => ({
         ...prevValues,
         [id]: sanitizedValue,
       }));
     } else {
-      // Baaki fields ke liye default behavior
+
       setFormValues((prevValues) => ({
         ...prevValues,
         [id]: files ? files[0] : value,
@@ -58,8 +58,8 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
   };
 
   const handleFileChange = (event, field) => {
-    const file = event.target.files[0]; // Get the uploaded file
-  
+    const file = event.target.files[0];
+
     if (!file) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -67,12 +67,12 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
       }));
       return;
     }
-  
-    // Validation rules for different fields
+
+
     const validationRules = {
       hardCopyUpload: {
         validTypes: ["application/pdf", "application/msword"],
-        maxSize: 2 * 1024 * 1024, // 2 MB
+        maxSize: 2 * 1024 * 1024,
         errorMessage: {
           type: "Only .doc and .pdf files are allowed.",
           size: "The file size exceeds 2 MB. Please upload a smaller document.",
@@ -80,7 +80,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
       },
       photoUpload: {
         validTypes: ["image/jpeg", "image/jpg", "image/png"],
-        maxSize: 1 * 1024 * 1024, // 1 MB
+        maxSize: 1 * 1024 * 1024,
         errorMessage: {
           type: "Only image files (.jpg, .jpeg, .png) are allowed.",
           size: "The file size exceeds 1 MB. Please upload a smaller image.",
@@ -88,59 +88,59 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
       },
       videoUpload: {
         validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
-        maxSize: 10 * 1024 * 1024, // 10 MB
+        maxSize: 10 * 1024 * 1024,
         errorMessage: {
           type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
           size: "The file size exceeds 10 MB. Please upload a smaller video.",
         },
       },
     };
-  
+
     const validation = validationRules[field];
-  
+
     if (!validation) {
       console.error(`No validation rules found for field: ${field}`);
       return;
     }
-  
-    // Validate file type
+
+
     if (!validation.validTypes.includes(file.type)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [field]: validation.errorMessage.type,
       }));
-      event.target.value = ""; // Clear the file input
+      event.target.value = "";
       return;
     }
-  
-    // Validate file size
+
+
     if (file.size > validation.maxSize) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [field]: validation.errorMessage.size,
       }));
-      event.target.value = ""; // Clear the file input
+      event.target.value = "";
       return;
     }
-  
-    // Clear errors and update state if validation passes
+
+
     setErrors((prevErrors) => ({
       ...prevErrors,
       [field]: "",
     }));
-  
+
     setFormValues((prevValues) => ({
       ...prevValues,
       [field]: file,
     }));
-  
+
     console.log(`${field} upload successful:`, file.name);
   };
-  
-  
-  
 
-  
+
+
+
+
 
   const validateForm = () => {
     const newErrors = {};
@@ -165,7 +165,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // If no errors, return true
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
@@ -173,10 +173,10 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
     if (validateForm()) {
       console.log("Form submitted successfully", formValues);
-     
-      // Navigate to the next form ("/dashboard/notice-details")
-      // navigate("/dashboard/notice-details");
-      onNext(); // Call the onNext function to navigate to the next form
+
+
+
+      onNext();
     } else {
       console.log("Validation failed. Please check the fields.");
     }
@@ -197,9 +197,8 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                   id="complainantName"
                   value={formValues.complainantName}
                   onChange={handleInputChange}
-                  className={`form-control input-small ${
-                    errors.complainantName ? "is-invalid" : ""
-                  }`}
+                  className={`form-control input-small ${errors.complainantName ? "is-invalid" : ""
+                    }`}
                   placeholder="Enter name"
                 />
                 {errors.complainantName && (
@@ -216,9 +215,8 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                   id="complainantContact"
                   value={formValues.complainantContact}
                   onChange={handleInputChange}
-                  className={`form-control input-small ${
-                    errors.complainantContact ? "is-invalid" : ""
-                  }`}
+                  className={`form-control input-small ${errors.complainantContact ? "is-invalid" : ""
+                    }`}
                   placeholder="Enter contact number"
                 />
                 {errors.complainantContact && (
@@ -235,9 +233,8 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                 id="complaintDescription"
                 value={formValues.complaintDescription}
                 onChange={handleInputChange}
-                className={`form-control input-small ${
-                  errors.complaintDescription ? "is-invalid" : ""
-                }`}
+                className={`form-control input-small ${errors.complaintDescription ? "is-invalid" : ""
+                  }`}
                 rows="4"
                 placeholder="Write a long text here"
               ></textarea>
@@ -247,36 +244,35 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
             </div>
 
             <div className="mb-3 col-md-12">
-  <label htmlFor="hardCopyUpload" className="form-label label-small">
-    Hard Copy Attachment (Offline Complaint Received) <span className="text-danger">*</span>
-  </label>
-  <div className="upload-container">
-    <label
-      htmlFor="hardCopyUpload"
-      className={`form-control input-small upload-label ${
-        errors.hardCopyUpload ? "is-invalid" : ""
-      }`}
-      style={{ cursor: "pointer" }}
-    >
-      <i className="fas fa-upload upload-icon"></i>
-      <span className="filename-gap">
-        {formValues.hardCopyUpload
-          ? formValues.hardCopyUpload.name
-          : "Upload Documents"}
-      </span>
-    </label>
-    <input
-      type="file"
-      id="hardCopyUpload"
-      onChange={(e) => handleFileChange(e, "hardCopyUpload")}
-      className="form-control input-small d-none"
-      accept=".doc, .pdf"
-    />
-  </div>
-  {errors.hardCopyUpload && (
-    <small className="text-danger">{errors.hardCopyUpload}</small>
-  )}
-</div>
+              <label htmlFor="hardCopyUpload" className="form-label label-small">
+                Hard Copy Attachment (Offline Complaint Received) <span className="text-danger">*</span>
+              </label>
+              <div className="upload-container">
+                <label
+                  htmlFor="hardCopyUpload"
+                  className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
+                    }`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <i className="fas fa-upload upload-icon"></i>
+                  <span className="filename-gap">
+                    {formValues.hardCopyUpload
+                      ? formValues.hardCopyUpload.name
+                      : "Upload Documents"}
+                  </span>
+                </label>
+                <input
+                  type="file"
+                  id="hardCopyUpload"
+                  onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+                  className="form-control input-small d-none"
+                  accept=".doc, .pdf"
+                />
+              </div>
+              {errors.hardCopyUpload && (
+                <small className="text-danger">{errors.hardCopyUpload}</small>
+              )}
+            </div>
 
           </div>
 
@@ -285,76 +281,74 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
               <label className="form-label label-big">Complaint Attachments</label>
               <div className="divider-form"></div>
               <div className="row">
-              <div className="mb-3 col-md-6">
-  <label className="form-label label-small">Photos</label>
-  <div className="upload-container">
-  <label
-  htmlFor="photoUpload"
-  className={`form-control input-small upload-label ${
-    errors.photoUpload ? "is-invalid" : ""
-  }`}
-  style={{ cursor: "pointer" }}
->
+                <div className="mb-3 col-md-6">
+                  <label className="form-label label-small">Photos</label>
+                  <div className="upload-container">
+                    <label
+                      htmlFor="photoUpload"
+                      className={`form-control input-small upload-label ${errors.photoUpload ? "is-invalid" : ""
+                        }`}
+                      style={{ cursor: "pointer" }}
+                    >
 
-      <i className="fas fa-upload upload-icon"></i>
-      <span className="filename-gap">
-        {formValues.photoUpload
-          ? formValues.photoUpload.name
-          : "Upload Photos"}
-      </span>
-    </label>
-    <input
-      type="file"
-      id="photoUpload"
-      onChange={(e) => handleFileChange(e, "photoUpload")}
-      className={`form-control input-small d-none `} // Apply `is-invalid` if there's an error
-      accept="image/jpeg, image/jpg, image/png"
-    />
-  </div>
-  {errors.photoUpload && (
-    <small className="text-danger">{errors.photoUpload}</small> // Display error message
-  )}
-</div>
-
+                      <i className="fas fa-upload upload-icon"></i>
+                      <span className="filename-gap">
+                        {formValues.photoUpload
+                          ? formValues.photoUpload.name
+                          : "Upload Photos"}
+                      </span>
+                    </label>
+                    <input
+                      type="file"
+                      id="photoUpload"
+                      onChange={(e) => handleFileChange(e, "photoUpload")}
+                      className={`form-control input-small d-none `}
+                      accept="image/jpeg, image/jpg, image/png"
+                    />
+                  </div>
+                  {errors.photoUpload && (
+                    <small className="text-danger">{errors.photoUpload}</small>
+                  )}
+                </div>
 
 
-<div className="mb-3 col-md-6">
-  <label className="form-label label-small">Videos</label>
-  <div className="upload-container">
-  <label
-  htmlFor="videoUpload"
-  className={`form-control input-small upload-label ${
-    errors.videoUpload ? "is-invalid" : ""
-  }`}
-  style={{ cursor: "pointer" }}
->
 
-      <i className="fas fa-upload upload-icon"></i>
-      <span className="filename-gap">
-        {formValues.videoUpload
-          ? formValues.videoUpload.name
-          : "Upload Videos"}
-      </span>
-    </label>
-    <input
-      type="file"
-      id="videoUpload"
-      onChange={(e) => handleFileChange(e, "videoUpload")}
-      className="form-control input-small d-none"
-      accept="video/*"
-    />
-  </div>
-  {errors.videoUpload && (
-    <small className="text-danger">{errors.videoUpload}</small>
-  )}
-</div>
+                <div className="mb-3 col-md-6">
+                  <label className="form-label label-small">Videos</label>
+                  <div className="upload-container">
+                    <label
+                      htmlFor="videoUpload"
+                      className={`form-control input-small upload-label ${errors.videoUpload ? "is-invalid" : ""
+                        }`}
+                      style={{ cursor: "pointer" }}
+                    >
+
+                      <i className="fas fa-upload upload-icon"></i>
+                      <span className="filename-gap">
+                        {formValues.videoUpload
+                          ? formValues.videoUpload.name
+                          : "Upload Videos"}
+                      </span>
+                    </label>
+                    <input
+                      type="file"
+                      id="videoUpload"
+                      onChange={(e) => handleFileChange(e, "videoUpload")}
+                      className="form-control input-small d-none"
+                      accept="video/*"
+                    />
+                  </div>
+                  {errors.videoUpload && (
+                    <small className="text-danger">{errors.videoUpload}</small>
+                  )}
+                </div>
 
 
               </div>
             </div>
 
-                        {/* Location Details */}
-                        <div className="form-group mt-4">
+            {/* Location Details */}
+            <div className="form-group mt-4">
               <label className="form-label text-dark fw-bold" style={{ fontSize: "16px" }}>Location Details</label>
               <div className="mb-3" style={{ height: "2px", width: "auto", background: "#5038ED" }}></div>
               <div className="">
@@ -376,10 +370,10 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                           </span>
                           <strong className="text-secondary fw-light" style={{ fontSize: "20px" }}>Delhi</strong>
                         </div>
-                        <div className="position-relative"style={{top: "5%"}} >
-                          <img src={iconbg} alt="signup" className="img-fluid rounded"/>
+                        <div className="position-relative" style={{ top: "5%" }} >
+                          <img src={iconbg} alt="signup" className="img-fluid rounded" />
                           <i className="fas fa-paper-plane text-white position-absolute"
-                            style={{top: "18%",left: "21%", fontSize: "1.4rem"}}></i></div>
+                            style={{ top: "18%", left: "21%", fontSize: "1.4rem" }}></i></div>
                       </div>
                     </div>
                     <p className="mb-1 text-secondary fw-bold">Latitude
@@ -387,7 +381,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                     <p className="text-secondary fw-bold">Longitude
                       <strong className="text-secondary fw-light" style={{ fontSize: "18px" }}> -77.1025</strong></p>
                   </div>
-                 
+
                 </div>
               </div>
             </div>

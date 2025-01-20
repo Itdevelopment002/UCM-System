@@ -8,43 +8,43 @@ import bg from "../../images/signup-bg.jpg";
 import "./Login.css";
 
 const Verification = () => {
-  const navigate = useNavigate(); // Initialize navigate function
-  const inputRefs = useRef([]); // Create refs for the OTP inputs
-  const otpCode = useRef(["", "", "", ""]); // Store the OTP values
-  const [warning, setWarning] = useState(""); // State to manage warning messages
+  const navigate = useNavigate(); 
+  const inputRefs = useRef([]); 
+  const otpCode = useRef(["", "", "", ""]); 
+  const [warning, setWarning] = useState(""); 
 
   const handleInputChange = (e, index) => {
     const value = e.target.value;
 
-    // Validate input (only numbers)
+    
     if (/^\d?$/.test(value)) {
-      setWarning(""); // Clear any warning
-      otpCode.current[index] = value; // Update the OTP code array
+      setWarning(""); 
+      otpCode.current[index] = value; 
       if (value && index < inputRefs.current.length - 1) {
-        inputRefs.current[index + 1].focus(); // Move to the next input
+        inputRefs.current[index + 1].focus(); 
       }
     } else {
-      setWarning("Please enter numbers only!"); // Show warning
-      e.target.value = ""; // Clear invalid input
+      setWarning("Please enter numbers only!"); 
+      e.target.value = ""; 
     }
   };
 
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace") {
       if (!e.target.value && index > 0) {
-        inputRefs.current[index - 1].focus(); // Move to the previous input
+        inputRefs.current[index - 1].focus(); 
       } else {
-        otpCode.current[index] = ""; // Clear the current input
+        otpCode.current[index] = ""; 
       }
     }
   };
 
   const handleConfirmClick = () => {
-    // Check if all fields are filled with numerical values
+    
     const isValidCode = otpCode.current.every((digit) => digit !== "");
     if (isValidCode) {
       alert("OTP verified successfully!");
-      navigate("/dashboard/form"); // Navigate to the dashboard route
+      navigate("/dashboard/form"); 
     } else {
       alert("Please enter a valid 4-digit OTP.");
     }
@@ -75,7 +75,7 @@ const Verification = () => {
               style={{ minHeight: "30px", marginBottom: "15px" }}
             >
               {warning && (
-                <p className="text-danger mb-0">{warning}</p> // Fixed container for warning
+                <p className="text-danger mb-0">{warning}</p> 
               )}
             </div>
             <form className="w-60 mt-2 text-center">
@@ -86,9 +86,9 @@ const Verification = () => {
                     type="text"
                     maxLength="1"
                     className="form-control text-center otp-input"
-                    ref={(el) => (inputRefs.current[index] = el)} // Store each input ref
-                    onChange={(e) => handleInputChange(e, index)} // Handle input change
-                    onKeyDown={(e) => handleKeyDown(e, index)} // Handle backspace navigation
+                    ref={(el) => (inputRefs.current[index] = el)} 
+                    onChange={(e) => handleInputChange(e, index)} 
+                    onKeyDown={(e) => handleKeyDown(e, index)} 
                   />
                 ))}
               </div>
@@ -96,7 +96,7 @@ const Verification = () => {
                 type="button"
                 className="btn custom-btn fw-bold mt-3 mb-5 button-log-page"
                 style={{ maxWidth: "150px", width: "90%" }}
-                onClick={handleConfirmClick} // Call handleConfirmClick on button click
+                onClick={handleConfirmClick} 
               >
                 Confirm
               </button>

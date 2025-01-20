@@ -1,14 +1,14 @@
-/* Base styles */
+
 .outer-wrapper-lp {
   font-family: "Poppins", sans-serif;
-  height: 100vh; /* Full screen height */
-  overflow-y: hidden; /* Prevent vertical scrollbar */
+  height: 100vh;
+  overflow-y: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #f4f6f9; /* Optional background color */
-  text-align: center; /* Ensure centering on mobile */
+  background-color: #f4f6f9;
+  text-align: center;
 }
 
 .register-button-landing-page {
@@ -21,7 +21,7 @@
   border-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .register-button-landing-page:hover {
@@ -41,19 +41,19 @@
   justify-content: space-between;
   flex-direction: column;
   gap: 1rem;
-  border-radius: 10px; /* Rounded corners for better aesthetics */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .responsive-container-lp {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   height: inherit;
   align-items: center;
 }
 
-/* Left Content */
+
 .content-left-lp {
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@
   font-size: 1rem;
 }
 
-/* Right Content */
+
 .content-right {
   display: flex;
   justify-content: end;
@@ -114,18 +114,18 @@
   font-weight: 600;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 1200px) {
   .outer-wrapper-lp {
     font-family: "Poppins", sans-serif;
-    height: 100%; /* Full screen height */
-    overflow-y: hidden; /* Prevent vertical scrollbar */
+    height: 100%;
+    overflow-y: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f4f6f9; /* Optional background color */
-    text-align: center; /* Ensure centering on mobile */
+    background-color: #f4f6f9;
+    text-align: center;
   }
 
     .content-box-lp {
@@ -134,9 +134,9 @@
     }
 
   .responsive-container-lp {
-    grid-template-columns: 1fr; /* Single column for smaller screens */
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    text-align: center; /* Center content on mobile */
+    text-align: center;
   }
 
   .content-left-lp,
@@ -147,12 +147,12 @@
 
   .header-text-lp {
     text-align: center;
-    font-size: 1.8rem; /* Slightly smaller heading */
+    font-size: 1.8rem;
   }
 
   .description-lp {
     text-align: center;
-    font-size: 1rem; /* Adjust description font size */
+    font-size: 1rem;
   }
 
   .right-image {
@@ -163,22 +163,22 @@
 @media (max-width: 768px) {
   .outer-wrapper-lp {
     font-family: "Poppins", sans-serif;
-    height: 100%; /* Full screen height */
-    overflow-y: hidden; /* Prevent vertical scrollbar */
+    height: 100%;
+    overflow-y: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f4f6f9; /* Optional background color */
-    text-align: center; /* Ensure centering on mobile */
+    background-color: #f4f6f9;
+    text-align: center;
   }
   
   .header-text-lp {
-    font-size: 1.6rem; /* Smaller heading for mobile */
+    font-size: 1.6rem;
   }
 
   .register-button-landing-page {
-    width: 14rem; /* Adjust button size for smaller screens */
+    width: 14rem;
     height: 4rem;
     font-size: 1rem;
   }
@@ -188,7 +188,7 @@
   }
 
   .right-image {
-    max-width: 300px; /* Smaller image on mobile */
+    max-width: 300px;
   }
 }
 

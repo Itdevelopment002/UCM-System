@@ -1,7 +1,7 @@
-/* Set background image and apply opacity */
 
 
-/* Overlay to reduce opacity */
+
+
 .container-fluid::after {
   content: '';
   position: absolute;
@@ -9,16 +9,16 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(154, 121, 225, 0.3); /* Apply dark overlay with opacity */
-  z-index: 1; /* Ensure it stays behind the content */
+  background: rgba(154, 121, 225, 0.3);
+  z-index: 1;
 }
 
 .login {
   position: relative;
-  z-index: 2; /* Ensure the form content is above the background and overlay */
+  z-index: 2;
 }
 
-/* Left Section Styling */
+
 .input-check-reg {
   border:none;
   border-radius: 14px;
@@ -58,7 +58,7 @@
 }
 .signin-link{
   color: #5038ED;
-  /* #9181f4; */
+ 
 }
 .signin-link:hover{
   color: #7364d4;
@@ -87,10 +87,10 @@
 }
 
 
-/* Center the button and adjust width */
+
 .register-button {
   height: 2.5rem;
-  width: auto; /* Allow the button width to adjust based on content */
+  width: auto;
   font-size: 1.1rem;
   font-weight: 600;
   color: white;
@@ -98,9 +98,9 @@
   border-radius: 16px;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease; /* Add smooth transition */
-  margin: auto; /* This centers the button horizontally */
-  display: block; /* Ensure the button is block-level */
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin: auto;
+  display: block;
 }
 
 .register-button:hover {

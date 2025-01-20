@@ -1,4 +1,4 @@
-/* General Layout */
+
 .container-fluid {
   background: #f4f6f9;
 }
@@ -9,8 +9,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(154, 121, 225, 0.3); /* Apply dark overlay with opacity */
-  z-index: 1; /* Ensure it stays behind the content */
+  background: rgba(154, 121, 225, 0.3);
+  z-index: 1;
 }
 
 .login {
@@ -19,7 +19,7 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Section - Verification Form */
+
 .bg-white {
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@ p {
   color: #777;
 }
 
-/* OTP Inputs */
+
 .otp-input-group {
   display: flex;
   gap: 14px;
@@ -55,14 +55,14 @@ p {
   font-size: 18px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+ 
   background-color:#eeeaf7 ;
 }
 .otp-input:focus {
   border-color: #5038ed;
   outline: none; 
 }
-/* Confirm Button */
+
 .custom-btn {
   background: linear-gradient(45deg, #5038ed, #9181f4);
   color: #fff;
@@ -78,7 +78,7 @@ p {
   background: linear-gradient(45deg, #7d6ce4, #3d2dcc);
 }
 
-/* Promo Section */
+
 .promo-section {
   position: relative;
   display: flex;
@@ -88,7 +88,7 @@ p {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* Worker Image */
+
 .man-image {
   width: 60%;
   height: 86%;
@@ -126,7 +126,7 @@ p {
   position: absolute;
 }
 
-/* Promo Text */
+
 .promo-text h3 {
   font-size: 24px;
   color: #fff;
@@ -145,7 +145,7 @@ p {
   box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
   background-color: #eeeaf7;
 }
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .login {
     flex-direction: column;
@@ -165,7 +165,7 @@ p {
     padding: 0 10px;
   }
 }
-/* Code 2 Priority */
+
 .button-log-page {
   width: 30%;
   font-size: 12px;
@@ -176,7 +176,7 @@ p {
   border: none;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease; 
-  /* Add smooth transition */
+ 
 }
 .custom-btn {
   background: linear-gradient(45deg, #5038ed, #9181f4);
@@ -187,7 +187,7 @@ p {
   font-size: 12px;}
   
 .button-log-page:hover {
-  transform: scale(1.05); /* Slightly increase button size */
+  transform: scale(1.05);
   background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
-  color: #fff; /* Reversed gradient */ /* Reversed gradient */
+  color: #fff;
 }

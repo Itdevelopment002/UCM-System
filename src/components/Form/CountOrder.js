@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react"; 
+import React, { useState, useRef } from "react";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import "react-toastify/dist/ReactToastify.css";
 
 const CourtOrder = ({ onNext, onPrevious }) => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
 
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Select occupation");
@@ -27,12 +27,12 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   });
 
   const courtOptions = [
-    "District Court", 
-    "High Court", 
+    "District Court",
+    "High Court",
     "Supreme Court"
   ];
   const [errors, setErrors] = useState({});
-  const [fileName, setFileName] = useState(""); // State to store the file name
+  const [fileName, setFileName] = useState("");
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -43,8 +43,8 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   };
 
   const handleFileChange = (event, field) => {
-    const file = event.target.files[0]; // Get the uploaded file
-  
+    const file = event.target.files[0];
+
     if (!file) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -52,12 +52,12 @@ const CourtOrder = ({ onNext, onPrevious }) => {
       }));
       return;
     }
-  
-    // Validation rules for different fields
+
+
     const validationRules = {
       hardCopyUpload: {
         validTypes: ["application/pdf", "application/msword"],
-        maxSize: 2 * 1024 * 1024, // 2 MB
+        maxSize: 2 * 1024 * 1024,
         errorMessage: {
           type: "Only .doc and .pdf files are allowed.",
           size: "The file size exceeds 2 MB. Please upload a smaller document.",
@@ -65,7 +65,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
       },
       photoUpload: {
         validTypes: ["image/jpeg", "image/jpg", "image/png"],
-        maxSize: 1 * 1024 * 1024, // 1 MB
+        maxSize: 1 * 1024 * 1024,
         errorMessage: {
           type: "Only image files (.jpg, .jpeg, .png) are allowed.",
           size: "The file size exceeds 1 MB. Please upload a smaller image.",
@@ -73,55 +73,55 @@ const CourtOrder = ({ onNext, onPrevious }) => {
       },
       videoUpload: {
         validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
-        maxSize: 10 * 1024 * 1024, // 10 MB
+        maxSize: 10 * 1024 * 1024,
         errorMessage: {
           type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
           size: "The file size exceeds 10 MB. Please upload a smaller video.",
         },
       },
     };
-  
+
     const validation = validationRules[field];
-  
+
     if (!validation) {
       console.error(`No validation rules found for field: ${field}`);
       return;
     }
-  
-    // Validate file type
+
+
     if (!validation.validTypes.includes(file.type)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [field]: validation.errorMessage.type,
       }));
-      event.target.value = ""; // Clear the file input
+      event.target.value = "";
       return;
     }
-  
-    // Validate file size
+
+
     if (file.size > validation.maxSize) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [field]: validation.errorMessage.size,
       }));
-      event.target.value = ""; // Clear the file input
+      event.target.value = "";
       return;
     }
-  
-    // Clear errors and update state if validation passes
+
+
     setErrors((prevErrors) => ({
       ...prevErrors,
       [field]: "",
     }));
-  
+
     setFormValues((prevValues) => ({
       ...prevValues,
       [field]: file,
     }));
-  
+
     console.log(`${field} upload successful:`, file.name);
   };
-  
+
 
   const [isOpenCourt, setIsOpenCourt] = useState(false);
   const toggleCourtDropdown = () => {
@@ -143,35 +143,35 @@ const CourtOrder = ({ onNext, onPrevious }) => {
     if (!formValues.courtOrderNumber) newErrors.courtOrderNumber = "Court Order Number is required.";
     if (!formValues.edDate) newErrors.edDate = "ED Date is required.";
     if (!formValues.courtName) newErrors.courtName = "Court Name is required.";
-  
-   
-  
-   
-    // if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = "Please upload the court order document.";
+
+
+
+
+
     return newErrors;
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-  
-    const newErrors = validateForm(); // Validate the form fields
-    console.log("Validation Errors:", newErrors); // Debug: check validation errors
-  
+    e.preventDefault();
+
+    const newErrors = validateForm();
+    console.log("Validation Errors:", newErrors);
+
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors); // Set errors if validation fails
+      setErrors(newErrors);
     } else {
-      setErrors({}); // Clear any previous errors if validation is successful
-  
-      // Print success message if all validations are passed
-      console.log("Submitted Successfully:", formValues); 
-  
-      // Navigate to the next page
-      // navigate("/dashboard/remark");
-      onNext(); // Call the onNext function to navigate to the next form
+      setErrors({});
+
+
+      console.log("Submitted Successfully:", formValues);
+
+
+
+      onNext();
     }
   };
-  
-  
+
+
 
   return (
     <div className="form-container">
@@ -237,38 +237,37 @@ const CourtOrder = ({ onNext, onPrevious }) => {
           </div>
 
           {/* File Upload Field */}
-         
+
           <div className="mb-3 col-md-4">
-  <label htmlFor="hardCopyUpload" className="form-label label-small">
-   Court Order 
-  </label>
-  <div className="upload-container">
-    <label
-      htmlFor="hardCopyUpload"
-      className={`form-control input-small upload-label ${
-        errors.hardCopyUpload ? "is-invalid" : ""
-      }`}
-      style={{ cursor: "pointer" }}
-    >
-      <i className="fas fa-upload upload-icon"></i>
-      <span className="filename-gap">
-        {formValues.hardCopyUpload
-          ? formValues.hardCopyUpload.name
-          : "Upload Documents"}
-      </span>
-    </label>
-    <input
-      type="file"
-      id="hardCopyUpload"
-      onChange={(e) => handleFileChange(e, "hardCopyUpload")}
-      className="form-control input-small d-none"
-      accept=".doc, .pdf"
-    />
-  </div>
-  {errors.hardCopyUpload && (
-    <small className="text-danger">{errors.hardCopyUpload}</small>
-  )}
-</div>
+            <label htmlFor="hardCopyUpload" className="form-label label-small">
+              Court Order
+            </label>
+            <div className="upload-container">
+              <label
+                htmlFor="hardCopyUpload"
+                className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
+                  }`}
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fas fa-upload upload-icon"></i>
+                <span className="filename-gap">
+                  {formValues.hardCopyUpload
+                    ? formValues.hardCopyUpload.name
+                    : "Upload Documents"}
+                </span>
+              </label>
+              <input
+                type="file"
+                id="hardCopyUpload"
+                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+                className="form-control input-small d-none"
+                accept=".doc, .pdf"
+              />
+            </div>
+            {errors.hardCopyUpload && (
+              <small className="text-danger">{errors.hardCopyUpload}</small>
+            )}
+          </div>
 
         </div>
 
@@ -292,7 +291,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
           {/* Court Type Dropdown */}
           <div className="col-md-4 mb-3">
             <label htmlFor="typeOfCourt" className="form-label label-small">
-              Type of Court 
+              Type of Court
             </label>
             <div className="custom-dropdown">
               <div
@@ -330,7 +329,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerName" className="form-label label-small">
-              Petitioner Name 
+              Petitioner Name
             </label>
             <input
               type="text"
@@ -340,21 +339,21 @@ const CourtOrder = ({ onNext, onPrevious }) => {
               value={formValues.petitionerName}
               onChange={handleInputChange}
             />
-          
+
           </div>
           <div className="col-md-4 mb-3 mt-2">
-                <label htmlFor="detailedAddress" className="form-label label-small">
-                 Petitioner Address
-                </label>
-                <textarea
-                  className="form-control input-small text-box-height"
-                  id="detailedAddress"
-                  placeholder="Write a long text here"
-                  rows="3"
-                  value={formValues.detailedAddress}
-                  onChange={handleInputChange}
-                />
-              </div>
+            <label htmlFor="detailedAddress" className="form-label label-small">
+              Petitioner Address
+            </label>
+            <textarea
+              className="form-control input-small text-box-height"
+              id="detailedAddress"
+              placeholder="Write a long text here"
+              rows="3"
+              value={formValues.detailedAddress}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
         <button type="submit" className="btn submit-btn-form">

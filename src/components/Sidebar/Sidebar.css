@@ -14,28 +14,28 @@
   isolation: isolate;
 }
 
-/* Updated Step Number Font Size */
+
 .step-number {
   font-size: clamp(12px, 1vw, 14px);
   line-height: clamp(8px, 0.8vw, 10px);
 }
 
-/* Updated Step Title Font Size */
+
 .step-title {
   font-size: clamp(12px, 1.5vw, 18px);
   line-height: clamp(14px, 2vw, 22px);
 }
 
-/* Sidebar Width Responsive */
+
 .sidebar-outer-div {
   width: clamp(200px, 15vw, 230px);
 }
 
-/* Circle Button Size Responsive */
 
 
 
-/* Navigation Button Font Size */
+
+
 .next-step1 {
   height: 2.6rem;
   width: 9rem;
@@ -55,12 +55,12 @@
 
 .next-step1:hover {
   transform: scale(1.05);
-  /* Slightly increase button size */
+ 
   background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
-  /* Reversed gradient */
+ 
 }
 
-/* Step Container */
+
 .step-container {
   display: flex;
   justify-content: space-between;
@@ -74,7 +74,7 @@
   cursor: pointer;
 }
 
-/* Step Text */
+
 .step-text-container {
   display: flex;
 
@@ -109,7 +109,7 @@
   color: #1E1E1E;
 }
 
-/* Circle Button */
+
 .circle-button {
   box-sizing: border-box;
   width: 38px;
@@ -140,7 +140,7 @@
   color: #FFFFFF;
 }
 
-/* Navigation Buttons */
+
 .next-step-container {
   display: flex;
   justify-content: space-between;
@@ -155,7 +155,7 @@
   color: black;
 }
 
-/* Media Queries */
+
 
 @media(min-width:1800px) {
 
@@ -222,123 +222,109 @@
 @media (max-width: 1000px) {
   .sidebar-outer-div {
     display: none;
-    /* Hide the sidebar */
+   
     position: absolute;
-    /* Remove it from the layout flow */
+   
     width: 0;
-    /* Set width to 0 so it doesn't occupy space */
+   
     height: 0;
-    /* Set height to 0 */
+   
   }
 
   .step-container {
     flex-direction: column;
-    /* Stack items vertically */
+   
     align-items: flex-start;
     padding: 10px;
   }
 
   .step-text-container {
     margin-bottom: 8px;
-    /* Space between text and button */
+   
   }
 
-  /* .circle-button {
-    margin: 0 auto; 
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  } */
+ 
 
   .next-step-container {
     flex-direction: column;
     gap: 10px;
-    /* Add spacing between buttons */
+   
     margin-top: 20px;
     align-items: center;
-    /* Center buttons */
+   
   }
 
   .prev-step {
     width: 100%;
-    /* Full-width buttons */
+   
     font-size: 14px;
     padding: 10px;
   }
 }
 
-/* For devices with a max-width of 992px (tablets and smaller) */
+
 @media (max-width: 992px) {
   .sidebar-outer-div {
     visibility: hidden;
-    /* Hide the sidebar */
+   
     position: absolute;
-    /* Remove it from the layout flow */
+   
     width: 0;
-    /* Set width to 0 so it doesn't occupy space */
+   
     height: 0;
-    /* Set height to 0 */
+   
   }
 
   .step-container {
     flex-direction: column;
-    /* Stack items vertically */
+   
     align-items: flex-start;
     padding: 10px;
   }
 
   .step-text-container {
     margin-bottom: 8px;
-    /* Space between text and button */
+   
   }
 
-  /* .circle-button {
-    margin: 0 auto; 
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-  } */
+ 
 
   .next-step-container {
     flex-direction: column;
     gap: 10px;
-    /* Add spacing between buttons */
+   
     margin-top: 20px;
     align-items: center;
-    /* Center buttons */
+   
   }
 
   .prev-step {
     width: 100%;
-    /* Full-width buttons */
+   
     font-size: 14px;
     padding: 10px;
   }
 }
 
-/* For devices with a max-width of 768px (small tablets and phones) */
+
 @media (max-width: 768px) {
   .sidebar-outer-div {
     visibility: hidden;
-    /* Hide the sidebar */
+   
     position: absolute;
-    /* Ensure it doesn't take up space */
+   
     width: 0;
-    /* Set width to 0 so it doesn't occupy space */
+   
     height: 0;
-    /* Set height to 0 */
+   
   }
 
   .step-title {
     font-size: 14px;
-    /* Adjust font size for smaller screens */
+   
   }
 
-  /* .circle-button {
-    width: 35px;
-    height: 35px;
-    font-size: 12px;
-  } */
+ 
 
   .prev-step,
   .next-step1 {
@@ -347,28 +333,28 @@
   }
 }
 
-/* For devices with a max-width of 576px (phones) */
+
 @media (max-width: 576px) {
   .sidebar-outer-div {
     visibility: hidden;
-    /* Hide the sidebar */
+   
     position: absolute;
-    /* Ensure it doesn't take up space */
+   
     width: 0;
-    /* Set width to 0 so it doesn't occupy space */
+   
     height: 0;
-    /* Set height to 0 */
+   
   }
 
   .step-container {
     flex-direction: column;
     align-items: center;
-    /* Center align for narrow screens */
+   
   }
 
   .circle-button {
     margin: 8px 0;
-    /* Add spacing around the step button */
+   
   }
 
   .next-step-container {
@@ -376,7 +362,7 @@
   }
 }
 
-/* General sidebar image styling */
+
 .sidebar-image {
   position: fixed;
   bottom: 0;
@@ -384,24 +370,24 @@
   padding: 10px;
   margin-top: 0;
   object-fit: contain;
-  /* Ensures the image maintains its aspect ratio */
+ 
   max-width: 20%;
-  /* The image will take up to 20% of the container width */
+ 
   height: auto;
-  /* Maintain the aspect ratio */
+ 
 }
 
-/* Media query for tablets and smaller devices (max-width 768px) */
+
 @media (max-width: 768px) {
   .sidebar-image {
     max-width: 30%;
-    /* Increase size a bit on smaller screens */
+   
     height: auto;
-    /* Maintain aspect ratio */
+   
   }
 }
 
-/* Media query for mobile devices (max-width 576px) */
+
 @media (max-width: 576px) {
   .sidebar-image {
     max-width: 40%;

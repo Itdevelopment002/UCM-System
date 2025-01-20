@@ -8,7 +8,7 @@ import bg from "../../images/signup-bg.jpg";
 const ConstructionDemolishManagement = () => {
     return (
         <div className="outer-wrapper-lp"  style={{
-                background: `url(${bg}) center center / cover no-repeat`, // Set the background image
+                background: `url(${bg}) center center / cover no-repeat`, 
                 position: "relative",
               }}>
                     <div className="w-90 w-md-75 shadow-lg rounded overflow-hidden "></div>

@@ -1,40 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import "./FunctionalRequiremnt.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 
 const NoticeDetails = ({ onNext, onPrevious }) => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(""); // For dropdown
-  const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection
-  const [formattedDate, setFormattedDate] = useState(""); // Date formatting
-  const [errors, setErrors] = useState({}); // For form validation
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [selectedOption, setSelectedOption] = useState(""); 
+  const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); 
+  const [formattedDate, setFormattedDate] = useState(""); 
+  const [errors, setErrors] = useState({}); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   useEffect(() => {
-    setIsModalOpen(true); // Open modal on component mount
+    setIsModalOpen(true); 
   }, []);
 
-  const noticeOptions = ["Owner", "Rented", "Shop"]; // Dropdown options
+  const noticeOptions = ["Owner", "Rented", "Shop"]; 
 
   const handleSelect = (option) => {
     setSelectedOption(option);
-    setIsOpenOccupation(false); // Close dropdown
+    setIsOpenOccupation(false); 
   };
 
   const handleDateChange = (e) => {
-    const dateValue = e.target.value; // Native format (yyyy-mm-dd)
+    const dateValue = e.target.value; 
     const [year, month, day] = dateValue.split("-");
   
     if (year && month && day) {
-      setFormattedDate(`${day}/${month}/${year.slice(-2)}`); // Convert to dd/mm/yy
-      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); // Clear the error
+      setFormattedDate(`${day}/${month}/${year.slice(-2)}`); 
+      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); 
     } else {
       setFormattedDate("");
-      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); // Set error if date is empty
+      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); 
     }
   };
   
@@ -51,7 +51,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
     const newErrors = {};
     
     if (!formattedDate) {
-      newErrors.date = "Please select a valid date."; // Error if date is empty
+      newErrors.date = "Please select a valid date."; 
     }
     
     return newErrors;
@@ -62,10 +62,10 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const newErrors = validateForm(); // Validate form and get errors object
+    const newErrors = validateForm(); 
     
     if (Object.keys(newErrors).length === 0) {
-      // Form is valid
+      
       console.log("Submitted successfully");
       console.log("Form Data:", {
         selectedOption,
@@ -73,14 +73,14 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
         formattedDate,
       });
   
-      // Navigate to the next form ("/dashboard/demolition-order")
-      // navigate("/dashboard/demolition-order");
-      onNext(); // Call the onNext function to navigate to the next form
+      
+      
+      onNext(); 
   
     } else {
-      // Form is invalid
+      
       console.log("Validation failed. Errors:", newErrors);
-      setErrors(newErrors); // Set errors to show validation messages
+      setErrors(newErrors); 
     }
   };
   

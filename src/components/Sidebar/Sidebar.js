@@ -1,9 +1,9 @@
 import React from "react";
-import { useStepContext } from "../StepContext"; // Import context
+import { useStepContext } from "../StepContext"; 
 import "./Sidebar.css";
 import bro from "../../images/bro.png";
 const Sidebar = () => {
-  const { activeStep } = useStepContext(); // Get activeStep from context
+  const { activeStep } = useStepContext(); 
 
   const steps = [
     { name: "Information Collection Form" },
