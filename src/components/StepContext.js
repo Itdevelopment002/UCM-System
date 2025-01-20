@@ -7,7 +7,7 @@ export const useStepContext = () => {
 };
 
 export const StepProvider = ({ children }) => {
-  const [activeStep, setActiveStep] = useState(0); // Initially, step 0 is active
+  const [activeStep, setActiveStep] = useState(0); 
 
   return (
     <StepContext.Provider value={{ activeStep, setActiveStep }}>

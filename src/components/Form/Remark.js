@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 import { Link } from "react-router-dom";
-// For accessibility
+
 Modal.setAppElement("#root");
 
 const Remark = () => {
@@ -14,7 +14,7 @@ const Remark = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +27,7 @@ const Remark = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Validate Remark
+    
     if (!formData.remark.trim()) {
       newErrors.remark = "Remark is required.";
     }
@@ -41,13 +41,13 @@ const Remark = () => {
 
     if (validateForm()) {
       console.log("Form Data Submitted:", formData);
-      toast.success("Form submitted successfully!"); // Success toast
-      setIsModalOpen(true); // Open modal on successful submission
+      toast.success("Form submitted successfully!"); 
+      setIsModalOpen(true); 
     }
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close modal
+    setIsModalOpen(false); 
   };
 
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Register from './components/Register/Register';
-import Dashboard from './components/FormBoard/FormBoard';  // Import the new Dashboard component
+import Dashboard from './components/FormBoard/FormBoard';  
 import { Link } from 'react-router-dom';
 import ConstructionDemolishManagement from "./components/LandingPage/ConstructionDemolishManagement";
 import Otp from './components/Login/Otp';

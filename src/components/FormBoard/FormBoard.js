@@ -12,13 +12,13 @@ import { StepProvider } from '../StepContext';
 import './FormBoard.css';
 
 const Dashboard = () => {
-  // State to track the active form
-  const [activeForm, setActiveForm] = useState(0); // Index-based navigation
+  
+  const [activeForm, setActiveForm] = useState(0); 
   
   const handleStepChange = (step) => {
-    setActiveForm(step); // Update active form
+    setActiveForm(step); 
   };
-  // List of form components
+  
   const formComponents = [
     FunctionalRequiremnt,
     ComplaintDetails,
@@ -28,7 +28,7 @@ const Dashboard = () => {
     Remark,
   ];
 
-  // Render the current form based on activeForm index
+  
   const CurrentForm = formComponents[activeForm];
 
   return (
@@ -46,8 +46,8 @@ const Dashboard = () => {
           <div className="form-content">
             {/* Render the active form */}
             <CurrentForm
-              onNext={() => setActiveForm((prev) => Math.min(prev + 1, formComponents.length - 1))} // Go to the next form
-              onPrevious={() => setActiveForm((prev) => Math.max(prev - 1, 0))} // Go to the previous form
+              onNext={() => setActiveForm((prev) => Math.min(prev + 1, formComponents.length - 1))} 
+              onPrevious={() => setActiveForm((prev) => Math.max(prev - 1, 0))} 
             />
           </div>
         </div>

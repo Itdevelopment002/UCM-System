@@ -1,8 +1,8 @@
-/* General layout */
+
 .dashboard-container {
   background-color: #F0F4F8;
-  min-height: 100vh; /* Allow the container to grow */
-  overflow-y: auto; /* Enable scrolling when content exceeds the viewport */
+  min-height: 100vh;
+  overflow-y: auto;
   margin: 0;
   padding: 0;
   font-family: "Poppins";
@@ -13,13 +13,13 @@
 }
 
 
-/* Keep desktop layout unchanged (main-content style) */
+
 .main-content {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin-left: 325px; /* Space for sidebar */
-  margin-top: 160px;   /* Adjust according to the height of your wizard bar */
+  margin-left: 325px;
+  margin-top: 160px;  
   padding-left: 20px;
   padding-right: 20px;
   overflow-y: auto;

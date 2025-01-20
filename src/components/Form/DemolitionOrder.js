@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
+import { useNavigate } from "react-router-dom"; 
 import { FormGroup, Label, Input } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
-import "./FunctionalRequiremnt.css"; // Ensure your updated CSS is here
+import "./FunctionalRequiremnt.css"; 
 
 const DemolitionOrder = ({ onNext, onPrevious }) => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     demolitionDate: "",
     demolitionTime: "",
@@ -20,15 +20,15 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
   });
 
 
-// Inside your component function
-const [formValues, setFormValues] = useState({
-  complainantName: "",
-  complainantContact: "",
-  complaintDescription: "",
-  hardCopyUpload: null,
-  photoUpload: null,
-  videoUpload: null,
-});
+  
+  const [formValues, setFormValues] = useState({
+    complainantName: "",
+    complainantContact: "",
+    complaintDescription: "",
+    hardCopyUpload: null,
+    photoUpload: null,
+    videoUpload: null,
+  });
 
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState(null);
@@ -40,8 +40,8 @@ const [formValues, setFormValues] = useState({
   };
 
   const handleFileChange = (event, field) => {
-    const file = event.target.files[0]; // Get the uploaded file
-  
+    const file = event.target.files[0]; 
+
     if (!file) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -49,12 +49,12 @@ const [formValues, setFormValues] = useState({
       }));
       return;
     }
-  
-    // Validation rules for different fields
+
+    
     const validationRules = {
       hardCopyUpload: {
         validTypes: ["application/pdf", "application/msword"],
-        maxSize: 2 * 1024 * 1024, // 2 MB
+        maxSize: 2 * 1024 * 1024, 
         errorMessage: {
           type: "Only .doc and .pdf files are allowed.",
           size: "The file size exceeds 2 MB. Please upload a smaller document.",
@@ -62,7 +62,7 @@ const [formValues, setFormValues] = useState({
       },
       photoUpload: {
         validTypes: ["image/jpeg", "image/jpg", "image/png"],
-        maxSize: 1 * 1024 * 1024, // 1 MB
+        maxSize: 1 * 1024 * 1024, 
         errorMessage: {
           type: "Only image files (.jpg, .jpeg, .png) are allowed.",
           size: "The file size exceeds 1 MB. Please upload a smaller image.",
@@ -70,55 +70,55 @@ const [formValues, setFormValues] = useState({
       },
       videoUpload: {
         validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
-        maxSize: 10 * 1024 * 1024, // 10 MB
+        maxSize: 10 * 1024 * 1024, 
         errorMessage: {
           type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
           size: "The file size exceeds 10 MB. Please upload a smaller video.",
         },
       },
     };
-  
+
     const validation = validationRules[field];
-  
+
     if (!validation) {
       console.error(`No validation rules found for field: ${field}`);
       return;
     }
-  
-    // Validate file type
+
+    
     if (!validation.validTypes.includes(file.type)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [field]: validation.errorMessage.type,
       }));
-      event.target.value = ""; // Clear the file input
+      event.target.value = ""; 
       return;
     }
-  
-    // Validate file size
+
+    
     if (file.size > validation.maxSize) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         [field]: validation.errorMessage.size,
       }));
-      event.target.value = ""; // Clear the file input
+      event.target.value = ""; 
       return;
     }
-  
-    // Clear errors and update state if validation passes
+
+    
     setErrors((prevErrors) => ({
       ...prevErrors,
       [field]: "",
     }));
-  
+
     setFormValues((prevValues) => ({
       ...prevValues,
       [field]: file,
     }));
-  
+
     console.log(`${field} upload successful:`, file.name);
   };
-  
+
 
   const validateForm = () => {
     const newErrors = {};
@@ -128,7 +128,7 @@ const [formValues, setFormValues] = useState({
     if (!formData.demolitionTime) {
       newErrors.demolitionTime = "Demolition Time is required.";
     }
-   
+
     if (!formData.constructionNumber) {
       newErrors.constructionNumber = "Construction Number is required.";
     }
@@ -142,14 +142,14 @@ const [formValues, setFormValues] = useState({
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors); // Set errors if validation fails
+      setErrors(newErrors); 
     } else {
-      setErrors({}); // Clear errors if validation is successful
+      setErrors({}); 
 
       console.log("Submitted Successfully:", formData);
-      // Navigate to /dashboard/count-order if form is valid
-      // navigate("/dashboard/count-order");
-      onNext(); // Call the onNext function to navigate to the next form
+      
+      
+      onNext(); 
     }
   };
 
@@ -196,38 +196,37 @@ const [formValues, setFormValues] = useState({
               {errors.demolitionTime && <div className="text-danger">{errors.demolitionTime}</div>}
             </FormGroup>
           </div>
-         
+
           <div className="mb-3 col-md-4">
-  <label htmlFor="hardCopyUpload" className="form-label label-small">
-   Demolition Document
-  </label>
-  <div className="upload-container">
-    <label
-      htmlFor="hardCopyUpload"
-      className={`form-control input-small upload-label ${
-        errors.hardCopyUpload ? "is-invalid" : ""
-      }`}
-      style={{ cursor: "pointer" }}
-    >
-      <i className="fas fa-upload upload-icon"></i>
-      <span className="filename-gap">
-        {formValues.hardCopyUpload
-          ? formValues.hardCopyUpload.name
-          : "Upload Documents"}
-      </span>
-    </label>
-    <input
-      type="file"
-      id="hardCopyUpload"
-      onChange={(e) => handleFileChange(e, "hardCopyUpload")}
-      className="form-control input-small d-none"
-      accept=".doc, .pdf"
-    />
-  </div>
-  {errors.hardCopyUpload && (
-    <small className="text-danger">{errors.hardCopyUpload}</small>
-  )}
-</div>
+            <label htmlFor="hardCopyUpload" className="form-label label-small">
+              Demolition Document
+            </label>
+            <div className="upload-container">
+              <label
+                htmlFor="hardCopyUpload"
+                className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
+                  }`}
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fas fa-upload upload-icon"></i>
+                <span className="filename-gap">
+                  {formValues.hardCopyUpload
+                    ? formValues.hardCopyUpload.name
+                    : "Upload Documents"}
+                </span>
+              </label>
+              <input
+                type="file"
+                id="hardCopyUpload"
+                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+                className="form-control input-small d-none"
+                accept=".doc, .pdf"
+              />
+            </div>
+            {errors.hardCopyUpload && (
+              <small className="text-danger">{errors.hardCopyUpload}</small>
+            )}
+          </div>
         </div>
 
         <div className="row">
