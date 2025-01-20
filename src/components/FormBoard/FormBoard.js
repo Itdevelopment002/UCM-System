@@ -1,6 +1,4 @@
-
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Hwizardbar from '../Hwizardbar/Hwizardbar'; 
@@ -14,24 +12,44 @@ import { StepProvider } from '../StepContext';
 import './FormBoard.css';
 
 const Dashboard = () => {
+  // State to track the active form
+  const [activeForm, setActiveForm] = useState(0); // Index-based navigation
+  
+  const handleStepChange = (step) => {
+    setActiveForm(step); // Update active form
+  };
+  // List of form components
+  const formComponents = [
+    FunctionalRequiremnt,
+    ComplaintDetails,
+    NoticeDetails,
+    DemolitionOrder,
+    CountOrder,
+    Remark,
+  ];
+
+  // Render the current form based on activeForm index
+  const CurrentForm = formComponents[activeForm];
+
   return (
     <div className="dashboard-container">
       <Header />
       <StepProvider>
         <Sidebar />
-       
         <div className="main-content">
-        <Hwizardbar /> {/* Make sure this is fixed at the top */}
-          
-            <Routes>
-              <Route path="/form" element={<FunctionalRequiremnt />} />
-              <Route path="/complain-details" element={<ComplaintDetails />} />
-              <Route path="/count-order" element={<CountOrder />} />
-              <Route path="/notice-details" element={<NoticeDetails />} />
-              <Route path="/remark" element={<Remark />} />
-              <Route path="/demolition-order" element={<DemolitionOrder />} />
-            </Routes>
-        
+          {/* Pass activeForm and onStepChange to Hwizardbar */}
+          <Hwizardbar 
+            activeForm={activeForm} 
+            onStepChange={(index) => setActiveForm(index)} 
+          />
+
+          <div className="form-content">
+            {/* Render the active form */}
+            <CurrentForm
+              onNext={() => setActiveForm((prev) => Math.min(prev + 1, formComponents.length - 1))} // Go to the next form
+              onPrevious={() => setActiveForm((prev) => Math.max(prev - 1, 0))} // Go to the previous form
+            />
+          </div>
         </div>
       </StepProvider>
     </div>

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 
-const NoticeDetails = () => {
+const NoticeDetails = ({ onNext, onPrevious }) => {
   const navigate = useNavigate(); // Hook for navigation
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
   const [selectedOption, setSelectedOption] = useState(""); // For dropdown
@@ -74,7 +74,8 @@ const NoticeDetails = () => {
       });
   
       // Navigate to the next form ("/dashboard/demolition-order")
-      navigate("/dashboard/demolition-order");
+      // navigate("/dashboard/demolition-order");
+      onNext(); // Call the onNext function to navigate to the next form
   
     } else {
       // Form is invalid

@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 
-const ComplaintDetails = () => {
+const ComplaintDetails = ({ onNext, onPrevious }) => {
   const [error, setError] = useState(""); // Error state for validations
   const navigate = useNavigate(); // To navigate to the next form
   const [formValues, setFormValues] = useState({
@@ -173,9 +173,10 @@ const ComplaintDetails = () => {
 
     if (validateForm()) {
       console.log("Form submitted successfully", formValues);
-
+     
       // Navigate to the next form ("/dashboard/notice-details")
-      navigate("/dashboard/notice-details");
+      // navigate("/dashboard/notice-details");
+      onNext(); // Call the onNext function to navigate to the next form
     } else {
       console.log("Validation failed. Please check the fields.");
     }

@@ -5,7 +5,7 @@ import "./FunctionalRequiremnt.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
-const CourtOrder = () => {
+const CourtOrder = ({ onNext, onPrevious }) => {
   const navigate = useNavigate(); // Hook for navigation
 
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
@@ -166,7 +166,8 @@ const CourtOrder = () => {
       console.log("Submitted Successfully:", formValues); 
   
       // Navigate to the next page
-      navigate("/dashboard/remark");
+      // navigate("/dashboard/remark");
+      onNext(); // Call the onNext function to navigate to the next form
     }
   };
   

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 import "./FunctionalRequiremnt.css"; // Ensure your updated CSS is here
 
-const DemolitionOrder = () => {
+const DemolitionOrder = ({ onNext, onPrevious }) => {
   const navigate = useNavigate(); // Hook for navigation
   const [formData, setFormData] = useState({
     demolitionDate: "",
@@ -148,7 +148,8 @@ const [formValues, setFormValues] = useState({
 
       console.log("Submitted Successfully:", formData);
       // Navigate to /dashboard/count-order if form is valid
-      navigate("/dashboard/count-order");
+      // navigate("/dashboard/count-order");
+      onNext(); // Call the onNext function to navigate to the next form
     }
   };
 
