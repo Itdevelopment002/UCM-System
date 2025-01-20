@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./FunctionalRequiremnt.css";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
 import { useNavigate } from "react-router-dom"; // for navigation
-const FunctionalRequiremnt = () => {
+const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const [formValues, setFormValues] = useState({
@@ -142,7 +142,8 @@ const FunctionalRequiremnt = () => {
     if (isValid) {
       console.log("Form is valid"); // For debugging
       // Navigate to next form if the form is valid
-      navigate("/dashboard/complain-details");
+      // navigate("/dashboard/complain-details");
+      onNext(); // Call the onNext function to navigate to the next form
     } else {
       console.log("Form is invalid"); // For debugging
     }
