@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useStepContext } from "../StepContext"; 
+import { useStepContext } from "../StepContext";
 import "./Hwizardbar.css";
 
 const Hwizardbar = ({ activeForm, onStepChange }) => {
-  const { setActiveStep } = useStepContext(); 
+  const { setActiveStep } = useStepContext();
 
   const loadFormState = () => {
     const savedState = localStorage.getItem("formFilled");
@@ -39,7 +39,7 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
   const canGoToPrev = () => activeForm > 0 || formFilled[activeForm];
 
   useEffect(() => {
-    setActiveStep(activeForm); 
+    setActiveStep(activeForm);
   }, [activeForm, setActiveStep]);
 
   return (
@@ -77,7 +77,6 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
           <div
             key={step.tab}
             className={`tab ${activeForm === index ? "active" : ""}`}
-            onClick={() => onStepChange(index)}
           >
             <div className="tab-text">{step.name}</div>
           </div>
