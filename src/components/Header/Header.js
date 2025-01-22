@@ -41,9 +41,9 @@ const Header = () => {
           {isOpen && (
             <div className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
               <ul>
-                <li onClick={() => changeLanguage('en')}>{t('form.english')}</li>
-                <li onClick={() => changeLanguage('hi')}>{t('form.hindi')}</li>
-                <li onClick={() => changeLanguage('mr')}>{t('form.marathi')}</li>
+                <li onClick={() => changeLanguage('en')}>English</li>
+                <li onClick={() => changeLanguage('hi')}>हिंदी</li>
+                <li onClick={() => changeLanguage('mr')}>मराठी</li>
               </ul>
             </div>
           )}
