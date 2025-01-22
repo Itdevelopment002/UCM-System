@@ -1,61 +1,54 @@
-import { useState } from "react";
-import { FaSearch, FaBell, FaUserCircle } from "react-icons/fa"; // Keep Fa for other icons
-import { IoCaretDownOutline, IoCaretUpOutline } from "react-icons/io5"; // For dropdown arrows
-import "./Header.css";
-import { Link } from "react-router-dom";
-import Notification from "../../images/notification.png";
-import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi"; // Outlined caret icons
+// Header.js
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
+import './Header.css';
+import { Link } from 'react-router-dom';
+import Notification from '../../images/notification.png';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setIsOpen(false);
+  };
+
   return (
     <div className="header-container">
       <div className="col-md-6 header-logo">
-      <Link to="/" style={{ textDecoration: 'none' , color:"#5038ED"}}>Unauthorized Construction Demolish Management System</Link>
+        <Link to="/" style={{ textDecoration: 'none', color: '#5038ED' }}>
+          {t('form.unauthorizedDemolishManagement')}
+        </Link>
       </div>
       <div className="col-md-6 d-flex justify-content-end align-items-center">
-        {/* Search Bar */}
-        {/* <div className="search-bar">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search for anything..."
-            
-          />
-          <FaSearch size={18} className="search-icon" />
-        </div> */}
-
         {/* Language Selector */}
         <div className="language">
-  <div className="language-selector" onClick={toggleDropdown}>
-    <span className="input-small">Language</span>
-    {isOpen ? (
-      <HiOutlineChevronUp size={18} className="dropdown-arrow" />
-    ) : (
-      <HiOutlineChevronDown size={18} className="dropdown-arrow" />
-    )}
-  </div>
-
-  {isOpen && (
-    <div
-      className="dropdown-menu"
-      onClick={(e) => e.stopPropagation()} /* Prevent click issues */
-    >
-      <ul>
-        <li onClick={() => console.log("English selected")}>English</li>
-        <li onClick={() => console.log("Hindi selected")}>Hindi</li>
-        <li onClick={() => console.log("Marathi selected")}>Marathi</li>
-      </ul>
-    </div>
-  )}
-</div>
-
-
+          <div className="language-selector" onClick={toggleDropdown}>
+            <span className="input-small">Language</span>
+            {isOpen ? (
+              <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+            ) : (
+              <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+            )}
+          </div>
+          {isOpen && (
+            <div className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
+              <ul>
+                <li onClick={() => changeLanguage('en')}>{t('form.english')}</li>
+                <li onClick={() => changeLanguage('hi')}>{t('form.hindi')}</li>
+                <li onClick={() => changeLanguage('mr')}>{t('form.marathi')}</li>
+              </ul>
+            </div>
+          )}
+        </div>
+        
         {/* Notification Icon */}
         <div className="bell-icon">
           <img src={Notification} alt="notify" />
@@ -63,10 +56,10 @@ const Header = () => {
         </div>
 
         {/* User Info */}
-        <div className="user-info ">
+        <div className="user-info">
           <div className="user-name">
-            XYZ user  <br />
-            <div style={{ color: "#333333" }}>Solapur, India</div>
+            {t('form.xyzUser')} <br />
+            <div style={{ color: '#333333' }}>{t('form.solapurIndia')}</div>
           </div>
           <FaUserCircle size={30} className="user-icon" />
         </div>

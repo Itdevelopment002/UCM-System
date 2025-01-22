@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next"; 
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +9,7 @@ import { Link } from "react-router-dom";
 Modal.setAppElement("#root");
 
 const Remark = () => {
+ const { t } = useTranslation(); 
   const [formData, setFormData] = useState({
     natureOfConstruction: "",
     remark: "",
@@ -15,6 +17,7 @@ const Remark = () => {
 
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false); 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +32,7 @@ const Remark = () => {
 
     
     if (!formData.remark.trim()) {
-      newErrors.remark = "Remark is required.";
+      newErrors.remark = t("form.remarkError");
     }
 
     setErrors(newErrors);
@@ -57,7 +60,7 @@ const Remark = () => {
         <div className="col mb-3">
           <div className="col-md-4 mt-3">
             <label htmlFor="remark" className="form-label label-small">
-              Remark <span className="text-danger">*</span>
+              {t("form.remark")} <span className="text-danger">*</span>
             </label>
             <textarea
               id="remark"
@@ -66,7 +69,7 @@ const Remark = () => {
                 errors.remark ? "is-invalid" : ""
               }`}
               rows="4"
-              placeholder="Write a long text here"
+              placeholder={t("form.remarkPlaceholder")}
               value={formData.remark}
               onChange={handleChange}
             ></textarea>
@@ -76,7 +79,7 @@ const Remark = () => {
 
         {/* Submit Button */}
         <button type="submit" className="btn submit-btn-form">
-          Submit
+          {t("form.submit")}
         </button>
       </form>
 
@@ -92,17 +95,17 @@ const Remark = () => {
         overlayClassName="modal-overlay"
         
       >
-        <h5 className="modal-title ">Form Submitted Successfully!</h5>
+        <h5 className="modal-title ">{t("form.submitSuccess")}</h5>
        <p className="model-text">
-       Thank you for completing the process. Your application has been successfully submitted.
+       {t("form.thankMessage")}
        </p>
        <div className="modal-footer mt-0 " style={{justifyContent:"center"}}>
        <div className="btn-at-footer">
        <button onClick={closeModal} className="cancel-btn" >
-          Cancel
+       {t("form.cancel")}
         </button>
         <Link to="/">
-        <button className="confirm-btn">Confirm</button>
+        <button className="confirm-btn">{t("form.confirm")}</button>
       </Link>
        </div>
        </div>

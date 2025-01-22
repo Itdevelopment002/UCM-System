@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next"; 
 import map from "../../images/map.png";
 import locate from "../../images/location-icon.png";
 import iconbg from "../../images/icon-bg.png";
@@ -8,8 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 
 const ComplaintDetails = ({ onNext, onPrevious }) => {
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     complainantName: "",
     complainantContact: "",
@@ -20,6 +20,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const {t} = useTranslation(); 
 
   const handleInputChange = (e) => {
     const { id, value, files } = e.target;
@@ -146,22 +147,22 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
     const newErrors = {};
 
     if (!formValues.complainantName.trim()) {
-      newErrors.complainantName = "Complainant Name is required.";
+      newErrors.complainantName = t("form.complainantNameError");
     }
 
     if (
       !formValues.complainantContact.trim() ||
       !/^\d{10}$/.test(formValues.complainantContact)
     ) {
-      newErrors.complainantContact = "Please enter a valid 10-digit contact number.";
+      newErrors.complainantContact = t("form.complainantContactError");
     }
 
     if (!formValues.complaintDescription.trim()) {
-      newErrors.complaintDescription = "Complaint Description is required.";
+      newErrors.complaintDescription = t("form.complaintDescriptionError");
     }
 
     if (!formValues.hardCopyUpload) {
-      newErrors.hardCopyUpload = "Please upload a hard copy document.";
+      newErrors.hardCopyUpload = t("form.hardCopyUploadError");
     }
 
     setErrors(newErrors);
@@ -190,7 +191,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
             <div className="row">
               <div className="mb-3 col-md-6">
                 <label htmlFor="complainantName" className="form-label label-small">
-                  Complaint Received from <span className="text-danger">*</span>
+                {t("form.complainantName")} <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -199,7 +200,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                   onChange={handleInputChange}
                   className={`form-control input-small ${errors.complainantName ? "is-invalid" : ""
                     }`}
-                  placeholder="Enter name"
+                  placeholder={t("form.complainantNamePlaceholder")}
                 />
                 {errors.complainantName && (
                   <small className="text-danger">{errors.complainantName}</small>
@@ -208,16 +209,17 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
               <div className="mb-3 col-md-6">
                 <label htmlFor="complainantContact" className="form-label label-small">
-                  Complainant Contact Details <span className="text-danger">*</span>
+                {t("form.complainantContact")} <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
                   id="complainantContact"
                   value={formValues.complainantContact}
                   onChange={handleInputChange}
-                  className={`form-control input-small ${errors.complainantContact ? "is-invalid" : ""
-                    }`}
-                  placeholder="Enter contact number"
+                  className={`form-control input-small ${
+                    errors.complainantContact ? "is-invalid" : ""
+                  }`}
+                  placeholder={t("form.enterContactNumber")}
                 />
                 {errors.complainantContact && (
                   <small className="text-danger">{errors.complainantContact}</small>
@@ -227,7 +229,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
             <div className="mb-3">
               <label htmlFor="complaintDescription" className="form-label label-small">
-                Complaint Description <span className="text-danger">*</span>
+                {t("form.complaintDescription")} <span className="text-danger">*</span>
               </label>
               <textarea
                 id="complaintDescription"
@@ -236,7 +238,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                 className={`form-control input-small ${errors.complaintDescription ? "is-invalid" : ""
                   }`}
                 rows="4"
-                placeholder="Write a long text here"
+                placeholder={t("form.complaintDescriptionPlaceholder")}
               ></textarea>
               {errors.complaintDescription && (
                 <small className="text-danger">{errors.complaintDescription}</small>
@@ -245,7 +247,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
             <div className="mb-3 col-md-12">
               <label htmlFor="hardCopyUpload" className="form-label label-small">
-                Hard Copy Attachment (Offline Complaint Received) <span className="text-danger">*</span>
+              {t("form.hardCopyUpload")} <span className="text-danger">*</span>
               </label>
               <div className="upload-container">
                 <label
@@ -258,7 +260,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                   <span className="filename-gap">
                     {formValues.hardCopyUpload
                       ? formValues.hardCopyUpload.name
-                      : "Upload Documents"}
+                      : (t("form.hardCopyPlaceholder"))}
                   </span>
                 </label>
                 <input
@@ -278,11 +280,11 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
           <div className="col-md-6">
             <div className="mb-3">
-              <label className="form-label label-big">Complaint Attachments</label>
+              <label className="form-label label-big">{t("form.complaintAttachments")}</label>
               <div className="divider-form"></div>
               <div className="row">
                 <div className="mb-3 col-md-6">
-                  <label className="form-label label-small">Photos</label>
+                  <label className="form-label label-small">{t("form.photoUpload")}</label>
                   <div className="upload-container">
                     <label
                       htmlFor="photoUpload"
@@ -295,7 +297,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                       <span className="filename-gap">
                         {formValues.photoUpload
                           ? formValues.photoUpload.name
-                          : "Upload Photos"}
+                          : (t("form.photoPlaceholder"))}
                       </span>
                     </label>
                     <input
@@ -314,7 +316,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
 
                 <div className="mb-3 col-md-6">
-                  <label className="form-label label-small">Videos</label>
+                  <label className="form-label label-small">{t("form.videoUpload")}</label>
                   <div className="upload-container">
                     <label
                       htmlFor="videoUpload"
@@ -327,7 +329,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                       <span className="filename-gap">
                         {formValues.videoUpload
                           ? formValues.videoUpload.name
-                          : "Upload Videos"}
+                          : (t("form.videoPlaceholder"))}
                       </span>
                     </label>
                     <input
@@ -349,37 +351,39 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
             {/* Location Details */}
             <div className="form-group mt-4">
-              <label className="form-label text-dark fw-bold" style={{ fontSize: "16px" }}>Location Details</label>
+              <label className="form-label text-dark fw-bold" style={{ fontSize: "16px" }}>{t("form.locationDetails")}</label>
               <div className="mb-3" style={{ height: "2px", width: "auto", background: "#5038ED" }}></div>
               <div className="">
                 <div className="row">
                   <div className="col-md-5 mt-1">
                     <img
                       src={map}
-                      alt="Map location"
+                      alt={t("form.mapImage")}
                       className="img-fluid rounded"
                     />
                   </div>
                   <div className="mt-2 col-md-6">
                     <div className="row mb-3">
                       <div className="col d-flex align-items-center">
-                        <img src={locate} alt="location" className="img-fluid rounded" />
+                        <img src={locate} alt={t("form.locate")} className="img-fluid rounded" />
                         <div className="col d-flex align-items-center">
                           <span className="me-2">
                             <i className="bi bi-geo-alt-fill text-primary"></i>
                           </span>
-                          <strong className="text-secondary fw-light" style={{ fontSize: "20px" }}>Delhi</strong>
+                          <strong className="text-secondary fw-light">{t("form.city")}</strong>
                         </div>
                         <div className="position-relative" style={{ top: "5%" }} >
-                          <img src={iconbg} alt="signup" className="img-fluid rounded" />
+                          <img src={iconbg} alt={t("form.iconbg")} className="img-fluid rounded" />
                           <i className="fas fa-paper-plane text-white position-absolute"
-                            style={{ top: "18%", left: "21%", fontSize: "1.4rem" }}></i></div>
+                            style={{ top: "18%", left: "21%", fontSize: "1.3rem" }}></i></div>
                       </div>
                     </div>
-                    <p className="mb-1 text-secondary fw-bold">Latitude
-                      <strong className="text-secondary fw-light" style={{ fontSize: "18px" }}> -28.7041</strong></p>
-                    <p className="text-secondary fw-bold">Longitude
-                      <strong className="text-secondary fw-light" style={{ fontSize: "18px" }}> -77.1025</strong></p>
+                    <p className="mb-1 text-secondary fw-bold">
+                    {t("form.latitude")}<strong className="text-secondary fw-light">-28.7041</strong>
+                    </p>
+                    <p className="text-secondary fw-bold">
+                    {t("form.longitude")} <strong className="text-secondary fw-light">-77.1025</strong>
+                    </p>
                   </div>
 
                 </div>
@@ -389,7 +393,7 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
         </div>
 
         <button type="submit" className="btn submit-btn-form">
-          Save and Next
+        {t("form.saveAndNext")}
         </button>
       </form>
 

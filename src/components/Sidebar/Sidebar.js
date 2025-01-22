@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from "react";
 import { useStepContext } from "../StepContext"; 
 import "./Sidebar.css";
@@ -13,6 +14,31 @@ const Sidebar = () => {
     { name: "Court Order Details" },
     { name: "Remarks" },
   ];
+=======
+import React, { useEffect, useMemo } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { useStepContext } from '../StepContext';
+import { useTranslation } from 'react-i18next';
+import './Sidebar.css';
+import bro from '../../images/bro.png';
+
+const Sidebar = () => {
+  const navigate = useNavigate();
+  const { activeStep, setActiveStep } = useStepContext();
+  const location = useLocation(); // Access current path
+  const { t } = useTranslation();
+ 
+  const steps = useMemo(() => [
+    { name: t('form.infoCollectionForm'), path: '/dashboard/form' },
+    { name: t('form.complaintDetails'), path: '/dashboard/complain-details' },
+    { name: t('form.noticeDetails'), path: '/dashboard/notice-details' },
+    { name: t('form.demolitionDetails'), path: '/dashboard/demolition-order' },
+    { name: t('form.courtOrderDetails'), path: '/dashboard/count-order' },
+    { name: t('form.remarks'), path: '/dashboard/remark' },
+  ], [t]);
+  
+>>>>>>> Stashed changes
 
   return (
     <>
@@ -50,7 +76,31 @@ const Sidebar = () => {
               fontWeight: "600",
             }}
           >
+<<<<<<< Updated upstream
              <span>{index + 1}</span>
+=======
+            <div className="step-text-container">
+            <div className="step-number">{t('form.step')} {index + 1}</div>
+            <div className="step-title">{step.name}</div>
+            </div>
+            <div
+              className={`circle-button ${index === activeStep ? 'active' : ''}`}
+              style={{
+                position: 'relative',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: index === activeStep ? '#5038ed' : 'white',
+                border: index === activeStep ? '1px solid #5038ed' : '1px solid gray',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: index === activeStep ? 'white' : 'gray',
+                fontWeight: '600',
+              }}
+            >
+              <span>{index + 1}</span>
+>>>>>>> Stashed changes
               {index > 0 && (
                 <div
                   style={{

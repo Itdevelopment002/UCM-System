@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useTranslation } from "react-i18next";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,17 +9,18 @@ import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 const NoticeDetails = ({ onNext, onPrevious }) => {
   const navigate = useNavigate(); 
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(""); 
-  const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); 
-  const [formattedDate, setFormattedDate] = useState(""); 
-  const [errors, setErrors] = useState({}); 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [selectedOption, setSelectedOption] = useState(""); // For dropdown
+  const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection
+  const [formattedDate, setFormattedDate] = useState(""); // Date formatting
+  const [errors, setErrors] = useState({}); // For form validation
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsModalOpen(true); 
   }, []);
 
-  const noticeOptions = ["Owner", "Rented", "Shop"]; 
+  const noticeOptions = [ t("form.owner"),t("form.rented"),t("form.shop")];
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -51,7 +53,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
     const newErrors = {};
     
     if (!formattedDate) {
-      newErrors.date = "Please select a valid date."; 
+      newErrors.date = t("form.dateError"); 
     }
     
     return newErrors;
@@ -106,7 +108,6 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                 cursor: "pointer",
               }}
             >
-              ×
             </button>
 
             <div className="modal-icon-container">
@@ -114,10 +115,11 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
             </div>
 
             <div className="modal-right-content ms-2">
-              <h5 className="modal-title">Notice</h5>
-              <p className="model-text">How many notices have been submitted?</p>
+              <h5 className="modal-title">{t("form.notice")}</h5>
+              <p className="model-text">{t("form.noticeCountQuestion")}</p>
 
               <div className="modal-options">
+                
                 {["none", "notice1", "notice2", "notice3"].map((value) => (
                   <label key={value}>
                     <input
@@ -136,14 +138,14 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
               <div className="modal-footer">
                 <label className="checkbox-container">
                   <input type="checkbox" />
-                  Don't show again
+                  {t("form.doNotShow")}
                 </label>
                 <div className="btn-at-footer">
                   <button className="cancel-btn" onClick={toggleModal}>
-                    Cancel
+                  {t("form.cancel")}
                   </button>
                   <button className="confirm-btn" onClick={toggleModal}>
-                    Confirm
+                  {t("form.confirm")}
                   </button>
                 </div>
               </div>
@@ -157,7 +159,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
           <div className="col-md-6 d-flex">
             <div className="mb-3 col-md-6">
               <label htmlFor="occupationType" className="form-label label-small">
-                Generated Notices 
+              {t("form.generatedNotices")}
               </label>
               <div className="custom-dropdown">
                 <div
@@ -165,7 +167,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                   onClick={() => setIsOpenOccupation(!isOpenOccupation)}
                 >
                   <span className="option-inside-placeholder">
-                    {selectedOption || "Select the notice"}
+                    {selectedOption || t("form.selectNotice")}
                   </span>
                   {isOpenOccupation ? (
                     <HiOutlineChevronUp size={18} className="dropdown-arrow" />
@@ -191,7 +193,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
             <div className="mb-3 col-md-6 ms-3">
               <label htmlFor="datePicker" className="form-label label-small">
-                Date <span className="text-danger">*</span>
+              {t("form.noticeDate")}<span className="text-danger">*</span>
               </label>
               <input
                 type="date"
@@ -206,7 +208,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
           </div>
         </div>
         <button type="submit" className="btn submit-btn-form">
-          Save and Next
+        {t("form.saveAndNext")}
         </button>
       </form>
     </div>

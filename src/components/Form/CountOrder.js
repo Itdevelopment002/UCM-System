@@ -1,17 +1,19 @@
 import React, { useState, useRef } from "react";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
+import { useTranslation } from "react-i18next"; 
 import "./FunctionalRequiremnt.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CourtOrder = ({ onNext, onPrevious }) => {
-  const navigate = useNavigate();
+const CourtOrder = () => {
+  const navigate = useNavigate(); // Hook for navigation
+  const { t } = useTranslation(); 
 
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Select occupation");
+  const [selectedOption, setSelectedOption] = useState(t("form.selectOccupationType"));
   const [selectedCourt, setSelectedCourt] = useState("");
-  const [occupationOptions] = useState(["Owner", "Rented", "Shop"]);
+  const [occupationOptions] = useState([t("form.owner"), t("form.rented"), t("form.shop")]);
   const dropdownRef = useRef(null);
 
   const [formValues, setFormValues] = useState({
@@ -22,17 +24,18 @@ const CourtOrder = ({ onNext, onPrevious }) => {
     typeOfCourt: "",
     petitionerName: "",
     petitionerMobile: "",
-    petitionerAddress: "",
+    detailedAddress: "",
     courtOrderDocument: null,
   });
 
   const courtOptions = [
-    "District Court",
-    "High Court",
-    "Supreme Court"
+    t("form.District Court"),
+    t("form.High Court"),
+    t("form.Supreme Court"),
   ];
+ 
   const [errors, setErrors] = useState({});
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState(""); 
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -140,14 +143,10 @@ const CourtOrder = ({ onNext, onPrevious }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formValues.courtOrderNumber) newErrors.courtOrderNumber = "Court Order Number is required.";
-    if (!formValues.edDate) newErrors.edDate = "ED Date is required.";
-    if (!formValues.courtName) newErrors.courtName = "Court Name is required.";
-
-
-
-
-
+    if (!formValues.courtOrderNumber) newErrors.courtOrderNumber = t("form.courtOrderNumberError");
+    if (!formValues.edDate) newErrors.edDate = t("form.edDateError");
+    if (!formValues.courtName) newErrors.courtName = t("form.courtNameError");
+    if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = t("form.courtOrderDocError");
     return newErrors;
   };
 
@@ -160,14 +159,13 @@ const CourtOrder = ({ onNext, onPrevious }) => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      setErrors({});
-
-
-      console.log("Submitted Successfully:", formValues);
-
-
-
-      onNext();
+      setErrors({}); // Clear any previous errors if validation is successful
+  
+      // Print success message if all validations are passed
+      console.log("Submitted Successfully:", formValues); 
+  
+      // Navigate to the next page
+      navigate("/dashboard/remark");
     }
   };
 
@@ -179,7 +177,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
         {/* Court Matter Involvement */}
         <div className="row">
           <div className="col-md-12 mb-3">
-            <label className="label-small">Court Matter Involvement</label>
+            <label className="label-small">{t("form.courtMatterInvolvement")}</label>
             <div style={{ display: "flex", gap: "30px" }}>
               <div>
                 <input
@@ -189,7 +187,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
                   value="Yes"
                   onChange={handleInputChange}
                 />
-                <label htmlFor="courtInvolvementYes" className="checkbox-label">Yes</label>
+                <label htmlFor="courtInvolvementYes" className="checkbox-label">{t("form.yes")}</label>
               </div>
               <div>
                 <input
@@ -199,7 +197,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
                   value="No"
                   onChange={handleInputChange}
                 />
-                <label htmlFor="courtInvolvementNo" className="checkbox-label">No</label>
+                <label htmlFor="courtInvolvementNo" className="checkbox-label">{t("form.no")}</label>
               </div>
             </div>
           </div>
@@ -209,13 +207,13 @@ const CourtOrder = ({ onNext, onPrevious }) => {
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtOrderNumber" className="form-label label-small">
-              Court Order Number <span className="text-danger">*</span>
+            {t("form.courtOrderNumber")}  <span className="text-danger">*</span>
             </label>
             <input
               type="text"
               className={`form-control input-small ${errors.courtOrderNumber ? "is-invalid" : ""}`}
               id="courtOrderNumber"
-              placeholder="Enter court order number"
+              placeholder={t("form.courtOrderNumberPlaceholder")}
               value={formValues.courtOrderNumber}
               onChange={handleInputChange}
             />
@@ -224,7 +222,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
 
           <div className="col-md-4 mb-3">
             <label htmlFor="edDate" className="form-label label-small">
-              ED Date <span className="text-danger">*</span>
+              {t("form.edDate")}<span className="text-danger">*</span>
             </label>
             <input
               type="date"
@@ -237,51 +235,43 @@ const CourtOrder = ({ onNext, onPrevious }) => {
           </div>
 
           {/* File Upload Field */}
-
-          <div className="mb-3 col-md-4">
-            <label htmlFor="hardCopyUpload" className="form-label label-small">
-              Court Order
+          <div className="col-md-4 mb-3">
+            <label htmlFor="courtOrderUpload" className="form-label label-small">
+            {t("form.courtOrder")} <span className="text-danger">*</span>
             </label>
             <div className="upload-container">
               <label
-                htmlFor="hardCopyUpload"
-                className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
-                  }`}
+                htmlFor="courtOrderUpload"
+                className={`form-control input-small upload-label ${errors.courtOrderDocument ? "is-invalid" : ""}`}
                 style={{ cursor: "pointer" }}
               >
-                <i className="fas fa-upload upload-icon"></i>
-                <span className="filename-gap">
-                  {formValues.hardCopyUpload
-                    ? formValues.hardCopyUpload.name
-                    : "Upload Documents"}
-                </span>
+                <i className="fas fa-upload upload-icon input-small"></i>{" "}
+                {fileName || t("form.courtOrderDocumentPlaceholder")}
               </label>
               <input
                 type="file"
-                id="hardCopyUpload"
-                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
-                className="form-control input-small d-none"
-                accept=".doc, .pdf"
+                id="courtOrderUpload"
+                onChange={handleFileChange}
+                className="d-none"
+                accept="image/*"
               />
             </div>
-            {errors.hardCopyUpload && (
-              <small className="text-danger">{errors.hardCopyUpload}</small>
-            )}
+            {errors.courtOrderDocument && <div className="text-danger">{errors.courtOrderDocument}</div>}
           </div>
-
         </div>
 
         {/* Court Name */}
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtName" className="form-label label-small">
-              Court Name <span className="text-danger">*</span>
+              {t("form.typeOfCourt")}
+               <span className="text-danger">*</span>
             </label>
             <input
               type="text"
               className={`form-control input-small ${errors.courtName ? "is-invalid" : ""}`}
               id="courtName"
-              placeholder="Enter court name"
+              placeholder={t("form.courtNamePlaceholder")}
               value={formValues.courtName}
               onChange={handleInputChange}
             />
@@ -291,16 +281,16 @@ const CourtOrder = ({ onNext, onPrevious }) => {
           {/* Court Type Dropdown */}
           <div className="col-md-4 mb-3">
             <label htmlFor="typeOfCourt" className="form-label label-small">
-              Type of Court
+            {t("form.courtName")}
             </label>
             <div className="custom-dropdown">
               <div
                 className="dropdown-header"
                 onClick={toggleCourtDropdown}
-                aria-role="button"
+                role="button"
               >
                 <span className="option-inside-placeholder">
-                  {selectedCourt || "Choose court"}
+                  {selectedCourt || t("form.chooseCourt")}
                 </span>
                 {isOpenCourt ? (
                   <HiOutlineChevronUp size={18} className="dropdown-arrow" />
@@ -329,35 +319,35 @@ const CourtOrder = ({ onNext, onPrevious }) => {
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerName" className="form-label label-small">
-              Petitioner Name
+            {t("form.petitionerName")} 
             </label>
             <input
               type="text"
               className={`form-control input-small`}
               id="petitionerName"
-              placeholder="Enter petitioner name"
+              placeholder={t("form.petitionerNamePlaceholder")}
               value={formValues.petitionerName}
               onChange={handleInputChange}
             />
 
           </div>
           <div className="col-md-4 mb-3 mt-2">
-            <label htmlFor="detailedAddress" className="form-label label-small">
-              Petitioner Address
-            </label>
-            <textarea
-              className="form-control input-small text-box-height"
-              id="detailedAddress"
-              placeholder="Write a long text here"
-              rows="3"
-              value={formValues.detailedAddress}
-              onChange={handleInputChange}
-            />
-          </div>
+                <label htmlFor="detailedAddress" className="form-label label-small">
+                {t("form.petitionerAddress")} 
+                </label>
+                <textarea
+                  className="form-control input-small text-box-height"
+                  id="detailedAddress"
+                  placeholder={t("form.addressPlaceholder")}
+                  rows="3"
+                  value={formValues.detailedAddress}
+                  onChange={handleInputChange}
+                />
+              </div>
         </div>
 
         <button type="submit" className="btn submit-btn-form">
-          Save and Next
+        {t("form.saveAndNext")}
         </button>
       </form>
       <ToastContainer />

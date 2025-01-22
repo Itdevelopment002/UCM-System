@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { FormGroup, Label, Input } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 import "./FunctionalRequiremnt.css"; 
 
-const DemolitionOrder = ({ onNext, onPrevious }) => {
-  const navigate = useNavigate(); 
+const DemolitionOrder = ({onNext, onPrevious }) => {
+  const navigate = useNavigate();
+  const { t } = useTranslation(); 
   const [formData, setFormData] = useState({
     demolitionDate: "",
     demolitionTime: "",
@@ -19,17 +21,6 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
     wardOffice: "",
   });
 
-
-  
-  const [formValues, setFormValues] = useState({
-    complainantName: "",
-    complainantContact: "",
-    complaintDescription: "",
-    hardCopyUpload: null,
-    photoUpload: null,
-    videoUpload: null,
-  });
-
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -39,101 +30,30 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleFileChange = (event, field) => {
-    const file = event.target.files[0]; 
-
-    if (!file) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: "",
-      }));
-      return;
+  const handleFileChange = (e) => {
+    const { files } = e.target;
+    if (files[0]) {
+      setFileName(files[0].name);
+      setFormData((prevData) => ({ ...prevData, demolitionDocument: files[0].name }));
     }
-
-    
-    const validationRules = {
-      hardCopyUpload: {
-        validTypes: ["application/pdf", "application/msword"],
-        maxSize: 2 * 1024 * 1024, 
-        errorMessage: {
-          type: "Only .doc and .pdf files are allowed.",
-          size: "The file size exceeds 2 MB. Please upload a smaller document.",
-        },
-      },
-      photoUpload: {
-        validTypes: ["image/jpeg", "image/jpg", "image/png"],
-        maxSize: 1 * 1024 * 1024, 
-        errorMessage: {
-          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
-          size: "The file size exceeds 1 MB. Please upload a smaller image.",
-        },
-      },
-      videoUpload: {
-        validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
-        maxSize: 10 * 1024 * 1024, 
-        errorMessage: {
-          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
-          size: "The file size exceeds 10 MB. Please upload a smaller video.",
-        },
-      },
-    };
-
-    const validation = validationRules[field];
-
-    if (!validation) {
-      console.error(`No validation rules found for field: ${field}`);
-      return;
-    }
-
-    
-    if (!validation.validTypes.includes(file.type)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: validation.errorMessage.type,
-      }));
-      event.target.value = ""; 
-      return;
-    }
-
-    
-    if (file.size > validation.maxSize) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: validation.errorMessage.size,
-      }));
-      event.target.value = ""; 
-      return;
-    }
-
-    
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [field]: "",
-    }));
-
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [field]: file,
-    }));
-
-    console.log(`${field} upload successful:`, file.name);
   };
-
 
   const validateForm = () => {
     const newErrors = {};
     if (!formData.demolitionDate) {
-      newErrors.demolitionDate = "Demolition Date is required.";
+      newErrors.demolitionDate =t("demolitionDate") + " is required.";
     }
     if (!formData.demolitionTime) {
-      newErrors.demolitionTime = "Demolition Time is required.";
+      newErrors.demolitionTime = t("demolitionTime") + " is required."
     }
-
+    if (!formData.demolitionDocument) {
+      newErrors.demolitionDocument = t("demolitionDocument") + " is required.";
+    }
     if (!formData.constructionNumber) {
-      newErrors.constructionNumber = "Construction Number is required.";
+      newErrors.constructionNumber = t("constructionNumber") + " is required.";
     }
     if (!formData.policeStationName) {
-      newErrors.policeStationName = "Please select a police station.";
+      newErrors.policeStationName = t("policeStationName") + " is required.";
     }
     return newErrors;
   };
@@ -169,7 +89,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="demolitionDate" className="form-label label-small">
-                Demolition Date <span className="text-danger">*</span>
+               {t("form.demolitionDate")} <span className="text-danger">*</span>
               </Label>
               <Input
                 type="date"
@@ -184,7 +104,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="demolitionTime" className="form-label label-small">
-                Demolition Time <span className="text-danger">*</span>
+               {t("form.demolitionTime")} <span className="text-danger">*</span>
               </Label>
               <Input
                 type="time"
@@ -196,36 +116,29 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
               {errors.demolitionTime && <div className="text-danger">{errors.demolitionTime}</div>}
             </FormGroup>
           </div>
-
-          <div className="mb-3 col-md-4">
-            <label htmlFor="hardCopyUpload" className="form-label label-small">
-              Demolition Document
-            </label>
-            <div className="upload-container">
-              <label
-                htmlFor="hardCopyUpload"
-                className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
-                  }`}
-                style={{ cursor: "pointer" }}
-              >
-                <i className="fas fa-upload upload-icon"></i>
-                <span className="filename-gap">
-                  {formValues.hardCopyUpload
-                    ? formValues.hardCopyUpload.name
-                    : "Upload Documents"}
-                </span>
-              </label>
-              <input
-                type="file"
-                id="hardCopyUpload"
-                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
-                className="form-control input-small d-none"
-                accept=".doc, .pdf"
-              />
-            </div>
-            {errors.hardCopyUpload && (
-              <small className="text-danger">{errors.hardCopyUpload}</small>
-            )}
+          <div className="col-md-4">
+            <FormGroup>
+              <Label htmlFor="demolitionDocument" className="form-label label-small">
+                {t("form.demolitionDocument")} <span className="text-danger">*</span>
+              </Label>
+              <div className="upload-container">
+                <label
+                  htmlFor="demolitionDocument"
+                  className={`form-control input-small upload-label ${errors.demolitionDocument ? "is-invalid" : ""}`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <i className="fas fa-upload upload-icon input-small"></i> {fileName || t("form.uploadDocs")}
+                </label>
+                <input
+                  type="file"
+                  id="demolitionDocument"
+                  onChange={handleFileChange}
+                  className="d-none"
+                  accept="image/*"
+                />
+              </div>
+              {errors.demolitionDocument && <div className="text-danger">{errors.demolitionDocument}</div>}
+            </FormGroup>
           </div>
         </div>
 
@@ -234,14 +147,14 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           <div className="col-md-8">
             <FormGroup>
               <Label htmlFor="demolitionExpenditure" className="form-label label-small">
-                Demolition Expenditure Details
+               {t("form.demolitionExpenditureDetails")}
               </Label>
               <Input
                 type="textarea"
                 id="demolitionExpenditure"
                 value={formData.demolitionExpenditure}
                 onChange={handleInputChange}
-                placeholder="Write a long text here"
+                placeholder={t("form.DDexpenditureplaceholder")}
                 className="form-control"
               />
             </FormGroup>
@@ -253,7 +166,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="constructionNumber" className="form-label label-small">
-                Construction Number <span className="text-danger">*</span>
+                {t("form.constructionNumber")} <span className="text-danger">*</span>
               </Label>
               <div className="input-group">
                 <Input
@@ -261,7 +174,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
                   id="constructionNumber"
                   value={formData.constructionNumber}
                   onChange={handleInputChange}
-                  placeholder="Search Construction Number"
+                  placeholder={t("form.constructionNumberPlaceholder")}
                   className={`form-control ${errors.constructionNumber ? "is-invalid" : ""}`}
                 />
                 <span className="input-group-text d-flex align-items-center">
@@ -275,16 +188,16 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           {/* Police Station Dropdown */}
           <div className="col-md-4 mb-3">
             <label htmlFor="policeStationName" className="form-label label-small">
-              Police Station Name <span className="text-danger">*</span>
+              {t("form.policeStationName")} <span className="text-danger">*</span>
             </label>
             <div className="custom-dropdown">
               <div
                 className="dropdown-header"
                 onClick={toggleDropdown}
-                aria-role="button"
+                role="button"
               >
                 <span className="option-inside-placeholder">
-                  {formData.policeStationName || "Select Police Station"}
+                  {formData.policeStationName || t("form.selectPoliceStation")}
                 </span>
                 {dropdownOpen ? (
                   <HiOutlineChevronUp size={18} className="dropdown-arrow" />
@@ -315,14 +228,14 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="policeManpowerDetails" className="form-label label-small">
-                Police Manpower Details
+                {t("form.policeManpowerDetails")}
               </Label>
               <Input
                 type="text"
                 id="policeManpowerDetails"
                 value={formData.policeManpowerDetails}
                 onChange={handleInputChange}
-                placeholder="Enter name"
+                placeholder={t("form.enterNamePlaceholder")}
                 className="form-control"
               />
             </FormGroup>
@@ -334,7 +247,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="wardOffice" className="form-label label-small">
-                Ward Office
+                {t("form.wardOffice")}
               </Label>
               <div className="input-group">
                 <Input
@@ -342,7 +255,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
                   id="wardOffice"
                   value={formData.wardOffice}
                   onChange={handleInputChange}
-                  placeholder="Ward officer"
+                  placeholder={t("form.wardOfficeName")}
                   className="form-control"
                   style={{ backgroundColor: "#EEEEEE" }}
                 />
@@ -355,7 +268,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
         </div>
 
         <button type="submit" className="btn submit-btn-form">
-          Save and Next
+        {t("form.saveAndNext")}
         </button>
       </form>
     </div>

@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState, useMemo} from "react";
+// import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next"; 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useStepContext } from "../StepContext";
 import "./Hwizardbar.css";
 
 const Hwizardbar = ({ activeForm, onStepChange }) => {
+  const {t} = useTranslation(); 
   const { setActiveStep } = useStepContext();
 
   const loadFormState = () => {
@@ -13,14 +16,18 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
 
   const [formFilled, setFormFilled] = useState(loadFormState);
 
-  const steps = [
-    { name: "Information Collection Form", tab: "info" },
-    { name: "Complaint Details", tab: "complaint" },
-    { name: "Notice Details", tab: "notice" },
-    { name: "Demolition Details", tab: "demolition" },
-    { name: "Court Order Details", tab: "court" },
-    { name: "Remark", tab: "submission" },
-  ];
+  const steps = useMemo(
+    () => [
+      { name: t("steps.informationCollectionForm"), path: "/dashboard/form", tab: "info" },
+      { name: t("steps.complaintDetails"), path: "/dashboard/complaint-details", tab: "complaint" },
+      { name: t("steps.noticeDetails"), path: "/dashboard/notice-details", tab: "notice" },
+      { name: t("steps.demolitionDetails"), path: "/dashboard/demolition-order", tab: "demolition" },
+      { name: t("steps.courtOrderDetails"), path: "/dashboard/court-order", tab: "court" },
+      { name: t("steps.remark"), path: "/dashboard/remark", tab: "submission" },
+    ],
+    [t]
+  );
+
 
   const markFormAsFilled = () => {
     const updatedFormFilled = [...formFilled];
@@ -45,7 +52,7 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
   return (
     <div className="container-bar">
       <div className="first-row">
-        <h3 className="heading1">Functional Requirements</h3>
+        <h3 className="heading1">{t("steps.functionalRequirements")}</h3>
         <div className="arrow-buttons">
           <button
             className="arrow-button"
