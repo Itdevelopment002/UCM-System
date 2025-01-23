@@ -17,24 +17,26 @@ const Otp = () => {
   const [isError, setIsError] = useState(false);
   const [warning, setWarning] = useState("");
 
-  const handleChange = (e) => {
+ const handleChange = (e) => {
     const value = e.target.value;
-    if (/^\d*$/.test(value)) {
+
+    // Allow only numeric values and up to 10 digits
+    if (/^\d*$/.test(value) && value.length <= 10) {
       setPhone(value);
-      setWarning(""); 
+      setWarning(""); // Clear warning when valid
     } else {
-      setWarning("Only numeric values are allowed.");
+      setWarning("Please enter a valid 10-digit phone number.");
     }
   };
 
   const handleContinue = (e) => {
     e.preventDefault();
 
+    // Check if the phone number is exactly 10 digits
     if (!phoneRegex.test(phone)) {
-      setIsError(true); 
+      setWarning("Please enter 10-digit phone number only.");
     } else {
-      setIsError(false);
-      setWarning(""); 
+      setWarning(""); // Clear warning
       navigate("/verification");
     }
   };
@@ -76,14 +78,15 @@ const Otp = () => {
                   onChange={handleChange}
                 />
               </div>
+              
               {warning && (
-                <p className="text-warning mt-2">{warning}</p>
+                <p className="text-danger mt-2 warning-otp">{warning}</p>
               )}
-              {isError && !warning && (
+              {/* {isError && !warning && (
                 <p className="text-danger mt-2">
                   Please enter a valid 10-digit phone number.
                 </p>
-              )}
+              )} */}
             </div>
 
             <button

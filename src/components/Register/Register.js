@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import flash from "../../images/flash.png";
 import logo from "../../images/logo.png";
 import overlay from "../../images/overlay.png";
@@ -21,6 +22,8 @@ const Register = () => {
     password: "",
     agreeTerms: "",
   });
+
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +71,10 @@ const Register = () => {
       !newErrors.password &&
       !newErrors.agreeTerms
     ) {
-      setSuccessMessage("Registration successful! Please proceed to SignIn.");
+      setSuccessMessage("Registration successful!!");
+      setTimeout(() => {
+        navigate("/Otp"); 
+      }, 2000);
     }
   };
 
@@ -161,8 +167,8 @@ const Register = () => {
                 checked={agreeTerms}
                 onChange={() => setAgreeTerms(!agreeTerms)}
               />
-              <label className="form-check-label " htmlFor="termsCheck">
-                I Agree To The Terms & Conditions
+              <label className="form-check-label ms-3" htmlFor="termsCheck">
+              I Agree To The Terms & Conditions
               </label>
               {errors.agreeTerms && (
                 <div className="invalid-feedback" style={{ display: "block" }}>
@@ -173,14 +179,14 @@ const Register = () => {
 
             <button
               type="submit"
-              className="btn custom-btn fw-bold mt-2 register-button"
+              className="btn custom-btn fw-bold mt-2 mb-2 register-button "
             >
               Sign Up
             </button>
           </form>
 
           {/* "Already have an account" tagline */}
-          <p className="mt-2">
+          <p className="mt-2 " style={{color:"#777", fontSize:"14px"}}>
             Already have an account?{" "}
             <a href="/Otp" className="signin-link">
               Sign In
@@ -202,20 +208,7 @@ const Register = () => {
               alt="Overlay"
               style={{ width: "100%", display: "block" }}
             />
-            <h3
-              className="col-6 w-28"
-              style={{
-                position: "absolute",
-                top: "49%",
-                left: "51%",
-                transform: "translate(-50%, -50%)",
-                fontWeight: "700",
-                color: "#fff",
-                textAlign: "left",
-                lineHeight: "1.5",
-                fontSize: "30px",
-              }}
-            >
+            <h3 className="col-6 w-28 rightRegText">
               Join Us Today! <br /> Opportunities Await <br />– Register Now!!
             </h3>
           </div>

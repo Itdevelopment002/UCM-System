@@ -58,8 +58,7 @@
   /* #9181f4; */
 }
 .signin-link:hover{
-  color: #7364d4;
-  font-size: large;
+  color: #6a35bb;
   font-style: bold;
 }
 .flash-reg {
@@ -106,7 +105,7 @@
   color: #fff; 
 }
 .signin-alert {
-  color: #777;
+  color: #5038ED;
   background: white;
   background-color: #fff; 
   border-color:  #fff ;
@@ -114,4 +113,15 @@
   padding: 10px 15px;
   font-size: 15px;
   text-align: center;
+}
+.rightRegText{
+  position: absolute;
+  top: 49%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 30px;
 }
