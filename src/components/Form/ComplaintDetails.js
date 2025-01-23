@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next"; 
 import map from "../../images/map.png";
 import locate from "../../images/location-icon.png";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 
 const ComplaintDetails = ({ onNext, onPrevious }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     complainantName: "",
     complainantContact: "",
@@ -75,24 +75,24 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
         validTypes: ["application/pdf", "application/msword"],
         maxSize: 2 * 1024 * 1024,
         errorMessage: {
-          type: "Only .doc and .pdf files are allowed.",
-          size: "The file size exceeds 2 MB. Please upload a smaller document.",
+          type: t("form.hardCopyValidator"),
+          size: t("form.hardCopySizeValidator"),
         },
       },
       photoUpload: {
         validTypes: ["image/jpeg", "image/jpg", "image/png"],
         maxSize: 1 * 1024 * 1024,
         errorMessage: {
-          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
-          size: "The file size exceeds 1 MB. Please upload a smaller image.",
+          type: t("form.photoValidator"),
+          size: t("form.photoSizeValidator"),
         },
       },
       videoUpload: {
         validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
         maxSize: 10 * 1024 * 1024,
         errorMessage: {
-          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
-          size: "The file size exceeds 10 MB. Please upload a smaller video.",
+          type: t("form.videoValidator"),
+          size: t("form.videoSizeValidator"),
         },
       },
     };
@@ -370,12 +370,12 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
                           <span className="me-2">
                             <i className="bi bi-geo-alt-fill text-primary"></i>
                           </span>
-                          <strong className="text-secondary fw-light">{t("form.city")}</strong>
+                          <strong className="text-secondary fw-light" style={{ fontSize: "2.5rem" }}>{t("form.city")}</strong>
                         </div>
                         <div className="position-relative" style={{ top: "5%" }} >
                           <img src={iconbg} alt={t("form.iconbg")} className="img-fluid rounded" />
                           <i className="fas fa-paper-plane text-white position-absolute"
-                            style={{ top: "18%", left: "21%", fontSize: "1.3rem" }}></i></div>
+                            style={{ top: "20%", left: "25%", fontSize: "1.3rem" }}></i></div>
                       </div>
                     </div>
                     <p className="mb-1 text-secondary fw-bold">

@@ -9,10 +9,10 @@ import texture from "../../images/texture.png";
 import "./Login.css";
 
 const Login = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleClick = () => {
-    navigate('/dashboard/form'); 
+    navigate('/dashboard/form'); // Navigate to the dashboard route
   };
   return (
     <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
@@ -51,7 +51,7 @@ const Login = () => {
             </div>
             <button
       className="btn btn-primary w-40 mb-3"
-      onClick={handleClick} 
+      onClick={handleClick} // Call handleClick when the button is clicked
     >
       Login Now
     </button>

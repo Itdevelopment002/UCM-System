@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"; 
 import { FormGroup, Label, Input } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 import "./FunctionalRequiremnt.css"; 
 
-const DemolitionOrder = ({onNext, onPrevious }) => {
-  const navigate = useNavigate();
+const DemolitionOrder = ({ onNext, onPrevious }) => {
+  const navigate = useNavigate(); 
   const { t } = useTranslation(); 
   const [formData, setFormData] = useState({
     demolitionDate: "",
@@ -21,6 +21,17 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
     wardOffice: "",
   });
 
+
+  
+  const [formValues, setFormValues] = useState({
+    complainantName: "",
+    complainantContact: "",
+    complaintDescription: "",
+    hardCopyUpload: null,
+    photoUpload: null,
+    videoUpload: null,
+  });
+
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -30,46 +41,116 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleFileChange = (e) => {
-    const { files } = e.target;
-    if (files[0]) {
-      setFileName(files[0].name);
-      setFormData((prevData) => ({ ...prevData, demolitionDocument: files[0].name }));
+  const handleFileChange = (event, field) => {
+    const file = event.target.files[0]; 
+
+    if (!file) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: "",
+      }));
+      return;
     }
+
+    
+    const validationRules = {
+      hardCopyUpload: {
+        validTypes: ["application/pdf", "application/msword"],
+        maxSize: 2 * 1024 * 1024, 
+        errorMessage: {
+          type: "Only .doc and .pdf files are allowed.",
+          size: "The file size exceeds 2 MB. Please upload a smaller document.",
+        },
+      },
+      photoUpload: {
+        validTypes: ["image/jpeg", "image/jpg", "image/png"],
+        maxSize: 1 * 1024 * 1024, 
+        errorMessage: {
+          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
+          size: "The file size exceeds 1 MB. Please upload a smaller image.",
+        },
+      },
+      videoUpload: {
+        validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
+        maxSize: 10 * 1024 * 1024, 
+        errorMessage: {
+          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
+          size: "The file size exceeds 10 MB. Please upload a smaller video.",
+        },
+      },
+    };
+
+    const validation = validationRules[field];
+
+    if (!validation) {
+      console.error(`No validation rules found for field: ${field}`);
+      return;
+    }
+
+    
+    if (!validation.validTypes.includes(file.type)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: validation.errorMessage.type,
+      }));
+      event.target.value = ""; 
+      return;
+    }
+
+    
+    if (file.size > validation.maxSize) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: validation.errorMessage.size,
+      }));
+      event.target.value = ""; 
+      return;
+    }
+
+    
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: "",
+    }));
+
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [field]: file,
+    }));
+
+    console.log(`${field} upload successful:`, file.name);
   };
+
 
   const validateForm = () => {
     const newErrors = {};
     if (!formData.demolitionDate) {
-      newErrors.demolitionDate =t("demolitionDate") + " is required.";
+      newErrors.demolitionDate = t("form.demolitionDate") + " " + t("form.isRequired");
     }
     if (!formData.demolitionTime) {
-      newErrors.demolitionTime = t("demolitionTime") + " is required."
+      newErrors.demolitionTime = t("form.demolitionTime") + " " + t("form.isRequired");
     }
     if (!formData.demolitionDocument) {
-      newErrors.demolitionDocument = t("demolitionDocument") + " is required.";
+      newErrors.demolitionDocument = t("form.demolitionDocument") + " " + t("form.isRequired");
     }
     if (!formData.constructionNumber) {
-      newErrors.constructionNumber = t("constructionNumber") + " is required.";
+      newErrors.constructionNumber = t("form.constructionNumber") + " " + t("form.isRequired");
     }
     if (!formData.policeStationName) {
-      newErrors.policeStationName = t("policeStationName") + " is required.";
+      newErrors.policeStationName = t("form.policeStationName") + " " + t("form.isRequired");
     }
+    setErrors(newErrors);
     return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors); 
-    } else {
-      setErrors({}); 
 
+    if (validateForm()) {
       console.log("Submitted Successfully:", formData);
-      
-      
-      onNext(); 
+      onNext();
+    } else {
+      console.log("Validation failed. Please check the fields.");
     }
   };
 
@@ -89,7 +170,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="demolitionDate" className="form-label label-small">
-               {t("form.demolitionDate")} <span className="text-danger">*</span>
+              {t("form.demolitionDate")} <span className="text-danger">*</span>
               </Label>
               <Input
                 type="date"
@@ -104,7 +185,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="demolitionTime" className="form-label label-small">
-               {t("form.demolitionTime")} <span className="text-danger">*</span>
+              {t("form.demolitionTime")} <span className="text-danger">*</span>
               </Label>
               <Input
                 type="time"
@@ -116,29 +197,36 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
               {errors.demolitionTime && <div className="text-danger">{errors.demolitionTime}</div>}
             </FormGroup>
           </div>
-          <div className="col-md-4">
-            <FormGroup>
-              <Label htmlFor="demolitionDocument" className="form-label label-small">
-                {t("form.demolitionDocument")} <span className="text-danger">*</span>
-              </Label>
-              <div className="upload-container">
-                <label
-                  htmlFor="demolitionDocument"
-                  className={`form-control input-small upload-label ${errors.demolitionDocument ? "is-invalid" : ""}`}
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="fas fa-upload upload-icon input-small"></i> {fileName || t("form.uploadDocs")}
-                </label>
-                <input
-                  type="file"
-                  id="demolitionDocument"
-                  onChange={handleFileChange}
-                  className="d-none"
-                  accept="image/*"
-                />
-              </div>
-              {errors.demolitionDocument && <div className="text-danger">{errors.demolitionDocument}</div>}
-            </FormGroup>
+
+          <div className="mb-3 col-md-4">
+            <label htmlFor="hardCopyUpload" className="form-label label-small">
+            {t("form.demolitionDocument")}
+            </label>
+            <div className="upload-container">
+              <label
+                htmlFor="hardCopyUpload"
+                className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
+                  }`}
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fas fa-upload upload-icon"></i>
+                <span className="filename-gap">
+                  {formValues.hardCopyUpload
+                    ? formValues.hardCopyUpload.name
+                    : t("form.uploadDocs")}
+                </span>
+              </label>
+              <input
+                type="file"
+                id="hardCopyUpload"
+                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+                className="form-control input-small d-none"
+                accept=".doc, .pdf"
+              />
+            </div>
+            {errors.hardCopyUpload && (
+              <small className="text-danger">{errors.hardCopyUpload}</small>
+            )}
           </div>
         </div>
 
@@ -147,7 +235,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           <div className="col-md-8">
             <FormGroup>
               <Label htmlFor="demolitionExpenditure" className="form-label label-small">
-               {t("form.demolitionExpenditureDetails")}
+              {t("form.demolitionExpenditureDetails")}
               </Label>
               <Input
                 type="textarea"
@@ -166,7 +254,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="constructionNumber" className="form-label label-small">
-                {t("form.constructionNumber")} <span className="text-danger">*</span>
+              {t("form.constructionNumber")} <span className="text-danger">*</span>
               </Label>
               <div className="input-group">
                 <Input
@@ -188,7 +276,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           {/* Police Station Dropdown */}
           <div className="col-md-4 mb-3">
             <label htmlFor="policeStationName" className="form-label label-small">
-              {t("form.policeStationName")} <span className="text-danger">*</span>
+            {t("form.policeStationName")} <span className="text-danger">*</span>
             </label>
             <div className="custom-dropdown">
               <div
@@ -207,13 +295,13 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
               </div>
               {dropdownOpen && (
                 <ul className="dropdown-options">
-                  {["Station A", "Station B", "Station C"].map((station) => (
+                  {["stationA", "stationB", "stationC"].map((station) => (
                     <li
                       key={station}
                       className="dropdown-option"
-                      onClick={() => selectPoliceStation(station)}
+                      onClick={() => selectPoliceStation(t(`form.${station}`))}
                     >
-                      {station}
+                    {t(`form.${station}`)}
                     </li>
                   ))}
                 </ul>
@@ -228,7 +316,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="policeManpowerDetails" className="form-label label-small">
-                {t("form.policeManpowerDetails")}
+              {t("form.policeManpowerDetails")}
               </Label>
               <Input
                 type="text"
@@ -247,7 +335,7 @@ const DemolitionOrder = ({onNext, onPrevious }) => {
           <div className="col-md-4">
             <FormGroup>
               <Label htmlFor="wardOffice" className="form-label label-small">
-                {t("form.wardOffice")}
+              {t("form.wardOffice")}
               </Label>
               <div className="input-group">
                 <Input

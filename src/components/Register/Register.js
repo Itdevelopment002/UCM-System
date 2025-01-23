@@ -161,7 +161,7 @@ const Register = () => {
                 checked={agreeTerms}
                 onChange={() => setAgreeTerms(!agreeTerms)}
               />
-              <label className="form-check-label" htmlFor="termsCheck">
+              <label className="form-check-label " htmlFor="termsCheck">
                 I Agree To The Terms & Conditions
               </label>
               {errors.agreeTerms && (

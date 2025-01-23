@@ -159,7 +159,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 type="text"
                 className="form-control input-small"
                 id="wardGroup"
-                placeholder={t("form.enterWardOfficer")}
+                placeholder={t("form.enterWardOffice")}
                 value={formValues.wardGroup}
                 onChange={handleInputChange}
               />

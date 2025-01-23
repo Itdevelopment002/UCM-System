@@ -1,13 +1,13 @@
 import React, { useState, useRef } from "react";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate for navigation
-import { useTranslation } from "react-i18next"; 
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CourtOrder = () => {
-  const navigate = useNavigate(); // Hook for navigation
+const CourtOrder = ({ onNext, onPrevious }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation(); 
 
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
@@ -24,7 +24,7 @@ const CourtOrder = () => {
     typeOfCourt: "",
     petitionerName: "",
     petitionerMobile: "",
-    detailedAddress: "",
+    petitionerAddress: "",
     courtOrderDocument: null,
   });
 
@@ -33,9 +33,8 @@ const CourtOrder = () => {
     t("form.High Court"),
     t("form.Supreme Court"),
   ];
- 
   const [errors, setErrors] = useState({});
-  const [fileName, setFileName] = useState(""); 
+  const [fileName, setFileName] = useState("");
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -62,24 +61,24 @@ const CourtOrder = () => {
         validTypes: ["application/pdf", "application/msword"],
         maxSize: 2 * 1024 * 1024,
         errorMessage: {
-          type: "Only .doc and .pdf files are allowed.",
-          size: "The file size exceeds 2 MB. Please upload a smaller document.",
+          type: t("form.hardCopyValidator"),
+          size: t("form.hardCopySizeValidator"),
         },
       },
       photoUpload: {
         validTypes: ["image/jpeg", "image/jpg", "image/png"],
         maxSize: 1 * 1024 * 1024,
         errorMessage: {
-          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
-          size: "The file size exceeds 1 MB. Please upload a smaller image.",
+          type: t("form.photoValidator"),
+          size: t("form.photoSizeValidator"),
         },
       },
       videoUpload: {
         validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
         maxSize: 10 * 1024 * 1024,
         errorMessage: {
-          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
-          size: "The file size exceeds 10 MB. Please upload a smaller video.",
+          type: t("form.videoValidator"),
+          size: t("form.videoSizeValidator"),
         },
       },
     };
@@ -146,7 +145,11 @@ const CourtOrder = () => {
     if (!formValues.courtOrderNumber) newErrors.courtOrderNumber = t("form.courtOrderNumberError");
     if (!formValues.edDate) newErrors.edDate = t("form.edDateError");
     if (!formValues.courtName) newErrors.courtName = t("form.courtNameError");
-    if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = t("form.courtOrderDocError");
+    // if (!formValues.typeOfCourt) newErrors.typeOfCourt = t("form.typeOfCourtError");
+    // if (!formValues.petitionerName) newErrors.petitionerName = t("form.petitionerNameError");
+    // if (!formValues.petitionerMobile) newErrors.petitionerMobile = t("form.petitionerMobileError");
+    // if (!formValues.detailedAddress) newErrors.detailedAddress = t("form.detailedAddressError");
+    // if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = t("form.courtOrderDocError");
     return newErrors;
   };
 
@@ -159,13 +162,10 @@ const CourtOrder = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      setErrors({}); // Clear any previous errors if validation is successful
-  
-      // Print success message if all validations are passed
-      console.log("Submitted Successfully:", formValues); 
-  
-      // Navigate to the next page
+      setErrors({});
+      console.log("Submitted Successfully:", formValues);
       navigate("/dashboard/remark");
+      onNext();
     }
   };
 
@@ -207,7 +207,7 @@ const CourtOrder = () => {
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtOrderNumber" className="form-label label-small">
-            {t("form.courtOrderNumber")}  <span className="text-danger">*</span>
+            {t("form.courtOrderNumber")} <span className="text-danger">*</span>
             </label>
             <input
               type="text"
@@ -222,7 +222,7 @@ const CourtOrder = () => {
 
           <div className="col-md-4 mb-3">
             <label htmlFor="edDate" className="form-label label-small">
-              {t("form.edDate")}<span className="text-danger">*</span>
+            {t("form.edDate")} <span className="text-danger">*</span>
             </label>
             <input
               type="date"
@@ -235,37 +235,45 @@ const CourtOrder = () => {
           </div>
 
           {/* File Upload Field */}
-          <div className="col-md-4 mb-3">
-            <label htmlFor="courtOrderUpload" className="form-label label-small">
-            {t("form.courtOrder")} <span className="text-danger">*</span>
+
+          <div className="mb-3 col-md-4">
+            <label htmlFor="hardCopyUpload" className="form-label label-small">
+            {t("form.courtOrder")}
             </label>
             <div className="upload-container">
               <label
-                htmlFor="courtOrderUpload"
-                className={`form-control input-small upload-label ${errors.courtOrderDocument ? "is-invalid" : ""}`}
+                htmlFor="hardCopyUpload"
+                className={`form-control input-small upload-label ${errors.hardCopyUpload ? "is-invalid" : ""
+                  }`}
                 style={{ cursor: "pointer" }}
               >
-                <i className="fas fa-upload upload-icon input-small"></i>{" "}
-                {fileName || t("form.courtOrderDocumentPlaceholder")}
+                <i className="fas fa-upload upload-icon"></i>
+                <span className="filename-gap">
+                  {formValues.hardCopyUpload
+                    ? formValues.hardCopyUpload.name
+                    : t("form.courtOrderDocumentPlaceholder")}
+                </span>
               </label>
               <input
                 type="file"
-                id="courtOrderUpload"
-                onChange={handleFileChange}
-                className="d-none"
-                accept="image/*"
+                id="hardCopyUpload"
+                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
+                className="form-control input-small d-none"
+                accept=".doc, .pdf"
               />
             </div>
-            {errors.courtOrderDocument && <div className="text-danger">{errors.courtOrderDocument}</div>}
+            {errors.hardCopyUpload && (
+              <small className="text-danger">{errors.hardCopyUpload}</small>
+            )}
           </div>
+
         </div>
 
         {/* Court Name */}
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtName" className="form-label label-small">
-              {t("form.typeOfCourt")}
-               <span className="text-danger">*</span>
+            {t("form.courtName")} <span className="text-danger">*</span>
             </label>
             <input
               type="text"
@@ -281,7 +289,7 @@ const CourtOrder = () => {
           {/* Court Type Dropdown */}
           <div className="col-md-4 mb-3">
             <label htmlFor="typeOfCourt" className="form-label label-small">
-            {t("form.courtName")}
+            {t("form.typeOfCourt")}
             </label>
             <div className="custom-dropdown">
               <div
@@ -332,18 +340,18 @@ const CourtOrder = () => {
 
           </div>
           <div className="col-md-4 mb-3 mt-2">
-                <label htmlFor="detailedAddress" className="form-label label-small">
-                {t("form.petitionerAddress")} 
-                </label>
-                <textarea
-                  className="form-control input-small text-box-height"
-                  id="detailedAddress"
-                  placeholder={t("form.addressPlaceholder")}
-                  rows="3"
-                  value={formValues.detailedAddress}
-                  onChange={handleInputChange}
-                />
-              </div>
+            <label htmlFor="detailedAddress" className="form-label label-small">
+            {t("form.petitionerAddress")} 
+            </label>
+            <textarea
+              className="form-control input-small text-box-height"
+              id="detailedAddress"
+              placeholder={t("form.addressPlaceholder")}
+              rows="3"
+              value={formValues.detailedAddress}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
         <button type="submit" className="btn submit-btn-form">
