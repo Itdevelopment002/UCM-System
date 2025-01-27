@@ -36,7 +36,7 @@ const Otp = () => {
     if (!phoneRegex.test(phone)) {
       setWarning("Please enter 10-digit phone number only.");
     } else {
-      setWarning(""); // Clear warning
+      setWarning("");
       navigate("/verification");
     }
   };
@@ -132,20 +132,7 @@ const Otp = () => {
               alt="Overlay"
               style={{ width: "97%", display: "block" }}
             />
-            <h3
-              className="col-5 w-4 fw-bold"
-              style={{
-                position: "absolute",
-                top: "49%",
-                left: "53%",
-                transform: "translate(-50%, -50%)",
-                fontWeight: "bold",
-                color: "#fff",
-                textAlign: "left",
-                lineHeight: "1.5",
-                fontSize: "32px",
-              }}
-            >
+            <h3 className="col-5 w-4 fw-bold otptext-right">
               Very good works are waiting for you. Login Now!!!
             </h3>
           </div>

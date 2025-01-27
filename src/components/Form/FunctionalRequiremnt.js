@@ -282,8 +282,8 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
               id="pincode"
               placeholder={t("form.enterCamp")}
             /> 
-          </div>
-          </div>
+            </div>
+            </div>
             <h2 className="label-big">{t("form.constructionDetails")}</h2>
             <div className="divider-form"></div>
 
@@ -355,11 +355,11 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 />
               </div>
             </div>
-            <button type="submit" className="btn submit-btn-form">
-            {t("form.submit")}
-            </button>
           </div>
         </div>
+        <button type="submit" className="btn submit-btn-form">
+        {t("form.saveAndNext")}
+        </button>
       </form>
     </div>
   );
