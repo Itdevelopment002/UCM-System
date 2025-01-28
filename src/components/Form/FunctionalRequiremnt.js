@@ -280,7 +280,21 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 />
                 {errors.pincode && <div className="text-danger">{errors.pincode}</div>}
               </div>
+              <div className="mb-3 col-md-3 mt-2">
+            <label htmlFor="pincode" className="form-label label-small">
+            {t("form.camp")} 
+            </label>
+            <input
+              type="text"
+              className={`form-control input-small `}
+              id="pincode"
+              placeholder={t("form.enterCamp")}
+            /> 
             </div>
+
+            </div>
+            <h2 className="label-big">{t("form.constructionDetails")}</h2>
+            <div className="divider-form"></div>
             <button type="submit" className="btn submit-btn-form" onClick={handleSubmit}>
               {t("form.submit")}
             </button>
