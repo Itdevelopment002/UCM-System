@@ -3,8 +3,7 @@ import "./FunctionalRequiremnt.css";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
 import { useNavigate } from "react-router-dom"; // for navigation
 import { useTranslation } from "react-i18next"; 
-import { useFormContext } from "../FormContext";
-
+import { useFormContext } from "../Context/FormContext";
 const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
   const { t } = useTranslation(); 
   const { formData, setFormData } = useFormContext();

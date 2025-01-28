@@ -7,7 +7,7 @@ import iconbg from "../../images/icon-bg.png";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
-import { useFormContext } from "../FormContext";
+import { useFormContext } from "../Context/FormContext";
 
 const ComplaintDetails = ({ onNext, onPrevious }) => {
   const navigate = useNavigate();

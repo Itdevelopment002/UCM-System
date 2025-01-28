@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useStepContext } from '../StepContext';
+import { useStepContext } from '../Context/StepContext';
 import { useTranslation } from 'react-i18next';
 import './Sidebar.css';
 import bro from '../../images/bro.png';

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 // import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useStepContext } from "../StepContext";
+import { useStepContext } from "../Context/StepContext";
 import "./Hwizardbar.css";
 
 const Hwizardbar = ({ activeForm, onStepChange }) => {
