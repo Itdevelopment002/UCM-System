@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next"; 
+import { useNavigate } from "react-router-dom"; 
+import { useTranslation } from "react-i18next";
 import { FormGroup, Label, Input } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -58,24 +58,24 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
         validTypes: ["application/pdf", "application/msword"],
         maxSize: 2 * 1024 * 1024, 
         errorMessage: {
-          type: "Only .doc and .pdf files are allowed.",
-          size: "The file size exceeds 2 MB. Please upload a smaller document.",
+          type: t("form.hardCopyValidator"),
+          size: t("form.hardCopySizeValidator"),
         },
       },
       photoUpload: {
         validTypes: ["image/jpeg", "image/jpg", "image/png"],
         maxSize: 1 * 1024 * 1024, 
         errorMessage: {
-          type: "Only image files (.jpg, .jpeg, .png) are allowed.",
-          size: "The file size exceeds 1 MB. Please upload a smaller image.",
+          type: t("form.photoValidator"),
+          size: t("form.photoSizeValidator"),
         },
       },
       videoUpload: {
         validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
         maxSize: 10 * 1024 * 1024, 
         errorMessage: {
-          type: "Only video files (.mp4, .avi, .mov, .mkv) are allowed.",
-          size: "The file size exceeds 10 MB. Please upload a smaller video.",
+          type: t("form.videoValidator"),
+          size: t("form.videoSizeValidator"),
         },
       },
     };
@@ -130,27 +130,25 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
     if (!formData.demolitionTime) {
       newErrors.demolitionTime = t("form.demolitionTime") + " " + t("form.isRequired");
     }
-    if (!formData.demolitionDocument) {
-      newErrors.demolitionDocument = t("form.demolitionDocument") + " " + t("form.isRequired");
-    }
+
     if (!formData.constructionNumber) {
       newErrors.constructionNumber = t("form.constructionNumber") + " " + t("form.isRequired");
     }
     if (!formData.policeStationName) {
       newErrors.policeStationName = t("form.policeStationName") + " " + t("form.isRequired");
     }
-    setErrors(newErrors);
     return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (validateForm()) {
-      console.log("Submitted Successfully:", formData);
-      onNext();
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors); 
     } else {
-      console.log("Validation failed. Please check the fields.");
+      setErrors({}); 
+      console.log("Submitted Successfully:", formData);
+      onNext(); 
     }
   };
 
@@ -282,7 +280,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
               <div
                 className="dropdown-header"
                 onClick={toggleDropdown}
-                role="button"
+                aria-role="button"
               >
                 <span className="option-inside-placeholder">
                   {formData.policeStationName || t("form.selectPoliceStation")}
@@ -301,7 +299,7 @@ const DemolitionOrder = ({ onNext, onPrevious }) => {
                       className="dropdown-option"
                       onClick={() => selectPoliceStation(t(`form.${station}`))}
                     >
-                    {t(`form.${station}`)}
+                      {t(`form.${station}`)}
                     </li>
                   ))}
                 </ul>
