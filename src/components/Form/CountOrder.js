@@ -37,9 +37,9 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   });
 
   const courtOptions = [
-    t("form.District Court"),
-    t("form.High Court"),
-    t("form.Supreme Court"),
+    t("form.districtCourt"),
+    t("form.highCourt"),
+    t("form.supremeCourt"),
   ];
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState("");

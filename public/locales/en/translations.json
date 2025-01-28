@@ -35,6 +35,7 @@
         "submit": "Submit",
         "uploadDocs":"Upload Document",
         "thankMessage":"Thank you for completing the process. Your application has been successfully submitted.",
+        "isRequired":"is required.",
         
         "infoCollectionForm": "Information Collection Form",
         "complaintDetails": "Complaint Details",

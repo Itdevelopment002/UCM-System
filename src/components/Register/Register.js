@@ -74,7 +74,7 @@ const Register = () => {
       setSuccessMessage("Registration successful!!");
       setTimeout(() => {
         navigate("/Otp"); 
-      }, 2000);
+      }, 1500);
     }
   };
 
@@ -179,7 +179,7 @@ const Register = () => {
 
             <button
               type="submit"
-              className="btn custom-btn fw-bold mt-2 mb-2 register-button "
+              className="btn custom-btn mt-2 mb-2 register-button "
             >
               Sign Up
             </button>

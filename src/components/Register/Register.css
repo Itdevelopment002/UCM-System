@@ -85,9 +85,9 @@
 
 /* Center the button and adjust width */
 .register-button {
-  height: 2.5rem;
+  height: 2.7rem;
   width: auto; /* Allow the button width to adjust based on content */
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: white;
   background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
