@@ -56,16 +56,16 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
       <div className="first-row">
         <h3 className="heading1">{t("steps.functionalRequirements")}</h3>
         <div className="arrow-buttons">
-          <button
+          <button  className="arrow-button"
             onClick={() => activeForm > 0 && onStepChange(activeForm - 1)}
             disabled={activeForm === 0 || !canGoToPrev()}
             style={arrowButtonStyle(activeForm === 0 || !canGoToPrev())}
           >
-            <FaArrowLeft size={20} />
+            <FaArrowLeft size={20}  style={{color:"white"}}/>
           </button>
 
 
-          <button
+          <button  className="arrow-button"
   onClick={() => {
     if (activeForm < steps.length - 1 && canGoToNext()) {
       markFormAsFilled();
@@ -75,7 +75,7 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
   disabled={activeForm === steps.length - 1 || !canGoToNext()}
   style={arrowButtonStyle(activeForm === steps.length - 1 || !canGoToNext())}
 >
-  <FaArrowRight size={20} />
+  <FaArrowRight size={20} style={{color:"white"}} />
 </button>
 
         </div>

@@ -1,91 +1,110 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import { useTranslation } from "react-i18next";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
+import { useFormContext } from "../Context/FormContext";
 
 const NoticeDetails = ({ onNext, onPrevious }) => {
-  const navigate = useNavigate(); 
+  const { formData, setFormData } = useFormContext();
+  const navigate = useNavigate();
   const [isOpenOccupation, setIsOpenOccupation] = useState(false);
   const [selectedOption, setSelectedOption] = useState(""); // For dropdown
   const [selectedNoticeCount, setSelectedNoticeCount] = useState("none"); // Radio selection
-  const [formattedDate, setFormattedDate] = useState(""); // Date formatting
   const [errors, setErrors] = useState({}); // For form validation
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const { t } = useTranslation();
 
   useEffect(() => {
-    setIsModalOpen(true); 
+    setIsModalOpen(true); // Open the modal as soon as the component mounts
   }, []);
 
-  const noticeOptions = [ t("form.owner"),t("form.rented"),t("form.shop")];
+  useEffect(() => {
+    if (formData?.form3) {
+      setFormValues(formData.form3); // Set form values from the global state if available
+    }
+  }, [formData]); // Trigger when formData changes
+
+  const setFormValues = (form3Data) => {
+    setSelectedOption(form3Data.selectedOption || "");
+    setSelectedNoticeCount(form3Data.selectedNoticeCount || "none");
+  };
+
+  const noticeOptions = [t("form.owner"), t("form.rented"), t("form.shop")];
 
   const handleSelect = (option) => {
     setSelectedOption(option);
-    setIsOpenOccupation(false); 
+    setIsOpenOccupation(false); // Close dropdown after selection
   };
 
   const handleDateChange = (e) => {
-    const dateValue = e.target.value; 
-    const [year, month, day] = dateValue.split("-");
-  
-    if (year && month && day) {
-      setFormattedDate(`${day}/${month}/${year.slice(-2)}`); 
-      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); 
+    const dateValue = e.target.value;
+    // Validate and set the date in yyyy-mm-dd format
+    if (dateValue) {
+      setFormData({
+        ...formData,
+        form3: {
+          ...formData.form3,
+          formattedDate: dateValue, // Store the date in correct format
+        },
+      });
+      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); // Clear error if date is valid
     } else {
-      setFormattedDate("");
-      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); 
+      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); // Show error if invalid
     }
   };
-  
 
   const handleNoticeCountChange = (e) => {
-    setSelectedNoticeCount(e.target.value);
+    setSelectedNoticeCount(e.target.value); // Handle radio selection change
   };
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen(!isModalOpen); // Toggle modal visibility
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formattedDate) {
-      newErrors.date = t("form.dateError"); 
+
+    if (!formData.form3?.formattedDate) {
+      newErrors.date = t("form.dateError"); // Show error if date is empty
     }
-    
+
     return newErrors;
   };
-  
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const newErrors = validateForm(); 
-    
+
+    const newErrors = validateForm();
+
     if (Object.keys(newErrors).length === 0) {
-      
-      console.log("Submitted successfully");
+      // If no validation errors, submit the form data
+      console.log("Form submitted successfully!");
       console.log("Form Data:", {
         selectedOption,
         selectedNoticeCount,
-        formattedDate,
+        formattedDate: formData.form3?.formattedDate,
       });
-  
-      
-      
-      onNext(); 
-  
+
+      // Update form data in context
+      setFormData({
+        ...formData,
+        form3: {
+          selectedOption,
+          selectedNoticeCount,
+          formattedDate: formData.form3?.formattedDate,
+        },
+      });
+
+      onNext(); // Proceed to the next step
     } else {
-      
+      // If there are validation errors, show them and prevent submission
       console.log("Validation failed. Errors:", newErrors);
-      setErrors(newErrors); 
+      setErrors(newErrors); // Update the errors state
     }
   };
-  
 
   return (
     <div className="form-container">
@@ -108,6 +127,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                 cursor: "pointer",
               }}
             >
+              &times;
             </button>
 
             <div className="modal-icon-container">
@@ -119,7 +139,6 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
               <p className="model-text">{t("form.noticeCountQuestion")}</p>
 
               <div className="modal-options">
-                
                 {["none", "notice1", "notice2", "notice3"].map((value) => (
                   <label key={value}>
                     <input
@@ -142,10 +161,10 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                 </label>
                 <div className="btn-at-footer">
                   <button className="cancel-btn" onClick={toggleModal}>
-                  {t("form.cancel")}
+                    {t("form.cancel")}
                   </button>
                   <button className="confirm-btn" onClick={toggleModal}>
-                  {t("form.confirm")}
+                    {t("form.confirm")}
                   </button>
                 </div>
               </div>
@@ -159,11 +178,11 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
           <div className="col-md-6 d-flex">
             <div className="mb-3 col-md-6">
               <label htmlFor="occupationType" className="form-label label-small">
-              {t("form.generatedNotices")}
+                {t("form.generatedNotices")}
               </label>
               <div className="custom-dropdown">
                 <div
-                  className={`dropdown-header `}
+                  className={`dropdown-header`}
                   onClick={() => setIsOpenOccupation(!isOpenOccupation)}
                 >
                   <span className="option-inside-placeholder">
@@ -193,7 +212,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
             <div className="mb-3 col-md-6 ms-3">
               <label htmlFor="datePicker" className="form-label label-small">
-              {t("form.noticeDate")}<span className="text-danger">*</span>
+                {t("form.noticeDate")}<span className="text-danger">*</span>
               </label>
               <input
                 type="date"
@@ -201,6 +220,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                   errors.date ? "is-invalid" : ""
                 }`}
                 id="datePicker"
+                value={formData.form3?.formattedDate || ""}
                 onChange={handleDateChange}
               />
               {errors.date && <span className="text-danger">{errors.date}</span>}
@@ -208,7 +228,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
           </div>
         </div>
         <button type="submit" className="btn submit-btn-form">
-        {t("form.saveAndNext")}
+          {t("form.saveAndNext")}
         </button>
       </form>
     </div>

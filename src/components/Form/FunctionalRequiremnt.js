@@ -20,14 +20,24 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
       residential: false,
       commercial: false,
     },
+    
+  occupationType: "", 
   });
 
   // Effect to set form values from the global state when coming back to this form
   useEffect(() => {
     if (formData?.form1) {
-      setFormValues(formData.form1); // Set form values from the global state if available
+      setFormValues((prev) => ({
+        ...prev, // Preserve existing state
+        ...formData.form1, // Overwrite with global state values
+        constructionType: {
+          residential: formData.form1?.constructionType?.residential || false,
+          commercial: formData.form1?.constructionType?.commercial || false,
+        },
+      }));
     }
-  }, [formData]); // Only trigger when formData changes
+  }, [formData]);
+  
 
   const [errors, setErrors] = useState({
     contactNumber: "",
@@ -116,13 +126,15 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
 
   const handleSelect = (option, type) => {
     if (type === "occupation") {
-      setSelectedOption(option);
-    } else {
-      setSelecteddOption(option);
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        occupationType: option, // Update occupationType
+      }));
     }
-    setIsOpenOccupation(false);
-    setIsOpenConstruction(false);
+    setSelectedOption(option); // Update the dropdown display
+    setIsOpenOccupation(false); // Close the dropdown
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -295,9 +307,81 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
             </div>
             <h2 className="label-big">{t("form.constructionDetails")}</h2>
             <div className="divider-form"></div>
-            <button type="submit" className="btn submit-btn-form" onClick={handleSubmit}>
-              {t("form.submit")}
-            </button>
+           
+
+            <div className="row mb-3 mt-2">
+            <div className="col-md-2">
+                <h6 className="label-small">{t("form.type")}</h6>
+                <div className="form-check spacing-bw-checkbox">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="residential"
+                    checked={formValues.constructionType.residential}
+                    onChange={handleCheckboxToggle}
+                  />
+                  <label className="form-check-label checkbox-label" htmlFor="residential">
+                  {t("form.residential")}
+                  </label>
+                </div>
+                <div className="form-check spacing-bw-checkbox">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="commercial"
+                    checked={formValues.constructionType.commercial}
+                    onChange={handleCheckboxToggle}
+                  />
+                  <label className="form-check-label checkbox-label" htmlFor="commercial">
+                  {t("form.commercial")}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-md-4 ms-3 occupation">
+                <h6 className="label-small">{t("form.occupationType")}</h6>
+                <div className="custom-dropdown">
+                  <div className="dropdown-header" onClick={toggleOccupationDropdown}>
+                    <span className="option-inside-placeholder">
+                      {selectedOption}
+                    </span>
+                    {isOpenOccupation ? (
+                      <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+                    ) : (
+                      <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+                    )}
+                  </div>
+                  {isOpenOccupation && (
+                    <ul className="dropdown-options">
+                      {occupationOptions.map((option, index) => (
+                        <li
+                          key={index}
+                          className="dropdown-option"
+                          onClick={() => handleSelect(option, "occupation")}
+                        >
+                          {option}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+              <div className="col-md-3 ms-3">
+                <h6 className="label-small input-box-size">{t("form.createdDate")}</h6>
+                <input
+                  type="date"
+                  className="form-control input-small"
+                  id="datePicker"
+                  value={formValues.datePicker}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+            
+            <button type="submit" className="btn submit-btn-form">
+        {t("form.saveAndNext")}
+        </button>
+
           </div>
         </div>
       </form>
