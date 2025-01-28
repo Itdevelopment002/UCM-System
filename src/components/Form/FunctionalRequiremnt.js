@@ -1,14 +1,12 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FunctionalRequiremnt.css";
 import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi";
 import { useNavigate } from "react-router-dom"; // for navigation
 import { useTranslation } from "react-i18next"; 
-
+import { useFormContext } from "../Context/FormContext";
 const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
   const { t } = useTranslation(); 
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
+  const { formData, setFormData } = useFormContext();
   const [formValues, setFormValues] = useState({
     wardGroup: "",
     contactNumber: "",
@@ -22,11 +20,30 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
       residential: false,
       commercial: false,
     },
+    
+  occupationType: "", 
   });
+
+  // Effect to set form values from the global state when coming back to this form
+  useEffect(() => {
+    if (formData?.form1) {
+      setFormValues((prev) => ({
+        ...prev, // Preserve existing state
+        ...formData.form1, // Overwrite with global state values
+        constructionType: {
+          residential: formData.form1?.constructionType?.residential || false,
+          commercial: formData.form1?.constructionType?.commercial || false,
+        },
+      }));
+    }
+  }, [formData]);
+  
+
   const [errors, setErrors] = useState({
     contactNumber: "",
     pincode: "",
   });
+  
   const navigate = useNavigate();
   
   const [selectedOption, setSelectedOption] = useState(t("form.selectOccupationType"));
@@ -56,7 +73,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
     t("form.retail"),
     t("form.hospitality"),
   ];
-  
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormValues((prev) => ({
@@ -109,13 +126,15 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
 
   const handleSelect = (option, type) => {
     if (type === "occupation") {
-      setSelectedOption(option);
-    } else {
-      setSelecteddOption(option);
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        occupationType: option, // Update occupationType
+      }));
     }
-    setIsOpenOccupation(false);
-    setIsOpenConstruction(false);
+    setSelectedOption(option); // Update the dropdown display
+    setIsOpenOccupation(false); // Close the dropdown
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -139,10 +158,11 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
     setErrors(newErrors);
 
     if (isValid) {
-      console.log("Form is valid");  
-      onNext(); 
-    } else {
-      console.log("Form is invalid"); 
+      setFormData((prev) => ({
+        ...prev,
+        form1: formValues, // Save current form's data in global state
+      }));
+      onNext(); // Navigate to the next form
     }
   };
 
@@ -153,7 +173,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
           <div className="col-md-4">
             <div className="mb-3">
               <label htmlFor="wardGroup" className="form-label label-small">
-              {t("form.wardOffice")}
+                {t("form.wardOffice")}
               </label>
               <input
                 type="text"
@@ -167,7 +187,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
 
             <div className="mb-3">
               <label htmlFor="ucNo" className="form-label label-small">
-              {t("form.unauthorizedConstructionNumber")}
+                {t("form.unauthorizedConstructionNumber")}
               </label>
               <input
                 type="text"
@@ -183,7 +203,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
 
             <div className="mb-3">
               <label htmlFor="ownerName" className="form-label label-small">
-              {t("form.ucOwnerName")}
+                {t("form.ucOwnerName")}
               </label>
               <input
                 type="text"
@@ -197,7 +217,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
 
             <div className="mb-3">
               <label htmlFor="contactNumber" className="form-label label-small">
-              {t("form.contactNumber")} <span className="text-danger">*</span>
+                {t("form.contactNumber")} <span className="text-danger">*</span>
               </label>
               <input
                 type="text"
@@ -247,7 +267,7 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
             <div className="row">
               <div className="col-md-6 mb-3 mt-2">
                 <label htmlFor="detailedAddress" className="form-label label-small">
-                {t("form.detailedAddress")}
+                  {t("form.detailedAddress")}
                 </label>
                 <textarea
                   className="form-control input-small text-box-height"
@@ -259,20 +279,20 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 />
               </div>
               <div className="mb-3 col-md-3 mt-2">
-              <label htmlFor="pincode" className="form-label label-small">
-              {t("form.pincode")}<span className="text-danger">*</span>
-              </label>
-              <input
-                type="text"
-                className={`form-control input-small ${errors.pincode ? "is-invalid" : ""}`}
-                id="pincode"
-                placeholder={t("form.enterPincode")}
-                value={formValues.pincode}
-                onChange={(e) => handleNumericInput(e, 6)}  
-              />
-              {errors.pincode && <div className="text-danger">{errors.pincode}</div>}
-            </div>
-            <div className="mb-3 col-md-3 mt-2">
+                <label htmlFor="pincode" className="form-label label-small">
+                  {t("form.pincode")}<span className="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  className={`form-control input-small ${errors.pincode ? "is-invalid" : ""}`}
+                  id="pincode"
+                  placeholder={t("form.enterPincode")}
+                  value={formValues.pincode}
+                  onChange={(e) => handleNumericInput(e, 6)}  
+                />
+                {errors.pincode && <div className="text-danger">{errors.pincode}</div>}
+              </div>
+              <div className="mb-3 col-md-3 mt-2">
             <label htmlFor="pincode" className="form-label label-small">
             {t("form.camp")} 
             </label>
@@ -283,12 +303,14 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
               placeholder={t("form.enterCamp")}
             /> 
             </div>
+
             </div>
             <h2 className="label-big">{t("form.constructionDetails")}</h2>
             <div className="divider-form"></div>
+           
 
             <div className="row mb-3 mt-2">
-              <div className="col-md-2">
+            <div className="col-md-2">
                 <h6 className="label-small">{t("form.type")}</h6>
                 <div className="form-check spacing-bw-checkbox">
                   <input
@@ -355,11 +377,13 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 />
               </div>
             </div>
-          </div>
-        </div>
-        <button type="submit" className="btn submit-btn-form">
+            
+            <button type="submit" className="btn submit-btn-form">
         {t("form.saveAndNext")}
         </button>
+
+          </div>
+        </div>
       </form>
     </div>
   );
