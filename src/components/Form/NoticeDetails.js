@@ -235,4 +235,4 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
   );
 };
 
-export default NoticeDetails;
+export default NoticeDetails; 
