@@ -1,62 +1,68 @@
+// Header.js
 import React, { useState } from 'react';
-import { FaBell, FaUserCircle } from 'react-icons/fa';
-import './Header.css'; // Import the CSS file
+import { useTranslation } from 'react-i18next';
+import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
+import './Header.css';
+import { Link } from 'react-router-dom';
+import Notification from '../../images/notification.png';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
-    
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
-  // Toggle dropdown visibility
   const toggleDropdown = () => {
-    console.log("Dropdown toggled, current state:", isOpen); // Debug state change
     setIsOpen(!isOpen);
+  };
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setIsOpen(false);
   };
 
   return (
     <div className="header-container">
-      {/* Logo */}
-      <div className="header-logo">
-        Unauthorized Construction Demolish Management System
+      <div className="col-md-6 header-logo">
+        <Link to="/" style={{ textDecoration: 'none', color: '#5038ED' }}>
+          {t('form.unauthorizedDemolishManagement')}
+        </Link>
       </div>
-
-      {/* Search Bar */}
-      <div className="search-bar">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search for anything..."
-        />
-      </div>
-
-      {/* Language Selector */}
-      <div className="language">
-        <div className="language-selector" onClick={toggleDropdown}>
-          <span >Language</span>
-          <span className="dropdown-arrow">▼</span>
-        </div>
-
-        {/* Language dropdown */}
-        {isOpen && (
-          <div className="dropdown-menu">
-            <ul>
-              <li>English</li>
-              <li>Hindi</li>
-              <li>Marathi</li>
-            </ul>
+      <div className="col-md-6 d-flex justify-content-end align-items-center">
+        {/* Language Selector */}
+        <div className="language">
+          <div className="language-selector" onClick={toggleDropdown}>
+            <span className="input-small">Language</span>
+            {isOpen ? (
+              <HiOutlineChevronUp size={18} className="dropdown-arrow" />
+            ) : (
+              <HiOutlineChevronDown size={18} className="dropdown-arrow" />
+            )}
           </div>
-        )}
-      </div>
-
-      {/* Notification Icon */}
-      <FaBell size={20} className="bell-icon" />
-
-      {/* User Info */}
-      <div className="user-info">
-        <div className="user-name">
-          Nishant Makam <br />
-          <div style={{ color: '#333333' }}>Solapur, India</div>
+          {isOpen && (
+            <div className="dropdown-menu" onClick={(e) => e.stopPropagation()}>
+              <ul>
+                <li onClick={() => changeLanguage('en')}>English</li>
+                <li onClick={() => changeLanguage('hi')}>हिंदी</li>
+                <li onClick={() => changeLanguage('mr')}>मराठी</li>
+              </ul>
+            </div>
+          )}
         </div>
-        <FaUserCircle size={30} className="user-icon" />
+        
+        {/* Notification Icon */}
+        <div className="bell-icon">
+          <img src={Notification} alt="notify" />
+          <div className="notification-dot"></div>
+        </div>
+
+        {/* User Info */}
+        <div className="user-info">
+          <div className="user-name">
+            {t('form.xyzUser')} <br />
+            <div style={{ color: '#333333' }}>{t('form.solapurIndia')}</div>
+          </div>
+          <FaUserCircle size={30} className="user-icon" />
+        </div>
       </div>
     </div>
   );

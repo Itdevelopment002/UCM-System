@@ -1,0 +1,44 @@
+
+.dashboard-container {
+  background-color: #F0F4F8;
+  min-height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 325px;
+  margin-top: 160px;  
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: auto;
+ 
+}
+@media (max-width: 1280px) {
+  .main-content{
+    margin-left: 0px;
+    height: 100%;
+        overflow-y: hidden;
+        display: flex
+;
+margin-top: 300px;
+        align-items: center;
+        justify-content: center;
+  }
+}
+@media (min-width: 1800px) {
+  .main-content {
+      margin-left: 380px;
+  }
+}

@@ -1,14 +1,13 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-// Create the context
 const StepContext = createContext();
 
-// Custom hook to use the context
-export const useStepContext = () => useContext(StepContext);
+export const useStepContext = () => {
+  return useContext(StepContext);
+};
 
-// StepProvider component to provide the context value
 export const StepProvider = ({ children }) => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(0); 
 
   return (
     <StepContext.Provider value={{ activeStep, setActiveStep }}>

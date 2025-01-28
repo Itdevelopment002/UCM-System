@@ -2,6 +2,16 @@
 .container-fluid {
   background: #f4f6f9;
 }
+.container-fluid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(154, 121, 225, 0.3); /* Apply dark overlay with opacity */
+  z-index: 1; /* Ensure it stays behind the content */
+}
 
 .login {
   border-radius: 10px;
@@ -9,15 +19,20 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Section - Login Form */
+/* Left Section - Verification Form */
 .bg-white {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.login-logo {
+  width: 25%;
+  overflow: hidden;
+}
+
 h2 {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
   color: #333;
 }
@@ -27,20 +42,40 @@ p {
   color: #777;
 }
 
-.input-group-text {
-  background-color: #fff;
-  border: 1px solid #ddd;
+/* OTP Inputs */
+.otp-input-group {
+  display: flex;
+  gap: 14px;
 }
 
-.btn-primary {
-  background-color: #007bff;
+.otp-input {
+  width: 47px;
+  height: 47px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
+  background-color:#eeeaf7 ;
+}
+.otp-input:focus {
+  border-color: #5038ed;
+  outline: none; 
+}
+/* Confirm Button */
+.custom-btn {
+  background: linear-gradient(45deg, #5038ed, #9181f4);
+  color: #fff;
   border: none;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 30%;
 }
-
-.btn-outline-light {
-  color: #333;
-  background-color: #fff;
-  border: 1px solid #ddd;
+.custom-btn:hover {
+  background: linear-gradient(45deg, #7d6ce4, #3d2dcc);
 }
 
 /* Promo Section */
@@ -52,37 +87,44 @@ p {
   align-items: center;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  /* overflow: hidden; */
 }
-
-/* Background Blur */
-.worker-bg {
-  background: url('../../images/image.png') no-repeat center center / cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  filter: blur(8px);
-  z-index: 1;
-  opacity: 0.7;
-}
-
 /* Worker Image */
-.worker-image{
+.man-image {
+  width: 60%;
+  height: 86%;
+  z-index: 2;
+  left: 38%;
+  top: 0.5rem;
+}
+.man-image-verification{
+    width: 60%;
+    height: 85%;
+    z-index: 2;
+    left: 38%;
+    top: 0.3rem;
+}
+.worker-image {
   width: 100%;
   height: 100%;
   z-index: 2;
   left: 25%;
-  top:-2%;
+  top: -2%;
   position: absolute;
 }
-.flash{
+.building-image{
+    width: 88%;
+    height: 98%;
     z-index: 2;
-    top:55%;
-    left: 0%;
-    position: absolute;
-  }
+    left: 21%;
+    top: -9%;
+}
+
+.flash {
+  z-index: 2;
+  top: 52%;
+  left: 2%;
+  position: absolute;
+}
 
 /* Promo Text */
 .promo-text h3 {
@@ -95,7 +137,36 @@ p {
   padding: 0 20px;
   position: relative;
 }
-
+.input-check-reg {
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-size: 12px;
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
+  background-color: #eeeaf7;
+}
+.verifytext-right{
+   position: absolute;
+   top: 49%;
+   left: 52%;
+   transform: translate(-50%, -50%);
+   font-weight: bold;
+   color: #fff;
+   text-align: left;
+   line-height: 1.5;
+   font-size: 30px;
+}
+.otptext-right{
+  position: absolute;
+  top: 49%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #fff;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 32px;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .login {
@@ -115,4 +186,32 @@ p {
     font-size: 20px;
     padding: 0 10px;
   }
+}
+.warning-otp{
+  font-size: 14px;
+}
+
+.button-log-page {
+  width: 30%;
+  font-size: 12px;
+  color: white;
+  background: linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%);
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease; 
+}
+.custom-btn {
+  background: linear-gradient(45deg, #5038ed, #9181f4);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 12px;}
+  
+.button-log-page:hover {
+  transform: scale(1.05); 
+  background: linear-gradient(99.78deg, #5038ED -5.85%, #9181F4 109.55%);
+  color: #fff; 
 }

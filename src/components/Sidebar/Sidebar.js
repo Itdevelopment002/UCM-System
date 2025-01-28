@@ -1,79 +1,96 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useMemo } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useStepContext } from '../StepContext'; // Use custom hook to access context
+import { useStepContext } from '../StepContext';
+import { useTranslation } from 'react-i18next';
 import './Sidebar.css';
 import bro from '../../images/bro.png';
 
 const Sidebar = () => {
   const navigate = useNavigate();
-  const { activeStep, setActiveStep } = useStepContext(); // Use shared state via hook
-
-  const steps = [
-    { name: 'Information Collection Form', path: '/dashboard/form' },
-    { name: 'Complaint Details', path: '/dashboard/complain-details' },
-    { name: 'Notice Details', path: '/dashboard/notice-details' },
-    { name: 'Demolition Details', path: '/dashboard/demolition-order' },
-    { name: 'Court Order Details', path: '/dashboard/count-order' },
-    { name: 'Submission Details', path: '/dashboard/remark' },
-  ];
-
-  const handleStepClick = (index) => {
-    setActiveStep(index);
-    navigate(steps[index].path);
-  };
-
-  const handleNextStep = () => {
-    if (activeStep < steps.length - 1) {
-      setActiveStep(activeStep + 1);
-      navigate(steps[activeStep + 1].path);
-    }
-  };
-
-  const handlePreviousStep = () => {
-    if (activeStep > 0) {
-      setActiveStep(activeStep - 1);
-      navigate(steps[activeStep - 1].path);
-    }
-  };
+  const { activeStep, setActiveStep } = useStepContext();
+  const location = useLocation(); // Access current path
+  const { t } = useTranslation();
+ 
+  const steps = useMemo(() => [
+    { name: t('form.infoCollectionForm'), path: '/dashboard/form' },
+    { name: t('form.complaintDetails'), path: '/dashboard/complain-details' },
+    { name: t('form.noticeDetails'), path: '/dashboard/notice-details' },
+    { name: t('form.demolitionDetails'), path: '/dashboard/demolition-order' },
+    { name: t('form.courtOrderDetails'), path: '/dashboard/count-order' },
+    { name: t('form.remarks'), path: '/dashboard/remark' },
+  ], [t]);
+  
 
   return (
+    <>
     <div className="sidebar-outer-div">
       {steps.map((step, index) => (
         <div
           key={index}
-          className="step-container"
-          onClick={() => handleStepClick(index)}
+          className={`step-container ${index <= activeStep ? "clickable" : "disabled"}`}
         >
           <div className="step-text-container">
-            <div className="step-number">Step {index + 1}</div>
+            <div className="step-number">{t('form.step')} {index + 1}</div>
             <div className="step-title">{step.name}</div>
           </div>
-          <div className={`circle-button ${index === activeStep ? 'active' : ''}`}>
-            <span>{index + 1}</span>
+          <div
+            className={`circle-button ${index === activeStep ? "active" : ""}`}
+            style={{
+              position: "relative",
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              backgroundColor: step.completed
+                ? "#28a745"
+                : index === activeStep
+                ? "#5038ed"
+                : "white",
+              border: step.completed
+                ? "1px solid #28a745"
+                : index === activeStep
+                ? "1px solid #5038ed"
+                : "1px solid gray",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: step.completed ? "white" : index === activeStep ? "white" : "gray",
+              fontWeight: "600",
+            }}
+          >
+             <span>{index + 1}</span>
+              {index > 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-20px",
+                    left: "50%",
+                    width: "1px",
+                    height: "20px",
+                    backgroundColor: "lightgray",
+                    transform: "translateX(-50%)",
+                  }}
+                ></div>
+              )}
+              {index < steps.length - 1 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "-20px",
+                    left: "50%",
+                    width: "1px",
+                    height: "20px",
+                    backgroundColor: "lightgray",
+                    transform: "translateX(-50%)",
+                  }}
+                ></div>
+              )}
           </div>
         </div>
       ))}
-
-      <div className="next-step-container">
-        <button
-          className="prev-step"
-          onClick={handlePreviousStep}
-          disabled={activeStep === 0}
-        >
-          <FaArrowLeft size={20} />
-        </button>
-        <button
-          className="next-step1"
-          onClick={handleNextStep}
-          disabled={activeStep === steps.length - 1}
-        >
-          Next Step
-          <FaArrowRight style={{ padding: '2px' }} size={20} />
-        </button>
-      </div>
-      <img src={bro} style={{height:"130px", width:"250px", padding:"10px", marginTop:"0px"}} alt="bro" />
     </div>
+     <img src={bro} alt="bro" className="sidebar-image" />
+     </>
   );
 };
 

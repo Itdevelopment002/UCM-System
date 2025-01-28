@@ -1,41 +1,45 @@
 import React from 'react';
-import ConstructionDemolishManagementcss from "../LandingPage/ConstructionDemolishManagement.css"; // Assuming the CSS file is named App.css
 import { Link } from 'react-router-dom';
-import logo from "../../images/logo1.png"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './ConstructionDemolishManagement.css';
+import logo from "../../images/logo1.png";
+import rightImage from "../../images/engineer-belongings1.png";
+import bg from "../../images/signup-bg.jpg";
 const ConstructionDemolishManagement = () => {
     return (
-        <div className="main-box">
-            <div className="left-div ">
-               
+        <div className="outer-wrapper-lp"  style={{
+                background: `url(${bg}) center center / cover no-repeat`, 
+                position: "relative",
+              }}>
+                    <div className="w-90 w-md-75 shadow-lg rounded overflow-hidden "></div>
+            <div className="content-box-lp">
+                <div className="responsive-container-lp">
+                    {/* Left Content Section */}
+                    <div className="content-left-lp">
+                        <div className="construction-logo">
+                            <img src={logo} alt="Logo" className="construction-logo-img" />
+                        </div>
+                        <h1 className="header-text-lp">
+                            Unauthorized <br />
+                            <span className="highlight-landingp-heading">Construction Demolish</span> <br />
+                            Management System
+                        </h1>
+                        <div className="divider-landing-page"></div>
+                        <p className="description-lp">
+                            This platform enables citizens to report unauthorized constructions and facilitates timely action by the relevant authorities. 
+                            Follow the steps below to file a complaint and monitor its progress.
+                        </p>
+                        <Link to="/register" className="btn-link mt-1">
+                            <button className="btn btn-primary register-button-landing-page mt-4">Register Your Complaint</button>
+                        </Link>
+                    </div>
 
-            <div className="header-div">
-                    <h1>Unauthorized <br /> <span className="highlight">Construction Demolish</span> <br /> Management System</h1>
+                    {/* Right Image Section */}
+                    <div className="content-right">
+                        <img src={rightImage} alt="Engineer" className="right-image" />
+                    </div>
                 </div>
-                <hr className="line-blue" />
-
-                <div className="description-div">
-                    <p>
-                        This platform enables citizens to report unauthorized constructions and facilitates timely action by the relevant authorities. 
-                        Follow the steps below to file a complaint and monitor its progress.
-                    </p>
-                </div>
-                <Link to="/register">
-          <button className="register-button">Register Your Complaint</button>
-        </Link>
-
-                
-
-               
             </div>
-            <div className="logo-div">
-            <img src={logo} alt="Logo" className="logo-img" />
-
-</div>
-
-            <div className='right-div-landing-page'>
-            <div className="right-image-div"></div>
-            </div>
-            
         </div>
     );
 };

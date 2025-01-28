@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './i18n';
 import Register from './components/Register/Register';
-import Login from './components/Login/Login'; 
-import Dashboard from './components/Dashboard/Dashboard';  // Import the new Dashboard component
+import Dashboard from './components/FormBoard/FormBoard';  
 import { Link } from 'react-router-dom';
 import ConstructionDemolishManagement from "./components/LandingPage/ConstructionDemolishManagement";
+import Otp from './components/Login/Otp';
+import Verification from './components/Login/Verification';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
 
           {/* Routes for Register and Login */}
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/Otp" element={<Otp />} />
+          <Route path="/verification" element={<Verification/>} />
+
 
           {/* Route to Dashboard */}
           <Route path="/dashboard/*" element={<Dashboard />} />

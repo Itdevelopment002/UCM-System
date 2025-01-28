@@ -1,10 +1,23 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next"; 
+import { toast, ToastContainer } from "react-toastify";
+import Modal from "react-modal";
+import "react-toastify/dist/ReactToastify.css";
+import "./FunctionalRequiremnt.css";
+import { Link } from "react-router-dom";
+
+Modal.setAppElement("#root");
 
 const Remark = () => {
+ const { t } = useTranslation(); 
   const [formData, setFormData] = useState({
     natureOfConstruction: "",
     remark: "",
   });
+
+  const [errors, setErrors] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,60 +27,90 @@ const Remark = () => {
     });
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    
+    if (!formData.remark.trim()) {
+      newErrors.remark = t("form.remarkError");
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+
+    if (validateForm()) {
+      console.log("Form Data Submitted:", formData);
+      toast.success("Form submitted successfully!"); 
+      setIsModalOpen(true); 
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); 
   };
 
   return (
-    <div className="container mt-2">
-      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="remark-form">
+        {/* Remark Field */}
         <div className="col mb-3">
-          <div className="col-md-4">
-            <label htmlFor="natureOfConstruction" className="form-label">
-              Nature of Construction
-            </label>
-            <select
-              id="natureOfConstruction"
-              name="natureOfConstruction"
-              className="form-select"
-              value={formData.natureOfConstruction}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Choose nature of construction</option>
-              <option value="Residential">Residential</option>
-              <option value="Commercial">Commercial</option>
-              <option value="Industrial">Industrial</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div className="col-md-6 mt-3">
-            <label htmlFor="remark" className="form-label">
-              Remark
+          <div className="col-md-4 mt-3">
+            <label htmlFor="remark" className="form-label label-small">
+              {t("form.remark")} <span className="text-danger">*</span>
             </label>
             <textarea
               id="remark"
               name="remark"
-              className="form-control"
+              className={`form-control input-small text-box-height ${
+                errors.remark ? "is-invalid" : ""
+              }`}
               rows="4"
-              placeholder="Write a long text here"
+              placeholder={t("form.remarkPlaceholder")}
               value={formData.remark}
               onChange={handleChange}
-              required
             ></textarea>
+            {errors.remark && <small className="text-danger">{errors.remark}</small>}
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-2 mt-3">
-            <button type="submit" className="btn btn-primary w-100">
-              Submit
-            </button>
-          </div>
-        </div>
+        {/* Submit Button */}
+        <button type="submit" className="btn submit-btn-form">
+          {t("form.submit")}
+        </button>
       </form>
+
+      {/* Toast Container to display the notifications */}
+      <ToastContainer />
+
+      {/* Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Form Submission Success"
+        className="modal-content-final d-flex flex-md-column"
+        overlayClassName="modal-overlay"
+        
+      >
+        <h5 className="modal-title ">{t("form.submitSuccess")}</h5>
+       <p className="model-text">
+       {t("form.thankMessage")}
+       </p>
+       <div className="modal-footer mt-0 " style={{justifyContent:"center"}}>
+       <div className="btn-at-footer">
+       <button onClick={closeModal} className="cancel-btn" >
+       {t("form.cancel")}
+        </button>
+        <Link to="/">
+        <button className="confirm-btn">{t("form.confirm")}</button>
+      </Link>
+       </div>
+       </div>
+    
+      </Modal>
     </div>
   );
 };

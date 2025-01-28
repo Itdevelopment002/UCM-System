@@ -1,149 +1,217 @@
+
+
 .container-bar {
-    width: 75%;
-    position: fixed;  /* Keep it fixed at the top */
-    top: 112px;       /* Adjust this if you need more spacing */
-    left: 300px;
+  width: 76%;
+  position: fixed;
+  top: 112px;
+  left: 330px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  z-index: 1;
+}
+.tab-text{
+ 
+    font-weight: 500;
+    font-family: 'Poppins';
+
+
+}
+
+.first-row {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.heading1 {
+  font-weight: 500;
+  font-size: 25px;
+  font-family: 'poppins';
+  color: #263238;
+}
+
+.arrow-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow-button {
+  background-color: #5038ed;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: rgba(80, 56, 237, 0.8);
+}
+
+
+.tab-container {
+  display: flex;
+  flex-direction: row;
+ 
+  height: 50px;
+  align-items: center;
+
+  gap: 0;
+}
+
+.tab {
+  padding: 8px 12px;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid rgba(38, 50, 56, 0.1);
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  color: #263238;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  background: #5038ed; 
+  color: white;
   
-    padding: 10px;
-    box-sizing: border-box;
-    z-index: 100000; /* Make sure it stays above other content */
-  }
+  z-index: 1;
+}
+.tab.active .tab-text {
+  font-weight: bolder !important;
+}
+
+
+.tab:hover {
+ 
   
-  .row {
-    z-index: 100000; /* Make sure it stays above other content */
+  font-weight: 600;
+}
+
+
+.tab-width-info {
+  width: 221px;
+}
+
+.tab-width-complaint {
+  width: 147px;
+}
+
+.tab-width-notice {
+  width: 124px;
+}
+
+.tab-width-demolition {
+  width: 148px;
+}
+
+.tab-width-court {
+  width: 164px;
+}
+
+.tab-width-submission {
+  width: 153px;
+}
+.tab, .heading1, .tab-text {
+  user-select: none;
+  outline: none;    
+  pointer-events: auto;
+}
+
+@media (max-width: 1400px) {
+  
+  .tab {
    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .line-blue {
-
-    font-size: 40px;
-    color: #5038ED;
-    font-weight: 600;
-    line-height: 60px;
-    display: inline-block;
-    border-bottom: 5px solid #5038ED;
-    z-index: 10;
-  }
-  
-  .heading {
-    color: #263238;
-  }
-  
-  .arrow-buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 10px;
-    max-width: 100%;
-    padding: 0 16px;
-    box-sizing: border-box;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .first-row {    z-index: 100000; /* Make sure it stays above other content */
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 15px;
-  }
-  
-  .arrow-button {
-    background-color: #5038ed;
-    color: white;
-    border: none;
-    padding: 8px;
-    border-radius: 60%;
-    margin-left: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .tab-container {    z-index: 100000; /* Make sure it stays above other content */
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-    height: 42px;
-    border-bottom: 0.42945px solid rgba(38, 50, 56, 0.1);
-  }
-  .tab {    z-index: 100000; /* Make sure it stays above other content */
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 4.2945px 6.44176px;
-    gap: 4.29px;
-    opacity: 0.8;
-    border-radius: 4.2945px 4.2945px 0px 0px;
-    cursor: pointer;  /* Add pointer cursor to indicate it is clickable */
-  }
-  
-  .tab.active {
-    color: white !important;
-    background: #5038ED;  /* Active tab background */
-    
-  }
-  
-  .tab:hover {
-    color: #5038ED;
-       /* Optional: Add hover effect to give feedback on hover */
-  }
-  
-  .tab-text {    z-index: 100000; /* Make sure it stays above other content */
-
-    font-family: Raleway, sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    color: #263238;
-  }
-  
-  .tab.active .tab-text {
+    font-weight: 400;
     
-    color: white;  /* Active text color */
+}
+
+}
+
+
+
+@media (max-width: 992px) {
+  .container-bar {
+    margin-top: 100px;
+    width: 90%;
+    left: 5%;
+  
+  
   }
-  
-  /* .tab:hover .tab-text {
-    color: #1e1e1f;; 
-  } */
-  .tab-width-info {
-    width: 221px;
-    height: 45px;
+
+  .first-row {
+    flex-direction: column;
+   
   }
-  
-  
-  .tab-width-complaint {
-    width: 147px;
-    height: 45px;
+
+  .arrow-buttons {
+    margin-top: 10px;
+    justify-content: flex-start;
   }
-  
-  .tab-width-notice {
-    width: 124px;
-    height: 45px;
+
+  .tab-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
-  
-  .tab-width-demolition {
-    width: 148px;
-    height: 45px;
+
+  .tab {
+    width: 30%;
+    margin-bottom: 1rem;
   }
-  
-  .tab-width-court {
-    width: 164px;
-    height: 45px;
+}
+
+
+@media (max-width: 992px) {
+  .container-bar {
+      top: 0%;
+      width: 100%;
+      left: 0%;
   }
-  
-  .tab-width-submission {
-    width: 153px;
-    height: 45px;
+}
+@media (min-width: 1800px) {
+  .container-bar {
+      left: 382px;
   }
-  
+}
+
+@media (max-width: 1280px) {
+  .container-bar {
+      width: 70%;
+      left: 30%;
+  }
+}
+@media (max-width: 1000px) {
+  .container-bar {
+    top: 8rem;
+    
+    position: absolute;
+        width: 100%;
+        left: 0%;
+      
+        height: 40%;
+      width: 100%;
+      left: 0%;
+  }
+}
+
+
+@media (max-width: 768px) {
+ 
+}
+@media (max-width: 380px) {
+ 
+}
+
+@media (max-width: 420px) {
+ 
+}
