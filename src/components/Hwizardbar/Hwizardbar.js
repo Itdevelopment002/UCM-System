@@ -13,12 +13,12 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
 
   const steps = useMemo(
     () => [
-      { name: t("steps.informationCollectionForm"), path: "/dashboard/form", tab: "info" },
-      { name: t("steps.complaintDetails"), path: "/dashboard/complaint-details", tab: "complaint" },
-      { name: t("steps.noticeDetails"), path: "/dashboard/notice-details", tab: "notice" },
-      { name: t("steps.demolitionDetails"), path: "/dashboard/demolition-order", tab: "demolition" },
-      { name: t("steps.courtOrderDetails"), path: "/dashboard/court-order", tab: "court" },
-      { name: t("steps.remark"), path: "/dashboard/remark", tab: "submission" },
+      { name: t("steps.informationCollectionForm"), tab: "info" },
+      { name: t("steps.complaintDetails"),  tab: "complaint" },
+      { name: t("steps.noticeDetails"),  tab: "notice" },
+      { name: t("steps.demolitionDetails"),  tab: "demolition" },
+      { name: t("steps.courtOrderDetails"),  tab: "court" },
+      { name: t("steps.remark"),  tab: "submission" },
     ],
     [t]
   );

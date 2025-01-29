@@ -19,11 +19,21 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   const [selectedCourt, setSelectedCourt] = useState("");
   const [occupationOptions] = useState([t("form.owner"), t("form.rented"), t("form.shop")]);
   const dropdownRef = useRef(null);
- useEffect(() => {
-        if (formData?.form5) {
-            setFormValues(formData.form5); // Set form values from the global state if available
-        }
-    }, [formData]); // Only trigger when formData changes
+
+
+
+  useEffect(() => {
+    if (formData?.form5) {
+      setFormValues((prev) => ({
+        ...prev,
+        ...formData.form5, // ✅ Restore all form5 values
+      }));
+      setSelectedCourt(formData.form5.typeOfCourt || ""); // ✅ Restore court selection
+    }
+  }, [formData]);
+
+  
+
   const [formValues, setFormValues] = useState({
     courtInvolvement: "",
     courtOrderNumber: "",
@@ -43,24 +53,81 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   ];
   const [errors, setErrors] = useState({});
   const [fileName, setFileName] = useState("");
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
+  
+    // Check if the value contains only numbers (for example, phone numbers)
+    if (id === "petitionerMobileNumber" && !/^\d*$/.test(value)) {
+      // If it's a number field and the value is not a number, do nothing
+      return;
+    }
+  
     setFormValues((prev) => ({
-        ...prev,
-        [id]: value,
+      ...prev,
+      [id]: value,
     }));
-};
+  };
+  
 
 const handleFileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
-      setFormValues((prevValues) => ({
-          ...prevValues,
-          demolitionDocument: file,
-      }));
+    validateFile(file, "hardCopyUpload", e); // Pass 'e' to validateFile function
   }
 };
+
+const validateFile = (file, field, e) => {
+  const validationRules = {
+    hardCopyUpload: {
+      validTypes: ["application/pdf", "application/msword"],
+      maxSize: 2 * 1024 * 1024, // 2 MB
+      errorMessage: {
+        type: "Only .doc and .pdf files are allowed.",
+        size: "The file size exceeds 2 MB. Please upload a smaller document.",
+      },
+    },
+  };
+
+  const validation = validationRules[field];
+  if (!validation) {
+    console.error(`No validation rules found for field: ${field}`);
+    return;
+  }
+
+  // Validate file type
+  if (!validation.validTypes.includes(file.type)) {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: validation.errorMessage.type,
+    }));
+    e.target.value = ""; // Clear the file input
+    return;
+  }
+
+  // Validate file size
+  if (file.size > validation.maxSize) {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: validation.errorMessage.size,
+    }));
+    e.target.value = ""; // Clear the file input
+    return;
+  }
+
+  // Clear errors and update state if validation passes
+  setErrors((prevErrors) => ({
+    ...prevErrors,
+    [field]: "",
+  }));
+
+  setFormValues((prevValues) => ({
+    ...prevValues,
+    [field]: file,
+  }));
+
+  console.log(`${field} upload successful:`, file.name);
+};
+
 
 
   const [isOpenCourt, setIsOpenCourt] = useState(false);
@@ -75,8 +142,13 @@ const handleFileChange = (e) => {
 
   const handleSelectCourt = (option) => {
     setSelectedCourt(option);
+    setFormValues((prev) => ({
+      ...prev,
+      typeOfCourt: option, // ✅ Ensure state update
+    }));
     setIsOpenCourt(false);
   };
+  
 
   const validateForm = () => {
     const newErrors = {};
@@ -87,26 +159,41 @@ const handleFileChange = (e) => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  
 
-    const validationErrors = validateForm(); // Call the function and get errors
-    setErrors(validationErrors); // Update the errors state
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (Object.keys(validationErrors).length === 0) {
-        // If no errors, proceed
-        setFormData((prevData) => ({
-            ...prevData,
-            form5: formValues,
-        }));
-        console.log("Form submitted successfully, proceeding to next step...");
-        onNext(); // Proceed to the next step in the form
-    } else {
-        // If there are errors, show them
-        console.log("Form validation failed. Please fix the errors.");
-    }
+  const validationErrors = validateForm();
+  setErrors(validationErrors);
+
+  if (Object.keys(validationErrors).length === 0) {
+    setFormData((prevData) => ({
+      ...prevData,
+      form5: {
+        ...formValues,
+        courtInvolvement: formValues.courtInvolvement || "", // ✅ Ensure court involvement is stored
+        typeOfCourt: formValues.typeOfCourt || "", // ✅ Ensure type of court is stored
+      },
+    }));
+    console.log("Form submitted successfully, proceeding to next step...", formValues);
+    onNext();
+  } else {
+    console.log("Form validation failed. Please fix the errors.");
+  }
 };
 
+const handleNumericInput = (e, maxLength) => {
+  const { id, value } = e.target;
+  const sanitizedValue = value.replace(/[^0-9]/g, "");
+
+  if (sanitizedValue.length > maxLength) {
+    setErrors((prev) => ({
+      ...prev,
+      [id]: `Please enter a ${maxLength}-digit number only.`,
+    }));
+    return;
+  }}
 
 
   return (
@@ -118,23 +205,27 @@ const handleFileChange = (e) => {
             <label className="label-small">{t("form.courtMatterInvolvement")}</label>
             <div style={{ display: "flex", gap: "30px" }}>
               <div>
-                <input
-                  type="radio"
-                  id="courtInvolvementYes"
-                  name="courtInvolvement"
-                  value="Yes"
-                  onChange={handleInputChange}
-                />
+              <input
+  type="radio"
+  id="courtInvolvementYes"
+  name="courtInvolvement"
+  value="Yes"
+  checked={formValues.courtInvolvement === "Yes"} // ✅ Bind state
+  onChange={() => setFormValues((prev) => ({ ...prev, courtInvolvement: "Yes" }))}
+/>
+
                 <label htmlFor="courtInvolvementYes" className="checkbox-label">{t("form.yes")}</label>
               </div>
               <div>
-                <input
-                  type="radio"
-                  id="courtInvolvementNo"
-                  name="courtInvolvement"
-                  value="No"
-                  onChange={handleInputChange}
-                />
+              <input
+  type="radio"
+  id="courtInvolvementNo"
+  name="courtInvolvement"
+  value="No"
+  checked={formValues.courtInvolvement === "No"} 
+  onChange={() => setFormValues((prev) => ({ ...prev, courtInvolvement: "No" }))}
+/>
+
                 <label htmlFor="courtInvolvementNo" className="checkbox-label">{t("form.no")}</label>
               </div>
             </div>
@@ -193,12 +284,13 @@ const handleFileChange = (e) => {
                 </span>
               </label>
               <input
-                type="file"
-                id="hardCopyUpload"
-                onChange={(e) => handleFileChange(e, "hardCopyUpload")}
-                className="form-control input-small d-none"
-                accept=".doc, .pdf"
-              />
+  type="file"
+  id="hardCopyUpload"
+  onChange={handleFileChange}  
+  className="form-control input-small d-none"
+  accept=".doc, .pdf"
+/>
+
             </div>
             {errors.hardCopyUpload && (
               <small className="text-danger">{errors.hardCopyUpload}</small>
@@ -282,16 +374,17 @@ const handleFileChange = (e) => {
             {t("form.petitionerMobileNumber")} 
             </label>
             <input
-              type="text"
-              className={`form-control input-small`}
-              id="petitionerMobileNumber"
-              placeholder={t("form.petitionerMobileNumberPlaceholder")}
-              value={formValues.petitionerName}
-              onChange={handleInputChange}
-            />
+  type="text"
+  className={`form-control input-small`}
+  id="petitionerMobileNumber"
+  placeholder={t("form.petitionerMobileNumberPlaceholder")}
+  value={formValues.petitionerMobileNumber}  
+onChange={(e) => handleNumericInput(e, 10)}  
+/>
+
 
           </div>
-          <div className="col-md-6 mb-3 mt-2">
+          <div className="col-md-4 mb-3 mt-2">
             <label htmlFor="detailedAddress" className="form-label label-small">
             {t("form.petitionerAddress")} 
             </label>

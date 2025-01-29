@@ -10,14 +10,16 @@ import { useFormContext } from "../Context/FormContext";
 Modal.setAppElement("#root");
 
 const Remark = ({ onNext, onPrevious }) => {
+  const [formValues, setFormValues] = useState({
+    remark: "", // Default value set
+  });
+  
   const { formData, setFormData } = useFormContext();
   const { t } = useTranslation();
 
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formValues, setFormValues] = useState({
-    remark: "",
-  });
+ 
 
   // UseEffect to load initial form data from global form state
   useEffect(() => {
@@ -35,24 +37,23 @@ const Remark = ({ onNext, onPrevious }) => {
       }));
     }
   }, [formValues, setFormData]);
-
+  const validateForm = () => {
+    const newErrors = {};
+  
+    if (!formValues.remark || !formValues.remark.trim()) {  // Check if remark is empty or undefined
+      newErrors.remark = t("form.remarkError");
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
       [name]: value,
     });
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formValues.remark.trim()) {
-      newErrors.remark = t("form.remarkError");
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {

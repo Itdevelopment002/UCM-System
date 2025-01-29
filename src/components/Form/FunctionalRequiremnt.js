@@ -123,48 +123,66 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
   const toggleConstructionDropdown = () => {
     setIsOpenConstruction(!isOpenConstruction);
   };
-
   const handleSelect = (option, type) => {
     if (type === "occupation") {
       setFormValues((prevValues) => ({
         ...prevValues,
-        occupationType: option, // Update occupationType
+        occupationType: option, // ✅ Fix for occupationType
       }));
+      setSelectedOption(option);
+      setIsOpenOccupation(false);
     }
-    setSelectedOption(option); // Update the dropdown display
-    setIsOpenOccupation(false); // Close the dropdown
+    if (type === "construction") {
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        natureOfConstruction: option, // ✅ Fix for natureOfConstruction
+      }));
+      setSelecteddOption(option);
+      setIsOpenConstruction(false);
+    }
   };
+  
+  
+  
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let isValid = true;
     const newErrors = { ...errors };
- 
+  
     if (!/^\d{10}$/.test(formValues.contactNumber)) {
       newErrors.contactNumber = t("form.contactNumberError");
       isValid = false;
     } else {
       newErrors.contactNumber = "";
     }
- 
+  
     if (!/^\d{6}$/.test(formValues.pincode)) {
       newErrors.pincode = t("form.pincodeError");
       isValid = false;
     } else {
       newErrors.pincode = "";
     }
-
+  
     setErrors(newErrors);
-
+  
     if (isValid) {
       setFormData((prev) => ({
         ...prev,
-        form1: formValues, // Save current form's data in global state
+        form1: {
+          ...formValues,
+          natureOfConstruction: formValues.natureOfConstruction || "", // ✅ Fix
+          occupationType: formValues.occupationType || "", // ✅ Fix
+        },
       }));
-      onNext(); // Navigate to the next form
+      console.log("Final Form Data:", formValues); // ✅ Debugging
+      onNext(); // Next form pe move karein
     }
   };
+  
+  
+  
 
   return (
     <div className="form-container">
@@ -234,9 +252,10 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
               <h6 className="label-small">{t("form.natureOfConstruction")}</h6>
               <div className="custom-dropdown">
                 <div className="dropdown-header" onClick={toggleConstructionDropdown}>
-                  <span className="option-inside-placeholder">
-                    {selecteddOption}
-                  </span>
+                <span className="option-inside-placeholder">
+  {formValues.natureOfConstruction || t("form.selectNatureOfConstruction")}
+</span>
+
                   {isOpenConstruction ? (
                     <HiOutlineChevronUp size={18} className="dropdown-arrow" />
                   ) : (
@@ -297,11 +316,14 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
             {t("form.camp")} 
             </label>
             <input
-              type="text"
-              className={`form-control input-small `}
-              id="pincode"
-              placeholder={t("form.enterCamp")}
-            /> 
+  type="text"
+  className="form-control input-small"
+  id="camp"
+  placeholder={t("form.enterCamp")}
+  value={formValues.camp}
+  onChange={handleInputChange} 
+/>
+
             </div>
 
             </div>
@@ -342,9 +364,10 @@ const FunctionalRequiremnt = ({ onNext, onPrevious }) => {
                 <h6 className="label-small">{t("form.occupationType")}</h6>
                 <div className="custom-dropdown">
                   <div className="dropdown-header" onClick={toggleOccupationDropdown}>
-                    <span className="option-inside-placeholder">
-                      {selectedOption}
-                    </span>
+                  <span className="option-inside-placeholder">
+  {formValues.occupationType || t("form.selectOccupationType")}
+</span>
+
                     {isOpenOccupation ? (
                       <HiOutlineChevronUp size={18} className="dropdown-arrow" />
                     ) : (
