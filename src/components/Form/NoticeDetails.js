@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -62,6 +62,21 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen); // Toggle modal visibility
+  };
+
+  const handleModalConfirm = () => {
+    // Update formData with modal selections
+    setFormData({
+      ...formData,
+      form3: {
+        ...formData.form3,
+        selectedOption,
+        selectedNoticeCount,
+      },
+    });
+
+    // Close the modal
+    toggleModal();
   };
 
   const validateForm = () => {
@@ -163,7 +178,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                   <button className="cancel-btn" onClick={toggleModal}>
                     {t("form.cancel")}
                   </button>
-                  <button className="confirm-btn" onClick={toggleModal}>
+                  <button className="confirm-btn" onClick={handleModalConfirm}>
                     {t("form.confirm")}
                   </button>
                 </div>
@@ -235,4 +250,4 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
   );
 };
 
-export default NoticeDetails; 
+export default NoticeDetails;

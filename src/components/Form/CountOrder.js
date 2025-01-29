@@ -277,7 +277,21 @@ const handleFileChange = (e) => {
             />
 
           </div>
-          <div className="col-md-4 mb-3 mt-2">
+          <div className="col-md-4 mb-3">
+            <label htmlFor="petitionerMobileNumber" className="form-label label-small">
+            {t("form.petitionerMobileNumber")} 
+            </label>
+            <input
+              type="text"
+              className={`form-control input-small`}
+              id="petitionerMobileNumber"
+              placeholder={t("form.petitionerMobileNumberPlaceholder")}
+              value={formValues.petitionerName}
+              onChange={handleInputChange}
+            />
+
+          </div>
+          <div className="col-md-6 mb-3 mt-2">
             <label htmlFor="detailedAddress" className="form-label label-small">
             {t("form.petitionerAddress")} 
             </label>

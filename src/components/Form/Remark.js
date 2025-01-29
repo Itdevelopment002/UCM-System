@@ -1,33 +1,45 @@
-import React, { useState ,useEffect} from "react";
-import { useTranslation } from "react-i18next"; 
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 import { Link } from "react-router-dom";
 import { useFormContext } from "../Context/FormContext";
+
 Modal.setAppElement("#root");
 
 const Remark = ({ onNext, onPrevious }) => {
   const { formData, setFormData } = useFormContext();
- const { t } = useTranslation(); 
-  
+  const { t } = useTranslation();
 
   const [errors, setErrors] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false); 
- useEffect(() => {
-        if (formData?.form5) {
-            setFormValues(formData.form5); // Set form values from the global state if available
-        }
-    }, [formData]); // Only trigger when formData changes
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formValues, setFormValues] = useState({
-   remark:""
+    remark: "",
   });
+
+  // UseEffect to load initial form data from global form state
+  useEffect(() => {
+    if (formData?.form5) {
+      setFormValues(formData.form5); // Set form values from global state if available
+    }
+  }, [formData]);
+
+  // UseEffect to update form data in the global state whenever formValues change
+  useEffect(() => {
+    if (formValues.remark) {
+      setFormData((prevData) => ({
+        ...prevData,
+        form5: formValues, // Update form5 in global state whenever formValues change
+      }));
+    }
+  }, [formValues, setFormData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormValues({
+      ...formValues,
       [name]: value,
     });
   };
@@ -35,8 +47,7 @@ const Remark = ({ onNext, onPrevious }) => {
   const validateForm = () => {
     const newErrors = {};
 
-    
-    if (!formData.remark.trim()) {
+    if (!formValues.remark.trim()) {
       newErrors.remark = t("form.remarkError");
     }
 
@@ -47,16 +58,22 @@ const Remark = ({ onNext, onPrevious }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (validateForm) {
+    if (validateForm()) {
+      // Update form data in the global state
       setFormData((prevData) => ({
-          ...prevData,
-          form5: formValues,
+        ...prevData,
+        form5: formValues,
       }));
-      console.log('Form submitted successfully, proceeding to next step...');
-      onNext(); // Proceed to the next step in the form
-  } else {
-      console.log('Form validation failed. Please fix the errors.');
-  }
+
+      console.log("Form submitted successfully, proceeding to next step...");
+      setIsModalOpen(true); // Open the modal on successful submission
+
+      // Proceed to next step
+      onNext(); 
+    } else {
+      console.log("Form validation failed. Please fix the errors.");
+      toast.error(t("form.validationError")); // Show error toast if validation fails
+    }
   };
 
   const closeModal = () => {
@@ -80,10 +97,12 @@ const Remark = ({ onNext, onPrevious }) => {
               }`}
               rows="4"
               placeholder={t("form.remarkPlaceholder")}
-              value={formData.remark}
+              value={formValues.remark}
               onChange={handleChange}
             ></textarea>
-            {errors.remark && <small className="text-danger">{errors.remark}</small>}
+            {errors.remark && (
+              <small className="text-danger">{errors.remark}</small>
+            )}
           </div>
         </div>
 
@@ -103,23 +122,17 @@ const Remark = ({ onNext, onPrevious }) => {
         contentLabel="Form Submission Success"
         className="modal-content-final d-flex flex-md-column"
         overlayClassName="modal-overlay"
-        
       >
         <h5 className="modal-title ">{t("form.submitSuccess")}</h5>
-       <p className="model-text">
-       {t("form.thankMessage")}
-       </p>
-       <div className="modal-footer mt-0 " style={{justifyContent:"center"}}>
-       <div className="btn-at-footer">
-       <button onClick={closeModal} className="cancel-btn" >
-       {t("form.cancel")}
-        </button>
-        <Link to="/">
-        <button className="confirm-btn">{t("form.confirm")}</button>
-      </Link>
-       </div>
-       </div>
-    
+        <p className="model-text">{t("form.thankMessage")}</p>
+        <div className="modal-footer mt-0 " style={{ justifyContent: "center" }}>
+          <div className="btn-at-footer">
+            
+            <Link to="/">
+              <button className="confirm-btn">{t("form.ok")}</button>
+            </Link>
+          </div>
+        </div>
       </Modal>
     </div>
   );
