@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { useTranslation } from "react-i18next"; 
 import { toast, ToastContainer } from "react-toastify";
 import Modal from "react-modal";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 import { Link } from "react-router-dom";
-
+import { useFormContext } from "../Context/FormContext";
 Modal.setAppElement("#root");
 
-const Remark = () => {
+const Remark = ({ onNext, onPrevious }) => {
+  const { formData, setFormData } = useFormContext();
  const { t } = useTranslation(); 
-  const [formData, setFormData] = useState({
-    natureOfConstruction: "",
-    remark: "",
-  });
+  
 
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false); 
-
+ useEffect(() => {
+        if (formData?.form5) {
+            setFormValues(formData.form5); // Set form values from the global state if available
+        }
+    }, [formData]); // Only trigger when formData changes
+  const [formValues, setFormValues] = useState({
+   remark:""
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,11 +47,16 @@ const Remark = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      console.log("Form Data Submitted:", formData);
-      toast.success("Form submitted successfully!"); 
-      setIsModalOpen(true); 
-    }
+    if (validateForm) {
+      setFormData((prevData) => ({
+          ...prevData,
+          form5: formValues,
+      }));
+      console.log('Form submitted successfully, proceeding to next step...');
+      onNext(); // Proceed to the next step in the form
+  } else {
+      console.log('Form validation failed. Please fix the errors.');
+  }
   };
 
   const closeModal = () => {

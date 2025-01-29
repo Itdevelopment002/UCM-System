@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next"; 
 import map from "../../images/map.png";
@@ -8,7 +8,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./FunctionalRequiremnt.css";
 
+import { useFormContext } from "../Context/FormContext";
 const ComplaintDetails = ({ onNext, onPrevious }) => {
+
+  const { formData, setFormData } = useFormContext();
+
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     complainantName: "",
@@ -22,6 +26,11 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
   const [errors, setErrors] = useState({});
   const {t} = useTranslation(); 
 
+  useEffect(() => {
+      if (formData?.form2) {
+        setFormValues(formData.form2); // Set form values from the global state if available
+      }
+    }, [formData]); // Only trigger when formData changes
   const handleInputChange = (e) => {
     const { id, value, files } = e.target;
 
@@ -171,17 +180,45 @@ const ComplaintDetails = ({ onNext, onPrevious }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (validateForm()) {
-      console.log("Form submitted successfully", formValues);
-
-
-
-      onNext();
-    } else {
-      console.log("Validation failed. Please check the fields.");
+    let isValid = true;
+    const newErrors = { ...errors };
+  
+    if (!formValues.complainantName || !formValues.complainantName.trim()) {
+      newErrors.complainantName = t("form.complainantNameError");
+      isValid = false;
+    }
+  
+    if (
+      !formValues.complainantContact ||
+      !formValues.complainantContact.trim() ||
+      !/^\d{10}$/.test(formValues.complainantContact)
+    ) {
+      newErrors.complainantContact = t("form.complainantContactError");
+      isValid = false;
+    }
+  
+    if (!formValues.complaintDescription || !formValues.complaintDescription.trim()) {
+      newErrors.complaintDescription = t("form.complaintDescriptionError");
+      isValid = false;
+    }
+  
+    if (!formValues.hardCopyUpload) {
+      newErrors.hardCopyUpload = t("form.hardCopyUploadError");
+      isValid = false;
+    }
+  
+    setErrors(newErrors);
+  
+    if (isValid) {
+      setFormData((prev) => ({
+        ...prev,
+        form2: formValues, // Save current form's data in global state
+      }));
+      onNext(); // Navigate to the next form
     }
   };
+  
+  
 
   return (
     <div className="form-container">

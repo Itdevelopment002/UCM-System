@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useMemo} from "react";
+import React, { useEffect, useState, useMemo } from "react";
 // import { useNavigate, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next"; 
+import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useStepContext } from "../StepContext";
+import { useStepContext } from "../Context/StepContext";
 import "./Hwizardbar.css";
 
 const Hwizardbar = ({ activeForm, onStepChange }) => {
-  const {t} = useTranslation(); 
+  const { t } = useTranslation();
   const { setActiveStep } = useStepContext();
 
   const loadFormState = () => {
@@ -35,15 +35,17 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
     setFormFilled(updatedFormFilled);
     localStorage.setItem("formFilled", JSON.stringify(updatedFormFilled));
   };
+  
 
   const arrowButtonStyle = (isDisabled) => ({
     backgroundColor: isDisabled ? "grey" : "#5038ed",
     cursor: isDisabled ? "not-allowed" : "pointer",
     borderRadius: "50%",
   });
-
   const canGoToNext = () => formFilled[activeForm];
+
   const canGoToPrev = () => activeForm > 0 || formFilled[activeForm];
+
 
   useEffect(() => {
     setActiveStep(activeForm);
@@ -54,28 +56,28 @@ const Hwizardbar = ({ activeForm, onStepChange }) => {
       <div className="first-row">
         <h3 className="heading1">{t("steps.functionalRequirements")}</h3>
         <div className="arrow-buttons">
-          <button
-            className="arrow-button"
+          <button  className="arrow-button"
             onClick={() => activeForm > 0 && onStepChange(activeForm - 1)}
             disabled={activeForm === 0 || !canGoToPrev()}
             style={arrowButtonStyle(activeForm === 0 || !canGoToPrev())}
           >
-            <FaArrowLeft size={20} />
+            <FaArrowLeft size={20}  style={{color:"white"}}/>
           </button>
 
-          <button
-            className="arrow-button"
-            onClick={() => {
-              if (activeForm < steps.length - 1 && canGoToNext()) {
-                markFormAsFilled();
-                onStepChange(activeForm + 1);
-              }
-            }}
-            disabled={activeForm === steps.length - 1 || !canGoToNext()}
-            style={arrowButtonStyle(activeForm === steps.length - 1 || !canGoToNext())}
-          >
-            <FaArrowRight size={20} />
-          </button>
+
+          <button  className="arrow-button"
+  onClick={() => {
+    if (activeForm < steps.length - 1 && canGoToNext()) {
+      markFormAsFilled();
+      onStepChange(activeForm + 1);
+    }
+  }}
+  disabled={activeForm === steps.length - 1 || !canGoToNext()}
+  style={arrowButtonStyle(activeForm === steps.length - 1 || !canGoToNext())}
+>
+  <FaArrowRight size={20} style={{color:"white"}} />
+</button>
+
         </div>
       </div>
 

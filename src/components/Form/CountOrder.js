@@ -1,12 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef , useEffect } from "react";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormContext } from "../Context/FormContext";
+
 
 const CourtOrder = ({ onNext, onPrevious }) => {
+    const { formData, setFormData } = useFormContext();
+
   const navigate = useNavigate();
   const { t } = useTranslation(); 
 
@@ -15,7 +19,11 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   const [selectedCourt, setSelectedCourt] = useState("");
   const [occupationOptions] = useState([t("form.owner"), t("form.rented"), t("form.shop")]);
   const dropdownRef = useRef(null);
-
+ useEffect(() => {
+        if (formData?.form5) {
+            setFormValues(formData.form5); // Set form values from the global state if available
+        }
+    }, [formData]); // Only trigger when formData changes
   const [formValues, setFormValues] = useState({
     courtInvolvement: "",
     courtOrderNumber: "",
@@ -39,90 +47,20 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormValues((prev) => ({
-      ...prev,
-      [id]: value,
+        ...prev,
+        [id]: value,
     }));
-  };
+};
 
-  const handleFileChange = (event, field) => {
-    const file = event.target.files[0];
-
-    if (!file) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: "",
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+      setFormValues((prevValues) => ({
+          ...prevValues,
+          demolitionDocument: file,
       }));
-      return;
-    }
-
-
-    const validationRules = {
-      hardCopyUpload: {
-        validTypes: ["application/pdf", "application/msword"],
-        maxSize: 2 * 1024 * 1024,
-        errorMessage: {
-          type: t("form.hardCopyValidator"),
-          size: t("form.hardCopySizeValidator"),
-        },
-      },
-      photoUpload: {
-        validTypes: ["image/jpeg", "image/jpg", "image/png"],
-        maxSize: 1 * 1024 * 1024,
-        errorMessage: {
-          type: t("form.photoValidator"),
-          size: t("form.photoSizeValidator"),
-        },
-      },
-      videoUpload: {
-        validTypes: ["video/mp4", "video/avi", "video/mov", "video/mkv"],
-        maxSize: 10 * 1024 * 1024,
-        errorMessage: {
-          type: t("form.videoValidator"),
-          size: t("form.videoSizeValidator"),
-        },
-      },
-    };
-
-    const validation = validationRules[field];
-
-    if (!validation) {
-      console.error(`No validation rules found for field: ${field}`);
-      return;
-    }
-
-
-    if (!validation.validTypes.includes(file.type)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: validation.errorMessage.type,
-      }));
-      event.target.value = "";
-      return;
-    }
-
-
-    if (file.size > validation.maxSize) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [field]: validation.errorMessage.size,
-      }));
-      event.target.value = "";
-      return;
-    }
-
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [field]: "",
-    }));
-
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [field]: file,
-    }));
-
-    console.log(`${field} upload successful:`, file.name);
-  };
+  }
+};
 
 
   const [isOpenCourt, setIsOpenCourt] = useState(false);
@@ -145,29 +83,29 @@ const CourtOrder = ({ onNext, onPrevious }) => {
     if (!formValues.courtOrderNumber) newErrors.courtOrderNumber = t("form.courtOrderNumberError");
     if (!formValues.edDate) newErrors.edDate = t("form.edDateError");
     if (!formValues.courtName) newErrors.courtName = t("form.courtNameError");
-    // if (!formValues.typeOfCourt) newErrors.typeOfCourt = t("form.typeOfCourtError");
-    // if (!formValues.petitionerName) newErrors.petitionerName = t("form.petitionerNameError");
-    // if (!formValues.petitionerMobile) newErrors.petitionerMobile = t("form.petitionerMobileError");
-    // if (!formValues.detailedAddress) newErrors.detailedAddress = t("form.detailedAddressError");
-    // if (!formValues.courtOrderDocument) newErrors.courtOrderDocument = t("form.courtOrderDocError");
+  
     return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newErrors = validateForm();
-    console.log("Validation Errors:", newErrors);
+    const validationErrors = validateForm(); // Call the function and get errors
+    setErrors(validationErrors); // Update the errors state
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    if (Object.keys(validationErrors).length === 0) {
+        // If no errors, proceed
+        setFormData((prevData) => ({
+            ...prevData,
+            form5: formValues,
+        }));
+        console.log("Form submitted successfully, proceeding to next step...");
+        onNext(); // Proceed to the next step in the form
     } else {
-      setErrors({});
-      console.log("Submitted Successfully:", formValues);
-      navigate("/dashboard/remark");
-      onNext();
+        // If there are errors, show them
+        console.log("Form validation failed. Please fix the errors.");
     }
-  };
+};
 
 
 
