@@ -629,7 +629,7 @@ textarea {
 
 @media (max-width: 380px) {
   .form-container {
-    /* top: 60%; */
+     /* top: 60%; */
     width: 100%;
     left: 0%;
   }

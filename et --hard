@@ -256,4 +256,865 @@ Date:   Sat Jan 18 13:57:43 2025 +0530
     Merge branch 'main' into pragati
 
 [33mcommit b9d59afd735c2336371d93b0d0d51cc131a26806[m
-Author: Itdevel
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Sat Jan 18 13:55:37 2025 +0530
+
+    added validations in uploads
+
+[33mcommit 9a1d5da6b59e46f1ab1589e289023589df97d5ef[m
+Merge: dbdfab8 d679b9c
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 17:32:06 2025 +0530
+
+    Merge pull request #37 from Itdevelopment002/pragati
+    
+    changes in hwizardbar
+
+[33mcommit d679b9c6e4e428ba345f4e70063547c1dd30ad07[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 17:31:27 2025 +0530
+
+    changes in hwizardbar
+
+[33mcommit dbdfab8a3b57c9ccacbee65027007e1d8c28ad49[m
+Merge: eb52ff1 2a5b382
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 16:16:06 2025 +0530
+
+    Merge pull request #36 from Itdevelopment002/pragati
+    
+    added final modal with navigation
+
+[33mcommit 2a5b3827491884181f5b5f101a498c3a4e95fc5d[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 16:14:58 2025 +0530
+
+    added final modal with navigation
+
+[33mcommit eb52ff16d5f2918c6aa0eefb2942e98d14e99774[m
+Merge: 4f31c9b 39ba3bb
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 12:12:03 2025 +0530
+
+    Merge pull request #35 from Itdevelopment002/pragati
+    
+    adding changes responsive
+
+[33mcommit 39ba3bb4fd9bc9d1072b467b9dfff5c665165252[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 12:11:29 2025 +0530
+
+    adding changes responsive
+
+[33mcommit 4f31c9b90ac709e7de6eebae37df9ebe85f4df8d[m
+Merge: bf70a08 3385e3b
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 12:02:59 2025 +0530
+
+    Merge branch 'saumya'
+
+[33mcommit 3385e3b84954397d2b098d595309d05c7369af2a[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:51:44 2025 +0530
+
+    Update translation files and Register component
+
+[33mcommit bf70a0850ae46f2711c8dd941661f645d53f3848[m
+Merge: 1716be1 18acb8b
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:48:47 2025 +0530
+
+    Merge pull request #34 from Itdevelopment002/pragati
+    
+    adding line again
+
+[33mcommit 18acb8b7fa54927ff08edac6f6d7aa37456fd182[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:47:32 2025 +0530
+
+    adding line again
+
+[33mcommit 1716be148465fbb5bf445de76365410118238426[m
+Merge: 4ecfa15 c08d8df
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:18:25 2025 +0530
+
+    Merge pull request #33 from Itdevelopment002/pragati
+    
+    addiing sidebar changes
+
+[33mcommit c08d8df43a23a731d4dede72dd06d7fdec0cdc84[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:16:54 2025 +0530
+
+    addiing sidebar changes
+
+[33mcommit 4ecfa15e8195340451a9b05872c53708aa883d97[m
+Merge: d8222fc 1b6cefd
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:04:22 2025 +0530
+
+    Merge pull request #32 from Itdevelopment002/saumya
+    
+    updation in login and register with auto-cursor for otp and marathi json
+
+[33mcommit d8222fc610552a2be5a27b7fab04d6ba550dc057[m
+Merge: 2820a3a baf4750
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 11:03:58 2025 +0530
+
+    Merge pull request #31 from Itdevelopment002/pragati
+    
+    again adding arrow
+
+[33mcommit baf475018ffbe225e30464fcca081b32ecc36432[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 10:59:14 2025 +0530
+
+    again adding arrow
+
+[33mcommit 2820a3a5906e0054daa1827b252c2060b0494545[m
+Merge: b54c241 7b98d4d
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 10:31:25 2025 +0530
+
+    Merge pull request #30 from Itdevelopment002/pragati
+    
+    added arrows again
+
+[33mcommit 7b98d4d7ecb9402eaa63004e076fa5e41e7d99a7[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 17 10:25:01 2025 +0530
+
+    added arrows again
+
+[33mcommit 1b6cefd07d96c914813731127388f45f76b3c916[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 17:43:23 2025 +0530
+
+    updation in login and register with auto-cursor for otp and marathi json
+
+[33mcommit b54c24150ba742af471fff4ea522396d788eec82[m
+Merge: a7072fd 582cf86
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 17:32:37 2025 +0530
+
+    Merge pull request #29 from Itdevelopment002/pragati
+    
+    navigation from forward arrow only when the form is filled all
+
+[33mcommit 582cf864ba226c9e0eefd36199a4dad831428e7d[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 17:25:28 2025 +0530
+
+    navigation from forward arrow only when the form is filled all
+
+[33mcommit a7072fd7c06e049381600182bca967bbd0bca939[m
+Merge: 8c07bcd 6f942ab
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 17:09:16 2025 +0530
+
+    Merge pull request #28 from Itdevelopment002/pragati
+    
+    Pragati
+
+[33mcommit 6f942ab8df17db8d880f1eeacc25d638e12b887c[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 17:08:21 2025 +0530
+
+    save and next navigation
+
+[33mcommit baff26504d6b5d7437da49a94c82487d78593d98[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 15:03:58 2025 +0530
+
+    removed navigation from wizard bar
+
+[33mcommit 8c07bcd859dca2d4ac343ee834def1c714b804ec[m
+Merge: 7e15908 cfb6245
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 15:00:07 2025 +0530
+
+    Merge pull request #27 from Itdevelopment002/pragati
+    
+    added modal
+
+[33mcommit cfb6245cec29f8b3717efa922761bdae9f708723[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 14:55:38 2025 +0530
+
+    added modal
+
+[33mcommit 7e1590879502d7386735f2a880a7c23c96651690[m
+Merge: c5254ee eb19475
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 13:42:25 2025 +0530
+
+    Merge pull request #26 from Itdevelopment002/pragati
+    
+    changes in validation
+
+[33mcommit eb1947523371936a8a987b96263399ded9b37739[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 13:41:30 2025 +0530
+
+    changes in validation
+
+[33mcommit c5254ee2d6c4dfc96f27d53ef9bca349e2aeeda4[m
+Merge: d713d40 4c6d447
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 13:40:47 2025 +0530
+
+    Merge pull request #25 from Itdevelopment002/pragati
+    
+    otp page problem
+
+[33mcommit d713d405398fe1e10b5edcd4ce4d0042bedaa181[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 10:59:52 2025 +0530
+
+    login page error resolve
+
+[33mcommit 5bf633d49d0d89597b0076988d3ecafccafc6afd[m
+Merge: 6e1b25b 9836265
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 16 01:44:23 2025 +0530
+
+    Merge branch 'main' of https://github.com/Itdevelopment002/UCM-System
+
+[33mcommit 6e1b25b472749f629b3d63409a1bf184c6c2bb64[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 17:34:22 2025 +0530
+
+    complaint details update
+
+[33mcommit 4c6d447a4cda590bf91b20504d4248284f619885[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 22:50:51 2025 +0530
+
+    otp page problem
+
+[33mcommit 983626511861b6ff49d9f4a0195ed45705ceaf29[m
+Merge: 25c32de e1f2db1
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 21:23:38 2025 +0530
+
+    Merge pull request #24 from Itdevelopment002/pragati
+    
+    remade the changes in forms(pragati)
+
+[33mcommit e1f2db185528e4bd2829622895ae1696a40614a7[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 21:22:54 2025 +0530
+
+    remade the changes in forms(pragati)
+
+[33mcommit 25c32de70ed8b12951f0b6eb32a0dbf47d8df683[m
+Merge: 4ee2410 2569c90
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 19:44:19 2025 +0530
+
+    Merge pull request #23 from Itdevelopment002/pragati
+    
+    Pragati
+
+[33mcommit 2569c90e3eb6932453fcc7a0c97e1920212a38a5[m
+Merge: 44e1267 4ee2410
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 19:43:19 2025 +0530
+
+    changes
+
+[33mcommit 44e12672834274a1d680a10c1e4925674cc9207a[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 19:30:26 2025 +0530
+
+    changes in sidebar
+
+[33mcommit 4ee24108599fa4aa092a574231db9db1a5f420cc[m
+Merge: 205f169 aabefd7
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 19:10:25 2025 +0530
+
+    Merge pull request #22 from Itdevelopment002/pragati
+    
+    Pragati tripathi
+
+[33mcommit aabefd7625747f3d23a43c9c2e07e23594b6bae4[m
+Merge: b56f93b 205f169
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 19:08:46 2025 +0530
+
+    Merge branch 'main' into pragati
+
+[33mcommit e93c4389ff19f512c321f4ee8473bd7d52701a38[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 18:11:56 2025 +0530
+
+    check
+
+[33mcommit 205f169c2cb9515e208a736d901c4f05760d8d23[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 17:34:22 2025 +0530
+
+    complaint details update
+
+[33mcommit b56f93bfb32950bd0cc856d5d86b84f2afae01c9[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 17:22:44 2025 +0530
+
+    responsive
+
+[33mcommit e376e112a7170d3fa5444dbfca5e5ba55418f82a[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 17:06:31 2025 +0530
+
+    made all the things responsive except login/reg
+
+[33mcommit bb6d7a2c50bad2fbcbc545e11182de8ddaba7038[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 14:43:00 2025 +0530
+
+    changes
+
+[33mcommit eebb74633b8dbc1ea17cccfbc5039ab286fed282[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Wed Jan 15 12:10:08 2025 +0530
+
+    added lines to connect all the step circles
+
+[33mcommit a26ca0777d8f5d760b1790c1b57b91e3e408328f[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 23:54:27 2025 +0530
+
+    upload docs function (court order-saumya)
+
+[33mcommit 7300eb60b402e665cd20dc06027abe94d911849b[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 22:50:03 2025 +0530
+
+    merging
+
+[33mcommit 608c69847f202522aa96852711b427194fb38cb6[m
+Merge: d6ec7f2 4f1c315
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 22:47:37 2025 +0530
+
+    Merge branch 'main' of https://github.com/Itdevelopment002/UCM-System
+
+[33mcommit d6ec7f21156f5ffc719e6447e4a76c3dc5d00266[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 17:40:21 2025 +0530
+
+    validation, upload docs in DD
+
+[33mcommit 4f1c3150a16c70617fb3c1647380844e597b787e[m
+Merge: b253864 a2533b2
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 17:35:16 2025 +0530
+
+    Merge pull request #21 from Itdevelopment002/pragati
+    
+    changes in index
+
+[33mcommit a2533b22728d3da95c14cd52491f730b21250494[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 17:34:18 2025 +0530
+
+    changes in index
+
+[33mcommit b2538645818061fe132b9c06b25081e2e82de361[m
+Merge: eebee84 624f8e8
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 13:39:18 2025 +0530
+
+    Merge pull request #20 from Itdevelopment002/pragati
+    
+    all the forms validation except login/reg
+
+[33mcommit 624f8e893a2450dbf80793569384da654dfd5802[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 13:38:07 2025 +0530
+
+    did all the forms validation
+
+[33mcommit eebee84540f860506c5dc2a4b932ded9bdabc0f2[m
+Merge: d7bbd62 e8112eb
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 10:14:11 2025 +0530
+
+    Merge pull request #19 from Itdevelopment002/pragati
+    
+    added bg in landing page
+
+[33mcommit e8112eb2618134b760fe6ba5aa4aa6d6e1a23fd0[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 14 10:12:43 2025 +0530
+
+    added bg
+
+[33mcommit d7bbd62267689a250ada54707c2a8d98d6338b81[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 16:11:22 2025 +0530
+
+    display resolve
+
+[33mcommit 3d730db3bd65aab70fdef60ba96b13b3fa7b9e79[m
+Merge: 3245bfa 50a60c0
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 16:28:24 2025 +0530
+
+    Merge pull request #18 from Itdevelopment002/pragati
+    
+    changes in wizard bar
+
+[33mcommit 50a60c068cba115b7d27c0eee07df8936fd49667[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 16:27:41 2025 +0530
+
+    changes in wizard bar
+
+[33mcommit 3245bfa27eb45927fd626be9a93a4b7a7546a49c[m
+Merge: 4112e87 7803b45
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 16:02:00 2025 +0530
+
+    Merge pull request #17 from Itdevelopment002/pragati
+    
+    m
+
+[33mcommit 7803b45e06a64424ce9b793160f275c8634d8b81[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 16:01:24 2025 +0530
+
+    m
+
+[33mcommit 4112e875e1f4722589a79d007cf50f844e2d51e4[m
+Merge: d8e52fa 761b3bd
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:53:59 2025 +0530
+
+    Merge pull request #16 from Itdevelopment002/pragati
+    
+    m
+
+[33mcommit 761b3bd4876102a24af3c2cbeac7483cbd05920d[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:53:13 2025 +0530
+
+    m
+
+[33mcommit d8e52fa2263d1428c0199fac8b1ec4573755d242[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:49:35 2025 +0530
+
+    Update components and add new background images
+
+[33mcommit b643604cc4575d2040fc109ef4cd4827b913b896[m
+Merge: 379aa21 64d2aaa
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:36:04 2025 +0530
+
+    Merge pull request #15 from Itdevelopment002/pragati
+    
+    changes
+
+[33mcommit 64d2aaa06cd809817c58477f9381af7a47e5a9a7[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:35:28 2025 +0530
+
+    changes
+
+[33mcommit 379aa218e01ba5632ab28eb9a7e17d11e4321639[m
+Merge: 5cabe7a 486a917
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:31:52 2025 +0530
+
+    Merge pull request #14 from Itdevelopment002/pragati
+    
+    Pragati
+
+[33mcommit 486a9177304c1c1b92b95afc304190ff15396f18[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:31:01 2025 +0530
+
+    changes
+
+[33mcommit eeb707d3a034bf83f64e43c031f9494e5739ffda[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:22:05 2025 +0530
+
+    changes in functional form
+
+[33mcommit 5cabe7ac2aca97ba5a422cc5e67bce86b3e67748[m
+Merge: 78c0527 bb6f752
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:16:34 2025 +0530
+
+    Merge pull request #13 from Itdevelopment002/pragati
+    
+    changes by pragati
+
+[33mcommit bb6f752cc98274c5fd8d8054de7faad8b9039e8f[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 15:15:45 2025 +0530
+
+    changes by pragati
+
+[33mcommit 78c0527a831e0d81d9245e948883aa451023c225[m
+Merge: 8df262f 46159cb
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 10:36:42 2025 +0530
+
+    Merge pull request #12 from Itdevelopment002/pragati
+    
+    Pragati
+
+[33mcommit 46159cb033bf0e2701e32527d475a8296f9a4448[m
+Merge: 680f8f9 8df262f
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 10:35:03 2025 +0530
+
+    getting git conflict
+
+[33mcommit 680f8f9653a1012301bb0fd5fecf405ad56a46e8[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 13 10:31:02 2025 +0530
+
+    taking pull
+
+[33mcommit 8df262feb39c0e00e53f07a74ac56904f8c3afcf[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Sun Jan 12 23:10:42 2025 +0530
+
+    Update class(form-control1), Routing to dashboard, DD form edit
+
+[33mcommit a6317071f927279527f39fcb7276fdae04acbe6d[m
+Merge: aa8429b 7d5f0f3
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Sat Jan 11 00:14:30 2025 -0500
+
+    Merge branch 'main' of https://github.com/Itdevelopment002/UCM-System
+
+[33mcommit aa8429bce1a4aaceb3d1e6231927591449a2f2e0[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 12:08:36 2025 -0500
+
+    bbb
+
+[33mcommit 7d5f0f3143c35501071ba7cb78fc65e769c6bbd8[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 20:58:29 2025 +0530
+
+    Updation for logins page and DemolitioDetails page
+
+[33mcommit ded7c2d2b48687c3134c3ac4838b5470f853ab26[m
+Merge: 3d5bd36 9c8f3f7
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 20:29:13 2025 +0530
+
+    Merge pull request #11 from Itdevelopment002/pragati
+    
+    made noticeboard model
+
+[33mcommit 9c8f3f712b3ed8364f6f4f9c62f716bd4bdcbded[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 20:28:17 2025 +0530
+
+    made noticeboard model
+
+[33mcommit 3d5bd3672d5b8cc0bfe5b7bee928167567998e9b[m
+Merge: a66c3f7 2fa7f71
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 17:50:50 2025 +0530
+
+    Merge pull request #10 from Itdevelopment002/pragati
+    
+    Pragati
+
+[33mcommit 2fa7f7139255ee3d6a6a2662aadc3368660cef3c[m
+Merge: b88a8e4 a66c3f7
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 17:50:01 2025 +0530
+
+    changes in forms and arrows
+
+[33mcommit b88a8e45c3b930513d3ff140af22f24e84293448[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 17:48:17 2025 +0530
+
+    changes in arrows
+
+[33mcommit f71e88e80c3e2ce80a6b212923c47d36619e830f[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 17:28:12 2025 +0530
+
+    changes suggested by aditi mam except date format
+
+[33mcommit a66c3f7e31b025e2f4ce60a82cb864d42091cb7a[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 01:20:32 2025 -0500
+
+    changes by server
+
+[33mcommit cebb3b146963e2bef8e48c0832a8cac14d754ccb[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 02:02:31 2025 +0530
+
+    Updated demolition details code
+
+[33mcommit 79da70d60aa9d83277e6c06aa3682a7a5b1b4575[m
+Merge: 1f1bfcc 063b635
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 01:52:25 2025 +0530
+
+    Resolved merge conflicts and completed merge with saumya
+
+[33mcommit 1f1bfccfe3c7a2e9461e4bd96af9313e8f5767c4[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 10 01:44:53 2025 +0530
+
+    Demolition order design updation
+
+[33mcommit 063b63511ea00aa70154c5e4f5201ab6e60e73b2[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 23:24:02 2025 +0530
+
+    Resolved merge conflict in NoticeDetails.js
+
+[33mcommit 7a7ea34a5be64a6ecd81d8bc0ec1c65f992e43b8[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 23:16:31 2025 +0530
+
+    Resolved merge conflict in FunctionalRequiremnt.js
+
+[33mcommit efbe3945df9ecff1774068c07d32852b102f64a4[m
+Merge: 6a8c974 036621e
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 22:13:20 2025 +0530
+
+    Resolved merge conflicts in FunctionalRequiremnt.js and NoticeDetails.js
+
+[33mcommit 036621e7bb93d2d4fddd7114cf9a19d6603ed6da[m
+Merge: 6bede5d 383b588
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 20:57:20 2025 +0530
+
+    Merge pull request #9 from Itdevelopment002/pragati
+    
+    changes in all the forms exceptdemolition
+
+[33mcommit 383b58892bbdfa996d3da29e5d16b6b4f6ad56ce[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 20:56:19 2025 +0530
+
+    changes in all the forms exceptdemolition
+
+[33mcommit 49b0dd4d60aa0c06917cc3609b7d9ceeec6ba30b[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 20:24:05 2025 +0530
+
+    Reapplied changes to App.js and added Otp.js
+
+[33mcommit 6bede5d2ab19b36da79221f405eefca35716c6e9[m
+Merge: 49575c4 3402213
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 17:43:23 2025 +0530
+
+    Merge pull request #8 from Itdevelopment002/pragati
+    
+    changes in form1
+
+[33mcommit 3402213d9751f9b614ddbbc11624dc90e905e72c[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 17:42:26 2025 +0530
+
+    changes in form1
+
+[33mcommit 49575c4c4d6200b3f440f569336658a24220fde2[m
+Merge: 9f7772b dabf087
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 17:31:27 2025 +0530
+
+    Merge pull request #7 from Itdevelopment002/pragati
+    
+    changes in forms
+
+[33mcommit dabf087033102560682432b8fb74ed6815836f5a[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 17:30:24 2025 +0530
+
+    changes in forms
+
+[33mcommit 9f7772bfef60c11bf2570bf278c5c1f03205193d[m
+Merge: afb904d ca6be48
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 14:08:23 2025 +0530
+
+    Merge pull request #6 from Itdevelopment002/pragati
+    
+    changes in forms and sidebar with header
+
+[33mcommit ca6be48c7d725c9ad451a8410c5723e7b8c59cce[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 14:07:01 2025 +0530
+
+    changes in forms and sidebar with header
+
+[33mcommit afb904daa457cfff98baf96e9ef9fc7c683367e1[m
+Merge: 5369009 baaa262
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 10:36:33 2025 +0530
+
+    Merge pull request #5 from Itdevelopment002/pragati
+    
+    changes to make responsive landing page sidebar header
+
+[33mcommit baaa2627deaaf98d042df0d66f420273e5e30b0b[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 9 10:32:02 2025 +0530
+
+    changes to make responsive landing page sidebar header
+
+[33mcommit 6a8c9746b0a4bc702a66847aac34fffb78b88496[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 7 13:29:56 2025 +0530
+
+    saving
+
+[33mcommit 53690090826b2c9979ccbef50837e6f6737f8076[m
+Merge: 102c506 ff8baf0
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 7 13:12:49 2025 +0530
+
+    Merge pull request #4 from Itdevelopment002/pragati
+    
+    Pragati changes in formboard
+
+[33mcommit ff8baf0ba6e1ae7231c3e4a61b5e77fa503ac41e[m
+Merge: 39539e1 102c506
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 7 13:11:05 2025 +0530
+
+    changes in formboard
+
+[33mcommit 39539e1afd878d5a30ca928b47b3100705332633[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 7 13:09:11 2025 +0530
+
+    changes in formboard
+
+[33mcommit 102c5060b325525ea5b78920eabaf56c4bdba2c8[m
+Merge: 73ed797 f1e1495
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 7 10:34:09 2025 +0530
+
+    git push origin main
+    Merge branch 'saumya'
+
+[33mcommit f1e149536d38228ef06ac60214f0ee5f23eee299[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Tue Jan 7 10:22:45 2025 +0530
+
+    form-padding,tab-position
+
+[33mcommit 73ed7971ed7c1647bfaded6ba0b13d491912ed9b[m
+Merge: df12d7e 77f7972
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 6 17:40:32 2025 +0530
+
+    Merge pull request #3 from Itdevelopment002/pragati
+    
+     changes in all the forms with font size in place holder
+
+[33mcommit 77f7972e32f5064797c10c714ca0a805ae3394db[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 6 17:39:14 2025 +0530
+
+     changes in all the forms with font size in place holder
+
+[33mcommit df12d7e365037bf401ea91b55a5e6da0f6882f9b[m
+Merge: d293328 27456f2
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 6 16:30:53 2025 +0530
+
+    Merge pull request #2 from Itdevelopment002/saumya
+    
+    Saumya
+
+[33mcommit 27456f2ff19c694dc73fcf1cf6bd0c1061cf3d5a[m
+Merge: cf87348 d293328
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 6 16:27:30 2025 +0530
+
+    changes in css
+
+[33mcommit cf87348067d5b2249f900563d0787db3bfa00781[m
+Author: itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 6 16:25:23 2025 +0530
+
+    changes in forms css
+
+[33mcommit d2933289d333ca6db10e2694a7a4e3d57239c3b4[m[33m ([m[1;31morigin/saumya[m[33m, [m[1;32msaumya[m[33m)[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Mon Jan 6 16:11:46 2025 +0530
+
+    made dynamic by adding routes -pragati
+
+[33mcommit 687acef50a52c498820c5a5a1fd2fd0d602a72ad[m
+Merge: e691015 6ac7db0
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Sat Jan 4 17:22:32 2025 +0530
+
+    changes by pragati to make dynamic
+
+[33mcommit e691015ef0751339d110df0f0af09342c80968de[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Sat Jan 4 17:14:18 2025 +0530
+
+    changes by pragati made both wizard bar dynamic
+
+[33mcommit 6ac7db012e294d53d7869875d893176412177239[m
+Merge: 5ce5e36 f152e0d
+Author: abhigenicminds <abhimanyu.yadav@genicminds.com>
+Date:   Sat Jan 4 15:33:54 2025 +0530
+
+    Merge pull request #1 from Itdevelopment002/ucmform
+    
+    added test file
+
+[33mcommit f152e0df40d6de769bd45d20be9590be2de98d2e[m
+Author: Abhimanyu Yadav <abhimanyu.yadav@genicminds.com>
+Date:   Sat Jan 4 15:30:52 2025 +0530
+
+    added test file
+
+[33mcommit 2d5a3565995b2e665615de1730fc37223a8e51cc[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Sat Jan 4 10:53:57 2025 +0530
+
+     changes by pragati in code
+
+[33mcommit 5ce5e36354b5399fe4c6050c5b84bd3f26d2e599[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 3 19:00:37 2025 +0530
+
+    changes by pragati to add registration page with UI and routes
+
+[33mcommit ba2138704d95ce3f1410c57c672b3dcbe965e75a[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 3 17:41:28 2025 +0530
+
+    made the horizontal wizard  bar
+
+[33mcommit 52bd72e690fca35f9f3e0872c41077a2b766909c[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Fri Jan 3 13:40:03 2025 +0530
+
+    changes by pragati
+
+[33mcommit 648333da95e708fce45352e8ac47be63bb661781[m
+Author: Itdevelopment002 <itdevelopment111@gmail.com>
+Date:   Thu Jan 2 13:32:46 2025 +0530
+
+    main-by-pragati
