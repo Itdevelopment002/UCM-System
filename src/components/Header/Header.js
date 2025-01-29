@@ -47,8 +47,9 @@ const Header = () => {
       <div className="col-md-6 d-flex justify-content-end align-items-center gap-bw-each">
         {/* Home Icon to navigate back to the landing page */}
         <Link to="/" className="home-icon">
-          <FaHome size={30}  style={{fill:"#5038ed"}}/>
-        </Link>
+  <FaHome size={30} style={{ color: "#5038ed", fill: "none", stroke: "#5038ed", strokeWidth: 20 }} />
+</Link>
+
 
         <div className="language">
           <div className="language-selector" onClick={toggleLangDropdown}>
@@ -89,9 +90,7 @@ const Header = () => {
                   <ul>
                     <li>View Profile</li>
                     <li>Settings</li>
-                    <li>Change Password</li>
-
-                    <li>Contact Support</li>
+                   
 
 
                     <li onClick={handleLogout}>Logout</li>
