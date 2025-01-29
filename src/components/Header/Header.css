@@ -1,21 +1,18 @@
-/* Container for the header */
 .header-container {
-
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 20px 16px;
   background-color: #ffffff;
   width: 100%;
-  height: auto; /* Dynamic height for responsiveness */
+  height: auto;
   border-bottom: 1px solid #d9d9d9;
-  position: fixed; /* Fix the header at the top */
-  top: 0; /* Position it at the very top of the viewport */
-  z-index: 1000; /* Ensure it stays above other elements */
+  position: fixed;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Logo style */
 .header-logo {
   font-weight: bold;
   font-size: 20px;
@@ -24,8 +21,6 @@
   text-align: left;
 }
 
-/* Search bar container */
-/* Search bar container */
 .search-bar {
   position: relative;
   width: 268px;
@@ -35,36 +30,29 @@
 .search-bar input {
   border-radius: 6px;
   height: 40px;
-  padding-left: 40px; /* Space for the icon */
+  padding-left: 40px;
   box-shadow: none;
   border: 1px solid #d9d9d9;
 }
 
-/* Position search icon inside the search box */
 .search-icon {
   position: absolute;
-  left: 10px; /* Position it inside the input field */
+  left: 10px;
   top: 50%;
-  transform: translateY(-50%); /* Vertically center it */
-  color: #5038ed; /* Blue color for the icon */
+  transform: translateY(-50%);
+  color: #5038ed;
 }
 
-
-/* Language selector styles */
-/* Language container */
 .language {
   margin-right: 5px;
   margin-left: 20px;
-  position: relative; /* For absolute positioning of dropdown */
+  position: relative;
 }
 
-/* Language selector button */
 .language-selector {
- 
   position: relative;
   color: #333333;
   width: 139px;
-  
   height: 40px;
   z-index: 1500;
   padding: 10px 16px;
@@ -79,27 +67,24 @@
 }
 
 .language-selector .dropdown-arrow {
-  color: #5038ed; /* Blue color for the arrow */
-  margin-left: 8px; /* Add spacing between text and icon */
+  color: #5038ed;
+  margin-left: 8px;
   vertical-align: middle;
 }
 
-
-/* Dropdown menu styles */
 .dropdown-menu {
   min-width: 140px;
   position: absolute;
-  top: 45px; /* Align dropdown just below the selector */
+  top: 45px;
   left: 0;
   background-color: #fff;
   border: 1px solid #d9d9d9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   z-index: 2000;
-  width: 100%; /* Ensure the dropdown width is the same as the selector width */
+  width: 100%;
   padding: 10px 0;
   display: block;
-
 }
 
 .dropdown-menu ul {
@@ -123,40 +108,33 @@
   color: white;
 }
 
-/* Media Queries for Mobile responsiveness */
 @media (max-width: 768px) {
   .language-selector {
-    width: auto; /* Adjust width for mobile */
+    width: auto;
   }
 }
+
 @media (max-width: 1200px) {
   .user-info {
-   width: auto; /* Adjust width for mobile */
+    width: auto;
   }
 }
 
-
-
-/* Notification and user info styles */
 .bell-icon {
   color: #5038ed;
   cursor: pointer;
-  margin-right: px;
   margin-left: 20px;
 }
 
 .user-info {
   display: flex;
- 
   margin-left: 20px;
   align-items: center;
 }
 
 .user-info .user-name {
-  
   font-size: 14px;
   color: #5038ed;
-
 }
 
 .user-info .user-icon {
@@ -164,17 +142,13 @@
   cursor: pointer;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .header-container {
     position: absolute;
     flex-direction: column;
     align-items: center;
     padding: 10px;
-
   }
-/* Container for the header */
-
 
   .header-logo {
     text-align: center;

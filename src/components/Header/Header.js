@@ -1,4 +1,3 @@
-// Header.js
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
@@ -28,7 +27,6 @@ const Header = () => {
         </Link>
       </div>
       <div className="col-md-6 d-flex justify-content-end align-items-center">
-        {/* Language Selector */}
         <div className="language">
           <div className="language-selector" onClick={toggleDropdown}>
             <span className="input-small">Language</span>
@@ -49,13 +47,11 @@ const Header = () => {
           )}
         </div>
         
-        {/* Notification Icon */}
         <div className="bell-icon">
           <img src={Notification} alt="notify" />
           <div className="notification-dot"></div>
         </div>
 
-        {/* User Info */}
         <div className="user-info">
           <div className="user-name">
             {t('form.xyzUser')} <br />
