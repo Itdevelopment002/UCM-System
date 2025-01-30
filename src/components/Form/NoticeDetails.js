@@ -41,19 +41,14 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
-    // Validate and set the date in yyyy-mm-dd format
-    if (dateValue) {
-      setFormData({
-        ...formData,
-        form3: {
-          ...formData.form3,
-          formattedDate: dateValue, // Store the date in correct format
-        },
-      });
-      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); // Clear error if date is valid
-    } else {
-      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); // Show error if invalid
-    }
+    // Update the date in the global form state
+    setFormData({
+      ...formData,
+      form3: {
+        ...formData.form3,
+        formattedDate: dateValue, // Store the date in correct format
+      },
+    });
   };
 
   const handleNoticeCountChange = (e) => {
@@ -81,11 +76,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.form3?.formattedDate) {
-      newErrors.date = t("form.dateError"); // Show error if date is empty
-    }
-
+    // No validation required for the date field now, make it optional
     return newErrors;
   };
 
@@ -94,6 +85,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
     const newErrors = validateForm();
 
+    // Skip date validation
     if (Object.keys(newErrors).length === 0) {
       // If no validation errors, submit the form data
       console.log("Form submitted successfully!");
@@ -227,7 +219,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
             <div className="mb-3 col-md-6 ms-3">
               <label htmlFor="datePicker" className="form-label label-small">
-                {t("form.noticeDate")}<span className="text-danger">*</span>
+                {t("form.noticeDate")}
               </label>
               <input
                 type="date"
