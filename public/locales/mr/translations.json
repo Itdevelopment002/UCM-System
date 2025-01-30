@@ -50,6 +50,9 @@
         "wardOffice": "वॉर्ड कार्यालय",
         "unauthorizedConstructionNumber": "अनधिकृत बांधकाम क्रमांक",
         "ucNumberPlaceholder": "UC क्रमांक",
+        "petitionerMobileNumber": "याचिकाकर्त्याचा मोबाइल नंबर",
+        "petitionerMobileNumberPlaceholder": "याचिकाकर्त्याचा मोबाइल नंबर टाका",
+
         "ucOwnerName": "UC मालकाचे नाव",
         "contactNumber": "संपर्क क्रमांक",
         "contactNumberError": "कृपया 10-अंकी नंबर प्रविष्ट करा",

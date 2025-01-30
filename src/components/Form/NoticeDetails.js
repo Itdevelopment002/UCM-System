@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./FunctionalRequiremnt.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -41,19 +41,14 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
-    // Validate and set the date in yyyy-mm-dd format
-    if (dateValue) {
-      setFormData({
-        ...formData,
-        form3: {
-          ...formData.form3,
-          formattedDate: dateValue, // Store the date in correct format
-        },
-      });
-      setErrors((prevErrors) => ({ ...prevErrors, date: "" })); // Clear error if date is valid
-    } else {
-      setErrors((prevErrors) => ({ ...prevErrors, date: "Please select a valid date." })); // Show error if invalid
-    }
+    // Update the date in the global form state
+    setFormData({
+      ...formData,
+      form3: {
+        ...formData.form3,
+        formattedDate: dateValue, // Store the date in correct format
+      },
+    });
   };
 
   const handleNoticeCountChange = (e) => {
@@ -64,13 +59,24 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
     setIsModalOpen(!isModalOpen); // Toggle modal visibility
   };
 
+  const handleModalConfirm = () => {
+    // Update formData with modal selections
+    setFormData({
+      ...formData,
+      form3: {
+        ...formData.form3,
+        selectedOption,
+        selectedNoticeCount,
+      },
+    });
+
+    // Close the modal
+    toggleModal();
+  };
+
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.form3?.formattedDate) {
-      newErrors.date = t("form.dateError"); // Show error if date is empty
-    }
-
+    // No validation required for the date field now, make it optional
     return newErrors;
   };
 
@@ -79,6 +85,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
     const newErrors = validateForm();
 
+    // Skip date validation
     if (Object.keys(newErrors).length === 0) {
       // If no validation errors, submit the form data
       console.log("Form submitted successfully!");
@@ -163,7 +170,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
                   <button className="cancel-btn" onClick={toggleModal}>
                     {t("form.cancel")}
                   </button>
-                  <button className="confirm-btn" onClick={toggleModal}>
+                  <button className="confirm-btn" onClick={handleModalConfirm}>
                     {t("form.confirm")}
                   </button>
                 </div>
@@ -212,7 +219,7 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
 
             <div className="mb-3 col-md-6 ms-3">
               <label htmlFor="datePicker" className="form-label label-small">
-                {t("form.noticeDate")}<span className="text-danger">*</span>
+                {t("form.noticeDate")}
               </label>
               <input
                 type="date"
@@ -235,4 +242,4 @@ const NoticeDetails = ({ onNext, onPrevious }) => {
   );
 };
 
-export default NoticeDetails; 
+export default NoticeDetails;

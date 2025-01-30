@@ -144,6 +144,8 @@
         "petitionerName": "याचिकाकर्ता का नाम",
         "petitionerNamePlaceholder": "याचिकाकर्ता का नाम दर्ज करें",
         "petitionerMobileNumber": "याचिकाकर्ता का मोबाइल नंबर",
+        "petitionerMobileNumberPlaceholder": "याचिकाकर्ता का मोबाइल नंबर दर्ज करें",
+        "petitionerMobileNumber": "याचिकाकर्ता का मोबाइल नंबर",
         "petitionerAddress": "याचिकाकर्ता का पता",
 
         "demolitionDate": "विध्वंस तिथि",
