@@ -1,10 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './ConstructionDemolishManagement.css';
-import logo from "../../images/logo1.png";
 import rightImage from "../../images/engineer-belongings1.png";
+import logo from "../../images/logo1.png";
 import bg from "../../images/signup-bg.jpg";
+import './ConstructionDemolishManagement.css';
 const ConstructionDemolishManagement = () => {
     return (
         <div className="outer-wrapper-lp"  style={{
@@ -30,7 +30,7 @@ const ConstructionDemolishManagement = () => {
                             Follow the steps below to file a complaint and monitor its progress.
                         </p>
                         <Link to="/register" className="btn-link mt-1">
-                            <button className="btn btn-primary register-button-landing-page mt-4">Register Your Complaint</button>
+                            <button className="btn btn-primary landing-button-landing-page mt-4">Register Your Complaint</button>
                         </Link>
                     </div>
 
