@@ -26,9 +26,9 @@ const CourtOrder = ({ onNext, onPrevious }) => {
     if (formData?.form5) {
       setFormValues((prev) => ({
         ...prev,
-        ...formData.form5, // ✅ Restore all form5 values
+        ...formData.form5, 
       }));
-      setSelectedCourt(formData.form5.typeOfCourt || ""); // ✅ Restore court selection
+      setSelectedCourt(formData.form5.typeOfCourt || ""); 
     }
   }, [formData]);
 
@@ -56,10 +56,8 @@ const CourtOrder = ({ onNext, onPrevious }) => {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
   
-    // Check if the value contains only numbers (for example, phone numbers)
+    
     if (id === "petitionerMobileNumber" && !/^\d*$/.test(value)) {
-      // If it's a number field and the value is not a number, do nothing
-      return;
     }
   
     setFormValues((prev) => ({
@@ -72,7 +70,7 @@ const CourtOrder = ({ onNext, onPrevious }) => {
 const handleFileChange = (e) => {
   const file = e.target.files[0];
   if (file) {
-    validateFile(file, "hardCopyUpload", e); // Pass 'e' to validateFile function
+    validateFile(file, "hardCopyUpload", e);
   }
 };
 
@@ -80,7 +78,7 @@ const validateFile = (file, field, e) => {
   const validationRules = {
     hardCopyUpload: {
       validTypes: ["application/pdf", "application/msword"],
-      maxSize: 2 * 1024 * 1024, // 2 MB
+      maxSize: 2  1024  1024, 
       errorMessage: {
         type: "Only .doc and .pdf files are allowed.",
         size: "The file size exceeds 2 MB. Please upload a smaller document.",
@@ -94,27 +92,25 @@ const validateFile = (file, field, e) => {
     return;
   }
 
-  // Validate file type
   if (!validation.validTypes.includes(file.type)) {
     setErrors((prevErrors) => ({
       ...prevErrors,
       [field]: validation.errorMessage.type,
     }));
-    e.target.value = ""; // Clear the file input
+    e.target.value = ""; 
     return;
   }
 
-  // Validate file size
+ 
   if (file.size > validation.maxSize) {
     setErrors((prevErrors) => ({
       ...prevErrors,
       [field]: validation.errorMessage.size,
     }));
-    e.target.value = ""; // Clear the file input
+    e.target.value = ""; 
     return;
   }
 
-  // Clear errors and update state if validation passes
   setErrors((prevErrors) => ({
     ...prevErrors,
     [field]: "",
@@ -144,7 +140,7 @@ const validateFile = (file, field, e) => {
     setSelectedCourt(option);
     setFormValues((prev) => ({
       ...prev,
-      typeOfCourt: option, // ✅ Ensure state update
+      typeOfCourt: option,
     }));
     setIsOpenCourt(false);
   };
@@ -172,8 +168,8 @@ const handleSubmit = (e) => {
       ...prevData,
       form5: {
         ...formValues,
-        courtInvolvement: formValues.courtInvolvement || "", // ✅ Ensure court involvement is stored
-        typeOfCourt: formValues.typeOfCourt || "", // ✅ Ensure type of court is stored
+        courtInvolvement: formValues.courtInvolvement || "", 
+        typeOfCourt: formValues.typeOfCourt || "", 
       },
     }));
     console.log("Form submitted successfully, proceeding to next step...", formValues);
@@ -199,7 +195,7 @@ const handleNumericInput = (e, maxLength) => {
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-        {/* Court Matter Involvement */}
+       
         <div className="row">
           <div className="col-md-12 mb-3">
             <label className="label-small">{t("form.courtMatterInvolvement")}</label>
@@ -210,7 +206,7 @@ const handleNumericInput = (e, maxLength) => {
   id="courtInvolvementYes"
   name="courtInvolvement"
   value="Yes"
-  checked={formValues.courtInvolvement === "Yes"} // ✅ Bind state
+  checked={formValues.courtInvolvement === "Yes"} 
   onChange={() => setFormValues((prev) => ({ ...prev, courtInvolvement: "Yes" }))}
 />
 
@@ -232,7 +228,7 @@ const handleNumericInput = (e, maxLength) => {
           </div>
         </div>
 
-        {/* Form Fields */}
+      
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtOrderNumber" className="form-label label-small">
@@ -263,7 +259,7 @@ const handleNumericInput = (e, maxLength) => {
             {errors.edDate && <div className="text-danger">{errors.edDate}</div>}
           </div>
 
-          {/* File Upload Field */}
+     
 
           <div className="mb-3 col-md-4">
             <label htmlFor="hardCopyUpload" className="form-label label-small">
@@ -299,7 +295,7 @@ const handleNumericInput = (e, maxLength) => {
 
         </div>
 
-        {/* Court Name */}
+       
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="courtName" className="form-label label-small">
@@ -316,7 +312,7 @@ const handleNumericInput = (e, maxLength) => {
             {errors.courtName && <div className="text-danger">{errors.courtName}</div>}
           </div>
 
-          {/* Court Type Dropdown */}
+          
           <div className="col-md-4 mb-3">
             <label htmlFor="typeOfCourt" className="form-label label-small">
             {t("form.typeOfCourt")}
@@ -353,7 +349,6 @@ const handleNumericInput = (e, maxLength) => {
           </div>
         </div>
 
-        {/* Petitioner Details */}
         <div className="row">
           <div className="col-md-4 mb-3">
             <label htmlFor="petitionerName" className="form-label label-small">
