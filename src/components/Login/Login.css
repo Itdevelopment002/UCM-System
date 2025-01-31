@@ -51,7 +51,7 @@ p {
 }
 
 /* Input */
-.otp-input {
+/* .otp-input {
   width: 100%;
   max-width: 280px;
   padding: 10px;
@@ -61,7 +61,7 @@ p {
   margin-bottom: 10px;
   text-align: center;
   background-color: #f8f8f8;
-}
+} */
 
 .otp-warning {
   font-size: 14px;
@@ -71,9 +71,9 @@ p {
 
 /* Buttons */
 .otp-button {
-  width: 100%;
+  /* width: 100%; */
   max-width: 280px;
-  padding: 12px;
+  /* padding: 12px; */
   font-size: 16px;
   color: white;
   background: linear-gradient(45deg, #5038ed, #9181f4);
@@ -158,10 +158,10 @@ p {
     flex-direction: column;
   }
 
-  .otp-promo {
+  .otp-promo-text {
     /* padding: 30px 10px; */
     font-size: 1.2rem;
-    position: inherit;
+    /* position: inherit; */
   }
 
   /* .otp-promo h3 {
@@ -172,7 +172,7 @@ p {
     max-width: 100%;
   } */
   .otp-button{
-    height: 2.3rem;
+    /* height: 2rem; */
     width: auto;
     font-size: 0.7rem;
     font-weight: 600;

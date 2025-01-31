@@ -194,7 +194,7 @@ const Register = () => {
               alt="Overlay"
               style={{ width: "100%", display: "block" }}
             />
-            <h3 className="col-6 w-28 rightRegText">
+            <h3 className="col-6 w-28 fw-bold rightRegText">
               Join Us Today! <br /> Opportunities Await <br />– Register Now!!
             </h3>
           </div>

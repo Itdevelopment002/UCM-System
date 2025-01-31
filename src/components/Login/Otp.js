@@ -134,7 +134,7 @@ const Otp = () => {
               alt="Overlay"
               style={{ width: "97%", display: "block" }}
             />
-            <h3 className="otp-promo-text">
+            <h3 className="otp-promo-text fw-bold">
               Very good works are waiting for you. <br/>-Login Now!!!
             </h3>
           </div>
