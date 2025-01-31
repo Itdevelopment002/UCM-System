@@ -92,9 +92,13 @@
   font-style: bold;
 }
 .flash-reg {
-  z-index: 2;
+  /* z-index: 2;
   top: 55%;
   left: -3%;
+  position: absolute; */
+  z-index: 2;
+  top: 52%;
+  left: 15%;
   position: absolute;
 }
 .register-logo {
@@ -138,7 +142,7 @@
   font-size: 15px;
   text-align: center;
 }
-.rightRegText {
+/* .rightRegText {
   position: absolute;
   top: 49%;
   left: 51%;
@@ -148,6 +152,26 @@
   text-align: left;
   line-height: 1.5;
   font-size: 30px;
+} */
+ /* Right Section */
+.reg-promo-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  top: 49%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  line-height: 1.6;
+  font-size: 1.2rem;
+}
+.reg-promo-text{
+  font-size: clamp(0.875rem, 2vw, 1.2rem); /* 0.875rem (14px) to 1.5rem (24px) */
 }
 
 /* Updated Media Queries */
@@ -170,16 +194,20 @@
   .promo-reg-section {
     border-radius: 0 0 10px 10px;
   }
-  .rightRegText {
+  .reg-promo-text {
+    /* padding: 30px 10px; */
     font-size: 1.2rem;
+    width: fit-content;
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+  .reg-promo-text h3 {
+   
+    font-size: clamp(1rem, 5vw, 1.125rem);
   }
   .flash-reg {
-    top: 10rem;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    left: 8%;
   }
 }
-
 @media (min-width: 768px) and (max-width: 1024px) {
   .register-page {
     overflow-y: hidden;
@@ -204,7 +232,11 @@
     border-radius: 12px;
   }
 }
-
+@media (max-width: 480px) {
+  .reg-promo-text h3 {
+    font-size: 16px;
+  }
+}
 @media (min-width: 1024px) {
   .register-container {
     width: 85%;

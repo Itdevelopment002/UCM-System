@@ -169,7 +169,7 @@ p {
   }
 
   .otp-promo-text h3 {
-    font-size: 18px;
+    
     font-size: clamp(1rem, 5vw, 1.125rem);
   }
 
