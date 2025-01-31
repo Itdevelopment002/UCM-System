@@ -1,3 +1,222 @@
+/******* modification in otp for responsiveness******/
+/* Container */
+.otp-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("../../images/vintage-bg.jpg") center center / cover no-repeat;
+  padding: 20px;
+}
+
+.otp-wrapper {
+  display: flex;
+  flex-direction: row;
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Section */
+.otp-form {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.otp-logo {
+  width: 80px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* Input */
+.otp-input {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #f8f8f8;
+}
+
+.otp-warning {
+  font-size: 14px;
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.otp-button {
+  width: 100%;
+  max-width: 280px;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(45deg, #5038ed, #9181f4);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.otp-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #7d6ce4, #3d2dcc);
+}
+
+/* Social Login Buttons */
+.social-button {
+  width: 100%;
+  max-width: 280px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
+.social-button img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* Right Section */
+.otp-promo-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: absolute;
+  top: 49%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 1.2rem;
+}
+
+
+.otp-overlay {
+  width: 80%;
+  text-align: center;
+}
+
+.otp-overlay-img {
+  width: 100%;
+  display: block;
+}
+
+/* .otp-promo h3 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.5;
+} */
+
+.otp-flash {
+  position: absolute;
+  width: 60px;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .otp-wrapper {
+    flex-direction: column;
+  }
+
+  .otp-promo {
+    /* padding: 30px 10px; */
+    font-size: 1.2rem;
+    position: inherit;
+  }
+
+  /* .otp-promo h3 {
+    font-size: 18px;
+  } */
+
+  /* .social-button {
+    max-width: 100%;
+  } */
+  .otp-button{
+    height: 2.3rem;
+    width: auto;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin: auto;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .otp-form {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .otp-input {
+    font-size: 14px;
+  }
+
+  .otp-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .social-button {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .otp-promo-text h3 {
+    font-size: 16px;
+  }
+}
+
+/****************END****************/
+
 /* General Layout */
 .container-fluid {
   background: #f4f6f9;
@@ -20,11 +239,11 @@
 }
 
 /* Left Section - Verification Form */
-.bg-white {
+/* .bg-white {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+} */
 
 .login-logo {
   width: 25%;
@@ -137,14 +356,14 @@ p {
   padding: 0 20px;
   position: relative;
 }
-.input-check-reg {
+/* .input-check-reg {
   border: none;
   border-radius: 14px;
   padding: 12px;
   font-size: 12px;
   box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
   background-color: #eeeaf7;
-}
+} */
 .verifytext-right{
    position: absolute;
    top: 49%;

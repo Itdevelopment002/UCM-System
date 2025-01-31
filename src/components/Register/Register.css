@@ -110,9 +110,9 @@
   font-size: 12px;
 }
 .register-button {
-  height: 2.7rem;
+  height: 2.3rem;
   width: auto;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: white;
   background: linear-gradient(99.78deg, #9181f4 -5.85%, #5038ed 109.55%);
@@ -212,7 +212,7 @@
   .register {
     padding: 2rem;
     flex-direction: row;
-    height: 100vh;
+    max-height: 100vh;
   }
   .form-section,
   .promo-reg-section {
