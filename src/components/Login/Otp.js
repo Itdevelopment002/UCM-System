@@ -141,7 +141,7 @@ const Otp = () => {
           <img
             src={flash}
             alt="Flash"
-            className="position-absolute p-5 flash"
+            className="flash"
           />
         </div>
       </div>

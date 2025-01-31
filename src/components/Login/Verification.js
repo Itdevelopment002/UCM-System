@@ -53,15 +53,15 @@ const Verification = () => {
 
   return (
     <div
-      className="container-fluid vh-100 d-flex align-items-center justify-content-center"
+      className="otp-container"
       style={{
         background: `url(${bg}) center center / cover no-repeat`,
         position: "relative",
       }}
     >
-      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
+      <div className="otp-wrapper row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
         <div className="col-12 vh-95 bg-white col-md-6 p-5 mx-auto d-flex flex-column justify-content-center">
-          <div className="mx-auto p-2 d-flex flex-column justify-content-center align-items-center">
+          <div className="mx-auto p-2 d-flex flex-column justify-content-center align-items-center ">
             <img
               src={logo}
               alt="Ward Logo"
@@ -127,14 +127,15 @@ const Verification = () => {
               alt="Overlay"
               style={{ width: "100%", display: "block" }}
             />
-            <h3 className="col-4 w-4 fw-bold verifytext-right">
-              Very good works are waiting for you. Login Now!!!
+            {/*removed verifytextright */ }
+            <h3 className="col-4 w-4 fw-bold otp-promo-text verify-promo-text"> 
+              Very good works are waiting for you. <br/>-Login Now!!!
             </h3>
           </div>
           <img
             src={flash}
             alt="Flash"
-            className="position-absolute p-5 flash"
+            className=" flash"
           />
         </div>
       </div>
