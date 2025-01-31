@@ -43,18 +43,18 @@ const Otp = () => {
 
   return (
     <div
-      className="container-fluid vh-100 d-flex align-items-center justify-content-center"
+      className="otp-container"
       style={{
         background: `url(${bg}) center center / cover no-repeat`,
         position: "relative",
       }}
     >
-      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
-        <div className="col-12 col-md-6 bg-white p-5 d-flex flex-column justify-content-center align-items-center">
+      <div className="otp-wrapper d-flex ">
+        <div className="otp-form  text-center align-items-center justify-content-center">
           <img
             src={logo}
             alt="Ward Logo"
-            className="login-logo img-fluid rounded mb-4"
+            className="otp-logo"
           />
           <h2 className="fw-bold mb-3">OTP VERIFICATION</h2>
           <p className="text-dark text-center mb-4">
@@ -91,7 +91,7 @@ const Otp = () => {
 
             <button
               type="submit"
-              className="btn custom-btn fw-bold mt-3 mb-3 button-log-page"
+              className="btn fw-bold mt-3 mb-3 otp-button"
             >
               Continue
             </button>
@@ -99,20 +99,22 @@ const Otp = () => {
             <p className="text-dark mb-2">
               <b>Login</b> with Others
             </p>
+            <div className=" ">
             <button
-              className="btn btn-outline-light mb-2 d-flex align-items-center justify-content-center mx-auto text-dark"
+              className=" social-button btn btn-outline-light mb-2 d-flex align-items-left justify-content-center mx-auto text-dark"
               style={{ maxWidth: "300px", width: "100%" }}
             >
               <img src={google} alt="Google" className="me-2" />
               Login with &nbsp;<b> Google</b>
             </button>
             <button
-              className="btn btn-outline-light d-flex align-items-center justify-content-center mx-auto text-dark"
+              className=" social-button btn btn-outline-light d-flex align-items-left justify-content-center mx-auto text-dark"
               style={{ maxWidth: "300px", width: "100%" }}
             >
               <img src={facebook} alt="Facebook" className="me-2" />
               Login with &nbsp;<b> Facebook</b>
             </button>
+            </div>
           </form>
         </div>
 
@@ -132,14 +134,14 @@ const Otp = () => {
               alt="Overlay"
               style={{ width: "97%", display: "block" }}
             />
-            <h3 className="col-5 w-4 fw-bold otptext-right">
-              Very good works are waiting for you. Login Now!!!
+            <h3 className="otp-promo-text fw-bold">
+              Very good works are waiting for you. <br/>-Login Now!!!
             </h3>
           </div>
           <img
             src={flash}
             alt="Flash"
-            className="position-absolute p-5 flash"
+            className="flash"
           />
         </div>
       </div>

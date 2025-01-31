@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import flash from "../../images/flash.png";
 import logo from "../../images/logo.png";
 import overlay from "../../images/overlay.png";
-import texture from "../../images/texture.png";
 import bg from "../../images/signup-bg.jpg";
+import texture from "../../images/texture.png";
 import "./Register.css";
 
 const Register = () => {
@@ -80,27 +80,13 @@ const Register = () => {
 
   return (
     <div
-      className="container-fluid vh-100 d-flex align-items-center justify-content-center"
-      style={{
-        background: `url(${bg}) center center / cover no-repeat`,
-        position: "relative",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background: "rgba(0, 0, 0, 0.3)",
-          zIndex: 1,
-        }}
-      />
+    className="register-page register-pages-bg "
+    style={{ background: `url(${bg}) center center / cover`, position: "relative" }}>
+   <div className="register-overlay"></div>
 
-      <div className="row w-85 w-md-75 shadow-lg rounded overflow-hidden login">
-        <div className="w-85 w-md-75 col-12 col-md-6 mx-auto p-5 bg-white d-flex flex-column align-items-center">
-          <img src={logo} alt="Logo" className="login-logo img-fluid mb-4" />
+      <div className=" register row w-85 w-md-75 justify-content-center d-flex">
+        <div className="form-section w-85 w-md-75 col-12 col-md-6 mx-auto p-5 bg-white d-flex flex-column align-items-center">
+          <img src={logo} alt="Logo" className="register-logo img-fluid mb-4" />
           <h2 className="fw-bold text-center">REGISTER</h2>
 
           {/* Success message or tagline */}
@@ -179,7 +165,7 @@ const Register = () => {
 
             <button
               type="submit"
-              className="btn custom-btn mt-2 mb-2 register-button "
+              className="btn mt-2 mb-2 register-button "
             >
               Sign Up
             </button>
@@ -194,28 +180,28 @@ const Register = () => {
           </p>
         </div>
         <div
-          className="col-12 col-md-6 position-relative promo-section text-white d-flex flex-column justify-content-center align-items-center"
+          className="promo-reg-section w-85 w-md-75 col-12 col-md-6 text-white d-flex flex-column justify-content-center align-items-center"
           style={{
             background: `url(${texture}) center center / cover no-repeat`,
           }}
         >
           <div
             className="d-flex flex-column align-items-center"
-            style={{ width: "88%", padding: "2rem", margin: "0 auto" }}
+            style={{ maxWidth: "88%", padding: "2rem", margin: "0 auto" }}
           >
             <img
               src={overlay}
               alt="Overlay"
               style={{ width: "100%", display: "block" }}
             />
-            <h3 className="col-6 w-28 rightRegText">
+            <h3 className="fw-bold reg-promo-text">
               Join Us Today! <br /> Opportunities Await <br />– Register Now!!
             </h3>
           </div>
           <img
             src={flash}
             alt="Flash"
-            className="position-absolute p-5 flash-reg"
+            className="flash-reg"
           />
         </div>
       </div>

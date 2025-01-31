@@ -11,7 +11,7 @@
   text-align: center;
 }
 
-.register-button-landing-page {
+.landing-button-landing-page {
   height: 3.5rem;
   width: 16rem;
   font-size: 1.1rem;
@@ -24,7 +24,7 @@
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.register-button-landing-page:hover {
+.landing-button-landing-page:hover {
   transform: scale(1.05);
   background: linear-gradient(99.78deg, #5038ed -5.85%, #9181f4 109.55%);
 }
@@ -89,7 +89,7 @@
   color: #000000;
 }
 
-.register-button {
+.landing-button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
 }
@@ -118,7 +118,7 @@
 @media (max-width: 1200px) {
   .outer-wrapper-lp {
     font-family: "Poppins", sans-serif;
-    height: 100%;
+    /* height: 100%; */
     overflow-y: hidden;
     display: flex;
     align-items: center;
@@ -177,7 +177,7 @@
     font-size: 1.6rem;
   }
 
-  .register-button-landing-page {
+  .landing-button-landing-page {
     width: 14rem;
     height: 4rem;
     font-size: 1rem;
@@ -201,7 +201,7 @@
     font-size: 0.85rem;
   }
 
-  .register-button-landing-page {
+  .landing-button-landing-page {
     width: 12rem;
     height: 3.8rem;
     font-size: 0.9rem;
